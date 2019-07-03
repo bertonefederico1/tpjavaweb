@@ -1,0 +1,31 @@
+body{
+	background: white;
+}
+
+#cuadro{
+	width:550px;
+	border-bottom: 3px solid #58acfa;	
+	border-top: 3px solid #58acfa;
+	border-left: 3px solid #58acfa;
+	border-right: 3px solid #58acfa;
+	margin:auto;
+	margin-top:190px;
+	border-radius:10px;
+}
+
+#cabeza{
+	width: 544,9px;
+	background: #bae1ff;
+	height: 35px;
+	border-radius: 10px 10px 0px 0px;
+	padding-left: 250px;
+	padding-top: 6px;
+	color: black;
+}
+
+#cuerpo{
+	padding-left: 10px;
+	paddin-right: 10px;
+	padding-top:6px;
+	padding-bottom: 10px;
+}

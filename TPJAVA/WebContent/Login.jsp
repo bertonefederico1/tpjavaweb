@@ -5,24 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
-<link href="bootstrap/css/bootstrap.min.css" rel"stylesheet" type="text/css"/>
-<link href=""bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div id="cuadro">
 		<div id= "cabeza">Login</div>
 		<div id= "cuerpo">
 			<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Usuario</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Enviar</button>
-</form>
+  				<div class="form-group">
+    				<label for="">Usuario</label>
+    				<input type="text" class="form-control" id="usuario" placeholder="Usuario">
+  				</div>
+  				<div class="form-group">
+    				<label for="">Contraseña</label>
+    				<input type="password" class="form-control" id="password" placeholder="Password">
+  				</div>
+  				<button type="submit" class="btn btn-success">Ingresar</button>
+			</form>
 		</div>
 	</div>	
 </body>
