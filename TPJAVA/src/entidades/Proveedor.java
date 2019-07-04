@@ -1,4 +1,4 @@
-package modelo;
+package entidades;
 
 public class Proveedor {
 	private String cuit;

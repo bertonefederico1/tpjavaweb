@@ -1,4 +1,4 @@
-package modelo;
+package entidades;
 
 public class Repuesto {
 	private int codigo;

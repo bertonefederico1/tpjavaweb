@@ -1,4 +1,4 @@
-package modelo;
+package entidades;
 
 public class Auto {
 	private String patente;

@@ -1,4 +1,4 @@
-package controlador;
+package datos;
 
 import java.sql.*;
 

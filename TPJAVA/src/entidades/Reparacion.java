@@ -1,4 +1,4 @@
-package modelo;
+package entidades;
 
 import java.util.Date;
 
