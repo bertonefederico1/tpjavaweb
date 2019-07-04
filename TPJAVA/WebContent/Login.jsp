@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="cuadro">
-		<div id= "cabeza">Login</div>
+		<div id= "cabeza"><b>INGRESO</b></div>
 		<div id= "cuerpo">
 			<form>
   				<div class="form-group">
