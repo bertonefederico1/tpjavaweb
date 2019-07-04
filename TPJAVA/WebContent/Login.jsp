@@ -21,7 +21,7 @@
     				<label for="">Contraseña</label>
     				<input type="password" class="form-control" id="contrasenia" placeholder="Contraseña">
   				</div>
-  				<a href="Index.jsp" <button type="submit" class="btn btn-success">Ingresar</button></a>
+  				<a href="Principal.jsp" <button type="submit" class="btn btn-success">Ingresar</button></a>
 			</form>
 		</div>
 	</div>	
