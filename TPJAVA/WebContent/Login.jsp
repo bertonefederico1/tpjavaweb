@@ -12,16 +12,16 @@
 	<div id="cuadro">
 		<div id= "cabeza"><b>INGRESO</b></div>
 		<div id= "cuerpo">
-			<form>
+			<form method="POST" action= "ServletLogin">
   				<div class="form-group">
     				<label for="inputUsuario">Usuario</label>
-    				<input type="text" class="form-control" id="usuario" placeholder="Usuario">
+    				<input type="text" name="usuario"  class="form-control" id="usuario" placeholder="Usuario"/>
   				</div>
   				<div class="form-group">
     				<label for="InputPassword">Contraseña</label>
-    				<input type="password" class="form-control" id="contrasenia" placeholder="Contraseña">
+    				<input type="password" name="contrasenia" class="form-control" id="contrasenia" placeholder="Contraseña"/>
   				</div>
-  				<a href="Principal.jsp" <button type="submit" class="btn btn-success">Ingresar</button></a>
+  				<button type="submit" class="btn btn-success">Ingresar</button>
 			</form>
 		</div>
 	</div>	
