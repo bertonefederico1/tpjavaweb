@@ -14,11 +14,11 @@
 		<div id= "cuerpo">
 			<form>
   				<div class="form-group">
-    				<label for="">Usuario</label>
+    				<label for="inputUsuario">Usuario</label>
     				<input type="text" class="form-control" id="usuario" placeholder="Usuario">
   				</div>
   				<div class="form-group">
-    				<label for="">Contraseña</label>
+    				<label for="InputPassword">Contraseña</label>
     				<input type="password" class="form-control" id="contrasenia" placeholder="Contraseña">
   				</div>
   				<a href="Principal.jsp" <button type="submit" class="btn btn-success">Ingresar</button></a>
