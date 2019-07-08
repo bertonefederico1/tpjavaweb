@@ -46,10 +46,11 @@ public class ServletLogin extends HttpServlet {
 		String password = request.getParameter("password");
 		Statement stmt=null;
 		ResultSet rs=null;
-		System.out.println(user);
+		//System.out.println(user);
 		try {
 			stmt= Conexion.getInstancia().getConn().createStatement();
-			/*rs= stmt.executeQuery("SELECT * FROM usuario_y_contrasenia");
+			System.out.println(user);
+			rs= stmt.executeQuery("SELECT * FROM usuario_y_contrasenia");
 			while (rs.next()){
 				if (rs.getString("usuario").equals(user) && rs.getString("contrasenia").equals(password)){
 					//request.getRequestDispatcher("Principal.jsp").forward(request, response);
@@ -58,9 +59,10 @@ public class ServletLogin extends HttpServlet {
 					System.out.println("INCORRECTO");
 				}
 					
-			}*/
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 }
