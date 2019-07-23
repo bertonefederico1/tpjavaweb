@@ -10,7 +10,7 @@ public class Conexion {
 	private String host = "localhost";
 	private String port = "3306";
 	private String user = "root";
-	private String password = "123456";
+	private String password = "123456789";
 	private String db = "tpjava";
 	private int conectados = 0;
 	private Connection conn = null;
@@ -56,3 +56,4 @@ public class Conexion {
 		
 
 }
+
