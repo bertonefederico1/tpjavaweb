@@ -54,7 +54,7 @@ public class ServletLogin extends HttpServlet {
 			while (rs.next()){
 				if (rs.getString("usuario").equals(user) && rs.getString("contrasenia").equals(password)){
 					//request.getRequestDispatcher("Principal.jsp").forward(request, response);
-					System.out.println("sddasdas");
+					System.out.println("CORRECTO");
 				} else {
 					System.out.println("INCORRECTO");
 				}

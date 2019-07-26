@@ -42,14 +42,13 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> Reparaciones </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Nueva</a> <a
-							class="dropdown-item" href="#">Consulta</a>
+						<a class="dropdown-item" href="#">Nueva</a> 
+						<a class="dropdown-item" href="#">Consulta</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#">Turnos</a></li>
 			</ul>
 		</div>
-		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar
-			Sesion</a> </nav>
+		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar Sesion</a> </nav>
 	</div>
 </body>
 </html>
