@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
+
+import logica.Ingreso;
 import entidades.*;
 
 /**
  * Servlet implementation class ServletLogin
  */
-@WebServlet({ "/ServletLogin", "/Login", "/login", "/LOGIN" })
+@WebServlet({ "/ServletLogin", "/SERVLETLOGIN", "/SERVLETlogin", "/servletlogin" })
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,26 +45,16 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String user = request.getParameter("usuario");
-		String password = request.getParameter("password");
-		Statement stmt=null;
-		ResultSet rs=null;
-		//System.out.println(user);
-		try {
-			stmt= Conexion.getInstancia().getConn().createStatement();
-			System.out.println(user);
-			rs= stmt.executeQuery("SELECT * FROM usuario_y_contrasenia");
-			while (rs.next()){
-				if (rs.getString("usuario").equals(user) && rs.getString("contrasenia").equals(password)){
-					//request.getRequestDispatcher("Principal.jsp").forward(request, response);
-					System.out.println("CORRECTO");
-				} else {
-					System.out.println("INCORRECTO");
-				}
-					
+		String password = request.getParameter("contrasenia");
+		Usuario u = new Usuario();
+		Ingreso ingreso = new Ingreso();
+		u.setUser(user);
+		u.setPassword(password);
+		if (ingreso.validaLogin(u)){
+			 request.getRequestDispatcher("Principal.jsp").forward(request, response);
+			} else {
+				System.out.println("ERRORRRRRRRRRRR");
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
 	}
 }
