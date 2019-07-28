@@ -53,7 +53,7 @@ public class SignIn extends HttpServlet {
 		if (ingreso.validaLogin(u)){
 			 request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {
-				System.out.println("ERRORRRRRRRRRRR");
+				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
 			}
 		
 	}
