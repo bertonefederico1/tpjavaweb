@@ -12,7 +12,7 @@
 	<div id="cuadro">
 		<div id= "cabeza"><b>INGRESO</b></div>
 		<div id= "cuerpo">
-			<form method="POST" action= "ServletLogin">
+			<form method="POST" action= "SignIn">
   				<div class="form-group">
     				<label for="inputUsuario">Usuario</label>
     				<label><input type="text" form style= width:524px name="usuario"  class="form-control" id="usuario" placeholder="Usuario"/></label>

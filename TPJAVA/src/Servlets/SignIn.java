@@ -17,14 +17,14 @@ import entidades.*;
 /**
  * Servlet implementation class ServletLogin
  */
-@WebServlet({ "/ServletLogin", "/SERVLETLOGIN", "/SERVLETlogin", "/servletlogin" })
-public class ServletLogin extends HttpServlet {
+@WebServlet({ "/SignIn", "/SIGNIN", "/signin", "/SIGNin" })
+public class SignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletLogin() {
+	public SignIn() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
