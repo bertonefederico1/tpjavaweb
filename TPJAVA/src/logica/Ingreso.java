@@ -30,12 +30,17 @@ public class Ingreso {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				try{
+					rs.close();
+					stmt.close();
+					Conexion.getInstancia().releaseConn();
+					}
+				 catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+				 }
+			}
 		return band;
 	}
-
-	private String String(String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
