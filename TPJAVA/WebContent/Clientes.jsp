@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="entidades.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="datos.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -15,49 +18,46 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Select Day</th>
-            <th scope="col">Article Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Words</th>
-            <th scope="col">Shares</th>
+            <th scope="col">DNI</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">APELLIDO</th>
+            <th scope="col">DIRECCION</th>
+            <th scope="col">TELEFONO</th>
+            <th scope="col">MAIL</th>
           </tr>
         </thead>
         <tbody>
+         
+         <%
+        	Statement stmt = null;
+ 			ResultSet rs = null;
+         	stmt= Conexion.getInstancia().getConn().createStatement();
+         	rs = stmt.executeQuery("select * from clientes");
+         	while (rs.next()){
+         		Cliente cli = new Cliente();
+         		cli.setDni(rs.getString("dni"));
+         		cli.setNombre(rs.getString("nombre"));
+         		cli.setApellido(rs.getString("apellido"));
+         		cli.setDireccion(rs.getString("direccion"));
+         		cli.setMail(rs.getString("mail"));
+         		cli.setTelefono(rs.getString("telefono"));
+         		//ArrayList<Persona> pers= new ArrayList<>();
+         	}
+         	
+         %> 
           <tr>
             <td>
                  <div class="radio">
-                     <label><input type="radio" id='regular' name="optradio">TIKI</label>
+                     <label><input type="radio" id='regular' name="optradio"></label>
                  </div>
             </td>
-            <td>Bootstrap 4 CDN and Starter Template</td>
+            <td>BSDFSDF</td>
             <td>Cristina</td>
             <td>913</td>
             <td>2.846</td>
           </tr>
-          <tr>
-            <td>
-              <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck2">
-                  <label class="custom-control-label" for="customCheck2">2</label>
-              </div>
-            </td>
-            <td>Bootstrap Grid 4 Tutorial and Examples</td>
-            <td>Cristina</td>
-            <td>1.434</td>
-            <td>3.417</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck3">
-                  <label class="custom-control-label" for="customCheck3">3</label>
-              </div>
-            </td>
-            <td>Bootstrap Flexbox Tutorial and Examples</td>
-            <td>Cristina</td>
-            <td>1.877</td>
-            <td>1.234</td>
-          </tr>
+          
+          
         </tbody>
       </table>
     </div>
