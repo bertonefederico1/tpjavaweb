@@ -15,6 +15,7 @@
     	Usuario u= (Usuario)session.getAttribute("usuario");
     	ArrayList<Cliente> misClientes=(ArrayList<Cliente>)session.getAttribute("clientes");
 %>
+<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container">
@@ -22,15 +23,6 @@
     <div class="col-12">
       <table class="table table-bordered">
         <thead>
-        <div="botonAgregar">
-        	<button type="button" class="btn btn-success">Nuevo</button>
-        </div>
-        <div="botonModificar">
-        	<a class="btn btn-primary" href="#" role="button">Modificar</a>
-        </div>
-        <div="botonEliminar">
-        	<button type="button" class="btn btn-danger">Eliminar</button>
-        </div>
           <tr>
           	<th scope="col"></th>
             <th scope="col">DNI</th>
@@ -56,9 +48,14 @@
 		        <td><%=cl.getTelefono()%></td>
 		        <td><%=cl.getMail()%></td>
 		      </tr>
-		      <%} %> 
+		      <%} %>
         </tbody>
       </table>
+      <div id= "botones">
+        	<button type="button" class="btn btn-success">Nuevo</button>
+        	<a class="btn btn-primary" href="#" role="button">Modificar</a>
+        	<button type="button" class="btn btn-danger">Eliminar</button>
+      </div>
     </div>
   </div>
 </div>

@@ -26,27 +26,10 @@
 	padding-bottom: 10px;
 }
 
-#botonNuevo{
+#botones{
 	padding-left: 10px;
-	paddin-right: 10px;
-	padding-top:6px;
-	padding-bottom: 10px;
+	padding-top:10px;
+	padding-bottom: 40px;
 }
-
-#botonModificar{
-	padding-left: 10px;
-	paddin-right: 10px;
-	padding-top:6px;
-	padding-bottom: 10px;
-}
-
-
-#botonEliminar{
-	padding-left: 10px;
-	paddin-right: 10px;
-	padding-top:6px;
-	padding-bottom: 10px;
-}
-
 
 
