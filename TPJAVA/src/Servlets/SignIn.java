@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.Ingreso;
 import entidades.*;
+import datos.*;
 
 /**
  * Servlet implementation class ServletLogin
@@ -46,8 +48,11 @@ public class SignIn extends HttpServlet {
 		Ingreso ingreso = new Ingreso();
 		u.setUser(user);
 		u.setPassword(password);
+		DatosPersona dp = new DatosPersona();
 		if (ingreso.validaLogin(u)){
-			 request.getRequestDispatcher("Principal.jsp").forward(request, response);
+			request.getSession().setAttribute("usuario", u);
+			request.getSession().setAttribute("clientes", dp.traerClientes());
+			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {
 				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
 			}

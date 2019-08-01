@@ -4,12 +4,17 @@
 <%@page import="entidades.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="datos.*"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Administracion de usuarios</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
+<% 
+    	Usuario u= (Usuario)session.getAttribute("usuario");
+    	ArrayList<Cliente> misClientes=(ArrayList<Cliente>)session.getAttribute("clientes");
+%>
 </head>
 <body>
 <div class="container">
@@ -17,7 +22,17 @@
     <div class="col-12">
       <table class="table table-bordered">
         <thead>
+        <div="botonAgregar">
+        	<button type="button" class="btn btn-success">Nuevo</button>
+        </div>
+        <div="botonModificar">
+        	<a class="btn btn-primary" href="#" role="button">Modificar</a>
+        </div>
+        <div="botonEliminar">
+        	<button type="button" class="btn btn-danger">Eliminar</button>
+        </div>
           <tr>
+          	<th scope="col"></th>
             <th scope="col">DNI</th>
             <th scope="col">NOMBRE</th>
             <th scope="col">APELLIDO</th>
@@ -27,37 +42,21 @@
           </tr>
         </thead>
         <tbody>
-         
-         <%
-        	Statement stmt = null;
- 			ResultSet rs = null;
-         	stmt= Conexion.getInstancia().getConn().createStatement();
-         	rs = stmt.executeQuery("select * from clientes");
-         	while (rs.next()){
-         		Cliente cli = new Cliente();
-         		cli.setDni(rs.getString("dni"));
-         		cli.setNombre(rs.getString("nombre"));
-         		cli.setApellido(rs.getString("apellido"));
-         		cli.setDireccion(rs.getString("direccion"));
-         		cli.setMail(rs.getString("mail"));
-         		cli.setTelefono(rs.getString("telefono"));
-         		//ArrayList<Persona> pers= new ArrayList<>();
-         	}
-         	
-         %> 
-          <tr>
-            <td>
-                 <div class="radio">
-                     <label><input type="radio" id='regular' name="optradio"></label>
-                 </div>
-            </td>
-            <td>BSDFSDF</td>
-            <td>Cristina</td>
-            <td>913</td>
-            <td>2.846</td>
-          </tr>
-          
-          
+         <% for (Cliente cl : misClientes) {%>
+		      <tr>
+		      	<td>
+                 	<div class="radio">
+                    	<label><input type="radio" id='regular' name="optradio"></label>
+                	</div>
+            	</td>
+		        <td><%=cl.getDni()%></td>
+		        <td><%=cl.getNombre()%></td>
+		        <td><%=cl.getApellido()%></td>
+		        <td><%=cl.getDireccion()%></td>
+		        <td><%=cl.getTelefono()%></td>
+		        <td><%=cl.getMail()%></td>
+		      </tr>
+		      <%} %> 
         </tbody>
       </table>
     </div>
