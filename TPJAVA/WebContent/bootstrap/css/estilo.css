@@ -26,10 +26,14 @@
 	padding-bottom: 10px;
 }
 
-#botones{
-	padding-left: 10px;
+#botonNuevo{
+	padding-left: 50px;
 	padding-top:10px;
-	padding-bottom: 40px;
+	padding-bottom: 10px;
+}
+
+#titulo{
+	text-align:center;
 }
 
 

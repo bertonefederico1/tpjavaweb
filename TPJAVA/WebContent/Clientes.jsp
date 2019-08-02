@@ -17,6 +17,10 @@
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
+<div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
+<div id= "botonNuevo">
+	<button type="button" class="btn btn-success">+ Nuevo</button>
+</div>
 <body>
 <div class="container">
   <div class="row">
@@ -24,38 +28,30 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-          	<th scope="col"></th>
             <th scope="col">DNI</th>
             <th scope="col">NOMBRE</th>
             <th scope="col">APELLIDO</th>
             <th scope="col">DIRECCION</th>
             <th scope="col">TELEFONO</th>
             <th scope="col">MAIL</th>
+            <th scope="col">ACCION</th>
           </tr>
         </thead>
         <tbody>
          <% for (Cliente cl : misClientes) {%>
 		      <tr>
-		      	<td>
-                 	<div class="radio">
-                    	<label><input type="radio" id='regular' name="optradio"></label>
-                	</div>
-            	</td>
 		        <td><%=cl.getDni()%></td>
 		        <td><%=cl.getNombre()%></td>
 		        <td><%=cl.getApellido()%></td>
 		        <td><%=cl.getDireccion()%></td>
 		        <td><%=cl.getTelefono()%></td>
 		        <td><%=cl.getMail()%></td>
+		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
+		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
 		      <%} %>
         </tbody>
       </table>
-      <div id= "botones">
-        	<button type="button" class="btn btn-success">Nuevo</button>
-        	<a class="btn btn-primary" href="#" role="button">Modificar</a>
-        	<button type="button" class="btn btn-danger">Eliminar</button>
-      </div>
     </div>
   </div>
 </div>
