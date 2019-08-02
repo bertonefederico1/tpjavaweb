@@ -7,22 +7,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administracion de usuarios</title>
+<title>Administracion de repuestos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
+<div id=titulo><label><b>ADMINISTRACION DE REPUESTOS</b></label></div>
 <div class= "container buscar">
 	<button type="button" class="btn btn-success">+ Nuevo</button>
 </div>
 <body>
 <%
-	String nombuscar = request.getParameter("txtbuscar");
+	String desc_buscar = request.getParameter("txtbuscar");
 	Statement stmt= null;
 	ResultSet rs= null;
-	if (nombuscar != null){
+	if (desc_buscar != null){
 		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs= stmt.executeQuery("SELECT * FROM clientes WHERE nombre LIKE"+"'%"+nombuscar+"%'");
+		rs= stmt.executeQuery("SELECT * FROM repuestos WHERE descripcion LIKE"+"'%"+desc_buscar+"%'");
 	 	}else{
 			System.err.print("ERROR");
 		} 
@@ -34,12 +34,10 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">DNI</th>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">APELLIDO</th>
-            <th scope="col">DIRECCION</th>
-            <th scope="col">TELEFONO</th>
-            <th scope="col">MAIL</th>
+            <th scope="col">CODIGO</th>
+            <th scope="col">DESCRIPCION</th>
+            <th scope="col">PRECIO</th>
+            <th scope="col">STOCK</th>
             <th scope="col">ACCION</th>
           </tr>
         </thead>
@@ -47,16 +45,19 @@
         
          <% while (rs.next()) {%>
 		      <tr>
-		        <td><%=rs.getString("dni")%></td>
-		        <td><%=rs.getString("nombre")%></td>
-		        <td><%=rs.getString("apellido")%></td>
-		        <td><%=rs.getString("direccion")%></td>
-		        <td><%=rs.getString("telefono")%></td>
-		        <td><%=rs.getString("mail")%></td>
+		        <td><%=rs.getString("cod_repuesto")%></td>
+		        <td><%=rs.getString("descripcion")%></td>
+		        <td><%=rs.getFloat("precio")%></td>
+		        <td><%=rs.getString("stock")%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%} %>
+		      <%}
+					rs.close();
+					stmt.close();
+					Conexion.getInstancia().releaseConn();
+	
+			  %>
         </tbody>
       </table>
     </div>

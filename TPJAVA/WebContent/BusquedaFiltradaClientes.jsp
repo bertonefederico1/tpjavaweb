@@ -4,28 +4,30 @@
 <%@page import="entidades.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="datos.*"%>
-<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administración de usuarios</title>
+<title>Administracion de usuarios</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
-<% 
-    	Usuario u= (Usuario)session.getAttribute("usuario");
-    	ArrayList<Cliente> misClientes=(ArrayList<Cliente>)session.getAttribute("clientes");
-%>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
 <div class= "container buscar">
 	<button type="button" class="btn btn-success">+ Nuevo</button>
-	<form class="form" action="BusquedaFiltradaClientes.jsp">
-		<input type="text" class="form-control"name="txtbuscar">
-		<input class="btn btn-secondary" type="submit" value="Buscar">
-	</form>
 </div>
 <body>
+<%
+	String nombuscar = request.getParameter("txtbuscar");
+	Statement stmt= null;
+	ResultSet rs= null;
+	if (nombuscar != null){
+		stmt= Conexion.getInstancia().getConn().createStatement();
+		rs= stmt.executeQuery("SELECT * FROM clientes WHERE nombre LIKE"+"'%"+nombuscar+"%'");
+	 	}else{
+			System.err.print("ERROR");
+		} 
+%>
+		
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -42,18 +44,23 @@
           </tr>
         </thead>
         <tbody>
-         <% for (Cliente cl : misClientes) {%>
+        
+         <% while (rs.next()) {%>
 		      <tr>
-		        <td><%=cl.getDni()%></td>
-		        <td><%=cl.getNombre()%></td>
-		        <td><%=cl.getApellido()%></td>
-		        <td><%=cl.getDireccion()%></td>
-		        <td><%=cl.getTelefono()%></td>
-		        <td><%=cl.getMail()%></td>
+		        <td><%=rs.getString("dni")%></td>
+		        <td><%=rs.getString("nombre")%></td>
+		        <td><%=rs.getString("apellido")%></td>
+		        <td><%=rs.getString("direccion")%></td>
+		        <td><%=rs.getString("telefono")%></td>
+		        <td><%=rs.getString("mail")%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%} %>
+		      <%}
+		         	rs.close();
+					stmt.close();
+					Conexion.getInstancia().releaseConn();
+         	  %>
         </tbody>
       </table>
     </div>

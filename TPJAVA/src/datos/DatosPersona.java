@@ -31,6 +31,16 @@ public class DatosPersona {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	return misClientes;
+ 	finally {
+		try {
+			rs.close();
+			stmt.close();
+			Conexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+ 	return misClientes;
 	}
 }

@@ -49,9 +49,11 @@ public class SignIn extends HttpServlet {
 		u.setUser(user);
 		u.setPassword(password);
 		DatosPersona dp = new DatosPersona();
+		DatosRepuesto dr = new DatosRepuesto();
 		if (ingreso.validaLogin(u)){
 			request.getSession().setAttribute("usuario", u);
 			request.getSession().setAttribute("clientes", dp.traerClientes());
+			request.getSession().setAttribute("repuestos", dr.traerRepuesto());
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {
 				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);

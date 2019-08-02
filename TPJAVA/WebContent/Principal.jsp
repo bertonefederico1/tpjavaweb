@@ -38,7 +38,7 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="Clientes.jsp">Clientes</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Repuestos</a></li>
+				<li class="nav-item"><a class="nav-link" href="Repuestos.jsp">Repuestos</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Reparaciones </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
