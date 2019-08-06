@@ -6,7 +6,7 @@ public class Mecanico {
 	private String direccion;
 	private String mail;
 	private String telefono;
-	private String matricula;
+	private int matricula;
 	private String usuario;
 	private String contrasenia;
 	
@@ -42,10 +42,10 @@ public class Mecanico {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getMatricula() {
+	public int getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(String matricula) {
+	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
 	public String getUsuario() {

@@ -6,7 +6,8 @@ public class Auto {
 	private String marca;
 	private String modelo;
 	private int anio;
-	private int cantKM;
+	private float cantKM;
+	private Cliente cli;
 	
 	
 	public String getPatente() {
@@ -33,10 +34,16 @@ public class Auto {
 	public void setAnio(int anio) {
 		this.anio = anio;
 	}
-	public int getCantKM() {
+	public float getCantKM() {
 		return cantKM;
 	}
-	public void setCantKM(int cantKM) {
+	public void setCantKM(float cantKM) {
 		this.cantKM = cantKM;
+	}
+	public Cliente getCli() {
+		return cli;
+	}
+	public void setCli(Cliente cli) {
+		this.cli = cli;
 	}
 }
