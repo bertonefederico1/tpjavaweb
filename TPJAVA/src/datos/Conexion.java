@@ -7,7 +7,7 @@ public class Conexion {
 	private static Conexion instancia;
 	
 	private String driver = "com.mysql.jdbc.Driver";
-	private String host = "N35";
+	private String host = "SERVER";
 	private String port = "3306";
 	private String user = "andres";
 	private String password = "123456";
