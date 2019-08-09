@@ -18,12 +18,14 @@
 </div>
 <body>
 <%
-	int matri_buscar = Integer.parseInt(request.getParameter("txtbuscar"));
-	Statement stmt= null;
+	String matri_buscar = request.getParameter("txtbuscar");
 	ResultSet rs= null;
-	if (matri_buscar != 0){
-		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs= stmt.executeQuery("SELECT * FROM mecanicos WHERE matricula="+matri_buscar);
+ 	PreparedStatement pstmt= null;
+ 	String query= "SELECT * FROM mecanicos WHERE matricula = ?";
+	if (matri_buscar != null){
+		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+		pstmt.setString(1, matri_buscar);
+		rs= pstmt.executeQuery();
 	 	}else{
 			System.err.print("ERROR");
 		} 
@@ -58,7 +60,7 @@
 		      </tr>
 		      <%}
 					rs.close();
-					stmt.close();
+					pstmt.close();
 					Conexion.getInstancia().releaseConn();
 			  %>
         </tbody>

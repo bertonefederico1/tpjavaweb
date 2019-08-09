@@ -18,14 +18,14 @@
 <body>
 <%
 	String nombuscar = request.getParameter("txtbuscar");
-	Statement stmt= null;
+	PreparedStatement pstmt = null;
 	ResultSet rs= null;
+	String query = "SELECT * FROM clientes WHERE nombre LIKE  ? ";
 	if (nombuscar != null){
-		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs= stmt.executeQuery("SELECT * FROM clientes WHERE nombre LIKE"+"'%"+nombuscar+"%'");
-	 	}else{
-			System.err.print("ERROR");
-		} 
+		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+		pstmt.setString(1, "%"+nombuscar+"%");
+		rs= pstmt.executeQuery();
+	 	} 
 %>
 		
 <div class="container">
@@ -58,7 +58,7 @@
 		      </tr>
 		      <%}
 		         	rs.close();
-					stmt.close();
+					pstmt.close();
 					Conexion.getInstancia().releaseConn();
          	  %>
         </tbody>

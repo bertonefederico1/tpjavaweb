@@ -18,14 +18,14 @@
 <body>
 <%
 	String desc_buscar = request.getParameter("txtbuscar");
-	Statement stmt= null;
 	ResultSet rs= null;
+	PreparedStatement pstmt= null;
+	String query= "SELECT * FROM repuestos WHERE descripcion LIKE ?";
 	if (desc_buscar != null){
-		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs= stmt.executeQuery("SELECT * FROM repuestos WHERE descripcion LIKE"+"'%"+desc_buscar+"%'");
-	 	}else{
-			System.err.print("ERROR");
-		} 
+		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+		pstmt.setString(1, "%"+desc_buscar+"%");
+		rs= pstmt.executeQuery();
+	 	}
 %>
 		
 <div class="container">
@@ -54,7 +54,7 @@
 		      </tr>
 		      <%}
 					rs.close();
-					stmt.close();
+					pstmt.close();
 					Conexion.getInstancia().releaseConn();
 	
 			  %>
