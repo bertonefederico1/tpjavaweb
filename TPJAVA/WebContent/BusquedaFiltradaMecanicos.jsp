@@ -26,9 +26,7 @@
 		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
 		pstmt.setString(1, matri_buscar);
 		rs= pstmt.executeQuery();
-	 	}else{
-			System.err.print("ERROR");
-		} 
+	 	}
 %>
 		
 <div class="container">
