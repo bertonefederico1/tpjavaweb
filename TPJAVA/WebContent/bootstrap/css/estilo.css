@@ -40,5 +40,28 @@
 	text-align:center;
 }
 
+#cliente{
+	padding-left: 10px;
+	paddin-right: 50px;
+	padding-top:6px;
+}
+
+#botonAgregar{
+	padding-left: 10px;
+	paddin-right: 50px;	
+}
+
+#vehiculo{
+	padding-left: 10px;
+	paddin-right: 10px;
+	padding-top:6px;
+}
+
+#fecha{
+	padding-left: 750px;
+	paddin-right: 10px;
+	padding-top:6px;
+}
+
 
 

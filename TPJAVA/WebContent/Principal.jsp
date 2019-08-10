@@ -43,8 +43,9 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Reparaciones </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Nueva </a>
+						<a class="dropdown-item" href="NuevaReparacion.jsp">Nueva </a>
 						<a class="dropdown-item" href="#">Consulta</a>
+						<a class="dropdown-item" href="Ingreso.jsp">Ingreso</a>
 					</div></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Turnos </a>
