@@ -3,11 +3,11 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
-import entidades.*;
+import entidades.Repuesto;
 
 public class DatosRepuesto {
 	
-	public ArrayList<Repuesto> traerRepuesto() {
+	public ArrayList<Repuesto> traerRepuestos() {
 		
 		ArrayList<Repuesto> misRepuestos = new ArrayList<>();
 		Statement stmt = null;

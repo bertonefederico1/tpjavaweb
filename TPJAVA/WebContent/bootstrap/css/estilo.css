@@ -53,7 +53,7 @@
 
 #vehiculo{
 	padding-left: 10px;
-	paddin-right: 10px;
+	paddin-right: 50px;
 	padding-top:6px;
 }
 
@@ -61,6 +61,18 @@
 	padding-left: 750px;
 	paddin-right: 10px;
 	padding-top:6px;
+}
+
+#reparacionesARealizar{
+	padding-left: 10px;
+	paddin-right: 50px;
+	padding-top: 6px;
+}
+
+#observaciones{
+	padding-left: 10px;
+	paddin-right: 50px;
+	padding-top: 6px;
 }
 
 
