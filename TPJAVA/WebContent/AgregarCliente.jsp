@@ -13,16 +13,15 @@
 	
 		<div id=plantillaAgregar>
 		<form method="POST" action= "NuevoCliente">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="nombreYApellido"><b>Nombre y Apellido</b></label> <input
-						type="nombreYApellido" class="form-control" name="nombreYApellido"
-						id="nombreYApellido" placeholder="Juan Perez">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="dni"><b>Dni</b></label> <input type="dni" class="form-control"
-						id="dni" name="dni" placeholder="40121097">
-				</div>
+			<div class="form-group">
+				<label for="NombreYApellido"><b>Nombre y Apellido</b></label> <input type="text"
+					class="form-control" id="nombreYApellido" name="nombreYApellido"
+					placeholder="Juan Perez">
+			</div>
+			<div class="form-group">
+				<label for="dni"><b>Dni</b></label> <input type="text"
+					class="form-control" id="dni" name="dni"
+					placeholder="40121453">
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"

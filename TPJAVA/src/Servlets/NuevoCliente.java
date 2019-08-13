@@ -14,7 +14,7 @@ import datos.*;
 /**
  * Servlet implementation class NuevoCliente
  */
-@WebServlet("/NuevoCliente")
+@WebServlet({"/NuevoCliente", "/NUEVOCLIENTE", "/nuevocliente"})
 public class NuevoCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class NuevoCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dni = request.getParameter("dni");
+		int dni = Integer.parseInt(request.getParameter("dni"));
 		String nombre_y_apellido = request.getParameter("nombreYApellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
@@ -46,7 +46,7 @@ public class NuevoCliente extends HttpServlet {
 		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setInt(1, Integer.parseInt(dni));
+			pstmt.setInt(1, dni);
 			pstmt.setString(2, nombre_y_apellido);
 			pstmt.setString(3, direccion);
 			pstmt.setString(4, mail);
@@ -54,9 +54,9 @@ public class NuevoCliente extends HttpServlet {
 			int resp = pstmt.executeUpdate();
 			if (resp>0){
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
 			}
-			pstmt.close();
-			Conexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

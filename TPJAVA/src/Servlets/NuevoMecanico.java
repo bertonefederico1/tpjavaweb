@@ -53,6 +53,8 @@ public class NuevoMecanico extends HttpServlet {
 			int resp = pstmt.executeUpdate();
 			if (resp>0){
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

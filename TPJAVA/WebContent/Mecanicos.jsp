@@ -12,8 +12,9 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 <% 
-    	Usuario u= (Usuario)session.getAttribute("usuario");
-    	ArrayList<Mecanico> misMecanicos=(ArrayList<Mecanico>)session.getAttribute("mecanicos");
+    Usuario u= (Usuario)session.getAttribute("usuario");
+	DatosMecanico dm = new DatosMecanico();
+	ArrayList<Mecanico> misMecanicos =dm.traerMecanicos();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>

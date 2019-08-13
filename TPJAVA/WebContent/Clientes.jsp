@@ -14,7 +14,8 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	ArrayList<Cliente> misClientes = (ArrayList<Cliente>) session.getAttribute("clientes");
+	DatosPersona dp = new DatosPersona();
+	ArrayList<Cliente> misClientes = dp.traerClientes();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
