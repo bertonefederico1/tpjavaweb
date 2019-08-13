@@ -20,7 +20,7 @@
 	String nombuscar = request.getParameter("txtbuscar");
 	PreparedStatement pstmt = null;
 	ResultSet rs= null;
-	String query = "SELECT * FROM clientes WHERE nombre LIKE  ? ";
+	String query = "SELECT * FROM clientes WHERE nombre_y_apellido LIKE ?";
 	if (nombuscar != null){
 		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
 		pstmt.setString(1, "%"+nombuscar+"%");
@@ -34,9 +34,9 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+          	<th scope="col"></th>
             <th scope="col">DNI</th>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">APELLIDO</th>
+            <th scope="col">NOMBRE Y APELLIDO</th>
             <th scope="col">DIRECCION</th>
             <th scope="col">TELEFONO</th>
             <th scope="col">MAIL</th>
@@ -47,9 +47,9 @@
         
          <% while (rs.next()) {%>
 		      <tr>
+		      	<td><input class="form-check-input" type="radio" name="seleccionCliente" id="exampleRadios1" value="<%=rs.getString("dni")%>" checked></td>
 		        <td><%=rs.getString("dni")%></td>
-		        <td><%=rs.getString("nombre")%></td>
-		        <td><%=rs.getString("apellido")%></td>
+		        <td><%=rs.getString("nombre_y_apellido")%></td>
 		        <td><%=rs.getString("direccion")%></td>
 		        <td><%=rs.getString("telefono")%></td>
 		        <td><%=rs.getString("mail")%></td>

@@ -27,7 +27,7 @@ public class DatosVehiculo {
 					auto.setMarca(rs.getString("marca"));
 					auto.setModelo(rs.getString("modelo"));
 					auto.setAnio(rs.getInt("anio_fabricacion"));
-					auto.setCantKM(rs.getFloat("cant_km"));
+					auto.setCantKM(rs.getFloat("cantidad_km"));
 					misAutos.add(auto);
 				}
 			}

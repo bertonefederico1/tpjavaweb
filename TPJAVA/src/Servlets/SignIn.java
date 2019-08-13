@@ -52,12 +52,14 @@ public class SignIn extends HttpServlet {
 		DatosRepuesto dr = new DatosRepuesto();
 		DatosMecanico dm = new DatosMecanico();
 		DatosVehiculo dv = new DatosVehiculo();
+		DatosProveedor dprove = new DatosProveedor();
 		if (ingreso.validaLogin(u)){
 			request.getSession().setAttribute("usuario", u);
 			request.getSession().setAttribute("clientes", dp.traerClientes());
 			request.getSession().setAttribute("repuestos", dr.traerRepuestos());
 			request.getSession().setAttribute("mecanicos", dm.traerMecanicos());
 			request.getSession().setAttribute("vehiculos", dv.traerAutos());
+			request.getSession().setAttribute("proveedores", dprove.traerProveedores());
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {
 				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);

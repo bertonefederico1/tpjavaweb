@@ -32,6 +32,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+          	<th scope="col"></th>
             <th scope="col">CÓDIGO</th>
             <th scope="col">DESCRIPCIÓN</th>
             <th scope="col">PRECIO</th>
@@ -42,6 +43,7 @@
         <tbody>
          <% for (Repuesto r : misRepuestos) {%>
 		      <tr>
+		      	<td><input class="form-check-input" type="radio" name="seleccionRepuesto" id="exampleRadios1" value="<%=r.getCodigo()%>" checked></td>
 		        <td><%=r.getCodigo()%></td>
 		        <td><%=r.getDescripcion()%></td>
 		        <td><%=r.getPrecio()%></td>

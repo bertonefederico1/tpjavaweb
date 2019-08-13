@@ -19,8 +19,7 @@ public class DatosPersona {
 			while (rs.next()) {
 				Cliente cli = new Cliente();
 				cli.setDni(rs.getString("dni"));
-				cli.setNombre(rs.getString("nombre"));
-				cli.setApellido(rs.getString("apellido"));
+				cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
 				cli.setDireccion(rs.getString("direccion"));
 				cli.setMail(rs.getString("mail"));
 				cli.setTelefono(rs.getString("telefono"));

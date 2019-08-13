@@ -14,8 +14,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	ArrayList<Cliente> misClientes = (ArrayList<Cliente>) session
-			.getAttribute("clientes");
+	ArrayList<Cliente> misClientes = (ArrayList<Cliente>) session.getAttribute("clientes");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -38,8 +37,7 @@
 						<tr>
 							<th scope="col"></th>
 							<th scope="col">DNI</th>
-							<th scope="col">NOMBRE</th>
-							<th scope="col">APELLIDO</th>
+							<th scope="col">NOMBRE Y APELLIDO</th>
 							<th scope="col">DIRECCION</th>
 							<th scope="col">TELEFONO</th>
 							<th scope="col">MAIL</th>
@@ -53,8 +51,7 @@
 						<tr>
 							<td><input class="form-check-input" type="radio" name="seleccionCliente" id="exampleRadios1" value="<%=cl.getDni()%>" checked></td>
 							<td><%=cl.getDni()%></td>
-							<td><%=cl.getNombre()%></td>
-							<td><%=cl.getApellido()%></td>
+							<td><%=cl.getNombre_y_apellido()%></td>
 							<td><%=cl.getDireccion()%></td>
 							<td><%=cl.getTelefono()%></td>
 							<td><%=cl.getMail()%></td>

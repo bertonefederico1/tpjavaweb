@@ -13,15 +13,14 @@ public class DatosMecanico {
 		ResultSet rs = null;
 		try {
 			stmt = Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select matricula, nombre, apellido, direccion, telefono, mail from mecanicos");
+			rs = stmt.executeQuery("select * from mecanicos");
 			if (rs != null)
 			{
 				while (rs.next())
 				{
 					Mecanico mec = new Mecanico();
 					mec.setMatricula(rs.getInt("matricula"));
-					mec.setNombre(rs.getString("nombre"));
-					mec.setApellido(rs.getString("apellido"));
+					mec.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
 					mec.setDireccion(rs.getString("direccion"));
 					mec.setTelefono(rs.getString("telefono"));
 					mec.setMail(rs.getString("mail"));

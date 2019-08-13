@@ -34,6 +34,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+          	<th scope="col"></th>
             <th scope="col">CODIGO</th>
             <th scope="col">DESCRIPCION</th>
             <th scope="col">PRECIO</th>
@@ -45,6 +46,7 @@
         
          <% while (rs.next()) {%>
 		      <tr>
+		      	<td><input class="form-check-input" type="radio" name="seleccionRepuesto" id="exampleRadios1" value="<%=rs.getString("cod_repuesto")%>" checked></td>
 		        <td><%=rs.getString("cod_repuesto")%></td>
 		        <td><%=rs.getString("descripcion")%></td>
 		        <td><%=rs.getFloat("precio")%></td>

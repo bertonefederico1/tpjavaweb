@@ -1,25 +1,19 @@
 package entidades;
 
 public class Cliente {
-	private String nombre;
-	private String apellido;
+	
+	private String nombre_y_apellido;
 	private String direccion;
 	private String mail;
 	private String telefono;
 	private String dni;
 	
 	
-	public String getNombre() {
-		return nombre;
+	public String getNombre_y_apellido() {
+		return nombre_y_apellido;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setNombre_y_apellido(String nombre_y_apellido) {
+		this.nombre_y_apellido = nombre_y_apellido;
 	}
 	public String getDireccion() {
 		return direccion;

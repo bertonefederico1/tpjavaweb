@@ -35,9 +35,9 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+          	<th scope="col"></th>
             <th scope="col">MATRICULA</th>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">APELLIDO</th>
+            <th scope="col">NOMBRE Y APELLIDO</th>
             <th scope="col">DIRECCION</th>
             <th scope="col">TELEFONO</th>
             <th scope="col">MAIL</th>
@@ -47,9 +47,9 @@
         <tbody>
          <% while (rs.next()) {%>
 		      <tr>
+		      	<td><input class="form-check-input" type="radio" name="seleccionMecanico" id="exampleRadios1" value="<%=rs.getString("matricula")%>" checked></td>
 		        <td><%=rs.getInt("matricula")%></td>
-		        <td><%=rs.getString("nombre")%></td>
-		        <td><%=rs.getString("apellido")%></td>
+		        <td><%=rs.getString("nombre_y_apellido")%></td>
 		        <td><%=rs.getString("direccion")%></td>
 		        <td><%=rs.getString("telefono")%></td>
 		        <td><%=rs.getString("mail")%></td>
