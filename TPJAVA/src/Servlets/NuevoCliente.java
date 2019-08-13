@@ -1,12 +1,15 @@
 package Servlets;
 
 import java.io.IOException;
+import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import datos.*;
 
 /**
  * Servlet implementation class NuevoCliente
@@ -39,7 +42,25 @@ public class NuevoCliente extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		
+		PreparedStatement pstmt = null;
+		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
+			pstmt.setInt(1, Integer.parseInt(dni));
+			pstmt.setString(2, nombre_y_apellido);
+			pstmt.setString(3, direccion);
+			pstmt.setString(4, mail);
+			pstmt.setString(5, telefono);
+			int resp = pstmt.executeUpdate();
+			if (resp>0){
+				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+			}
+			pstmt.close();
+			Conexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
