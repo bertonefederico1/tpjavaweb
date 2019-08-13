@@ -40,10 +40,17 @@
 	text-align:center;
 }
 
+#fecha{
+	padding-left: 10px;
+	paddin-right: 50px;
+	padding-top:6px;
+}
+
 #cliente{
 	padding-left: 10px;
 	paddin-right: 50px;
 	padding-top:6px;
+	width: 793px;
 }
 
 #botonAgregar{
@@ -57,11 +64,6 @@
 	padding-top:6px;
 }
 
-#fecha{
-	padding-left: 750px;
-	paddin-right: 10px;
-	padding-top:6px;
-}
 
 #reparacionesARealizar{
 	padding-left: 10px;
@@ -74,6 +76,7 @@
 	paddin-right: 50px;
 	padding-top: 6px;
 }
+
 
 
 
