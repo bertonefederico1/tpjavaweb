@@ -63,7 +63,7 @@
 				<textarea name="observaciones" rows="5" cols="62"></textarea>
 			</div></label>
 			<div id= "botonGuardar">
-				<button type="button" class="btn btn-secondary btn-lg btn-block" onclick = "location='DAtosCargadosCorrectamente.jsp'">Guardar</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "location='DatosGuardados.html'">Guardar</button>
 			</div>
 
 </body>
