@@ -13,7 +13,7 @@ public class DatosMecanico {
 		ResultSet rs = null;
 		try {
 			stmt = Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select * from mecanicos");
+			rs = stmt.executeQuery("select matricula, nombre_y_apellido, direccion, telefono, mail from mecanicos");
 			if (rs != null)
 			{
 				while (rs.next())

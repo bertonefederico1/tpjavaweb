@@ -1,11 +1,12 @@
 package entidades;
 
 public class Mecanico {
+	
+	private int matricula;
 	private String nombre_y_apellido;
 	private String direccion;
 	private String mail;
 	private String telefono;
-	private int matricula;
 	private String usuario;
 	private String contrasenia;
 	

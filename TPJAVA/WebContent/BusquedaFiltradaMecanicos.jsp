@@ -21,7 +21,7 @@
 	String matri_buscar = request.getParameter("txtbuscar");
 	ResultSet rs= null;
  	PreparedStatement pstmt= null;
- 	String query= "SELECT * FROM mecanicos WHERE matricula = ?";
+ 	String query= "SELECT matricula, nombre_y_apellido, direccion, telefono, mail FROM mecanicos WHERE matricula = ?";
 	if (matri_buscar != null){
 		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
 		pstmt.setString(1, matri_buscar);
