@@ -22,7 +22,7 @@
 	<label><b>ADMINISTRACION DE CLIENTES</b></label>
 </div>
 <div class="container buscar">
-	<button type="button" class="btn btn-success">+ Nuevo</button>
+	<button type="button" class="btn btn-success" onclick = "location='AgregarCliente.jsp'">+ Nuevo</button>
 	<form class="form" action="BusquedaFiltradaClientes.jsp">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">

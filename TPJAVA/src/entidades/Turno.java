@@ -3,15 +3,15 @@ package entidades;
 import java.util.Date;
 
 public class Turno {
-	private Date fechaHoraTurno;
+	private Date fechaTurno;
 	private Date fechaCancelacion;
 	
 	
 	public Date getFechaHoraTurno() {
-		return fechaHoraTurno;
+		return fechaTurno;
 	}
 	public void setFechaHoraTurno(Date fechaHoraTurno) {
-		this.fechaHoraTurno = fechaHoraTurno;
+		this.fechaTurno = fechaHoraTurno;
 	}
 	public Date getFechaCancelacion() {
 		return fechaCancelacion;

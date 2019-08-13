@@ -2,11 +2,11 @@ package entidades;
 
 public class Cliente {
 	
+	private String dni;
 	private String nombre_y_apellido;
 	private String direccion;
 	private String mail;
 	private String telefono;
-	private String dni;
 	
 	
 	public String getNombre_y_apellido() {
