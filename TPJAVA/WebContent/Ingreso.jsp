@@ -24,19 +24,20 @@
 				</div>
 				<input type="text" class="form-control" value="<%=fechaHoy%>"
 					disabled="disabled" form style="width: 200px">
-			</div></label> <label><div id=cliente class="input-group mb-3">
+			</div></label>
+			<p><label><div id=cliente class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Cliente</span>
 				</div>
 				<input type="text" class="form-control" placeholder="Cliente"
 					aria-label="cliente" aria-describedby="basic-addon1"
-					value="Cliente" disabled="disabled" form style="width: 600px">
+					value="Cliente" disabled="disabled">
 				<div id= "botonAgregar">
-					<button type="button" onclick = "location='Clientes.jsp'" class="btn btn-success">Seleccionar</button>
+					<button type="button" onclick = "location='Clientes.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>
-			</div></label>
+			</div></label></p>
 
-		<label><div id=vehiculo class="input-group mb-3">
+		<label> <div id=vehiculo class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Vehiculo</span>
 				</div>
@@ -44,7 +45,7 @@
 					aria-label="cliente" aria-describedby="basic-addon1"
 					value="Vehiculo" disabled="disabled" form style="width: 589px">
 				<div id= "botonAgregar">
-					<button type="button" onclick = "location='VehiculosDelCliente.jsp'" class="btn btn-success">Seleccionar</button>
+					<button type="button" onclick = "location='VehiculosDelCliente.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>
 			</div></label>
 			
@@ -59,8 +60,11 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Observaciones</span>
 				</div>
-				<textarea name="observaciones" rows="5" cols="61"></textarea>
+				<textarea name="observaciones" rows="5" cols="62"></textarea>
 			</div></label>
+			<div id= "botonGuardar">
+				<button type="button" class="btn btn-secondary btn-lg btn-block" onclick = "location='DAtosCargadosCorrectamente.jsp'">Guardar</button>
+			</div>
 
 </body>
 </html>

@@ -51,7 +51,9 @@
 							for (Cliente cl : misClientes) {
 						%>
 						<tr>
-							<td><input class="form-check-input" type="radio" name="seleccionCliente" id="exampleRadios1" value="<%=cl.getDni()%>" checked></td>
+							<td>	
+								<input class="form-check-input" type="radio" name="seleccionCliente" id="exampleRadios1" value="<%=cl.getDni()%>" checked>
+							</td>
 							<td><%=cl.getDni()%></td>
 							<td><%=cl.getNombre()%></td>
 							<td><%=cl.getApellido()%></td>
