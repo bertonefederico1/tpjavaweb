@@ -53,7 +53,7 @@ public class NuevoCliente extends HttpServlet {
 			pstmt.setString(5, telefono);
 			int resp = pstmt.executeUpdate();
 			if (resp>0){
-				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 				pstmt.close();
 				Conexion.getInstancia().releaseConn();
 			}

@@ -14,7 +14,7 @@ public class DatosPersona {
 	ResultSet rs = null;
  	try {
 		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs = stmt.executeQuery("SELECT * FROM clientes");
+		rs = stmt.executeQuery("SELECT * FROM clientes order by nombre_y_apellido");
 		if (rs!=null){
 			while (rs.next()) {
 				Cliente cli = new Cliente();

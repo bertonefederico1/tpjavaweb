@@ -52,7 +52,7 @@ public class NuevoMecanico extends HttpServlet {
 			pstmt.setString(4, mail);
 			int resp = pstmt.executeUpdate();
 			if (resp>0){
-				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
 				pstmt.close();
 				Conexion.getInstancia().releaseConn();
 			}
