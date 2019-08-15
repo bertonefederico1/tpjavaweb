@@ -15,7 +15,7 @@ public class DatosRepuesto {
 		
 		try {
 			stmt = Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM repuestos");
+			rs = stmt.executeQuery("SELECT * FROM repuestos order by descripcion");
 			if (rs!=null)
 			{
 				while (rs.next())

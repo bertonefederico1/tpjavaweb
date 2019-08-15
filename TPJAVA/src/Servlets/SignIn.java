@@ -48,12 +48,10 @@ public class SignIn extends HttpServlet {
 		Ingreso ingreso = new Ingreso();
 		u.setUser(user);
 		u.setPassword(password);
-		DatosRepuesto dr = new DatosRepuesto();
 		DatosVehiculo dv = new DatosVehiculo();
 		DatosProveedor dprove = new DatosProveedor();
 		if (ingreso.validaLogin(u)){
 			request.getSession().setAttribute("usuario", u);
-			request.getSession().setAttribute("repuestos", dr.traerRepuestos());
 			request.getSession().setAttribute("vehiculos", dv.traerAutos());
 			request.getSession().setAttribute("proveedores", dprove.traerProveedores());
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);

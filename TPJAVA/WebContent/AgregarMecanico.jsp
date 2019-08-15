@@ -15,7 +15,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="nombreYApellido"><b>Nombre y Apellido</b></label> <input
-						type="nombreYApellido" class="form-control" name="nombreYApellido"
+						type="text" class="form-control" name="nombreYApellido"
 						id="nombreYApellido" placeholder="Juan Perez">
 				</div>
 			</div>
@@ -27,11 +27,11 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Telefono</b></label> <input
-						type="telefono" class="form-control" name="telefono" id="telefono"
+						type="text" class="form-control" name="telefono" id="telefono"
 						placeholder="420222">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="mail"><b>Mail</b></label> <input type="mail"
+					<label for="mail"><b>Mail</b></label> <input type="text"
 						class="form-control" id="mail" name="mail"
 						placeholder="ejemplo@gmail.com">
 				</div>

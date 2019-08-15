@@ -13,13 +13,14 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 	<% 
     	Usuario u= (Usuario)session.getAttribute("usuario");
-    	ArrayList<Repuesto> misRepuestos=(ArrayList<Repuesto>)session.getAttribute("repuestos");
+		DatosRepuesto dr = new DatosRepuesto();
+    	ArrayList<Repuesto> misRepuestos= dr.traerRepuestos();
 	%>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <div id=titulo><label><b>ADMINISTRACIÓN DE REPUESTOS</b></label></div>
 <div class= "container buscar">
-	<button type="button" class="btn btn-success">+ Nuevo</button>
+	<button type="button" onclick = "location='AgregarRepuesto.jsp'" class="btn btn-success">+ Nuevo</button>
 	<form class="form" action="BusquedaFiltradaRepuestos.jsp">
 		<input type="text" class="form-control"name="txtbuscar">
 		<input class="btn btn-secondary" type="submit" value="Buscar">

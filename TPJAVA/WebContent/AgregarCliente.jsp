@@ -30,12 +30,12 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="telefono"><b>Telefono</b></label> <input type="telefono"
+					<label for="telefono"><b>Telefono</b></label> <input type="text"
 						class="form-control" name="telefono" id="telefono"
 						placeholder="420222">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="mail"><b>Mail</b></label> <input type="mail"
+					<label for="mail"><b>Mail</b></label> <input type="text"
 						class="form-control" id="mail" name="mail"
 						placeholder="ejemplo@gmail.com">
 				</div>
