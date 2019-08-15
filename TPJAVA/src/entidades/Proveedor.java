@@ -3,9 +3,17 @@ package entidades;
 public class Proveedor {
 	private String cuit;
 	private String razonSocial;
+	private String direccion;
 	private String telefono;
 	private String mail;
 	
+	
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 	
 	public String getCuit() {
 		return cuit;

@@ -3,7 +3,7 @@ package entidades;
 public class Repuesto {
 	private int codigo;
 	private String descripcion;
-	private double precio;
+	private float precio;
 	private int stock;
 	
 	
@@ -19,10 +19,10 @@ public class Repuesto {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 	public int getStock() {

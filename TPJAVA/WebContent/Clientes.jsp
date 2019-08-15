@@ -50,9 +50,11 @@
 							for (Cliente cl : misClientes) {
 						%>
 						<tr>
-							<td>	
-								<input class="form-check-input" type="radio" name="seleccionCliente" id="exampleRadios1" value="<%=cl.getDni()%>" checked>
-							</td>
+							<td>
+                 <div class="radio">
+                     <label><input type="radio" id='express' name="optradio"></label>
+                </div>
+             </td>
 							<td><%=cl.getDni()%></td>
 							<td><%=cl.getNombre_y_apellido()%></td>
 							<td><%=cl.getDireccion()%></td>

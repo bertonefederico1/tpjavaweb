@@ -14,7 +14,8 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	ArrayList<Proveedor> misProveedores = (ArrayList<Proveedor>)session.getAttribute("proveedores");
+	DatosProveedor dprove = new DatosProveedor();
+	ArrayList<Proveedor> misProveedores = dprove.traerProveedores();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -22,7 +23,7 @@
 	<label><b>ADMINISTRACION DE PROVEEDORES</b></label>
 </div>
 <div class="container buscar">
-	<button type="button" class="btn btn-success">+ Nuevo</button>
+	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
 	<form class="form" action="BusquedaFiltradaProveedores.jsp">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">
@@ -48,7 +49,11 @@
 							for (Proveedor prov : misProveedores) {
 						%>
 						<tr>
-							<td><input class="form-check-input" type="radio" name="seleccionProveedor" id="exampleRadios1" value="<%=prov.getCuit()%>" checked></td>
+							<td>
+                 <div class="radio">
+                     <label><input type="radio" id='express' name="optradio"></label>
+                </div>
+             </td>
 							<td><%=prov.getCuit()%></td>
 							<td><%=prov.getRazonSocial()%></td>
 							<td><%=prov.getTelefono()%></td>

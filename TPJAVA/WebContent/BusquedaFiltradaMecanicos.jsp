@@ -14,7 +14,7 @@
 </head>
 <div id=titulo><label><b>ADMINISTRACION DE MECANICOS</b></label></div>
 <div class= "container buscar">
-	<button type="button" class="btn btn-success">+ Nuevo</button>
+	<button type="button" onclick = "location='AgregarMecanico.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
 <body>
 <%
@@ -47,7 +47,11 @@
         <tbody>
          <% while (rs.next()) {%>
 		      <tr>
-		      	<td><input class="form-check-input" type="radio" name="seleccionMecanico" id="exampleRadios1" value="<%=rs.getString("matricula")%>" checked></td>
+		      	<td>
+                 <div class="radio">
+                     <label><input type="radio" id='express' name="optradio"></label>
+                </div>
+             </td>
 		        <td><%=rs.getInt("matricula")%></td>
 		        <td><%=rs.getString("nombre_y_apellido")%></td>
 		        <td><%=rs.getString("direccion")%></td>

@@ -16,7 +16,7 @@ public class DatosProveedor {
 		ResultSet rs = null;
 	 	try {
 			stmt= Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM proveedores");
+			rs = stmt.executeQuery("SELECT * FROM proveedores order by razon_social");
 			if (rs!=null){
 				while (rs.next()) {
 					Proveedor prov = new Proveedor();

@@ -13,7 +13,7 @@
 </head>
 <div id=titulo><label><b>ADMINISTRACION DE REPUESTOS</b></label></div>
 <div class= "container buscar">
-	<button type="button" class="btn btn-success">+ Nuevo</button>
+	<button type="button" onclick = "location='AgregarRepuesto.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
 <body>
 <%
@@ -46,7 +46,11 @@
         
          <% while (rs.next()) {%>
 		      <tr>
-		      	<td><input class="form-check-input" type="radio" name="seleccionRepuesto" id="exampleRadios1" value="<%=rs.getString("cod_repuesto")%>" checked></td>
+		      	<td>
+                 <div class="radio">
+                     <label><input type="radio" id='express' name="optradio"></label>
+                </div>
+             </td>
 		        <td><%=rs.getString("cod_repuesto")%></td>
 		        <td><%=rs.getString("descripcion")%></td>
 		        <td><%=rs.getFloat("precio")%></td>

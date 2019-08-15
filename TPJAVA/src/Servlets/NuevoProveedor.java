@@ -2,7 +2,6 @@ package Servlets;
 
 import java.io.IOException;
 import java.sql.*;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.Conexion;
+import datos.*;
 
 /**
- * Servlet implementation class NuevoRepuesto
+ * Servlet implementation class NuevoProveedor
  */
-@WebServlet({ "/NuevoRepuesto", "/NUEVOREPUESTO", "/nuevorepuesto", "/nuevoREPUESTO" })
-public class NuevoRepuesto extends HttpServlet {
+@WebServlet({ "/NuevoProveedor", "/NUEVOPROVEEDOR", "/nuevoproveedor", "/Nuevoproveedor" })
+public class NuevoProveedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NuevoRepuesto() {
+    public NuevoProveedor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +37,23 @@ public class NuevoRepuesto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String descripcion = request.getParameter("descripcion");
-		String cantidad = request.getParameter("cantidad");
-		String precio = request.getParameter("precio");
-		PreparedStatement pstmt = null;	
-		String insertar = ("insert into repuestos(descripcion,precio,stock) values(?,?,?)");
+		String razon_social = request.getParameter("razon_social");
+		String cuit = request.getParameter("cuit");
+		String direccion = request.getParameter("direccion");
+		String telefono = request.getParameter("telefono");
+		String mail = request.getParameter("mail");
+		PreparedStatement pstmt = null;
+		String insertar = ("insert into proveedores(cuit,razon_social,direccion,mail,telefono) values(?,?,?,?,?)");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setString(1, descripcion);
-			pstmt.setFloat(2, Float.parseFloat(precio));
-			pstmt.setInt(3, Integer.parseInt(cantidad));
+			pstmt.setString(1, cuit);
+			pstmt.setString(2, razon_social);
+			pstmt.setString(3, direccion);
+			pstmt.setString(4, mail);
+			pstmt.setString(5, telefono);
 			int resp = pstmt.executeUpdate();
 			if (resp>0){
-				request.getRequestDispatcher("Repuestos.jsp").forward(request,response);
+				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
 				pstmt.close();
 				Conexion.getInstancia().releaseConn();
 			}
