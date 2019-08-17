@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,15 +19,7 @@
 </div>
 <body>
 <%
-	String matri_buscar = request.getParameter("txtbuscar");
-	ResultSet rs= null;
- 	PreparedStatement pstmt= null;
- 	String query= "SELECT matricula, nombre_y_apellido, direccion, telefono, mail FROM mecanicos WHERE matricula = ?";
-	if (matri_buscar != null){
-		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-		pstmt.setString(1, matri_buscar);
-		rs= pstmt.executeQuery();
-	 	}
+	ArrayList<Mecanico> misMecanicos= (ArrayList<Mecanico>)request.getSession().getAttribute("misMecanicos");
 %>
 		
 <div class="container">
@@ -45,26 +38,22 @@
           </tr>
         </thead>
         <tbody>
-         <% while (rs.next()) {%>
+         <% for (Mecanico mec : misMecanicos)  {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=rs.getInt("matricula")%></td>
-		        <td><%=rs.getString("nombre_y_apellido")%></td>
-		        <td><%=rs.getString("direccion")%></td>
-		        <td><%=rs.getString("telefono")%></td>
-		        <td><%=rs.getString("mail")%></td>
+		        <td><%=mec.getMatricula()%></td>
+		        <td><%=mec.getNombre_y_apellido()%></td>
+		        <td><%=mec.getDireccion()%></td>
+		        <td><%=mec.getTelefono()%></td>
+		        <td><%=mec.getMail()%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%}
-					rs.close();
-					pstmt.close();
-					Conexion.getInstancia().releaseConn();
-			  %>
+		      <%}%>
         </tbody>
       </table>
     </div>

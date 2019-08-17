@@ -7,8 +7,6 @@ public class Mecanico {
 	private String direccion;
 	private String mail;
 	private String telefono;
-	private String usuario;
-	private String contrasenia;
 	
 	
 	
@@ -42,16 +40,5 @@ public class Mecanico {
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-	public String getContrasenia() {
-		return contrasenia;
-	}
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
+	
 }

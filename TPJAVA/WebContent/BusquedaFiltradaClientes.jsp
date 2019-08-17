@@ -2,8 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="datos.*"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,15 +16,7 @@
 </div>
 <body>
 <%
-	String nombuscar = request.getParameter("txtbuscar");
-	PreparedStatement pstmt = null;
-	ResultSet rs= null;
-	String query = "SELECT * FROM clientes WHERE nombre_y_apellido LIKE ?";
-	if (nombuscar != null){
-		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-		pstmt.setString(1, "%"+nombuscar+"%");
-		rs= pstmt.executeQuery();
-	 	} 
+	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
 %>
 		
 <div class="container">
@@ -45,26 +36,22 @@
         </thead>
         <tbody>
         
-         <% while (rs.next()) {%>
+         <% for (Cliente cli : misClientes) {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=rs.getString("dni")%></td>
-		        <td><%=rs.getString("nombre_y_apellido")%></td>
-		        <td><%=rs.getString("direccion")%></td>
-		        <td><%=rs.getString("telefono")%></td>
-		        <td><%=rs.getString("mail")%></td>
+		        <td><%=cli.getDni()%></td>
+		        <td><%=cli.getNombre_y_apellido()%></td>
+		        <td><%=cli.getDireccion()%></td>
+		        <td><%=cli.getTelefono()%></td>
+		        <td><%=cli.getMail()%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%}
-		         	rs.close();
-					pstmt.close();
-					Conexion.getInstancia().releaseConn();
-         	  %>
+		      <%}%>
         </tbody>
       </table>
     </div>

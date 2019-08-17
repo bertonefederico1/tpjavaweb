@@ -33,7 +33,7 @@
 					aria-label="cliente" aria-describedby="basic-addon1"
 					value="Cliente" disabled="disabled">
 				<div id= "botonAgregar">
-					<button type="button" onclick = "location='Clientes.jsp'" class="btn btn-success">+ Agregar</button>
+					<button type="button" onclick = "location='SeleccionCliente.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>
 			</div></label></p>
 

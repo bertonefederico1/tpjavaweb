@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administración de usuarios</title>
+<title>Consultar una Reparacion</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -25,7 +25,7 @@
 <div class="container buscar">
 	<button type="button" class="btn btn-success"
 		onclick="location='AgregarCliente.jsp'">+ Nuevo</button>
-	<form class="form" method="POST" action="ClienteFiltro">
+	<form class="form" action="BusquedaFiltradaClientes.jsp">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
@@ -62,8 +62,8 @@
 							<td><%=cl.getTelefono()%></td>
 							<td><%=cl.getMail()%></td>
 							<td><div>
-									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>?nombre_y_apellido=<%=cl.getNombre_y_apellido()%>?direccion=<%=cl.getDireccion()%>?telefono=<%=cl.getTelefono()%>?mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="EliminarCliente.jsp" class="btn btn-danger btn-sm">Eliminar</a>
+									<button type="button" class="btn btn-warning btn-sm">Modificar</button>
+									<button type="button" class="btn btn-danger btn-sm">Eliminar</button>
 								</div></td>
 						</tr>
 						<%

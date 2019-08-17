@@ -26,14 +26,20 @@
 	padding-bottom: 10px;
 }
 
+
+
+#nuevo{
+	padding-left: 128px;
+}
+
 .buscar{
 	display: flex;
 	padding-bottom: 10px;
 }
 
 .form{
-	display: flex;
-	padding-left: 500px;
+ 	display: flex;
+	padding-left: 600px;
 }
 
 #titulo{
