@@ -10,44 +10,46 @@
 <title>Modificar Cliente</title>
 </head>
 <body>
-		<%	
-		String dni= request.getParameter("dni");
-		String nombre_y_apellido= request.getParameter("nombre_y_apellido");
-		String direccion= request.getParameter("direccion");
-		String telefono= request.getParameter("telefono");
-		String mail= request.getParameter("mail");
-		%>
-		<div id=plantillaAgregar>
-		<form method="POST" action= "ModificarCliente">
+	<%
+		String dni = request.getParameter("dni");
+		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
+		String direccion = request.getParameter("direccion");
+		String telefono = request.getParameter("telefono");
+		String mail = request.getParameter("mail");
+	%>
+	<div id=plantillaAgregar>
+		<form method="POST" action="ModificarCliente">
+
 			<div class="form-group">
-				<label for="nombre_y_apellido"><b>Nombre y Apellido</b></label> <input type="text"
-					class="form-control"  id="nombre_y_apellido" name="nombre_y_apellido" value="<%=nombre_y_apellido%>">
+				<label for="nombre_y_apellido"><b>Nombre y Apellido</b></label> <input
+					type="text" class="form-control" id="nombre_y_apellido"
+					name="nombre_y_apellido" value="<%=nombre_y_apellido%>">
 			</div>
 			<div class="form-group">
 				<label for="dni"><b>Dni</b></label> <input type="text"
-					class="form-control" id="dni" name="dni"
-					placeholder="40121453">
+					class="form-control" id="dni" name="dni" placeholder="40121453"
+					value="<%=dni%>">
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
 					class="form-control" id="direccion" name="direccion"
-					placeholder="Entre Rios 1243">
+					placeholder="Entre Rios 1243" value="<%=direccion%>">
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Telefono</b></label> <input type="text"
 						class="form-control" name="telefono" id="telefono"
-						placeholder="420222">
+						placeholder="420222" value="<%=telefono%>">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="mail"><b>Mail</b></label> <input type="text"
 						class="form-control" id="mail" name="mail"
-						placeholder="ejemplo@gmail.com">
+						placeholder="ejemplo@gmail.com" value="<%=mail%>">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Guardar</button>
-			</form>
-		</div>
-	
+		</form>
+	</div>
+
 </body>
 </html>

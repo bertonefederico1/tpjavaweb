@@ -62,8 +62,8 @@
 							<td><%=cl.getTelefono()%></td>
 							<td><%=cl.getMail()%></td>
 							<td><div>
-									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>?nombre_y_apellido=<%=cl.getNombre_y_apellido()%>?direccion=<%=cl.getDireccion()%>?telefono=<%=cl.getTelefono()%>?mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="EliminarCliente.jsp" class="btn btn-danger btn-sm">Eliminar</a>
+									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
+									<a href="EliminarCliente.jsp?dni=<%=cl.getDni()%>" class="btn btn-danger btn-sm">Eliminar</a>
 								</div></td>
 						</tr>
 						<%
