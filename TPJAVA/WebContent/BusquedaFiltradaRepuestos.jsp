@@ -4,6 +4,7 @@
 <%@page import="entidades.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="datos.*"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,15 +18,7 @@
 </div>
 <body>
 <%
-	String desc_buscar = request.getParameter("txtbuscar");
-	ResultSet rs= null;
-	PreparedStatement pstmt= null;
-	String query= "SELECT * FROM repuestos WHERE descripcion LIKE ?";
-	if (desc_buscar != null){
-		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-		pstmt.setString(1, "%"+desc_buscar+"%");
-		rs= pstmt.executeQuery();
-	 	}
+	ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 %>
 		
 <div class="container">
@@ -44,26 +37,21 @@
         </thead>
         <tbody>
         
-         <% while (rs.next()) {%>
+         <% for (Repuesto rep : misRepuestos) {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=rs.getString("cod_repuesto")%></td>
-		        <td><%=rs.getString("descripcion")%></td>
-		        <td><%=rs.getFloat("precio")%></td>
-		        <td><%=rs.getString("stock")%></td>
+		        <td><%=rep.getCodigo()%></td>
+		        <td><%=rep.getDescripcion()%></td>
+		        <td><%=rep.getPrecio()%></td>
+		        <td><%=rep.getStock()%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%}
-					rs.close();
-					pstmt.close();
-					Conexion.getInstancia().releaseConn();
-	
-			  %>
+		      <%} %>
         </tbody>
       </table>
     </div>

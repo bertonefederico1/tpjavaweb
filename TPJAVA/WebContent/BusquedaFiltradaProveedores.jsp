@@ -4,6 +4,7 @@
 <%@page import="entidades.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="datos.*"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,15 +18,7 @@
 </div>
 <body>
 <%
-	String razonSocialBuscar = request.getParameter("txtbuscar");
-	PreparedStatement pstmt = null;
-	ResultSet rs= null;
-	String query = "SELECT * FROM proveedores WHERE razon_social LIKE ? ";
-	if (razonSocialBuscar != null) {
-		pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-		pstmt.setString(1, "%"+razonSocialBuscar+"%");
-		rs= pstmt.executeQuery();
-	 	} 
+	ArrayList<Proveedor> misProveedores = (ArrayList<Proveedor>)request.getSession().getAttribute("misProveedores");
 %>
 		
 <div class="container">
@@ -44,25 +37,21 @@
         </thead>
         <tbody>
         
-         <% while (rs.next()) {%>
+         <% for (Proveedor prov : misProveedores) {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=rs.getString("cuit")%></td>
-		        <td><%=rs.getString("razon_social")%></td>
-		        <td><%=rs.getString("telefono")%></td>
-		        <td><%=rs.getString("mail")%></td>
+		        <td><%=prov.getCuit()%></td>
+		        <td><%=prov.getRazonSocial()%></td>
+		        <td><%=prov.getTelefono()%></td>
+		        <td><%=prov.getMail()%></td>
 		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
 		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
 		      </tr>
-		      <%}
-		         	rs.close();
-					pstmt.close();
-					Conexion.getInstancia().releaseConn();
-         	  %>
+		      <%}%>
         </tbody>
       </table>
     </div>

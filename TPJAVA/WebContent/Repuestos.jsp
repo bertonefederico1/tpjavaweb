@@ -25,7 +25,7 @@
 <div class="container buscar">
 	<button type="button" onclick="location='AgregarRepuesto.jsp'"
 		class="btn btn-success">+ Nuevo</button>
-	<form class="form" action="BusquedaFiltradaRepuestos.jsp">
+	<form class="form" method="POST" action="RepuestoFiltro">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">
 	</form>

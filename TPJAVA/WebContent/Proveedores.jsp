@@ -24,7 +24,7 @@
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
-	<form class="form" action="BusquedaFiltradaProveedores.jsp">
+	<form class="form" method="POST" action="ProveedorFiltro">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
