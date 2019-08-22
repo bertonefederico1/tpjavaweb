@@ -39,6 +39,7 @@
 							<th scope="col"></th>
 							<th scope="col">CUIT</th>
 							<th scope="col">RAZON SOCIAL</th>
+							<th scope="col">DIRECCION</th>
 							<th scope="col">TELEFONO</th>
 							<th scope="col">MAIL</th>
 							<th scope="col">ACCION</th>
@@ -56,11 +57,12 @@
              </td>
 							<td><%=prov.getCuit()%></td>
 							<td><%=prov.getRazonSocial()%></td>
+							<td><%=prov.getDireccion()%></td>
 							<td><%=prov.getTelefono()%></td>
 							<td><%=prov.getMail()%></td>
 							<td><div>
-									<button type="button" class="btn btn-warning btn-sm">Modificar</button>
-									<button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+									<a href="EditarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>&direccion=<%=prov.getDireccion()%>&telefono=<%=prov.getTelefono()%>&mail=<%=prov.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
+									<a href="EliminarProveedor?cuit=<%=prov.getCuit()%>" class="btn btn-danger btn-sm">Eliminar</a>
 								</div></td>
 						</tr>
 						<%

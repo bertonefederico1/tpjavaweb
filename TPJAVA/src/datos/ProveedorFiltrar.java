@@ -21,6 +21,7 @@ public class ProveedorFiltrar {
 					Proveedor p = new Proveedor();
 					p.setCuit(rs.getString("cuit"));
 					p.setRazonSocial(rs.getString("razon_social"));
+					p.setDireccion(rs.getString("direccion"));
 					p.setTelefono(rs.getString("telefono"));
 					p.setMail(rs.getString("mail"));
 					misProveedores.add(p);

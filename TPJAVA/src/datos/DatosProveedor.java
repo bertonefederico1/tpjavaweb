@@ -21,6 +21,7 @@ public class DatosProveedor {
 				while (rs.next()) {
 					Proveedor prov = new Proveedor();
 					prov.setCuit(rs.getString("cuit"));
+					prov.setDireccion(rs.getString("direccion"));
 					prov.setRazonSocial(rs.getString("razon_social"));
 					prov.setMail(rs.getString("mail"));
 					prov.setTelefono(rs.getString("telefono"));
