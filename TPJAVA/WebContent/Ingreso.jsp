@@ -23,7 +23,7 @@
 					<span class="input-group-text" id="basic-addon1">Fecha</span>
 				</div>
 				<input type="text" class="form-control" value="<%=fechaHoy%>"
-					disabled="disabled" form style="width: 200px">
+					readonly="readonly" form style="width: 200px">
 			</div></label>
 			<p><label><div id=cliente class="input-group mb-3">
 				<div class="input-group-prepend">

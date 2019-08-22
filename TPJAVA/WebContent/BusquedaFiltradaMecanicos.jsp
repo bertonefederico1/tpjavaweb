@@ -38,20 +38,22 @@
           </tr>
         </thead>
         <tbody>
-         <% for (Mecanico mec : misMecanicos)  {%>
+         <% for (Mecanico me : misMecanicos)  {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=mec.getMatricula()%></td>
-		        <td><%=mec.getNombre_y_apellido()%></td>
-		        <td><%=mec.getDireccion()%></td>
-		        <td><%=mec.getTelefono()%></td>
-		        <td><%=mec.getMail()%></td>
-		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
-		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
+		        <td><%=me.getMatricula()%></td>
+		        <td><%=me.getNombre_y_apellido()%></td>
+		        <td><%=me.getDireccion()%></td>
+		        <td><%=me.getTelefono()%></td>
+		        <td><%=me.getMail()%></td>
+		        <td><div>
+		        <a href="EditarMecanico.jsp?matricula=<%=me.getMatricula()%>&nombre_y_apellido=<%=me.getNombre_y_apellido()%>&direccion=<%=me.getDireccion()%>&telefono=<%=me.getTelefono()%>&mail=<%=me.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
+				<a href="EliminarMecanico?matricula=<%=me.getMatricula()%>" class="btn btn-danger btn-sm">Eliminar</a>
+		        </div></td>
 		      </tr>
 		      <%}%>
         </tbody>

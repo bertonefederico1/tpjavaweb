@@ -37,19 +37,21 @@
         </thead>
         <tbody>
         
-         <% for (Repuesto rep : misRepuestos) {%>
+         <% for (Repuesto r : misRepuestos) {%>
 		      <tr>
 		      	<td>
                  <div class="radio">
                      <label><input type="radio" id='express' name="optradio"></label>
                 </div>
              </td>
-		        <td><%=rep.getCodigo()%></td>
-		        <td><%=rep.getDescripcion()%></td>
-		        <td><%=rep.getPrecio()%></td>
-		        <td><%=rep.getStock()%></td>
-		        <td><div><button type="button" class="btn btn-warning btn-sm">Modificar</button>
-		        <button type="button" class="btn btn-danger btn-sm">Eliminar</button></div></td>
+		        <td><%=r.getCodigo()%></td>
+		        <td><%=r.getDescripcion()%></td>
+		        <td><%=r.getPrecio()%></td>
+		        <td><%=r.getStock()%></td>
+		        <td><div>
+		        <a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>" class="btn btn-warning btn-sm">Modificar</a>
+				<a href="EliminarRepuesto?codigo=<%=r.getCodigo()%>" class="btn btn-danger btn-sm">Eliminar</a>
+		        </div></td>
 		      </tr>
 		      <%} %>
         </tbody>
