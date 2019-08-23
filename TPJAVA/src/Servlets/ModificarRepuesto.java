@@ -39,13 +39,17 @@ public class ModificarRepuesto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_repuesto = Integer.parseInt(request.getParameter("codigo"));
 		String descripcion = request.getParameter("descripcion");
-		String precio = request.getParameter("precio");
-		String stock = request.getParameter("stock");
+		Float precio = Float.parseFloat(request.getParameter("precio"));
+		int stock = Integer.parseInt(request.getParameter("stock"));
 		PreparedStatement pstmt = null;
-		String sql= ("UPDATE repuestos SET descripcion='"+descripcion+"',cod_repuesto='"+cod_repuesto+"',precio='"+precio+"',stock='"
-		+stock+"'WHERE cod_repuesto="+cod_repuesto);
+		String sql= ("UPDATE repuestos SET descripcion=?,cod_repuesto=?,precio=?,stock=? WHERE cod_repuesto=?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setString(1, descripcion);
+			pstmt.setInt(2, cod_repuesto);
+			pstmt.setFloat(3, precio);
+			pstmt.setInt(4, stock);
+			pstmt.setInt(5, cod_repuesto);
 			int rs = pstmt.executeUpdate();
 			if (rs > 0){
 				request.getRequestDispatcher("Repuestos.jsp").forward(request, response);

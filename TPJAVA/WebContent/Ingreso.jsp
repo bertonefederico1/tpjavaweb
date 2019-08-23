@@ -31,7 +31,7 @@
 				</div>
 				<input type="text" class="form-control" placeholder="Cliente"
 					aria-label="cliente" aria-describedby="basic-addon1"
-					value="Cliente" disabled="disabled">
+					value="Cliente" readonly="readonly">
 				<div id= "botonAgregar">
 					<button type="button" onclick = "location='SeleccionCliente.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>
@@ -43,7 +43,7 @@
 				</div>
 				<input type="text" class="form-control" placeholder="Vehiculo"
 					aria-label="cliente" aria-describedby="basic-addon1"
-					value="Vehiculo" disabled="disabled" form style="width: 589px">
+					value="Vehiculo" readonly="readonly" form style="width: 589px">
 				<div id= "botonAgregar">
 					<button type="button" onclick = "location='VehiculosDelCliente.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>

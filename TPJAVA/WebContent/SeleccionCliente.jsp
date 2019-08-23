@@ -2,19 +2,18 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="java.sql.*"%>
 <%@page import="datos.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Seleccion Cliente</title>
+<title>Administración de usuarios</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	DatosPersona dp = new DatosPersona();
+	DatosCliente dp = new DatosCliente();
 	ArrayList<Cliente> misClientes = dp.traerClientes();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -25,9 +24,9 @@
 <div class="container buscar">
 	<button type="button" class="btn btn-success"
 		onclick="location='AgregarCliente.jsp'">+ Nuevo</button>
-	<form class="form" action="BusquedaFiltradaMecanicos.jsp">
-		<input type="text" class="form-control" name="txtbuscar">
-		<input class="btn btn-secondary" type="submit" value="Buscar">
+	<form class="form" method="POST" action="ClienteFiltro">
+		<input type="text" class="form-control" name="txtbuscar"> <input
+			class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
 <body>
@@ -53,7 +52,7 @@
 						<tr>
 							<td>
 								<div class="radio">
-									<label><input type="radio" id='express' name="optradio"></label>
+									<label><input type="radio" onclick="location='Ingreso.jsp?dni=<%=cl.getDni()%>'" id='express' name="optradio"></label>
 								</div>
 							</td>
 							<td><%=cl.getDni()%></td>
@@ -62,8 +61,9 @@
 							<td><%=cl.getTelefono()%></td>
 							<td><%=cl.getMail()%></td>
 							<td><div>
-									<button type="button" class="btn btn-warning btn-sm">Modificar</button>
-									<button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
+									<a href="EliminarCliente?dni=<%=cl.getDni()%>" class="btn btn-danger btn-sm">Eliminar</a>
+															
 								</div></td>
 						</tr>
 						<%

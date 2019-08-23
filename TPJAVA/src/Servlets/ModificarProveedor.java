@@ -43,10 +43,15 @@ public class ModificarProveedor extends HttpServlet {
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
 		PreparedStatement pstmt = null;
-		String sql= ("UPDATE proveedores SET razon_social='"+razon_social+"',cuit='"+cuit+"',direccion='"+direccion+"',telefono='"
-				+telefono+"',mail='"+mail+"'WHERE cuit="+cuit);
+		String sql= ("UPDATE proveedores SET razon_social=?,cuit=?,direccion=?,telefono=?,mail=? WHERE cuit like ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setString(1, razon_social);
+			pstmt.setString(2, cuit);
+			pstmt.setString(3, direccion);
+			pstmt.setString(4, telefono);
+			pstmt.setString(5, mail);
+			pstmt.setString(6, cuit);
 			int rs = pstmt.executeUpdate();
 			if (rs > 0){
 				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);

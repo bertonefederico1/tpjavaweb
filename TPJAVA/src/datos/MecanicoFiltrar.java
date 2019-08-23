@@ -15,8 +15,7 @@ public class MecanicoFiltrar {
 		ArrayList<Mecanico> misMecanicos = new ArrayList<>();
 		if (buscamecanico != null) {
 			try {
-				pstmt = Conexion.getInstancia().getConn()
-						.prepareStatement(query);
+				pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
 				pstmt.setString(1, buscamecanico);
 				pstmt.setString(2, "%" + buscamecanico + "%");
 				rs = pstmt.executeQuery();

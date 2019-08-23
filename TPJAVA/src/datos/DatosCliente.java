@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import entidades.*;
 
-public class DatosPersona {
+public class DatosCliente {
 	
 	public ArrayList<Cliente> traerClientes() {
 		

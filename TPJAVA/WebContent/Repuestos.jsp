@@ -37,7 +37,6 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col"></th>
 							<th scope="col">CÓDIGO</th>
 							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">PRECIO</th>
@@ -50,12 +49,6 @@
 							for (Repuesto r : misRepuestos) {
 						%>
 						<tr>
-							<td>
-								<div class="radio">
-									<label><input type="radio" id='express' name="optradio"></label>
-								</div>
-							</td>
-
 							<td><%=r.getCodigo()%></td>
 							<td><%=r.getDescripcion()%></td>
 							<td><%=r.getPrecio()%></td>

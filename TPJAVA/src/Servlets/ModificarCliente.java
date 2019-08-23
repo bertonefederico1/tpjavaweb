@@ -44,10 +44,15 @@ public class ModificarCliente extends HttpServlet {
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
 		PreparedStatement pstmt = null;
-		String sql= ("UPDATE clientes SET nombre_y_apellido='"+nombre_y_apellido+"',dni='"+dni+"',direccion='"+direccion+"',telefono='"
-		+telefono+"',mail='"+mail+"'WHERE dni="+dni);
+		String sql= ("UPDATE clientes SET nombre_y_apellido=?,dni=?,direccion=?,telefono=?,mail=? WHERE dni=?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setString(1, nombre_y_apellido);
+			pstmt.setInt(2, dni);
+			pstmt.setString(3, direccion);
+			pstmt.setString(4, telefono);
+			pstmt.setString(5, mail);
+			pstmt.setInt(6, dni);
 			int rs = pstmt.executeUpdate();
 			if (rs > 0){
 				request.getRequestDispatcher("Clientes.jsp").forward(request, response);

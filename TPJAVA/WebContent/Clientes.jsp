@@ -13,7 +13,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	DatosPersona dp = new DatosPersona();
+	DatosCliente dp = new DatosCliente();
 	ArrayList<Cliente> misClientes = dp.traerClientes();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -36,7 +36,6 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col"></th>
 							<th scope="col">DNI</th>
 							<th scope="col">NOMBRE Y APELLIDO</th>
 							<th scope="col">DIRECCION</th>
@@ -50,11 +49,6 @@
 							for (Cliente cl : misClientes) {
 						%>
 						<tr>
-							<td>
-								<div class="radio">
-									<label><input type="radio" id='express' name="optradio"></label>
-								</div>
-							</td>
 							<td><%=cl.getDni()%></td>
 							<td><%=cl.getNombre_y_apellido()%></td>
 							<td><%=cl.getDireccion()%></td>
