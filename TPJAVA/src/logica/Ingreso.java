@@ -15,7 +15,6 @@ public class Ingreso {
 		try {
 			stmt= Conexion.getInstancia().getConn().createStatement();
 		} catch (SQLException e) {
-			System.out.println("ERROR DE CONEXION");
 			e.printStackTrace();
 		}
 			try {

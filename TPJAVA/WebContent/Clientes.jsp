@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="datos.*"%>
+<%@page import="logica.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
@@ -13,8 +13,8 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	DatosCliente dp = new DatosCliente();
-	ArrayList<Cliente> misClientes = dp.traerClientes();
+	ControladorCliente cc = new ControladorCliente();
+	ArrayList<Cliente> misClientes = cc.traerClientes();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
