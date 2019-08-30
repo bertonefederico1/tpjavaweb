@@ -5,6 +5,7 @@
 <%@page import="javax.servlet.http.*"%>
 <html>
 <head>
+<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
@@ -24,7 +25,7 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 
-<title>Pagina Principal</title>
+<title>Pagina Principal</title>	
 </head>
 <body>
 	<div class="shadow-lg p-3 mb-5 bg-white rounded">
@@ -42,21 +43,20 @@
 				<li class="nav-item"><a class="nav-link" href="Repuestos.jsp">Repuestos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Proveedores.jsp">Proveedores</a></li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Reparaciones </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="NuevaReparacion.jsp">Nueva </a>
-						<a class="dropdown-item" href="#">Consulta</a>
-						<a class="dropdown-item" href="Ingreso.jsp">Ingreso</a>
-					</div></li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Turnos </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Nuevo </a> 
-						<a class="dropdown-item" href="#">Consulta</a>
-					</div></li>
+					<li class="nav-item"><a class="nav-link" href="Reparaciones.jsp">Reparaciones</a></li>
+				<li class="nav-item"><a class="nav-link" href="Turnos.jsp">Turnos</a></li>
 			</ul>
 		</div>
 		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar Sesion</a> </nav>
 	</div>
 </body>
+	<a href= "Ingreso.jsp">
+		<img src="icons/nuevo ingreso.jpg" alt= "NUEVO INGRESO" title= "NUEVO INGRESO" style= "position:relative; top:110px; left:80px" width="200" height="220">
+	</a>
+	<a href= "NuevaReparacion.jsp">
+		<img src="icons/nueva reparacion.jpg" alt= "NUEVA REPARACION" title= "NUEVA REPARACION" style= "position:relative; top:110px; left:370px" width="200" height="220">
+	</a>
+	<a href= "NuevoTurno.jsp">
+		<img src="icons/nuevo turno.jpg" alt= "NUEVO TURNO" title= "NUEVO TURNO"style= "position:relative; top:110px; left:690px" width="200" height="220">
+	</a>
 </html>
