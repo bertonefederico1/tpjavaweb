@@ -21,6 +21,5 @@ public class ControladorRepuesto {
 	public ArrayList<Repuesto> repuestosFiltrados(String desc_buscar){
 		return rf.traerRepuestos(desc_buscar);
 	}
-	
 
 }

@@ -23,4 +23,8 @@ public class ControladorCliente {
 	public ArrayList<Cliente> clientesFiltrados(String nombuscar){
 		return cf.traerClientes(nombuscar);
 	}
+	
+	public boolean agregarCliente(Cliente cli){
+		return dc.agregarCliente(cli);
+	}
 }

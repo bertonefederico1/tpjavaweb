@@ -3,6 +3,7 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 import entidades.*;
 
 public class DatosCliente {
@@ -41,5 +42,33 @@ public class DatosCliente {
 		}
 	}
  	return misClientes;
+	}
+	
+	
+	
+	public boolean agregarCliente(Cliente cli) {
+		boolean band = false;
+		PreparedStatement pstmt = null;
+		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
+			pstmt.setInt(1, Integer.parseInt(cli.getDni()));
+			pstmt.setString(2, cli.getNombre_y_apellido());
+			pstmt.setString(3, cli.getDireccion());
+			pstmt.setString(4, cli.getMail());
+			pstmt.setString(5, cli.getTelefono());
+			int resp = pstmt.executeUpdate();
+			if (resp>0){
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+				band = true;
+			} else {
+				band = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return band;
 	}
 }

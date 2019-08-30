@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.ControladorCliente;
+import entidades.Cliente;
 
 /**
  * Servlet implementation class NuevoCliente
@@ -37,30 +37,22 @@ public class NuevoCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dni = Integer.parseInt(request.getParameter("dni"));
+		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request.getParameter("nombreYApellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		PreparedStatement pstmt = null;
-		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setInt(1, dni);
-			pstmt.setString(2, nombre_y_apellido);
-			pstmt.setString(3, direccion);
-			pstmt.setString(4, mail);
-			pstmt.setString(5, telefono);
-			int resp = pstmt.executeUpdate();
-			if (resp>0){
-				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Cliente cli = new Cliente();
+		cli.setDni(dni);
+		cli.setNombre_y_apellido(nombre_y_apellido);
+		cli.setDireccion(direccion);
+		cli.setTelefono(telefono);
+		cli.setMail(mail);
+		ControladorCliente cc = new ControladorCliente();
+		if (cc.agregarCliente(cli)) {
+			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 		}
+		
 	}
 
 }
