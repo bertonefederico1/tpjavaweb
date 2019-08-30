@@ -7,7 +7,7 @@ import entidades.Cliente;
 
 public class ClienteFiltrar {
 	
-	public ArrayList <Cliente> traerClientes (String nombuscar){
+	public ArrayList <Cliente> traerClientes(String nombuscar){
 	
 	ArrayList <Cliente> misClientes= new ArrayList<>();
 	PreparedStatement pstmt = null;

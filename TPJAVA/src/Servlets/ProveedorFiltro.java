@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logica.ControladorProveedor;
 import datos.ProveedorFiltrar;
 import entidades.Proveedor;
 
@@ -40,8 +41,8 @@ public class ProveedorFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String razonSocialBuscar = request.getParameter("txtbuscar");
-		ProveedorFiltrar pf = new ProveedorFiltrar();
-		ArrayList<Proveedor> misProveedores = pf.traerProveedores(razonSocialBuscar);
+		ControladorProveedor cp = new ControladorProveedor();
+		ArrayList<Proveedor> misProveedores = cp.proveedoresFiltrados(razonSocialBuscar);
 		request.getSession().setAttribute("misProveedores", misProveedores);
 		request.getRequestDispatcher("BusquedaFiltradaProveedores.jsp").forward(request, response);
 	}

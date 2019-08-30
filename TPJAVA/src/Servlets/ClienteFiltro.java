@@ -12,6 +12,7 @@ import datos.*;
 
 import java.util.ArrayList;
 
+import logica.*;
 import entidades.*;
 
 /**
@@ -41,8 +42,8 @@ public class ClienteFiltro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
-		ClienteFiltrar c = new ClienteFiltrar();
-		ArrayList<Cliente> misClientes= c.traerClientes(nombuscar);
+		ControladorCliente cc = new ControladorCliente();
+		ArrayList<Cliente> misClientes= cc.clientesFiltrados(nombuscar);
 		request.getSession().setAttribute("misClientes", misClientes);
 		request.getRequestDispatcher("BusquedaFiltradaClientes.jsp").forward(request, response);
 		

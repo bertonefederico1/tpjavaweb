@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logica.ControladorRepuesto;
 import datos.RepuestoFiltrar;
 import entidades.Repuesto;
 
@@ -40,8 +41,8 @@ public class RepuestoFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String desc_buscar = request.getParameter("txtbuscar");
-		RepuestoFiltrar rp = new RepuestoFiltrar();
-		ArrayList<Repuesto> misRepuestos = rp.traerRepuestos(desc_buscar);
+		ControladorRepuesto cp = new ControladorRepuesto();
+		ArrayList<Repuesto> misRepuestos = cp.repuestosFiltrados(desc_buscar);
 		request.getSession().setAttribute("misRepuestos", misRepuestos);
 		request.getRequestDispatcher("BusquedaFiltradaRepuestos.jsp").forward(request,response);
 	}

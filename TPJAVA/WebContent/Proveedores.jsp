@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
 <%@page import="java.sql.*"%>
-<%@page import="datos.*"%>
+<%@page import="logica.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
@@ -14,8 +14,8 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	DatosProveedor dprove = new DatosProveedor();
-	ArrayList<Proveedor> misProveedores = dprove.traerProveedores();
+	ControladorProveedor cp = new ControladorProveedor ();
+	ArrayList<Proveedor> misProveedores = cp.traerProveedores();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>

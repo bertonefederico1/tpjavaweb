@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logica.ControladorMecanico;
 import datos.MecanicoFiltrar;
 import entidades.*;
 
@@ -39,8 +40,8 @@ public class MecanicoFiltro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String buscamecanico = request.getParameter("txtbuscar");
-		MecanicoFiltrar m = new MecanicoFiltrar();
-		ArrayList<Mecanico> misMecanicos= m.traerMecanicos(buscamecanico);
+		ControladorMecanico cm = new ControladorMecanico();
+		ArrayList<Mecanico> misMecanicos= cm.mecanicosFiltrados(buscamecanico);
 		request.getSession().setAttribute("misMecanicos", misMecanicos);
 		request.getRequestDispatcher("BusquedaFiltradaMecanicos.jsp").forward(request, response);
 	}
