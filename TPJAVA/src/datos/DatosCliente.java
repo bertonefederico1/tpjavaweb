@@ -3,7 +3,6 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 import entidades.*;
 
 public class DatosCliente {
@@ -62,8 +61,52 @@ public class DatosCliente {
 				Conexion.getInstancia().releaseConn();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void modificarCliente (Cliente cli){
+		PreparedStatement pstmt = null;
+		String sql= ("UPDATE clientes SET nombre_y_apellido=?,dni=?,direccion=?,telefono=?,mail=? WHERE dni=?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setString(1, cli.getNombre_y_apellido());
+			pstmt.setInt(2, Integer.parseInt(cli.getDni()));
+			pstmt.setString(3, cli.getDireccion());
+			pstmt.setString(4, cli.getTelefono());
+			pstmt.setString(5, cli.getMail());
+			pstmt.setInt(6, Integer.parseInt(cli.getDni()));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void eliminarCliente (int dni){
+		PreparedStatement pstmt = null;
+		String sql = ("DELETE FROM clientes WHERE dni=?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setInt(1, dni);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

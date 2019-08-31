@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import datos.*;
+
+
+import logica.ControladorCliente;
+import entidades.Cliente;
 
 /**
  * Servlet implementation class ModificarCliente
@@ -38,38 +40,21 @@ public class ModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dni = Integer.parseInt(request.getParameter("dni"));
+		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		PreparedStatement pstmt = null;
-		String sql= ("UPDATE clientes SET nombre_y_apellido=?,dni=?,direccion=?,telefono=?,mail=? WHERE dni=?");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
-			pstmt.setString(1, nombre_y_apellido);
-			pstmt.setInt(2, dni);
-			pstmt.setString(3, direccion);
-			pstmt.setString(4, telefono);
-			pstmt.setString(5, mail);
-			pstmt.setInt(6, dni);
-			int rs = pstmt.executeUpdate();
-			if (rs > 0){
-				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("DatosNoGuardados.html").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
-			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		Cliente cli= new Cliente();
+		ControladorCliente cc = new ControladorCliente();
+		cli.setDni(dni);
+		cli.setDireccion(direccion);
+		cli.setNombre_y_apellido(nombre_y_apellido);
+		cli.setMail(mail);
+		cli.setTelefono(telefono);
+		cc.modificarCliente(cli);
+		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		
 	}
 
 }

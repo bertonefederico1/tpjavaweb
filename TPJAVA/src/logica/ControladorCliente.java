@@ -27,4 +27,12 @@ public class ControladorCliente {
 	public void agregarCliente(Cliente cli){
 		dc.agregarCliente(cli);
 	}
+	
+	public void modificarCliente(Cliente cli){
+		dc.modificarCliente(cli);
+	}
+	
+	public void eliminarCliente(int dni){
+		dc.eliminarCliente(dni);
+	}
 }
