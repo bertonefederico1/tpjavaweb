@@ -49,9 +49,8 @@ public class NuevoCliente extends HttpServlet {
 		cli.setTelefono(telefono);
 		cli.setMail(mail);
 		ControladorCliente cc = new ControladorCliente();
-		if (cc.agregarCliente(cli)) {
-			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-		}
+		cc.agregarCliente(cli);
+		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 		
 	}
 

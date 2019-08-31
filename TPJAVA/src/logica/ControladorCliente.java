@@ -24,7 +24,7 @@ public class ControladorCliente {
 		return cf.traerClientes(nombuscar);
 	}
 	
-	public boolean agregarCliente(Cliente cli){
-		return dc.agregarCliente(cli);
+	public void agregarCliente(Cliente cli){
+		dc.agregarCliente(cli);
 	}
 }

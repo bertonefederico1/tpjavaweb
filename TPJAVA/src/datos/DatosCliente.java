@@ -46,8 +46,7 @@ public class DatosCliente {
 	
 	
 	
-	public boolean agregarCliente(Cliente cli) {
-		boolean band = false;
+	public void agregarCliente(Cliente cli) {
 		PreparedStatement pstmt = null;
 		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
 		try {
@@ -61,14 +60,10 @@ public class DatosCliente {
 			if (resp>0){
 				pstmt.close();
 				Conexion.getInstancia().releaseConn();
-				band = true;
-			} else {
-				band = false;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return band;
 	}
 }
