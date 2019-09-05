@@ -55,13 +55,17 @@ public class DatosCliente {
 			pstmt.setString(3, cli.getDireccion());
 			pstmt.setString(4, cli.getMail());
 			pstmt.setString(5, cli.getTelefono());
-			int resp = pstmt.executeUpdate();
-			if (resp>0){
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			}
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

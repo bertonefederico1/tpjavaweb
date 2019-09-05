@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.*;
+import entidades.*;
 
 /**
  * Servlet implementation class ModificarMecanico
@@ -46,33 +46,14 @@ public class ModificarMecanico extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		PreparedStatement pstmt = null;
-		String sql = ("UPDATE mecanicos SET nombre_y_apellido=?,matricula=?,direccion=?,telefono=?,mail=? WHERE matricula=?");
-		try {
-			pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
-			pstmt.setString(1, nombre_y_apellido);
-			pstmt.setInt(2, matricula);
-			pstmt.setString(3, direccion);
-			pstmt.setString(4, telefono);
-			pstmt.setString(5, mail);
-			pstmt.setInt(6, matricula);
-			int rs = pstmt.executeUpdate();
-			if (rs > 0) {
-				request.getRequestDispatcher("Mecanicos.jsp").forward(request,
-						response);
-			} else {
-				request.getRequestDispatcher("DatosNoGuardados.html").forward(
-						request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		Mecanico mec = new Mecanico();
+		ControladorMecanico cm = new ControladorMecanico();
+		mec.setDireccion(direccion);
+		mec.setMail(mail);
+		mec.setMatricula(matricula);
+		mec.setNombre_y_apellido(nombre_y_apellido);
+		mec.setTelefono(telefono);
+		cm.modificarMecanico(mec);
+		request.getRequestDispatcher("Mecanicos.jsp").forward(request,response);
 	}
 }

@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.*;
+import entidades.*;
 
 /**
  * Servlet implementation class ModificarProveedor
@@ -42,33 +42,15 @@ public class ModificarProveedor extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		PreparedStatement pstmt = null;
-		String sql= ("UPDATE proveedores SET razon_social=?,cuit=?,direccion=?,telefono=?,mail=? WHERE cuit like ?");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
-			pstmt.setString(1, razon_social);
-			pstmt.setString(2, cuit);
-			pstmt.setString(3, direccion);
-			pstmt.setString(4, telefono);
-			pstmt.setString(5, mail);
-			pstmt.setString(6, cuit);
-			int rs = pstmt.executeUpdate();
-			if (rs > 0){
-				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("DatosNoGuardados.html").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
-			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		Proveedor prove = new Proveedor();
+		ControladorProveedor cp = new ControladorProveedor();
+		prove.setCuit(cuit);
+		prove.setDireccion(direccion);
+		prove.setMail(mail);
+		prove.setRazonSocial(razon_social);
+		prove.setTelefono(telefono);
+		cp.modificarProveedor(prove);
+		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
 	}
 
 }

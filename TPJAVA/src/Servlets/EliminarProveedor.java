@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.ControladorProveedor;
 
 /**
  * Servlet implementation class EliminarProveedor
@@ -38,25 +37,9 @@ public class EliminarProveedor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuit= request.getParameter("cuit");
-		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM proveedores WHERE cuit="+cuit);
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
-			int rs= pstmt.executeUpdate();
-			if (rs > 0){
-				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
-			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		ControladorProveedor cp = new ControladorProveedor();
+		cp.eliminarProveedor(cuit);
+		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
 	}
 
 }

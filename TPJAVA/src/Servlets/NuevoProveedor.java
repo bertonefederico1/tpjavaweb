@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.ControladorProveedor;
+import entidades.Proveedor;
 
 /**
  * Servlet implementation class NuevoProveedor
@@ -42,25 +42,15 @@ public class NuevoProveedor extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
-		PreparedStatement pstmt = null;
-		String insertar = ("insert into proveedores(cuit,razon_social,direccion,mail,telefono) values(?,?,?,?,?)");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setString(1, cuit);
-			pstmt.setString(2, razon_social);
-			pstmt.setString(3, direccion);
-			pstmt.setString(4, mail);
-			pstmt.setString(5, telefono);
-			int resp = pstmt.executeUpdate();
-			if (resp>0){
-				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Proveedor prove = new Proveedor();
+		ControladorProveedor cp = new ControladorProveedor();
+		prove.setCuit(cuit);
+		prove.setDireccion(direccion);
+		prove.setMail(mail);
+		prove.setRazonSocial(razon_social);
+		prove.setTelefono(telefono);
+		cp.agregarProveedor(prove);
+		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
 	}
 
 }

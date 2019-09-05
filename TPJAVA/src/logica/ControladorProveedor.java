@@ -22,4 +22,16 @@ public class ControladorProveedor {
 	public ArrayList<Proveedor> proveedoresFiltrados(String razonSocialBuscar){
 		return pf.traerProveedores(razonSocialBuscar);
 	}
+	
+	public void agregarProveedor (Proveedor prove){
+		dp.agregarProveedor(prove);
+	}
+	
+	public void modificarProveedor (Proveedor prove){
+		dp.modificarProveedor(prove);
+	}
+	
+	public void eliminarProveedor (String cuit){
+		dp.eliminarProveedor(cuit);
+	}
 }
