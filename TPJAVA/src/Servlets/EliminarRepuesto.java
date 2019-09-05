@@ -1,7 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
+import logica.*;
 /**
  * Servlet implementation class EliminarRepuesto
  */
@@ -37,25 +36,9 @@ public class EliminarRepuesto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_repuesto= Integer.parseInt(request.getParameter("codigo"));
-		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM repuestos WHERE cod_repuesto="+cod_repuesto);
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
-			int rs= pstmt.executeUpdate();
-			if (rs > 0){
-				request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
-			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		ControladorRepuesto cr = new ControladorRepuesto();
+		cr.eliminarRepuesto(cod_repuesto);
+		request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
 	}
 
 }

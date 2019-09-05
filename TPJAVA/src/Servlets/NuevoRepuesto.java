@@ -1,8 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.sql.*;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.Conexion;
+import logica.*;
+import entidades.*;
 
 /**
  * Servlet implementation class NuevoRepuesto
@@ -41,23 +40,13 @@ public class NuevoRepuesto extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		String cantidad = request.getParameter("cantidad");
 		String precio = request.getParameter("precio");
-		PreparedStatement pstmt = null;	
-		String insertar = ("insert into repuestos(descripcion,precio,stock) values(?,?,?)");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setString(1, descripcion);
-			pstmt.setFloat(2, Float.parseFloat(precio));
-			pstmt.setInt(3, Integer.parseInt(cantidad));
-			int resp = pstmt.executeUpdate();
-			if (resp>0){
-				request.getRequestDispatcher("Repuestos.jsp").forward(request,response);
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Repuesto rep = new Repuesto();
+		ControladorRepuesto cr = new ControladorRepuesto();
+		rep.setDescripcion(descripcion);
+		rep.setStock(Integer.parseInt(cantidad));
+		rep.setPrecio(Float.parseFloat(precio));
+		cr.agregarRepuesto(rep);
+		request.getRequestDispatcher("Repuestos.jsp").forward(request,response);
 	}
 
 }
