@@ -18,20 +18,21 @@
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	String fechaHoy = formatter.format(fecha);
 %>
+<form method="POST" action="NuevoIngreso">
 		<label><div id=fecha class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Fecha</span>
 				</div>
-				<input type="text" class="form-control" value="<%=fechaHoy%>"
-					readonly="readonly" form style="width: 200px">
+				<input type="text" class="form-control" name="fecha" value="<%=fechaHoy%>"
+					readonly="readonly" style="width: 200px">
 			</div></label>
 			<p><label><div id=cliente class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Cliente</span>
 				</div>
-				<input type="text" class="form-control" placeholder="Cliente"
+				<input type="text" class="form-control" name="dni_cliente" placeholder="Cliente"
 					aria-label="cliente" aria-describedby="basic-addon1"
-					value="Cliente" readonly="readonly">
+					value="<%if (request.getParameter("dni")!=null){%><%=request.getParameter("nombre_y_apellido")%><%}%><%else {%>Cliente<%}%>" readonly="readonly"></input>
 				<div id= "botonAgregar">
 					<button type="button" onclick = "location='SeleccionCliente.jsp'" class="btn btn-success">+ Agregar</button>
 				</div>
@@ -60,11 +61,12 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Observaciones</span>
 				</div>
-				<textarea name="observaciones" rows="5" cols="62"></textarea>
+				<textarea name="observaciones" rows="5" cols="61"></textarea>
 			</div></label>
 			<div id= "botonGuardar">
-				<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "location='DatosGuardados.html'">Guardar</button>
+				<button type="submit" class="btn btn-success" onclick = "location='DatosGuardados.html'" style= "position:relative; top: 10px; left:20px">Guardar</button>
+				<button type="button" class="btn btn-danger" onclick = "location='Cancelar.html'" style= "position:relative; top: 10px; left:40px">Cancelar</button>
 			</div>
-
+</form>
 </body>
 </html>

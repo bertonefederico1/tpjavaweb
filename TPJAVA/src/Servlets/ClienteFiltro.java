@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.*;
-
 import java.util.ArrayList;
 
 import logica.*;
@@ -34,7 +32,11 @@ public class ClienteFiltro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String nombuscar = request.getParameter("txtbuscar");
+		ControladorCliente cc = new ControladorCliente();
+		ArrayList<Cliente> misClientes= cc.clientesFiltrados(nombuscar);
+		request.getSession().setAttribute("misClientes", misClientes);
+		request.getRequestDispatcher("SeleccionClientesFiltrados.jsp").forward(request, response);
 	}
 
 	/**

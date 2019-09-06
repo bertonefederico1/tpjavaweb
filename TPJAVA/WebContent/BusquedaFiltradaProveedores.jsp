@@ -27,7 +27,6 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-          	<th scope="col"></th>
             <th scope="col">CUIT</th>
             <th scope="col">RAZON SOCIAL</th>
             <th scope="col">DIRECCION</th>
@@ -40,11 +39,6 @@
         
          <% for (Proveedor prov : misProveedores) {%>
 		      <tr>
-		      	<td>
-                 <div class="radio">
-                     <label><input type="radio" id='express' name="optradio"></label>
-                </div>
-             </td>
 		        <td><%=prov.getCuit()%></td>
 		        <td><%=prov.getRazonSocial()%></td>
 		        <td><%=prov.getDireccion()%></td>

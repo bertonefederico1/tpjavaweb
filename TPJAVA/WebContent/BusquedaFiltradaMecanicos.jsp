@@ -28,7 +28,6 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-          	<th scope="col"></th>
             <th scope="col">MATRICULA</th>
             <th scope="col">NOMBRE Y APELLIDO</th>
             <th scope="col">DIRECCION</th>
@@ -40,11 +39,6 @@
         <tbody>
          <% for (Mecanico me : misMecanicos)  {%>
 		      <tr>
-		      	<td>
-                 <div class="radio">
-                     <label><input type="radio" id='express' name="optradio"></label>
-                </div>
-             </td>
 		        <td><%=me.getMatricula()%></td>
 		        <td><%=me.getNombre_y_apellido()%></td>
 		        <td><%=me.getDireccion()%></td>

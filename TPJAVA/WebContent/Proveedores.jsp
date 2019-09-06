@@ -64,6 +64,7 @@
 						%>
 					</tbody>
 				</table>
+				<a href="Principal.jsp"><< Ir a la pagina principal</a>
 			</div>
 		</div>
 	</div>
