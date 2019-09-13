@@ -15,7 +15,7 @@
 			<form method="POST" action= "SignIn">
   				<div class="form-group">
     				<label for="inputUsuario">Usuario</label>
-    				<input type="text" form style= width:524px name="usuario"  class="form-control" id="usuario" placeholder="Usuario"/>
+    				<input type="text" form style= width:524px name="usuario" class="form-control" id="usuario" placeholder="Usuario"/>
   				</div>
   				<div class="form-group">
     				<label for="InputPassword">Contraseña</label>

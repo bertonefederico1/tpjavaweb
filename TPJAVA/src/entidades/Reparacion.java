@@ -14,17 +14,10 @@ public class Reparacion {
 	private String observaciones;
 	private float precioTotal;
 	private float precioManoDeObra;
-	private Cliente cliente;
 	private Mecanico mecanico;
 	private Auto auto;
 	
-	
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+
 	public Mecanico getMecanico() {
 		return mecanico;
 	}

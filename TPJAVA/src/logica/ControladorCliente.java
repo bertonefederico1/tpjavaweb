@@ -10,10 +10,12 @@ public class ControladorCliente {
 	
 	DatosCliente dc;
 	ClienteFiltrar cf;
+	VehiculosPorCliente vc;
 	
 	public ControladorCliente(){
 		dc = new DatosCliente();
 		cf = new ClienteFiltrar();
+		vc = new VehiculosPorCliente();
 	}
 	
 	public ArrayList<Cliente> traerClientes(){
@@ -34,5 +36,9 @@ public class ControladorCliente {
 	
 	public void eliminarCliente(int dni){
 		dc.eliminarCliente(dni);
+	}
+	
+	public ArrayList<Auto> vehiculosPorCliente(String dni){
+		return vc.vehiculosDelCliente(dni);
 	}
 }

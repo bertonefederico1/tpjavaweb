@@ -1,11 +1,19 @@
 package Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidades.*;
+import logica.ControladorReparacion;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Servlet implementation class NuevoIngreso
@@ -33,7 +41,33 @@ public class NuevoIngreso extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String fecha_ingreso, patente, reparacionesARealizar, observaciones;
+		fecha_ingreso= request.getParameter("fecha");
+		patente= request.getParameter("patente");
+		reparacionesARealizar= request.getParameter("reparacionesARealizar");
+		observaciones= request.getParameter("observaciones");
+		ControladorReparacion cr = new ControladorReparacion();
+		Reparacion repa = new Reparacion();
+		Date date=null;
+		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	     try {
+
+	            date = formatter.parse(fecha_ingreso);
+
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	     
+	     
+		repa.setEstado("Ingresado");
+		repa.setFechaIngreso(date);
+		repa.setDetalleInicial(reparacionesARealizar);
+		repa.setObservaciones(observaciones);
+		Auto auto = new Auto();
+		auto.setPatente(patente);
+		repa.setAuto(auto);
+		cr.agregarNuevoIngreso(repa);
+		request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 	}
 
 }

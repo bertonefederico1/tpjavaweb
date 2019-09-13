@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import logica.Ingreso;
 import entidades.*;
-import datos.*;
 
 /**
  * Servlet implementation class ServletLogin
@@ -48,10 +47,8 @@ public class SignIn extends HttpServlet {
 		Ingreso ingreso = new Ingreso();
 		u.setUser(user);
 		u.setPassword(password);
-		DatosVehiculo dv = new DatosVehiculo();
 		if (ingreso.validaLogin(u)){
 			request.getSession().setAttribute("usuario", u);
-			request.getSession().setAttribute("vehiculos", dv.traerAutos());
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {
 				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);

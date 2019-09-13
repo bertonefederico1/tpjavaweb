@@ -40,7 +40,7 @@
 		      <tr>
 		      	<td>
                  <div class="radio">
-                     <label><input type="radio" onclick="location='Ingreso.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>'" id='express' name="optradio"></label>
+                     <label><input type="radio" onclick="location='Ingreso.jsp?dni=<%=cl.getDni()%>'" id='express' name="optradio"></label>
                 </div>
              </td>
 		        <td><%=cl.getDni()%></td>
