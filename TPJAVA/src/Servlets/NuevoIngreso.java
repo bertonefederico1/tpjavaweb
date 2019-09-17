@@ -49,16 +49,12 @@ public class NuevoIngreso extends HttpServlet {
 		ControladorReparacion cr = new ControladorReparacion();
 		Reparacion repa = new Reparacion();
 		Date date=null;
-		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-	     try {
-
-	            date = formatter.parse(fecha_ingreso);
-
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	    try {
+	    	date = formatter.parse(fecha_ingreso);
 	        } catch (ParseException e) {
 	            e.printStackTrace();
-	        }
-	     
-	     
+	        }   
 		repa.setEstado("Ingresado");
 		repa.setFechaIngreso(date);
 		repa.setDetalleInicial(reparacionesARealizar);

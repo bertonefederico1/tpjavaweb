@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorProveedor;
-import datos.ProveedorFiltrar;
 import entidades.Proveedor;
 
 /**

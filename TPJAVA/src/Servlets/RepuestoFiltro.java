@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorRepuesto;
-import datos.RepuestoFiltrar;
 import entidades.Repuesto;
 
 /**
