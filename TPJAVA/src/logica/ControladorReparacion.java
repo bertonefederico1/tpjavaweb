@@ -7,10 +7,9 @@ import entidades.Reparacion;
 
 public class ControladorReparacion {
 	
-	DatosReparacion dr;
+	DatosReparacion dr = new DatosReparacion();
 	
 	public void agregarNuevoIngreso(Reparacion repa){
-		dr = new DatosReparacion();
 		dr.agregarNuevoIngreso(repa);
 	}
 	

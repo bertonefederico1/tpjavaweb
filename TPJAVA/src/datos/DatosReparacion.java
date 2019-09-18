@@ -13,10 +13,13 @@ public class DatosReparacion {
 		Statement stmt = null;
 		ResultSet rs = null;
 		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion "
-				+ "FROM reparaciones rep INNER JOIN autos a"
-				+ "ON rep.patente = a.patente"
-				+ "INNER JOIN clientes c"
-				+ "ON c.dni = a.dni WHERE activa LIKE 'si' ORDER BY rep.nro_reparacion";
+				+ "FROM reparaciones rep "
+				+ "INNER JOIN autos a "
+					+ "ON rep.patente = a.patente "
+				+ "INNER JOIN clientes c "
+					+ "ON a.dni = c.dni "
+				+ "WHERE rep.activa = 'si' "
+				+ "ORDER BY rep.nro_reparacion";
 	 	try {
 			stmt= Conexion.getInstancia().getConn().createStatement();
 			rs = stmt.executeQuery(query);
@@ -25,15 +28,15 @@ public class DatosReparacion {
 					Reparacion rep = new Reparacion();
 					Cliente cli = new Cliente();
 					Auto auto = new Auto();
-					rep.setNroReparacion(rs.getInt("rep.nro_reparacion"));
-					rep.setFechaIngreso(rs.getDate("rep.fecha_ingreso"));
-					cli.setNombre_y_apellido(rs.getString("c.nombre_y_apellido"));
-					auto.setPatente(rs.getString("a.patente"));
-					auto.setMarca(rs.getString("a.marca"));
-					auto.setModelo(rs.getString("a.modelo"));
-					auto.setAnio(rs.getInt("a.anio_fabricacion"));
-					rep.setAuto(auto);
+					rep.setNroReparacion(rs.getInt("nro_reparacion"));
+					rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
+					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+					auto.setPatente(rs.getString("patente"));
+					auto.setMarca(rs.getString("marca"));
+					auto.setModelo(rs.getString("modelo"));
+					auto.setAnio(rs.getInt("anio_fabricacion"));
 					auto.setCli(cli);
+					rep.setAuto(auto);
 					misReparaciones.add(rep);
 				}
 		 	}
@@ -43,8 +46,8 @@ public class DatosReparacion {
 		}
 	 	finally {
 			try {
-				rs.close();
 				stmt.close();
+				rs.close();
 				Conexion.getInstancia().releaseConn();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
