@@ -52,6 +52,7 @@
 		      <%}%>
         </tbody>
       </table>
+      <a href="Mecanicos.jsp"><< Volver</a>
     </div>
   </div>
 </div>

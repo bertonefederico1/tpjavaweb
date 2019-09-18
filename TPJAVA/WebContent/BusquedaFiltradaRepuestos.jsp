@@ -50,6 +50,7 @@
 		      <%} %>
         </tbody>
       </table>
+      <a href="Repuestos.jsp"><< Volver</a>
     </div>
   </div>
 </div>

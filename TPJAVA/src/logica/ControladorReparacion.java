@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.ArrayList;
+
 import datos.*;
 import entidades.Reparacion;
 
@@ -10,5 +12,9 @@ public class ControladorReparacion {
 	public void agregarNuevoIngreso(Reparacion repa){
 		dr = new DatosReparacion();
 		dr.agregarNuevoIngreso(repa);
+	}
+	
+	public ArrayList<Reparacion> traerReparaciones(){
+		return dr.traerReparaciones();
 	}
 }

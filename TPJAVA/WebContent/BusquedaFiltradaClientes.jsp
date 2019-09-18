@@ -50,6 +50,7 @@
 		      <%}%>
         </tbody>
       </table>
+      <a href="Clientes.jsp"><< Volver</a>
     </div>
   </div>
 </div>
