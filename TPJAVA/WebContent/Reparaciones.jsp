@@ -50,10 +50,9 @@
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>
 							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%> </td>
 							<td><div>
-									<%-- <a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="EliminarCliente?dni=<%=cl.getDni()%>" class="btn btn-danger btn-sm">Eliminar</a> --%>
-															
-								</div></td>
+									<a href="ConsultaReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-outline-info">Ver más</a>
+									<a href="EliminarReparacion?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-danger btn-sm">Eliminar</a>
+							</div></td>
 						</tr>
 						<%
 							}
