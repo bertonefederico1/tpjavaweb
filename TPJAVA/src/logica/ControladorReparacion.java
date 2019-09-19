@@ -16,4 +16,8 @@ public class ControladorReparacion {
 	public ArrayList<Reparacion> traerReparaciones(){
 		return dr.traerReparaciones();
 	}
+	
+	public Reparacion traerReparacionPorNro(int nro_reparacion){
+		return dr.traerReparacionPorNro(nro_reparacion);
+	}
 }
