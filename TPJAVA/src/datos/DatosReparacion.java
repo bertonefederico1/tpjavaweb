@@ -7,6 +7,56 @@ import entidades.*;
 
 public class DatosReparacion {
 	
+	public ArrayList<Reparacion> reparacionesPorCliente(String dni){
+		ArrayList<Reparacion> misReparaciones= new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion "
+				+ "FROM reparaciones rep "
+				+ "INNER JOIN autos a "
+					+ "ON rep.patente = a.patente "
+				+ "INNER JOIN clientes c "
+					+ "ON a.dni = c.dni "
+				+ "WHERE rep.activa = 'si' AND rep.estado = 'Ingresado' AND c.dni = ?"
+				+ "ORDER BY rep.nro_reparacion";
+	 	try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setString(1,dni);
+			rs = pstmt.executeQuery();
+			if (rs!=null){
+				while (rs.next()) {
+					Reparacion rep = new Reparacion();
+					Cliente cli = new Cliente();
+					Auto auto = new Auto();
+					rep.setNroReparacion(rs.getInt("nro_reparacion"));
+					rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
+					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+					auto.setPatente(rs.getString("patente"));
+					auto.setMarca(rs.getString("marca"));
+					auto.setModelo(rs.getString("modelo"));
+					auto.setAnio(rs.getInt("anio_fabricacion"));
+					auto.setCli(cli);
+					rep.setAuto(auto);
+					misReparaciones.add(rep);
+				}
+		 	}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				pstmt.close();
+				rs.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	 	return misReparaciones;
+	}
+	
 	public Reparacion traerReparacionPorNro(int nro_reparacion){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -14,12 +14,12 @@
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorReparacion cr = new ControladorReparacion();
-	ArrayList<Reparacion> misReparaciones = cr.traerReparaciones();
+	ArrayList<Reparacion> misReparaciones = cr.reparacionesPorCliente(request.getParameter("dni"));
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>LISTADO DE REPARACIONES</b></label>
+	<label><b>LISTADO DE REPARACIONES DEL CLIENTE: <%=request.getParameter("nombre_y_apellido") %></b></label>
 </div>
 <div class="container buscar">
 	<form class="form" method="POST" action="ReparacionFiltro">
@@ -34,6 +34,7 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
+							<th scope="col"></th>
 							<th scope="col">NRO REPARACION</th>
 							<th scope="col">FECHA DE INGRESO</th>
 							<th scope="col">CLIENTE</th>
@@ -45,21 +46,22 @@
 							for (Reparacion rep : misReparaciones) {
 						%>
 						<tr>
+						<td>
+                 <div class="radio">
+                     <label><input type="radio" onclick="location='NuevaReparacion.jsp?dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=rep.getNroReparacion()%>'" id='express' name="optradio"></label>
+                </div>
+             </td>
 							<td><%=rep.getNroReparacion()%></td>
 							<td><%=rep.getFechaIngreso()%></td>
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>
 							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%> </td>
-							<td><div>
-									<a href="ConsultaReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-outline-info">Ver más</a>
-									<a href="EliminarReparacion?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-danger btn-sm">Eliminar</a>
-							</div></td>
 						</tr>
 						<%
 							}
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="NuevaReparacion.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>

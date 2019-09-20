@@ -36,7 +36,7 @@
 						value="<% if (request.getParameter("dni") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>"
 						readonly="readonly"></input>
 					<div id="botonAgregar">
-						<button type="button" onclick="location='SeleccionCliente.jsp'"
+						<button type="button" onclick="location='SeleccionCliente.jsp?tipo=ingreso'"
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div></label>

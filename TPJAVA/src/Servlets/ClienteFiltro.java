@@ -33,6 +33,8 @@ public class ClienteFiltro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
+		String tipo = request.getParameter("tipo");
+		System.out.println(tipo);
 		ControladorCliente cc = new ControladorCliente();
 		ArrayList<Cliente> misClientes= cc.clientesFiltrados(nombuscar);
 		request.getSession().setAttribute("misClientes", misClientes);

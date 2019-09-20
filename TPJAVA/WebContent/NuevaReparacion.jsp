@@ -28,7 +28,7 @@
 		<p>
 			<label><div id=cliente class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Cliente</span>
 					</div>
 					<input type="text" class="form-control" name="dni_cliente"
 						aria-label="cliente"
@@ -36,7 +36,7 @@
 						value="<% if (request.getParameter("dni") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>"
 						readonly="readonly"></input>
 					<div id="botonAgregar">
-						<button type="button" onclick="location='SeleccionCliente.jsp'"
+						<button type="button" onclick="location='SeleccionCliente.jsp?tipo=reparacion'"
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div></label>
@@ -45,30 +45,18 @@
 
 			<div id=vehiculo class="input-group mb-3">
 				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">Vehiculo</span>
+					<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
 				</div>
-				<input type="text" class="form-control" name="patente"
-					aria-label="cliente" aria-describedby="basic-addon1"
-					value="<%if (request.getParameter("patente") != null) {%><%=request.getParameter("patente")%><%}%><%else {%>Vehiculo<%}%>" 
-					readonly="readonly" form style="width: 589px">
+				<input type="text" class="form-control" name="reparacion"
+					aria-label="reparacion" aria-describedby="basic-addon1"
+					value="<%if (request.getParameter("nro_reparacion") != null) {%><%=request.getParameter("nro_reparacion")%><%}%><%else {%>Reparacion<%}%>" 
+					readonly="readonly" form style="width: 490px">
 				<div id="botonAgregar">
-					<button type="button" onclick="location='VehiculosDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre_y_apellido=<%=request.getParameter("nombre_y_apellido")%>'"
+					<button type="button" onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre_y_apellido=<%=request.getParameter("nombre_y_apellido")%>'"
 						class="btn btn-success">+ Agregar</button>
 				</div>
 			</div>
-		</label> <label><div id=reparacionesARealizar class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">Reparaciones
-						a realizar</span>
-				</div>
-				<textarea name="reparacionesARealizar" rows="5" cols="54"></textarea>
-			</div></label>
-			 <label><div id=observaciones class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">Observaciones</span>
-				</div>
-				<textarea name="observaciones" rows="5" cols="61"></textarea>
-			</div></label>
+		</label> 
 		<div id="botonGuardar">
 			<button type="submit" class="btn btn-success"
 				style="position: relative; top: 10px; left: 20px">Guardar</button>

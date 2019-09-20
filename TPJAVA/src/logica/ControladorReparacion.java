@@ -20,4 +20,8 @@ public class ControladorReparacion {
 	public Reparacion traerReparacionPorNro(int nro_reparacion){
 		return dr.traerReparacionPorNro(nro_reparacion);
 	}
+	
+	public ArrayList<Reparacion> reparacionesPorCliente(String dni){
+		return dr.reparacionesPorCliente(dni);
+	}
 }
