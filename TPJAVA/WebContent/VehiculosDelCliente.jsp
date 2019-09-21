@@ -52,7 +52,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Ingreso.jsp"><< Volver atrás</a>
+				<a href="Ingreso.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>
