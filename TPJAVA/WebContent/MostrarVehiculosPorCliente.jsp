@@ -14,11 +14,11 @@
 <% 
 	ControladorVehiculo cv = new ControladorVehiculo();
 	ArrayList<Auto> misVehiculos = new ArrayList<Auto>();
-	misVehiculos= cv.vehiculosPorCliente(request.getParameter("dni"));
+	misVehiculos= cv.vehiculosyClientes();
 %>
 </head>
 <div id=titulo>
-	<label><b>VEHICULOS DEL CLIENTE: <%=request.getParameter("nombre_y_apellido")%></b></label>
+	<label><b>VEHICULOS POR CLIENTE</b></label>
 </div>
 <body>
 	<div class="container">
@@ -27,7 +27,8 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col"></th>
+							<th scope="col">DNI</th>
+							<th scope="col">NOMBRE Y APELLIDO</th>
 							<th scope="col">PATENTE</th>
 							<th scope="col">MARCA Y MODELO</th>
 							<th scope="col">AÑO</th>
@@ -38,11 +39,8 @@
 							for (Auto auto : misVehiculos) {
 						%>
 						<tr>
-						<td>
-								<div class="radio">
-									<label><input type="radio" onclick="location='Ingreso.jsp?patente=<%=auto.getPatente()%>&dni=<%=request.getParameter("dni")%>'" id='express' name="optradio"></label>
-								</div>
-							</td>
+							<td><%=auto.getCli().getDni()%></td>
+							<td><%=auto.getCli().getNombre_y_apellido()%></td>
 							<td><%=auto.getPatente()%></td>
 							<td><%=auto.getMarca()%> <%=auto.getModelo()%></td>
 							<td><%=auto.getAnio()%></td>
@@ -52,7 +50,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Ingreso.jsp"><< Volver</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>
