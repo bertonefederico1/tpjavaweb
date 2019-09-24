@@ -36,6 +36,7 @@
 						<tr>
 							<th scope="col">NRO REPARACION</th>
 							<th scope="col">FECHA DE INGRESO</th>
+							<th scope="col">ESTADO</th>
 							<th scope="col">CLIENTE</th>
 							<th scope="col">VEHICULO</th>
 						</tr>
@@ -47,6 +48,7 @@
 						<tr>
 							<td><%=rep.getNroReparacion()%></td>
 							<td><%=rep.getFechaIngreso()%></td>
+							<td><%=rep.getEstado()%></td>
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>
 							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%> </td>
 							<td><div>

@@ -11,7 +11,7 @@
 <body>
 <h2><b>SEGURO QUE DESEA ELIMINAR EL CLIENTE: <%=request.getParameter("nombre_y_apellido")%></b></h2>
 <div id=botonesConfirmarEliminacion>
-<a href="EliminarCliente?dni=<%=request.getParameter("dni")%>" class="btn btn-success">Eliminar</a>
+<a href="EliminarCliente?dni=<%=request.getParameter("dni")%>" class="btn btn-danger">Eliminar</a>
 <a href="Clientes.jsp" class="btn btn-secondary">Cancelar</a>
 </div>
 </body>

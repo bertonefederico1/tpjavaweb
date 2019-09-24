@@ -102,9 +102,9 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		 <div class="row">
 		<div id="mecanico">
-			<h3><b><label>MECANICO: <%=rep.getMecanico().getNombre_y_apellido()%></label></b></h3>
+			<h3><b><label>MECANICO: <% if (rep.getMecanico().getNombre_y_apellido() != null) {%><%=rep.getMecanico().getNombre_y_apellido()%><%}%><%else {%>No Asignado<%}%></label></b></h3>
 		</div>
 		</div>
 		<div class="row">

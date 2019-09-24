@@ -70,7 +70,7 @@ public class DatosReparacion {
 					+ "ON a.patente = rep.patente "
 				+ "INNER JOIN clientes c "
 					+ "ON a.dni = c.dni "
-				+ "INNER JOIN mecanicos mec "
+				+ "LEFT JOIN mecanicos mec "
 					+ "ON mec.matricula = rep.matricula "
 				+ "WHERE rep.nro_reparacion = ? AND rep.activa = 'si'";
 		try {
@@ -127,7 +127,7 @@ public class DatosReparacion {
 		ArrayList<Reparacion> misReparaciones= new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion "
+		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion, rep.estado "
 				+ "FROM reparaciones rep "
 				+ "INNER JOIN autos a "
 					+ "ON rep.patente = a.patente "
@@ -143,6 +143,7 @@ public class DatosReparacion {
 					Reparacion rep = new Reparacion();
 					Cliente cli = new Cliente();
 					Auto auto = new Auto();
+					rep.setEstado(rs.getString("rep.estado"));
 					rep.setNroReparacion(rs.getInt("nro_reparacion"));
 					rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
 					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));

@@ -55,7 +55,7 @@ public class NuevoIngreso extends HttpServlet {
 	        } catch (ParseException e) {
 	            e.printStackTrace();
 	        }   
-		repa.setEstado("Ingresado");
+		repa.setEstado("Ingresada");
 		repa.setFechaIngreso(date);
 		repa.setDetalleInicial(reparacionesARealizar);
 		repa.setObservaciones(observaciones);
