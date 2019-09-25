@@ -10,6 +10,9 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <title>Pagina Principal</title>	
+<%	
+	request.getSession().invalidate();
+%>
 </head>
 <body>
 	<div class="shadow-lg p-3 mb-5 bg-white rounded">

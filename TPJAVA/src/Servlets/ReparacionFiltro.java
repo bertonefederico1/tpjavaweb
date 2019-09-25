@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import logica.ControladorReparacion;
 
 /**
- * Servlet implementation class EliminarReparacion
+ * Servlet implementation class ReparacionFiltro
  */
-@WebServlet({ "/EliminarReparacion", "/ELIMINARREPARACION", "/eliminarreparacion" })
-public class EliminarReparacion extends HttpServlet {
+@WebServlet({ "/ReparacionFiltro", "/reparacionfiltro", "/REPARACIONFILTRO" })
+public class ReparacionFiltro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarReparacion() {
+    public ReparacionFiltro() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,17 +29,17 @@ public class EliminarReparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doPost(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nro_reparacion= Integer.parseInt(request.getParameter("nro_reparacion"));
-		ControladorReparacion cr= new ControladorReparacion();
-		cr.eliminarReparacion(nro_reparacion);
-		request.getRequestDispatcher("Reparaciones.jsp").forward(request, response);
+		String nombuscar = request.getParameter("txtbuscar");
+		ControladorReparacion cr = new ControladorReparacion();
+		request.getSession().setAttribute("misReparaciones", cr.reparacionesFiltradas(nombuscar));
+		request.getRequestDispatcher("BusquedaFiltradaReparaciones.jsp").forward(request, response);
 	}
 
 }

@@ -18,7 +18,7 @@
 %>
 </head>
 <div id=titulo>
-	<label><b>VEHICULOS DEL CLIENTE: <%=request.getParameter("nombre_y_apellido")%></b></label>
+	<label><b>VEHICULOS POR CLIENTE</b></label>
 </div>
 <body>
 	<div class="container">

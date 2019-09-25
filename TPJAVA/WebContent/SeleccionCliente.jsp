@@ -15,6 +15,11 @@
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	DatosCliente dp = new DatosCliente();
 	ArrayList<Cliente> misClientes = dp.traerClientes();
+	if(request.getParameter("tipo").equalsIgnoreCase("ingreso")){
+		request.getSession().setAttribute("tipo", "Ingreso");
+	}else{
+		request.getSession().setAttribute("tipo", "Reparacion");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>

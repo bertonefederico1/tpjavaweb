@@ -24,4 +24,12 @@ public class ControladorReparacion {
 	public ArrayList<Reparacion> reparacionesPorCliente(String dni){
 		return dr.reparacionesPorCliente(dni);
 	}
+	
+	public void eliminarReparacion(int nro_reparacion){
+		dr.eliminarReparacion(nro_reparacion);
+	}
+	
+	public ArrayList<Reparacion> reparacionesFiltradas(String nombuscar){
+		return dr.reparacionesFiltradas(nombuscar);
+	}
 }
