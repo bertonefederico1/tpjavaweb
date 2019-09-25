@@ -28,7 +28,7 @@
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"
-		onclick="location='AgregarCliente.jsp'">+ Nuevo</button>
+		onclick="location='AgregarCliente.jsp?nro_reparacion=<%=request.getParameter("nro_reparacion")%>&dni=<%=request.getParameter("dni")%>'">+ Nuevo</button>
 	<form class="form" method="GET" action="ClienteFiltro">
 		<input type="text" class="form-control" name="txtbuscar"> <input
 			class="btn btn-secondary" type="submit" value="Buscar">
