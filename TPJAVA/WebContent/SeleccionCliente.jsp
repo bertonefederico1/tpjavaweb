@@ -47,7 +47,6 @@
 							<th scope="col">DIRECCION</th>
 							<th scope="col">TELEFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCION</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +56,7 @@
 						<tr>
 							<td>
 								<div class="radio">
- 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>'"<%}%><%else {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>'"<%}%> 
+ 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%> 
  									id='express' name="optradio"></label>
 								</div>
 							</td>
@@ -66,11 +65,6 @@
 							<td><%=cl.getDireccion()%></td>
 							<td><%=cl.getTelefono()%></td>
 							<td><%=cl.getMail()%></td>
-							<td><div>
-									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="EliminarCliente?dni=<%=cl.getDni()%>" class="btn btn-danger btn-sm">Eliminar</a>
-															
-								</div></td>
 						</tr>
 						<%
 							}

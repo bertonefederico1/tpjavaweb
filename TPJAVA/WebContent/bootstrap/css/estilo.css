@@ -110,3 +110,14 @@
 #mecanico{
 	padding-left: 15px;
 }
+
+.seleccionRepuesto{
+	display: flex;
+	padding-bottom: 0px;
+}
+
+.seleccion{
+ 	display: flex;
+	padding-left: 1px;
+}
+

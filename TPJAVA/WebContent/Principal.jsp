@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
 <%@page import="javax.servlet.http.*"%>
+<%@page import="logica.*"%>
+<%@page import="entidades.*"%>
 <html>
 <head>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
@@ -11,7 +13,10 @@
 	type="text/css" />
 <title>Pagina Principal</title>	
 <%	
-	request.getSession().invalidate();
+	request.getSession().removeAttribute("tipo");
+	request.getSession().removeAttribute("repuestosSeleccionados");
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
 %>
 </head>
 <body>

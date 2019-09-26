@@ -31,7 +31,11 @@ public class RepuestoFiltro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String desc_buscar = request.getParameter("txtbuscar");
+		ControladorRepuesto cp = new ControladorRepuesto();
+		ArrayList<Repuesto> misRepuestos = cp.repuestosFiltrados(desc_buscar);
+		request.getSession().setAttribute("misRepuestos", misRepuestos);
+		request.getRequestDispatcher("SeleccionRepuestosFiltrados.jsp").forward(request,response);
 	}
 
 	/**

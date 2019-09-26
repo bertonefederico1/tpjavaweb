@@ -6,6 +6,9 @@
 <title>Cacelar</title>
 </head>
 <body>
+<%
+	request.getSession().removeAttribute("repuestosSeleccionados");
+%>
 	<div class="alert alert-danger" role="alert">
  		 Se ha cancelado el ingreso de los datos.
  		 <a href="Principal.jsp" class="alert-link">IR AL INICIO</a>
