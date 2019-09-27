@@ -15,4 +15,8 @@ public class ControladorLineaDeRepuesto {
 	public ArrayList<LineaDeRepuesto> inicializarLineas(){
 		return dldr.inicializarLineas();
 	}
+	
+	public ArrayList<LineaDeRepuesto> eliminarRepuestoSeleccionado(int cod_repuesto, ArrayList<LineaDeRepuesto> repuestosSeleccionados){
+		return dldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosSeleccionados);
+	}
 }

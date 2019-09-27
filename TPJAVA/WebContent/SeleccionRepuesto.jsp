@@ -54,7 +54,7 @@
 							<td>
 								<div class="container seleccionRepuesto">
 									<form class="seleccion" method="POST" action="RepuestoReparacion">
-										<input type="text" class="form-control" name="cantidad" style="width: 110px" placeholder="Cantidad"> 
+										<input type="text" class="form-control" name="cantidad" value= "1" style="width: 110px" placeholder="Cantidad"> 
 										<input type="hidden" name="cod_repuesto" value="<%=r.getCodigo()%>">
 										<input type="hidden" name="dni" value="<%=request.getParameter("dni")%>">
 										<input type="hidden" name="nro_reparacion" value="<%=request.getParameter("nro_reparacion")%>">

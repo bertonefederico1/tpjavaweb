@@ -18,8 +18,9 @@
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
-		
-		ArrayList<LineaDeRepuesto> repuestosSeleccionados= (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+
+		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request
+				.getSession().getAttribute("repuestosSeleccionados");
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
@@ -37,7 +38,8 @@
 						</div>
 						<input type="text" class="form-control" name="dni_cliente"
 							aria-label="cliente" aria-describedby="basic-addon1"
-							value="<%if (request.getParameter("dni") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>" readonly="readonly"></input>
+							value="<%if (request.getParameter("dni") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>"
+							readonly="readonly"></input>
 						<div id="botonAgregar">
 							<button type="button"
 								onclick="location='SeleccionCliente.jsp?tipo=reparacion'"
@@ -53,18 +55,29 @@
 					</div>
 					<input type="text" class="form-control" name="reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
-						value="<%if (request.getParameter("nro_reparacion") != null) {%><%=request.getParameter("nro_reparacion")%><%}%><%else {%>Reparacion<%}%>" readonly="readonly" form style="width: 490px">
+						value="<%if (request.getParameter("nro_reparacion") != null) {%><%=request.getParameter("nro_reparacion")%><%}%><%else {%>Reparacion<%}%>"
+						readonly="readonly" form style="width: 490px">
 					<div id="botonAgregar">
 						<button type="button"
 							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre_y_apellido=<%=request.getParameter("nombre_y_apellido")%>'"
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div>
-			</label>
-
-
+			</label> 
+				<label><div id=observaciones class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Reparaciones
+							Realizadas</span>
+					</div>
+					<textarea name="reparaciones_realizadas" rows="5" cols="61"></textarea>
+				</div></label>
+			<div id="titulo">
+				<h3><b>REPUESTOS UTILIZADOS</b></h3>
+			</div>
 			<div class="container buscar">
-				<button type="button" class="btn btn-success" onclick="location='SeleccionRepuesto.jsp?nro_reparacion=<%=request.getParameter("nro_reparacion")%>&dni=<%=request.getParameter("dni")%>'">+ Agregar</button>
+				<button type="button" class="btn btn-success"
+					onclick="location='SeleccionRepuesto.jsp?nro_reparacion=<%=request.getParameter("nro_reparacion")%>&dni=<%=request.getParameter("dni")%>'">+
+					Agregar</button>
 			</div>
 			<div class="row">
 				<div class="col-12">
@@ -79,14 +92,14 @@
 						</thead>
 						<tbody>
 							<%
-								for (LineaDeRepuesto ldr: repuestosSeleccionados) {
+								for (LineaDeRepuesto ldr : repuestosSeleccionados) {
 							%>
 							<tr>
 								<td><%=ldr.getRepuesto().getCodigo()%></td>
 								<td><%=ldr.getRepuesto().getDescripcion()%></td>
 								<td><%=ldr.getRepuesto().getPrecio()%></td>
 								<td><%=ldr.getCantidad()%></td>
-								<td><a href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+								<td><a href="EliminarRepuestoSeleccionado?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>" class="btn btn-danger btn-sm">Eliminar</a></td>
 							</tr>
 							<%
 								}
@@ -98,8 +111,11 @@
 
 
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" style="position: relative; top: 10px; left: 20px">Terminar</button>
-				<button type="button" class="btn btn-danger" onclick="location='Cancelar.jsp'" style="position: relative; top: 10px; left: 40px">Cancelar</button>
+				<button type="submit" class="btn btn-success"
+					style="position: relative; top: 10px; left: 20px">Terminar</button>
+				<button type="button" class="btn btn-danger"
+					onclick="location='Cancelar.jsp'"
+					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 		</form>
 	</div>

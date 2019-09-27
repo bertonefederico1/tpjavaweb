@@ -1,12 +1,26 @@
 package datos;
 
-import java.sql.*;
 import java.util.ArrayList;
 
+
+import java.sql.*;
 import entidades.LineaDeRepuesto;
 import entidades.Repuesto;
 
 public class DatosLineaDeRepuesto {
+	
+	public ArrayList<LineaDeRepuesto> eliminarRepuestoSeleccionado(int cod_repuesto, ArrayList<LineaDeRepuesto> repuestosSeleccionados){
+		int i=0;
+		for (LineaDeRepuesto ldr : repuestosSeleccionados){
+			if (ldr.getRepuesto().getCodigo() == cod_repuesto){
+				break;
+			}else{
+				i++;
+			}
+		};
+		repuestosSeleccionados.remove(i);
+		return repuestosSeleccionados;
+	}
 	
 	public LineaDeRepuesto agregarLinea(int cantidad, int cod_repuesto){
 		LineaDeRepuesto linea = new LineaDeRepuesto();

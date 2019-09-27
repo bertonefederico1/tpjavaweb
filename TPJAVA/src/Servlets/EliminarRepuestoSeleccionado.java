@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.LineaDeRepuesto;
 import logica.ControladorLineaDeRepuesto;
+import entidades.LineaDeRepuesto;
 
 /**
- * Servlet implementation class RepuestoReparacion
+ * Servlet implementation class EliminarRepuestoSeleccionado
  */
-@WebServlet({ "/RepuestoReparacion", "/repuestoreparacion", "/REPUESTOREPARACION" })
-public class RepuestoReparacion extends HttpServlet {
+@WebServlet({ "/EliminarRepuestoSeleccionado", "/ELIMINARREPUESTOSELECCIONADO", "/eliminarrepuestoseleccionado" })
+public class EliminarRepuestoSeleccionado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RepuestoReparacion() {
+    public EliminarRepuestoSeleccionado() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,7 @@ public class RepuestoReparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		this.doPost(request, response);
 	}
 
 	/**
@@ -39,13 +39,10 @@ public class RepuestoReparacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_repuesto = Integer.parseInt(request.getParameter("cod_repuesto"));
-		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-		ArrayList <LineaDeRepuesto> repuestosSeleccionados = new ArrayList<LineaDeRepuesto>();
-		repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		repuestosSeleccionados.add(cldr.agregarLinea(cantidad, cod_repuesto));
-		request.getSession().setAttribute("repuestosSeleccionados", repuestosSeleccionados);
-		request.getRequestDispatcher("NuevaReparacion.jsp").forward(request,response);
+		request.getSession().setAttribute("repuestosSeleccionados", cldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosSeleccionados));
+		request.getRequestDispatcher("NuevaReparacion.jsp").forward(request, response);
 	}
 
 }
