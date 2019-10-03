@@ -46,6 +46,7 @@ public class NuevoRepuesto extends HttpServlet {
 		rep.setStock(Integer.parseInt(cantidad));
 		rep.setPrecio(Float.parseFloat(precio));
 		cr.agregarRepuesto(rep);
+		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 		request.getRequestDispatcher("Repuestos.jsp").forward(request,response);
 	}
 

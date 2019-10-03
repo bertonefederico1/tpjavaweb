@@ -48,6 +48,7 @@ public class ModificarRepuesto extends HttpServlet {
 		rep.setStock(stock);
 		ControladorRepuesto cr = new ControladorRepuesto();
 		cr.modificarRepuesto(rep);
+		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 		request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
 	}
 

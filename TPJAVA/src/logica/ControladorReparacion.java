@@ -3,11 +3,16 @@ package logica;
 import java.util.ArrayList;
 
 import datos.*;
+import entidades.LineaDeRepuesto;
 import entidades.Reparacion;
 
 public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
+	
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni){
+		dr.agregarReparacion(repuestosSeleccionados, rep, dni);
+	}
 	
 	public void agregarNuevoIngreso(Reparacion repa){
 		dr.agregarNuevoIngreso(repa);

@@ -40,7 +40,7 @@
 		      <tr>
 		        <td><%=r.getCodigo()%></td>
 		        <td><%=r.getDescripcion()%></td>
-		        <td><%=r.getPrecio()%></td>
+		        <td>$ <%=r.getPrecio()%></td>
 		        <td><%=r.getStock()%></td>
 		        <td><div>
 		        <a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>" class="btn btn-warning btn-sm">Modificar</a>

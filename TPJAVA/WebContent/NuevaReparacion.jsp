@@ -19,8 +19,7 @@
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
 
-		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request
-				.getSession().getAttribute("repuestosSeleccionados");
+		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
@@ -28,7 +27,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Fecha</span>
 					</div>
-					<input type="text" class="form-control" name="fecha"
+					<input type="text" class="form-control" name="fecha_inicio"
 						value="<%=fechaHoy%>" readonly="readonly" style="width: 200px">
 				</div></label>
 			<p>
@@ -53,7 +52,7 @@
 						<span class="input-group-text" id="basic-addon1">Numero de
 							reparacion</span>
 					</div>
-					<input type="text" class="form-control" name="reparacion"
+					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
 						value="<%if (request.getParameter("nro_reparacion") != null) {%><%=request.getParameter("nro_reparacion")%><%}%><%else {%>Reparacion<%}%>"
 						readonly="readonly" form style="width: 490px">
@@ -88,6 +87,7 @@
 								<th scope="col">DESCRIPCION</th>
 								<th scope="col">PRECIO X UNIDAD</th>
 								<th scope="col">CANTIDAD</th>
+								<th scope="col">ACCION</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -112,12 +112,13 @@
 
 			<div id="botonGuardar">
 				<button type="submit" class="btn btn-success"
-					style="position: relative; top: 10px; left: 20px">Terminar</button>
+					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='Cancelar.jsp'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 		</form>
+		<div><button type="button" class="btn btn-success btn-lg btn-block" style="position: relative; top: 30px">Finalizar reparación</button></div>
 	</div>
 </body>
 </html>

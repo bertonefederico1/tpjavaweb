@@ -14,8 +14,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
-	ControladorRepuesto cr = new ControladorRepuesto();
-	ArrayList<Repuesto> misRepuestos = cr.traerRepuestos();
+	ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -51,7 +50,7 @@
 						<tr>
 							<td><%=r.getCodigo()%></td>
 							<td><%=r.getDescripcion()%></td>
-							<td><%=r.getPrecio()%></td>
+							<td>$ <%=r.getPrecio()%></td>
 							<td><%=r.getStock()%></td>
 							<td><div>
 									<a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>" class="btn btn-warning btn-sm">Modificar</a>

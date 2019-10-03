@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logica.ControladorRepuesto;
 import logica.Ingreso;
 import entidades.*;
 
@@ -48,6 +50,8 @@ public class SignIn extends HttpServlet {
 		u.setUser(user);
 		u.setPassword(password);
 		if (ingreso.validaLogin(u)){
+			ControladorRepuesto cr = new ControladorRepuesto();
+			request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 			request.getSession().setAttribute("usuario", u);
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {

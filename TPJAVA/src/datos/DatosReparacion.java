@@ -7,7 +7,51 @@ import entidades.*;
 
 public class DatosReparacion {
 	
-public ArrayList<Reparacion> reparacionesFiltradas(String nombuscar) {
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni){
+		PreparedStatement pstmt = null;
+		String actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?  WHERE nro_reparacion= ?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+			java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
+			pstmt.setDate(1, fecha_inicio);
+			pstmt.setString(2, "En curso");
+			pstmt.setString(3, rep.getDescFinal());
+			pstmt.setInt(4, rep.getNroReparacion());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+		}
+		String carga_repuestos_seleccionados = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) values(?,?,?)");
+		try {
+			for (LineaDeRepuesto ldr : repuestosSeleccionados){
+				pstmt= Conexion.getInstancia().getConn().prepareStatement(carga_repuestos_seleccionados);
+				pstmt.setInt(1, rep.getNroReparacion());
+				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+				pstmt.setInt(3, ldr.getCantidad());
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+		}
+	}
+	
+	public ArrayList<Reparacion> reparacionesFiltradas(String nombuscar) {
 		
 		ArrayList<Reparacion> misReparaciones= new ArrayList<>();
 		PreparedStatement pstmt = null;

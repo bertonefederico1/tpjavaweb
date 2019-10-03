@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.LineaDeRepuesto;
-import logica.ControladorLineaDeRepuesto;
+import entidades.*;
+import logica.*;
 
 /**
  * Servlet implementation class RepuestoReparacion
@@ -41,10 +41,15 @@ public class RepuestoReparacion extends HttpServlet {
 		int cod_repuesto = Integer.parseInt(request.getParameter("cod_repuesto"));
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		ArrayList <LineaDeRepuesto> repuestosSeleccionados = new ArrayList<LineaDeRepuesto>();
+		ArrayList <Repuesto> misRepuestos = new ArrayList<Repuesto>();
 		repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+		misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		repuestosSeleccionados.add(cldr.agregarLinea(cantidad, cod_repuesto));
-		request.getSession().setAttribute("repuestosSeleccionados", repuestosSeleccionados);
+		if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
+			if (cldr.repuestoNoRepetido(repuestosSeleccionados, cod_repuesto, cantidad)){
+				request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
+			};
+		}
 		request.getRequestDispatcher("NuevaReparacion.jsp").forward(request,response);
 	}
 

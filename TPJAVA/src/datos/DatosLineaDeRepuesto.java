@@ -22,7 +22,7 @@ public class DatosLineaDeRepuesto {
 		return repuestosSeleccionados;
 	}
 	
-	public LineaDeRepuesto agregarLinea(int cantidad, int cod_repuesto){
+	public ArrayList<LineaDeRepuesto> agregarLinea(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cantidad, int cod_repuesto){
 		LineaDeRepuesto linea = new LineaDeRepuesto();
 		Repuesto rep = new Repuesto();
 		PreparedStatement pstmt = null;
@@ -40,6 +40,7 @@ public class DatosLineaDeRepuesto {
 					linea.setRepuesto(rep);
 					linea.setCantidad(cantidad);
 				}
+				repuestosSeleccionados.add(linea);
 		 	}
 		 } catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -55,7 +56,7 @@ public class DatosLineaDeRepuesto {
 				e.printStackTrace();
 			}
 		}
-	 	return linea;
+	 	return repuestosSeleccionados;
 	}
 	
 	

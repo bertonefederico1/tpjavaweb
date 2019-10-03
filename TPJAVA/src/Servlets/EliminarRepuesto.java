@@ -38,6 +38,7 @@ public class EliminarRepuesto extends HttpServlet {
 		int cod_repuesto= Integer.parseInt(request.getParameter("codigo"));
 		ControladorRepuesto cr = new ControladorRepuesto();
 		cr.eliminarRepuesto(cod_repuesto);
+		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 		request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
 	}
 

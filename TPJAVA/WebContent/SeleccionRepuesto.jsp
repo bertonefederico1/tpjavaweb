@@ -49,7 +49,7 @@
 						<tr>
 							<td><%=r.getCodigo()%></td>
 							<td><%=r.getDescripcion()%></td>
-							<td><%=r.getPrecio()%></td>
+							<td>$ <%=r.getPrecio()%></td>
 							<td><%=r.getStock()%></td>
 							<td>
 								<div class="container seleccionRepuesto">
