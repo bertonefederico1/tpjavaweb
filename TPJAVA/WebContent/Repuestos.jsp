@@ -14,6 +14,8 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
+	ControladorRepuesto cr = new ControladorRepuesto();
+	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 	ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />

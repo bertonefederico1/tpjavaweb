@@ -49,6 +49,25 @@ public class DatosReparacion {
 				e.printStackTrace();
 			}		
 		}
+		String actualiza_stock = ("UPDATE repuestos SET stock = (stock-?) WHERE cod_repuesto = ?");
+		try {
+			for (LineaDeRepuesto ldr : repuestosSeleccionados) {
+				pstmt = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock);
+				pstmt.setInt(1, ldr.getCantidad());
+				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public ArrayList<Reparacion> reparacionesFiltradas(String nombuscar) {

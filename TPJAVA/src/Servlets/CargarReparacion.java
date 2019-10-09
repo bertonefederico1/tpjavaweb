@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorReparacion;
-import entidades.LineaDeRepuesto;
-import entidades.Reparacion;
+import entidades.*;
 
 /**
  * Servlet implementation class CargarReparacion
