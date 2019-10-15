@@ -42,6 +42,7 @@ public class CargarReparacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dni, fecha_inicio, reparaciones_realizadas;
+		request.getSession().setAttribute("reparaciones_realizadas", request.getParameter("reparaciones_realizadas"));	
 		dni = request.getParameter("dni_cliente");
 		int cod_reparacion = Integer.parseInt(request.getParameter("cod_reparacion"));
 		reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
@@ -59,8 +60,22 @@ public class CargarReparacion extends HttpServlet {
 		rep.setNroReparacion(cod_reparacion);
 		rep.setFechaInicio(fecha_inicio_formateada);
 		rep.setDescFinal(reparaciones_realizadas);
-		cr.agregarReparacion(repuestosSeleccionados, rep, dni);
-		request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+		switch (request.getParameter("btn_reparacion")){
+		case "agregar":{
+			request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);;
+			break;
+		}
+		case "guardar":{
+			cr.agregarReparacion(repuestosSeleccionados, rep, dni,"En curso");
+			request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+			break;
+		}
+		case "finalizar":{
+			cr.agregarReparacion(repuestosSeleccionados, rep, dni, "Finalizada");
+			request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+			break;
+		}
+		}
 	}
 
 }

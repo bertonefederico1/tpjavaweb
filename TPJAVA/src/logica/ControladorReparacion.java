@@ -10,8 +10,8 @@ public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
 	
-	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni){
-		dr.agregarReparacion(repuestosSeleccionados, rep, dni);
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
+		dr.agregarReparacion(repuestosSeleccionados, rep, dni, estado);
 	}
 	
 	public void agregarNuevoIngreso(Reparacion repa){

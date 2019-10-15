@@ -20,6 +20,7 @@
 	}else{
 		request.getSession().setAttribute("tipo", "Reparacion");
 	}
+	request.getSession().removeAttribute("reparacion_seleccionada");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import entidades.*;
 import logica.*;
 
@@ -50,7 +51,7 @@ public class RepuestoReparacion extends HttpServlet {
 				request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
 			};
 		}
-		request.getRequestDispatcher("NuevaReparacion.jsp").forward(request,response);
+		response.sendRedirect("NuevaReparacion.jsp");
 	}
 
 }

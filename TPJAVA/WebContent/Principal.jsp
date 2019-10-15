@@ -15,6 +15,10 @@
 <%	
 	request.getSession().removeAttribute("tipo");
 	request.getSession().removeAttribute("repuestosSeleccionados");
+	request.getSession().removeAttribute("reparaciones_realizadas");
+	request.getSession().removeAttribute("cliente_seleccionado");
+	request.getSession().removeAttribute("fecha_hoy");
+	request.getSession().removeAttribute("reparacion_seleccionada");
 	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
 %>
