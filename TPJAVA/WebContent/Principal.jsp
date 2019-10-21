@@ -45,6 +45,7 @@
 					<li class="nav-item"><a class="nav-link" href="Reparaciones.jsp">Reparaciones</a></li>
 				<li class="nav-item"><a class="nav-link" href="Turnos.jsp">Turnos</a></li>
 				<li class="nav-item"><a class="nav-link" href="MostrarVehiculosPorCliente.jsp">Vehiculos por cliente</a></li>
+				<li class="nav-item"><a class="nav-link" href="Facturar.jsp">Facturar</a></li>
 			</ul>
 		</div>
 		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar Sesion</a> </nav>
