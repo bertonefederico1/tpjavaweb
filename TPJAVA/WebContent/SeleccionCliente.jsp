@@ -17,9 +17,11 @@
 	ArrayList<Cliente> misClientes = dp.traerClientes();
 	if(request.getParameter("tipo").equalsIgnoreCase("ingreso")){
 		request.getSession().setAttribute("tipo", "Ingreso");
-	}else{
+	}else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")){
 		request.getSession().setAttribute("tipo", "Reparacion");
-	}
+ 	} else {
+ 		request.getSession().setAttribute("tipo","Factura");
+ 	}
 	request.getSession().removeAttribute("reparacion_seleccionada");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -57,7 +59,7 @@
 						<tr>
 							<td>
 								<div class="radio">
- 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%> 
+ 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=cl.getDni()%>'"<%}%> 
  									id='express' name="optradio"></label>
 								</div>
 							</td>

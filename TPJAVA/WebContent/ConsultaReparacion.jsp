@@ -135,14 +135,6 @@
 						readonly="readonly"><% if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%> <%}%></textarea>
 				</div></label>
 		</div>
-		
 	</div>
-
-	<div id="contenedor">
-		<a href="Factura.jsp"><button type="button"
-				class="btn btn-primary btn-lg btn-block">Ver factura</button></a>
-	</div>
-
-
 </body>
 </html>
