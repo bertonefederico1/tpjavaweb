@@ -9,14 +9,15 @@ public class DatosReparacion {
 	
 	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
 		PreparedStatement pstmt = null;
-		String actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?  WHERE nro_reparacion= ?");
+		String actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?  WHERE nro_reparacion= ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
 			java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
 			pstmt.setDate(1, fecha_inicio);
 			pstmt.setString(2, estado);
 			pstmt.setString(3, rep.getDescFinal());
-			pstmt.setInt(4, rep.getNroReparacion());
+			pstmt.setFloat(4, rep.getPrecioManoDeObra());
+			pstmt.setInt(5, rep.getNroReparacion());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

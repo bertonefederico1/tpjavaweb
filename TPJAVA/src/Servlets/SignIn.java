@@ -50,8 +50,6 @@ public class SignIn extends HttpServlet {
 		u.setUser(user);
 		u.setPassword(password);
 		if (ingreso.validaLogin(u)){
-			ControladorRepuesto cr = new ControladorRepuesto();
-			request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 			request.getSession().setAttribute("usuario", u);
 			request.getRequestDispatcher("Principal.jsp").forward(request, response);
 			} else {

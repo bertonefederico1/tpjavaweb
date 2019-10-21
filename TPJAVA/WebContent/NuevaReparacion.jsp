@@ -114,6 +114,12 @@
 							%>
 						</tbody>
 					</table>
+					<div class="input-group mb-3">
+  						<div class="input-group-prepend">
+   						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
+  						</div>
+  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
+					</div>
 				</div>
 			</div>
 
