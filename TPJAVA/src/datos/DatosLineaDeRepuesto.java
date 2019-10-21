@@ -59,6 +59,37 @@ public class DatosLineaDeRepuesto {
 	 	return repuestosSeleccionados;
 	}
 	
+	public ArrayList<LineaDeRepuesto> traerRepuestosFactura(int cod_reparacion) {
+		ArrayList<LineaDeRepuesto> repuestosFactura = new ArrayList<LineaDeRepuesto>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT r.cod_repuesto, r.descripcion, r.precio, rp.cantidad FROM reparaciones rep "
+				+ "INNER JOIN repa_repuestos rp "
+					+ "ON rep.nro_reparacion = rp.nro_reparacion "
+				+ "INNER JOIN repuestos r "
+					+ "ON rp.cod_repuesto = r.cod_repuesto "
+				+ "WHERE rep.nro_reparacion = ?";
+		try {
+			pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setInt(1, cod_reparacion);
+			rs = pstmt.executeQuery();
+			if(rs != null) {
+				while (rs.next()) {
+					Repuesto rep = new Repuesto();
+					LineaDeRepuesto ldr = new LineaDeRepuesto();
+					rep.setCodigo(rs.getInt("cod_repuesto"));
+					rep.setDescripcion(rs.getString("descripcion"));
+					rep.setPrecio(rs.getFloat("precio"));
+					ldr.setRepuesto(rep);
+					ldr.setCantidad(rs.getInt("cantidad"));
+					repuestosFactura.add(ldr);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return repuestosFactura;
+	}
 	
 	public ArrayList<LineaDeRepuesto> inicializarLineas(){
 		ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();

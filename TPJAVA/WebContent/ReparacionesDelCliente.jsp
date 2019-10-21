@@ -15,6 +15,11 @@
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorReparacion cr = new ControladorReparacion();
 	ArrayList<Reparacion> misReparaciones = cr.reparacionesPorCliente(request.getParameter("dni"));
+	if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {
+		request.getSession().setAttribute("tipo", "reparacion");
+	} else {
+		request.getSession().setAttribute("tipo", "factura");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -43,7 +48,7 @@
 						<tr>
 						<td>
                  <div class="radio">
-                     <label><input type="radio" onclick="location='NuevaReparacion.jsp?dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=rep.getNroReparacion()%>'" id='express' name="optradio"></label>
+                     <label><input type="radio" onclick=<%if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=request.getParameter("dni")%>&nombre=<%=request.getParameter("nombre")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%}%> id='express' name="optradio"></label>
                 </div>
              </td>
 							<td><%=rep.getNroReparacion()%></td>
@@ -57,7 +62,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="NuevaReparacion.jsp"><< Volver</a>
+				<a href=<%if(request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"NuevaReparacion.jsp"<%} else {%>"Facturar.jsp"<%}%>><< Volver</a>
 			</div>
 		</div>
 	</div>

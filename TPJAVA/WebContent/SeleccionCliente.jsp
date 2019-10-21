@@ -59,7 +59,7 @@
 						<tr>
 							<td>
 								<div class="radio">
- 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=cl.getDni()%>'"<%}%> 
+ 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%}%> 
  									id='express' name="optradio"></label>
 								</div>
 							</td>

@@ -65,7 +65,7 @@
 						readonly="readonly" form style="width: 490px">
 					<div id="botonAgregar">
 						<button type="button"
-							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>'"
+							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&tipo=reparacion'"
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div>

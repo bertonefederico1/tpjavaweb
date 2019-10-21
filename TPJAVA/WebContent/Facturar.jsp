@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
+<%@page import="entidades.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,9 +17,9 @@
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
-		/*ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");*/
+		ArrayList<LineaDeRepuesto> repuestosFactura = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosFactura");
 		if (request.getParameter("dni") != null){
-			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("dni"));
+			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("nombre"));
 		}
 		if (request.getParameter("nro_reparacion") != null){
 			request.getSession().setAttribute("reparacion_seleccionada", request.getParameter("nro_reparacion"));
@@ -38,7 +39,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Cliente</span>
 						</div>
-						<input type="text" class="form-control" name="dni_cliente"
+						<input type="text" class="form-control" name="nombre_cliente"
 							aria-label="cliente" aria-describedby="basic-addon1"
 							value="<%if (request.getSession().getAttribute("cliente_seleccionado") != null) {%><%=request.getSession().getAttribute("cliente_seleccionado")%><%}%><%else {%>Cliente<%}%>"
 							readonly="readonly"></input>
@@ -62,11 +63,48 @@
 						readonly="readonly" form style="width: 490px">
 					<div id="botonAgregar">
 						<button type="button"
-							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>'"
+							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre=<%=request.getParameter("nombre")%>&tipo=factura'"
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div>
 			</label>
+			<div id="titulo">
+				<h3>
+					<b>REPUESTOS UTILIZADOS</b>
+				</h3>
+			</div>
+			<div class="container buscar">
+				<button type="submit" name="btn_facturar" value="traer" class="btn btn-warning"> >>Traer </button>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">CODIGO</th>
+								<th scope="col">DESCRIPCION</th>
+								<th scope="col">CANTIDAD</th>
+								<th scope="col">PRECIO X UNIDAD</th>
+								<th scope="col">SUBTOTAL</th>
+							</tr>
+						</thead>
+							<tbody>
+							<%
+								for (LineaDeRepuesto ldr : repuestosFactura) {
+							%>
+							<tr>
+								<td><%=ldr.getRepuesto().getCodigo()%></td>
+								<td><%=ldr.getRepuesto().getDescripcion()%></td>
+								<td><%=ldr.getCantidad()%></td>
+								<td><%=ldr.getRepuesto().getPrecio()%> </td>
+								<td><%=ldr.getCantidad()*ldr.getRepuesto().getPrecio()%></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+					</table>
+				</div>
 			</div>
 			<div id="botonGuardar">
 				<button type="submit" class="btn btn-success" name="btn_facturar" value="facturar"
