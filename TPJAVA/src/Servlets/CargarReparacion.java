@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logica.ControladorReparacion;
+import sun.security.util.Length;
+import logica.*;
 import entidades.*;
 
 /**
@@ -41,41 +42,54 @@ public class CargarReparacion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dni, fecha_inicio, reparaciones_realizadas;
+		String dni, fecha_inicio, reparaciones_realizadas, cod_reparacion_string;
+		float mano_de_obra = 0;
 		request.getSession().setAttribute("reparaciones_realizadas", request.getParameter("reparaciones_realizadas"));	
+		request.getSession().setAttribute("mano_de_obra", request.getParameter("mano_de_obra"));
 		dni = request.getParameter("dni_cliente");
-		int cod_reparacion = Integer.parseInt(request.getParameter("cod_reparacion"));
-		reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
-		fecha_inicio = request.getParameter("fecha_inicio");
-		Date fecha_inicio_formateada = null;
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			fecha_inicio_formateada = formatter.parse(fecha_inicio);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		cod_reparacion_string = request.getParameter("cod_reparacion");
+		ValidacionesIngresoDatos valida = new ValidacionesIngresoDatos();
+		if(valida.ingresoYClienteVacio(dni, cod_reparacion_string)){
+			response.sendRedirect("NuevaReparacion.jsp");
+		}else{
+			int cod_reparacion = Integer.parseInt(cod_reparacion_string);
+			reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
+			if (request.getParameter("mano_de_obra") != null && request.getParameter("mano_de_obra").length() > 0){
+				mano_de_obra = Float.parseFloat(request.getParameter("mano_de_obra"));
+			}
+			fecha_inicio = request.getParameter("fecha_inicio");
+			Date fecha_inicio_formateada = null;
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			try {
+				fecha_inicio_formateada = formatter.parse(fecha_inicio);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			Reparacion rep = new Reparacion();
+			ControladorReparacion cr = new ControladorReparacion();
+			ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+			rep.setNroReparacion(cod_reparacion);
+			rep.setFechaInicio(fecha_inicio_formateada);
+			rep.setDescFinal(reparaciones_realizadas);
+			rep.setPrecioManoDeObra(mano_de_obra);
+			switch (request.getParameter("btn_reparacion")){
+			case "agregar":{
+				request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);;
+				break;
+			}
+			case "guardar":{
+				cr.agregarReparacion(repuestosSeleccionados, rep, dni,"En curso");
+				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				break;
+			}
+			case "finalizar":{
+				cr.agregarReparacion(repuestosSeleccionados, rep, dni, "Finalizada");
+				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				break;
+			}
+			}
 		}
-		Reparacion rep = new Reparacion();
-		ControladorReparacion cr = new ControladorReparacion();
-		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
-		rep.setNroReparacion(cod_reparacion);
-		rep.setFechaInicio(fecha_inicio_formateada);
-		rep.setDescFinal(reparaciones_realizadas);
-		switch (request.getParameter("btn_reparacion")){
-		case "agregar":{
-			request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);;
-			break;
-		}
-		case "guardar":{
-			cr.agregarReparacion(repuestosSeleccionados, rep, dni,"En curso");
-			request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-			break;
-		}
-		case "finalizar":{
-			cr.agregarReparacion(repuestosSeleccionados, rep, dni, "Finalizada");
-			request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-			break;
-		}
-		}
+		
 	}
 
 }

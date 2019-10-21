@@ -13,13 +13,16 @@
 	type="text/css" />
 <title>Pagina Principal</title>	
 <%	
+	ControladorRepuesto cr = new ControladorRepuesto();
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 	request.getSession().removeAttribute("tipo");
 	request.getSession().removeAttribute("repuestosSeleccionados");
 	request.getSession().removeAttribute("reparaciones_realizadas");
 	request.getSession().removeAttribute("cliente_seleccionado");
 	request.getSession().removeAttribute("fecha_hoy");
+	request.getSession().removeAttribute("mano_de_obra");
 	request.getSession().removeAttribute("reparacion_seleccionada");
-	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
 %>
 </head>

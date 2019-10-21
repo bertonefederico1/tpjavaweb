@@ -114,6 +114,12 @@
 							%>
 						</tbody>
 					</table>
+					<div class="input-group mb-3">
+  						<div class="input-group-prepend">
+   						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
+  						</div>
+  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
+					</div>
 				</div>
 			</div>
 
@@ -122,7 +128,7 @@
 				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
-					onclick="location='Cancelar.jsp'"
+					onclick="location='CancelarIngresoDeDatos.html'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 			<div>
