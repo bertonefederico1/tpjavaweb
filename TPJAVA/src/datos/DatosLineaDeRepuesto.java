@@ -68,10 +68,12 @@ public class DatosLineaDeRepuesto {
 					+ "ON rep.nro_reparacion = rp.nro_reparacion "
 				+ "INNER JOIN repuestos r "
 					+ "ON rp.cod_repuesto = r.cod_repuesto "
-				+ "WHERE rep.nro_reparacion = ?";
+				+ "WHERE rep.nro_reparacion = ? AND rep.estado = ? AND activa = ?";
 		try {
 			pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
 			pstmt.setInt(1, cod_reparacion);
+			pstmt.setString(2, "Finalizada");
+			pstmt.setString(3, "si");
 			rs = pstmt.executeQuery();
 			if(rs != null) {
 				while (rs.next()) {

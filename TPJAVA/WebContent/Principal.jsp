@@ -20,10 +20,13 @@
 	request.getSession().removeAttribute("reparaciones_realizadas");
 	request.getSession().removeAttribute("cliente_seleccionado");
 	request.getSession().removeAttribute("fecha_hoy");
-	request.getSession().removeAttribute("mano_de_obra");
+	request.getSession().removeAttribute("manoDeObra");
 	request.getSession().removeAttribute("reparacion_seleccionada");
+	request.getSession().removeAttribute("repuestosFactura");
+	request.getSession().setAttribute("manoDeObra", 0.0);
 	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
+	request.getSession().setAttribute("repuestosFactura", cldr.inicializarLineas());
 %>
 </head>
 <body>
@@ -41,8 +44,7 @@
 				<li class="nav-item"><a class="nav-link" href="Mecanicos.jsp">Mecanicos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Repuestos.jsp">Repuestos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Proveedores.jsp">Proveedores</a></li>
-				<li class="nav-item dropdown">
-					<li class="nav-item"><a class="nav-link" href="Reparaciones.jsp">Reparaciones</a></li>
+				<li class="nav-item"><a class="nav-link" href="Reparaciones.jsp">Reparaciones</a></li>
 				<li class="nav-item"><a class="nav-link" href="Turnos.jsp">Turnos</a></li>
 				<li class="nav-item"><a class="nav-link" href="MostrarVehiculosPorCliente.jsp">Vehiculos por cliente</a></li>
 				<li class="nav-item"><a class="nav-link" href="Facturar.jsp">Facturar</a></li>

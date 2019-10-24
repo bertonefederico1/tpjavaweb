@@ -1,8 +1,10 @@
+<%@page import="logica.ControladorLineaDeRepuesto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
 <%@page import="datos.*"%>
+<%@page import="logica.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
@@ -14,13 +16,18 @@
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	DatosCliente dp = new DatosCliente();
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 	ArrayList<Cliente> misClientes = dp.traerClientes();
 	if(request.getParameter("tipo").equalsIgnoreCase("ingreso")){
 		request.getSession().setAttribute("tipo", "Ingreso");
 	}else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")){
 		request.getSession().setAttribute("tipo", "Reparacion");
- 	} else {
+ 	} else if (request.getParameter("tipo").equalsIgnoreCase("factura")){
  		request.getSession().setAttribute("tipo","Factura");
+ 		request.getSession().removeAttribute("repuestosFactura");
+ 		request.getSession().removeAttribute("manoDeObra");
+ 		request.getSession().setAttribute("repuestosFactura",cldr.inicializarLineas());
+ 		request.getSession().setAttribute("manoDeObra", 0.0);
  	}
 	request.getSession().removeAttribute("reparacion_seleccionada");
 %>
@@ -33,8 +40,8 @@
 	<button type="button" class="btn btn-success"
 		onclick="location='AgregarCliente.jsp?nro_reparacion=<%=request.getParameter("nro_reparacion")%>&dni=<%=request.getParameter("dni")%>'">+ Nuevo</button>
 	<form class="form" method="GET" action="ClienteFiltro">
-		<input type="text" class="form-control" name="txtbuscar"> <input
-			class="btn btn-secondary" type="submit" value="Buscar">
+		<input type="text" class="form-control" name="txtbuscar"></input>
+		<input class="btn btn-secondary" type="submit" value="Buscar"></input>
 	</form>
 </div>
 <body>

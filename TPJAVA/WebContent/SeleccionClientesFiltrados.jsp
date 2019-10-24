@@ -39,7 +39,7 @@
 		      <tr>
 		      	<td>
                  <div class="radio">
-                     <label><input type="radio" onclick=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%>  id='express' name="optradio"></label>
+                     <label><input type="radio" onclick=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%}%>  id='express' name="optradio"></label>
                 </div>
              </td>
 		        <td><%=cl.getDni()%></td>

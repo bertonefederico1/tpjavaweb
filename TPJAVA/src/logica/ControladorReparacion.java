@@ -10,6 +10,10 @@ public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
 	
+	public double precioManoDeObra(int cod_reparacion) {
+		return dr.precioManoDeObra(cod_reparacion);
+	}
+	
 	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
 		dr.agregarReparacion(repuestosSeleccionados, rep, dni, estado);
 	}
@@ -28,6 +32,10 @@ public class ControladorReparacion {
 	
 	public ArrayList<Reparacion> reparacionesPorCliente(String dni){
 		return dr.reparacionesPorCliente(dni);
+	}
+	
+	public ArrayList<Reparacion> reparacionesFinalizadasPorCliente(String dni){
+		return dr.reparacionesFinalizadasPorCliente(dni);
 	}
 	
 	public void eliminarReparacion(int nro_reparacion){
