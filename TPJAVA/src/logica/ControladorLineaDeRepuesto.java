@@ -8,6 +8,10 @@ public class ControladorLineaDeRepuesto {
 	
 	DatosLineaDeRepuesto dldr= new DatosLineaDeRepuesto();
 	
+	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
+		return dldr.traerRepuestosReparacion(nro_reparacion);
+	}
+	
 	public boolean hayStock(ArrayList<LineaDeRepuesto> repuestosSeleccionados, ArrayList<Repuesto> misRepuestos, int cod_repuesto, int cantidad){
 		boolean band = true;
 		int i = 0;

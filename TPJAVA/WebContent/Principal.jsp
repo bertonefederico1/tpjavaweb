@@ -7,6 +7,10 @@
 <%@page import="entidades.*"%>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
@@ -44,7 +48,15 @@
 				<li class="nav-item"><a class="nav-link" href="Mecanicos.jsp">Mecanicos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Repuestos.jsp">Repuestos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Proveedores.jsp">Proveedores</a></li>
-				<li class="nav-item"><a class="nav-link" href="Reparaciones.jsp">Reparaciones</a></li>
+				<li class="nav-item dropdown">
+        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          		Reparaciones
+        		</a>
+        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          		<a class="dropdown-item" href="Reparaciones.jsp">Consultar</a>
+          		<a class="dropdown-item" href="ModificarReparacion.jsp">Modificar</a>
+          		</div>
+      			</li>
 				<li class="nav-item"><a class="nav-link" href="Turnos.jsp">Turnos</a></li>
 				<li class="nav-item"><a class="nav-link" href="MostrarVehiculosPorCliente.jsp">Vehiculos por cliente</a></li>
 				<li class="nav-item"><a class="nav-link" href="Facturar.jsp">Facturar</a></li>

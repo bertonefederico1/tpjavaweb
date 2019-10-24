@@ -19,17 +19,15 @@
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
 		
-		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
-		if (request.getParameter("dni") != null){
-			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("dni"));
-		}
-		if (request.getParameter("nro_reparacion") != null){
-			request.getSession().setAttribute("reparacion_seleccionada", request.getParameter("nro_reparacion"));
-		}
-		
+		//ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
+		ControladorReparacion cr = new ControladorReparacion();
+		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		Reparacion rep = cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion")));
+		ArrayList <LineaDeRepuesto> misLineas = cldr.traerRepuestosReparacion(Integer.parseInt(request.getParameter("nro_reparacion")));
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
+			
 			<label><div id=fecha class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Fecha</span>
@@ -39,21 +37,18 @@
 						<input type="hidden" class="form-control" name="fecha_fin" value="<%=fechaHoy%>">
 				</div></label>
 			<p>
+				
 				<label><div id=cliente class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Cliente</span>
 						</div>
 						<input type="text" class="form-control" name="dni_cliente"
 							aria-label="cliente" aria-describedby="basic-addon1"
-							value="<%if (request.getSession().getAttribute("cliente_seleccionado") != null) {%><%=request.getSession().getAttribute("cliente_seleccionado")%><%}%><%else {%>Cliente<%}%>"
+							value="<%=rep.getAuto().getCli().getNombre_y_apellido()%>"
 							readonly="readonly"></input>
-						<div id="botonAgregar">
-							<button type="button"
-								onclick="location='SeleccionCliente.jsp?tipo=reparacion'"
-								class="btn btn-success">+ Agregar</button>
-						</div>
 					</div></label>
 			</p>
+			
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -62,20 +57,16 @@
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
-						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute("reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
-						readonly="readonly" form style="width: 490px">
-					<div id="botonAgregar">
-						<button type="button"
-							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&tipo=reparacion'"
-							class="btn btn-success">+ Agregar</button>
-					</div>
-				</div>
-			</label> <label><div id=observaciones class="input-group mb-3">
+						value="<%=rep.getNroReparacion()%>"
+						readonly="readonly"></input>
+				</div></label> 
+				
+				<label><div id=observaciones class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones
 							Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="5" cols="61" ><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="5" cols="61" ><%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -97,23 +88,23 @@
 								<th scope="col">ACCION</th>
 							</tr>
 						</thead>
-						<tbody>
-							<%
-								for (LineaDeRepuesto ldr : repuestosSeleccionados) {
-							%>
-							<tr>
-								<td><%=ldr.getRepuesto().getCodigo()%></td>
-								<td><%=ldr.getRepuesto().getDescripcion()%></td>
-								<td><%=ldr.getRepuesto().getPrecio()%></td>
-								<td><%=ldr.getCantidad()%></td>
-								<td><a
-									href="EliminarRepuestoSeleccionado?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>"
-									class="btn btn-danger btn-sm">Eliminar</a></td>
-							</tr>
-							<%
-								}
-							%>
-						</tbody>
+<!-- 						<tbody> -->
+<%-- 							<% --%>
+// 								for (LineaDeRepuesto ldr : repuestosSeleccionados) {
+<%-- 							%> --%>
+<!-- 							<tr> -->
+<%-- 								<td><%=ldr.getRepuesto().getCodigo()%></td> --%>
+<%-- 								<td><%=ldr.getRepuesto().getDescripcion()%></td> --%>
+<%-- 								<td><%=ldr.getRepuesto().getPrecio()%></td> --%>
+<%-- 								<td><%=ldr.getCantidad()%></td> --%>
+<!-- 								<td><a -->
+<%-- 									href="EliminarRepuestoSeleccionado?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>" --%>
+<!-- 									class="btn btn-danger btn-sm">Eliminar</a></td> -->
+<!-- 							</tr> -->
+<%-- 							<% --%>
+// 								}
+<%-- 							%> --%>
+<!-- 						</tbody> -->
 					</table>
 					<div class="input-group mb-3">
   						<div class="input-group-prepend">

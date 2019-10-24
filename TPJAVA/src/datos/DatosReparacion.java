@@ -7,6 +7,56 @@ import entidades.*;
 
 public class DatosReparacion {
 	
+	public ArrayList <Reparacion> traerReparacionesAModificar(){
+		ArrayList<Reparacion> misReparaciones= new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion, rep.estado "
+				+ "FROM reparaciones rep "
+				+ "INNER JOIN autos a "
+					+ "ON rep.patente = a.patente "
+				+ "INNER JOIN clientes c "
+					+ "ON a.dni = c.dni "
+				+ "WHERE rep.activa = 'si' AND rep.estado IN ('Finalizada','En Curso') "
+				+ "ORDER BY rep.nro_reparacion";
+	 	try {
+			stmt= Conexion.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery(query);
+			if (rs!=null){
+				while (rs.next()) {
+					Reparacion rep = new Reparacion();
+					Cliente cli = new Cliente();
+					Auto auto = new Auto();
+					rep.setEstado(rs.getString("rep.estado"));
+					rep.setNroReparacion(rs.getInt("nro_reparacion"));
+					rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
+					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+					auto.setPatente(rs.getString("patente"));
+					auto.setMarca(rs.getString("marca"));
+					auto.setModelo(rs.getString("modelo"));
+					auto.setAnio(rs.getInt("anio_fabricacion"));
+					auto.setCli(cli);
+					rep.setAuto(auto);
+					misReparaciones.add(rep);
+				}
+		 	}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				stmt.close();
+				rs.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	 	return misReparaciones;
+	}
+	
 	public double precioManoDeObra(int cod_reparacion) {
 		double mano_de_obra = 0;
 		PreparedStatement pstmt = null;
@@ -42,27 +92,55 @@ public class DatosReparacion {
 	
 	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
 		PreparedStatement pstmt = null;
-		String actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?  WHERE nro_reparacion= ?");
-		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
-			java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
-			pstmt.setDate(1, fecha_inicio);
-			pstmt.setString(2, estado);
-			pstmt.setString(3, rep.getDescFinal());
-			pstmt.setFloat(4, rep.getPrecioManoDeObra());
-			pstmt.setInt(5, rep.getNroReparacion());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
+		String actualiza_reparacion;
+		if (estado.equalsIgnoreCase("Finalizada")){
+			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?, fecha_fin= ?  WHERE nro_reparacion= ?");
 			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
+				pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+				java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
+				java.sql.Date fecha_fin= new java.sql.Date(rep.getFechaFin().getTime());
+				pstmt.setDate(1, fecha_inicio);
+				pstmt.setString(2, estado);
+				pstmt.setString(3, rep.getDescFinal());
+				pstmt.setFloat(4, rep.getPrecioManoDeObra());
+				pstmt.setDate(5, fecha_fin);
+				pstmt.setInt(6, rep.getNroReparacion());
+				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}		
+			}
+			finally{
+				try {
+					pstmt.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}		
+			}
+		} else{
+			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?  WHERE nro_reparacion= ?");
+			try {
+				pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+				java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
+				pstmt.setDate(1, fecha_inicio);
+				pstmt.setString(2, estado);
+				pstmt.setString(3, rep.getDescFinal());
+				pstmt.setFloat(4, rep.getPrecioManoDeObra());
+				pstmt.setInt(5, rep.getNroReparacion());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally{
+				try {
+					pstmt.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}		
+			}
 		}
+		
 		String carga_repuestos_seleccionados = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) values(?,?,?)");
 		try {
 			for (LineaDeRepuesto ldr : repuestosSeleccionados){

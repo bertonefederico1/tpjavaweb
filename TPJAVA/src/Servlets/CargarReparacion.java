@@ -42,7 +42,7 @@ public class CargarReparacion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dni, fecha_inicio, reparaciones_realizadas, cod_reparacion_string;
+		String dni, fecha_inicio, fecha_fin, reparaciones_realizadas, cod_reparacion_string;
 		float mano_de_obra = 0;
 		request.getSession().setAttribute("reparaciones_realizadas", request.getParameter("reparaciones_realizadas"));	
 		request.getSession().setAttribute("mano_de_obra", request.getParameter("mano_de_obra"));
@@ -58,9 +58,12 @@ public class CargarReparacion extends HttpServlet {
 				mano_de_obra = Float.parseFloat(request.getParameter("mano_de_obra"));
 			}
 			fecha_inicio = request.getParameter("fecha_inicio");
+			fecha_fin = request.getParameter("fecha_fin");
+			Date fecha_fin_formateada = null;
 			Date fecha_inicio_formateada = null;
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 			try {
+				fecha_fin_formateada = formatter.parse(fecha_fin);
 				fecha_inicio_formateada = formatter.parse(fecha_inicio);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -72,6 +75,7 @@ public class CargarReparacion extends HttpServlet {
 			rep.setFechaInicio(fecha_inicio_formateada);
 			rep.setDescFinal(reparaciones_realizadas);
 			rep.setPrecioManoDeObra(mano_de_obra);
+			rep.setFechaFin(fecha_fin_formateada);
 			switch (request.getParameter("btn_reparacion")){
 			case "agregar":{
 				request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);;

@@ -14,6 +14,10 @@ public class ControladorReparacion {
 		return dr.precioManoDeObra(cod_reparacion);
 	}
 	
+	public ArrayList<Reparacion> traerReparacionesAModificar(){
+	return dr.traerReparacionesAModificar();	
+	}
+	
 	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
 		dr.agregarReparacion(repuestosSeleccionados, rep, dni, estado);
 	}

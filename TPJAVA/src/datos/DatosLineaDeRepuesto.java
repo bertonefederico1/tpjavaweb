@@ -9,6 +9,12 @@ import entidades.Repuesto;
 
 public class DatosLineaDeRepuesto {
 	
+	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
+		ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();
+		
+		return misLineas;
+	}
+	
 	public ArrayList<LineaDeRepuesto> eliminarRepuestoSeleccionado(int cod_repuesto, ArrayList<LineaDeRepuesto> repuestosSeleccionados){
 		int i=0;
 		for (LineaDeRepuesto ldr : repuestosSeleccionados){
