@@ -27,6 +27,9 @@
 	request.getSession().removeAttribute("manoDeObra");
 	request.getSession().removeAttribute("reparacion_seleccionada");
 	request.getSession().removeAttribute("repuestosFactura");
+	request.getSession().removeAttribute("mano_de_obra");
+	request.getSession().removeAttribute("repuestosFactura");
+	request.getSession().removeAttribute("repuestosModificadosFinal");
 	request.getSession().setAttribute("manoDeObra", 0.0);
 	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());

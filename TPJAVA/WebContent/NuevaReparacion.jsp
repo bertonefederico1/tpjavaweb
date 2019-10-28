@@ -18,7 +18,7 @@
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
-		
+		request.getSession().setAttribute("tipo", "nueva_reparacion");
 		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
 		if (request.getParameter("dni") != null){
 			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("dni"));
@@ -30,6 +30,7 @@
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
+			<input type="hidden" class="form-control" name="tipo" value="nueva_reparacion">
 			<label><div id=fecha class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Fecha</span>
@@ -83,7 +84,7 @@
 				</h3>
 			</div>
 			<div class="container buscar">
-				<button type="submit" name="btn_reparacion" value="agregar" class="btn btn-success">+ Agregar</button>
+				<button type="submit" name="btn_reparacion" value="agregar" class="btn btn-warning">+ Agregar</button>
 			</div>
 			<div class="row">
 				<div class="col-12">

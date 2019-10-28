@@ -51,7 +51,11 @@ public class RepuestoReparacion extends HttpServlet {
 				request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
 			};
 		}
-		response.sendRedirect("NuevaReparacion.jsp");
+		if (((String)request.getSession().getAttribute("tipo")).equalsIgnoreCase("nueva_reparacion")) {
+			response.sendRedirect("NuevaReparacion.jsp");
+		} else {
+			response.sendRedirect("EditarReparacion.jsp");
+		}
 	}
 
 }

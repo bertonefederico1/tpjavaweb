@@ -18,16 +18,27 @@
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
-		
-		//ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
 		ControladorReparacion cr = new ControladorReparacion();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		Reparacion rep = cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion")));
-		ArrayList <LineaDeRepuesto> misLineas = cldr.traerRepuestosReparacion(Integer.parseInt(request.getParameter("nro_reparacion")));
+		request.getSession().setAttribute("tipo", "editar_reparacion");
+		String nro_reparacion_string = null;
+		if (request.getParameter("nro_reparacion") != null){
+			request.getSession().setAttribute("nro_reparacion", request.getParameter("nro_reparacion"));
+			nro_reparacion_string = request.getSession().getAttribute("nro_reparacion").toString();
+		}
+		Reparacion rep = cr.traerReparacionPorNro(Integer.parseInt(nro_reparacion_string));	
+		ArrayList <LineaDeRepuesto> misLineas = null;
+ 		if (request.getSession().getAttribute("repuestosModificadosFinal") == null) {
+ 			request.getSession().setAttribute("repuestosSeleccionados", cldr.traerRepuestosReparacion(Integer.parseInt(request.getParameter("nro_reparacion"))));
+ 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");	
+ 		} else {
+ 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosModificadosFinal");
+ 		}
+			
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
-			
+			<input type="hidden" class="form-control" name="tipo" value="editar_reparacion">
 			<label><div id=fecha class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Fecha</span>
@@ -74,7 +85,7 @@
 				</h3>
 			</div>
 			<div class="container buscar">
-				<button type="submit" name="btn_reparacion" value="agregar" class="btn btn-success">+ Agregar</button>
+				<button type="submit" name="btn_reparacion" value="agregar" class="btn btn-warning">+ Agregar</button>
 			</div>
 			<div class="row">
 				<div class="col-12">
@@ -88,29 +99,29 @@
 								<th scope="col">ACCION</th>
 							</tr>
 						</thead>
-<!-- 						<tbody> -->
-<%-- 							<% --%>
-// 								for (LineaDeRepuesto ldr : repuestosSeleccionados) {
-<%-- 							%> --%>
-<!-- 							<tr> -->
-<%-- 								<td><%=ldr.getRepuesto().getCodigo()%></td> --%>
-<%-- 								<td><%=ldr.getRepuesto().getDescripcion()%></td> --%>
-<%-- 								<td><%=ldr.getRepuesto().getPrecio()%></td> --%>
-<%-- 								<td><%=ldr.getCantidad()%></td> --%>
-<!-- 								<td><a -->
-<%-- 									href="EliminarRepuestoSeleccionado?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>" --%>
-<!-- 									class="btn btn-danger btn-sm">Eliminar</a></td> -->
-<!-- 							</tr> -->
-<%-- 							<% --%>
-// 								}
-<%-- 							%> --%>
-<!-- 						</tbody> -->
+ 						<tbody> 
+							<%
+								for (LineaDeRepuesto ldr : misLineas) {
+									%>
+									<tr>
+										<td><%=ldr.getRepuesto().getCodigo()%></td>
+										<td><%=ldr.getRepuesto().getDescripcion()%></td>
+										<td><%=ldr.getRepuesto().getPrecio()%></td>
+										<td><%=ldr.getCantidad()%></td>
+										<td><a
+											href="EliminarRepuestoModificar?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>"
+											class="btn btn-danger btn-sm">Eliminar</a></td>
+									</tr>
+									<%
+										}
+							 		%>
+ 						</tbody>
 					</table>
 					<div class="input-group mb-3">
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
+  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
 					</div>
 				</div>
 			</div>
@@ -122,10 +133,6 @@
 				<button type="button" class="btn btn-danger"
 					onclick="location='CancelarIngresoDeDatos.html'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-success btn-lg btn-block" name="btn_reparacion" value="finalizar"
-					style="position: relative; top: 30px">Finalizar reparación</button>
 			</div>
 		</form>
 	</div>

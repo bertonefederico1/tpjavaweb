@@ -11,7 +11,44 @@ public class DatosLineaDeRepuesto {
 	
 	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
 		ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();
-		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM repuestos rep "
+				+ "INNER JOIN repa_repuestos rr "
+					+ "ON rep.cod_repuesto = rr.cod_repuesto "
+				+ "INNER JOIN reparaciones repa "
+					+ "ON repa.nro_reparacion = rr.nro_reparacion "
+				+ "WHERE repa.nro_reparacion = ?";
+	 	try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setInt(1, nro_reparacion);
+			rs = pstmt.executeQuery();
+			if (rs!=null){
+				while (rs.next()) {
+					LineaDeRepuesto linea = new LineaDeRepuesto();
+					Repuesto rep = new Repuesto();
+					rep.setCodigo(rs.getInt("cod_repuesto"));
+					rep.setDescripcion(rs.getString("descripcion"));
+					rep.setPrecio(rs.getFloat("precio"));
+					linea.setRepuesto(rep);
+					linea.setCantidad(rs.getInt("cantidad"));
+					misLineas.add(linea);
+				}
+		 	}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				pstmt.close();
+				rs.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
 		return misLineas;
 	}
 	

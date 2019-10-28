@@ -51,7 +51,7 @@ public class CargarReparacion extends HttpServlet {
 		ValidacionesIngresoDatos valida = new ValidacionesIngresoDatos();
 		if(valida.ingresoYClienteVacio(dni, cod_reparacion_string)){
 			response.sendRedirect("NuevaReparacion.jsp");
-		}else{
+		}else{ 
 			int cod_reparacion = Integer.parseInt(cod_reparacion_string);
 			reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
 			if (request.getParameter("mano_de_obra") != null && request.getParameter("mano_de_obra").length() > 0){
@@ -78,7 +78,7 @@ public class CargarReparacion extends HttpServlet {
 			rep.setFechaFin(fecha_fin_formateada);
 			switch (request.getParameter("btn_reparacion")){
 			case "agregar":{
-				request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);;
+				request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);
 				break;
 			}
 			case "guardar":{

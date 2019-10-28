@@ -384,6 +384,7 @@ public class DatosReparacion {
 					rep.setDescFinal(rs.getString("descripcion_final"));
 					rep.setDetalleInicial(rs.getString("detalle_inicial"));
 					rep.setObservaciones(rs.getString("observaciones"));
+					rep.setPrecioManoDeObra(rs.getFloat("mano_de_obra"));
 					
 					cli.setDni(rs.getString("dni"));
 					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
