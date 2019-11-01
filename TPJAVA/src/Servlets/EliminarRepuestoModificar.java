@@ -41,8 +41,8 @@ public class EliminarRepuestoModificar extends HttpServlet {
 		int cod_repuesto = Integer.parseInt(request.getParameter("cod_repuesto"));
 		ArrayList<LineaDeRepuesto> repuestosUsados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		request.getSession().setAttribute("repuestosModificadosFinal", cldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosUsados));
-		request.getRequestDispatcher("EditarReparacion.jsp").forward(request,response);
+		request.getSession().setAttribute("repuestosSeleccionados", cldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosUsados));
+		response.sendRedirect("EditarReparacion.jsp");
 	}
 
 }

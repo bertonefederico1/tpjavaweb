@@ -49,4 +49,8 @@ public class ControladorReparacion {
 	public ArrayList<Reparacion> reparacionesFiltradas(String nombuscar){
 		return dr.reparacionesFiltradas(nombuscar);
 	}
+											//sería el Array repuestosSeleccionados
+	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
+		dr.modificarReparacion(repuestosModificados, repuestosOriginal, rep);
+	}
 }

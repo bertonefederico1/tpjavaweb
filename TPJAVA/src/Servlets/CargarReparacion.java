@@ -91,6 +91,12 @@ public class CargarReparacion extends HttpServlet {
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}
+			case "guardarReparacionModificada": {
+				ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
+				cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep);
+				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				break;
+			}
 			}
 		}
 		

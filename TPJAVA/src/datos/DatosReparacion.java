@@ -498,5 +498,86 @@ public class DatosReparacion {
 				e.printStackTrace();
 			}
 		}
-	} 
+	}
+	
+	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		Connection conn = Conexion.getInstancia().getConn();
+		ResultSet rs = null;
+		String elimina_repa_repuestos = ("DELETE FROM repa_repuestos WHERE nro_reparacion= ? and cod_repuesto = ?");
+		String actualiza_stock_mas = ("UPDATE repuestos SET stock = (stock + ?) WHERE cod_repuesto = ?");
+		String actualiza_reparacion = ("UPDATE reparaciones SET descripcion_final = ?, mano_de_obra = ? WHERE nro_reparacion = ?");
+		String query = ("SELECT * FROM repa_repuestos WHERE nro_reparacion = ? and cod_repuesto = ?");
+		String agrega_repa_repuesto = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) VALUES (?,?,?)");
+		try {
+			for (LineaDeRepuesto ldr : repuestosModificados) {
+				pstmt= conn.prepareStatement(query);
+				pstmt.setInt(1, rep.getNroReparacion());
+				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+				rs = pstmt.executeQuery();
+				if(rs == null) {
+					try {
+					pstmt1 = Conexion.getInstancia().getConn().prepareStatement(agrega_repa_repuesto);
+					pstmt1.setInt(1, rep.getNroReparacion());
+					pstmt1.setInt(2, ldr.getRepuesto().getCodigo());
+					pstmt1.setInt(3, ldr.getCantidad());
+					pstmt1.executeUpdate();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					finally {
+						try {
+							pstmt1.close();
+							Conexion.getInstancia().releaseConn();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		//	String actualiza_stock_menos = ("UPDATE repuestos SET stock = (stock - ?) WHERE cod_repuesto = ?");
+			/*for (LineaDeRepuesto ldr: repuestosOriginal) {
+				if (!(repuestosModificados.contains(ldr))) {
+					try {
+						pstmt= Conexion.getInstancia().getConn().prepareStatement(elimina_repa_repuestos);
+						pstmt.setInt(1, rep.getNroReparacion());
+						pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+						pstmt.executeUpdate();
+					}catch (SQLException e) {
+						e.printStackTrace();
+					}
+					try {
+						pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_mas);
+						pstmt.setInt(1, ldr.getCantidad());
+						pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+						pstmt.executeUpdate();
+					}catch (SQLException e) {
+						e.printStackTrace();
+					}
+					try {
+						pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+						pstmt.setString(1, rep.getDescFinal());
+						pstmt.setFloat(2, rep.getPrecioManoDeObra());
+						pstmt.setInt(3, rep.getNroReparacion());
+						pstmt.executeUpdate();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}*/
+		}
 }

@@ -26,7 +26,6 @@
 		if (request.getParameter("nro_reparacion") != null){
 			request.getSession().setAttribute("reparacion_seleccionada", request.getParameter("nro_reparacion"));
 		}
-		
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">

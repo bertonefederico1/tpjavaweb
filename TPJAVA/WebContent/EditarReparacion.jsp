@@ -21,18 +21,22 @@
 		ControladorReparacion cr = new ControladorReparacion();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 		request.getSession().setAttribute("tipo", "editar_reparacion");
-		String nro_reparacion_string = null;
-		if (request.getParameter("nro_reparacion") != null){
+		Reparacion rep = new Reparacion();
+		boolean estaModificado = true;
+		if (request.getParameter("nro_reparacion") != null) {
 			request.getSession().setAttribute("nro_reparacion", request.getParameter("nro_reparacion"));
-			nro_reparacion_string = request.getSession().getAttribute("nro_reparacion").toString();
+			estaModificado = false;
 		}
-		Reparacion rep = cr.traerReparacionPorNro(Integer.parseInt(nro_reparacion_string));	
+		String nro_reparacion_string = request.getSession().getAttribute("nro_reparacion").toString();	
+		int nro_reparacion = Integer.parseInt(nro_reparacion_string);
+		rep = cr.traerReparacionPorNro(nro_reparacion);
 		ArrayList <LineaDeRepuesto> misLineas = null;
- 		if (request.getSession().getAttribute("repuestosModificadosFinal") == null) {
- 			request.getSession().setAttribute("repuestosSeleccionados", cldr.traerRepuestosReparacion(Integer.parseInt(request.getParameter("nro_reparacion"))));
- 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");	
+ 		if (estaModificado) { 
+ 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
  		} else {
- 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosModificadosFinal");
+ 			request.getSession().setAttribute("repuestosSeleccionados", cldr.traerRepuestosReparacion(nro_reparacion));
+ 			request.getSession().setAttribute("repuestosSeleccionadosOriginal", cldr.traerRepuestosReparacion(nro_reparacion));
+ 			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
  		}
 			
 	%>
@@ -128,11 +132,15 @@
 
 
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardar"
+				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardarReparacionModificada"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='CancelarIngresoDeDatos.html'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-success btn-lg btn-block" name="btn_reparacion" value="finalizar"
+					style="position: relative; top: 30px">Finalizar reparación</button>
 			</div>
 		</form>
 	</div>
