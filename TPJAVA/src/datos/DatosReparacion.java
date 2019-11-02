@@ -503,10 +503,12 @@ public class DatosReparacion {
 	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
 		Connection conn = Conexion.getInstancia().getConn();
 		ResultSet rs = null;
 		String elimina_repa_repuestos = ("DELETE FROM repa_repuestos WHERE nro_reparacion= ? and cod_repuesto = ?");
 		String actualiza_stock_mas = ("UPDATE repuestos SET stock = (stock + ?) WHERE cod_repuesto = ?");
+		String actualiza_stock_menos = ("UPDATE repuestos SET stock = (stock - ?) WHERE cod_repuesto = ?");
 		String actualiza_reparacion = ("UPDATE reparaciones SET descripcion_final = ?, mano_de_obra = ? WHERE nro_reparacion = ?");
 		String query = ("SELECT * FROM repa_repuestos WHERE nro_reparacion = ? and cod_repuesto = ?");
 		String agrega_repa_repuesto = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) VALUES (?,?,?)");
@@ -516,7 +518,7 @@ public class DatosReparacion {
 				pstmt.setInt(1, rep.getNroReparacion());
 				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
 				rs = pstmt.executeQuery();
-				if(rs == null) {
+				if(rs.getRow() <= 0) {
 					try {
 					pstmt1 = Conexion.getInstancia().getConn().prepareStatement(agrega_repa_repuesto);
 					pstmt1.setInt(1, rep.getNroReparacion());
@@ -526,6 +528,14 @@ public class DatosReparacion {
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
+					try {
+						pstmt2 = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_menos);
+						pstmt2.setInt(1, ldr.getCantidad());
+						pstmt2.setInt(2, ldr.getRepuesto().getCodigo());
+						pstmt2.executeUpdate();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					finally {
 						try {
 							pstmt1.close();
@@ -533,6 +543,14 @@ public class DatosReparacion {
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}
+					finally {
+						try {
+							pstmt2.close();
+							Conexion.getInstancia().releaseConn();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
 					}
 				}
 			}
