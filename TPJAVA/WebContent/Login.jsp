@@ -15,11 +15,11 @@
 			<form method="POST" action= "SignIn">
   				<div class="form-group">
     				<label for="inputUsuario">Usuario</label>
-    				<input type="text" form style= width:524px name="usuario" class="form-control" id="usuario" placeholder="Usuario"/>
+    				<input type="text" form style= width:524px name="usuario" class="form-control" id="usuario" value="1" placeholder="Usuario"/>
   				</div>
   				<div class="form-group">
     				<label for="InputPassword">Contraseña</label>
-    				<label><input type="password" form style= width:524px name="contrasenia" class="form-control" id="contrasenia" placeholder="Contraseña"/></label>
+    				<label><input type="password" form style= width:524px name="contrasenia" class="form-control" id="contrasenia" value="1" placeholder="Contraseña"/></label>
   				</div>
   				<button type="submit" class="btn btn-success">Ingresar</button>
 			</form>
