@@ -7,6 +7,29 @@ import entidades.*;
 
 public class DatosReparacion {
 	
+	public void facturarReparacion(Reparacion repa, String estado){
+		PreparedStatement pstmt = null;
+		String sql= ("UPDATE reparaciones SET fecha_entrega= ?, estado = ? WHERE nro_reparacion= ?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			java.sql.Date fecha_entrega= new java.sql.Date(repa.getFechaEntrega().getTime());
+			pstmt.setDate(1, fecha_entrega);
+			pstmt.setString(2, estado);
+			pstmt.setInt(3, repa.getNroReparacion());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public ArrayList <Reparacion> traerReparacionesAModificar(){
 		ArrayList<Reparacion> misReparaciones= new ArrayList<>();
 		Statement stmt = null;

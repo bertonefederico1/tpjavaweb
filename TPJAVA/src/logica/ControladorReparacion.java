@@ -10,6 +10,10 @@ public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
 	
+	public void facturarReparacion (Reparacion repa, String estado){
+		dr.facturarReparacion(repa, estado);
+	}
+	
 	public double precioManoDeObra(int cod_reparacion) {
 		return dr.precioManoDeObra(cod_reparacion);
 	}

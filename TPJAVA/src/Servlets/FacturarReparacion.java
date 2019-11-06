@@ -1,12 +1,17 @@
 package Servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidades.Reparacion;
 import logica.*;
 
 /**
@@ -35,24 +40,36 @@ public class FacturarReparacion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cod_reparacion_string = request.getParameter("cod_reparacion");
+		String nro_reparacion_string = request.getParameter("cod_reparacion");
+		int nro_reparacion = Integer.parseInt(nro_reparacion_string);
 		String dni = request.getParameter("dni_cliente");
 		ValidacionesIngresoDatos valida = new ValidacionesIngresoDatos();
-		if(valida.ingresoYClienteVacio(dni, cod_reparacion_string)){
+		ControladorReparacion cr = new ControladorReparacion();
+		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
+		request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
+		if(valida.ingresoYClienteVacio(dni, nro_reparacion_string)){
 			response.sendRedirect("Facturar.jsp");
 		}else{
 			switch (request.getParameter("btn_facturar")){
 			case "traer":{
-				int cod_reparacion = Integer.parseInt(cod_reparacion_string);
-				ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-				ControladorReparacion cr = new ControladorReparacion();
-				request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(cod_reparacion));
-				request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(cod_reparacion));
 				request.getRequestDispatcher("Facturar.jsp").forward(request, response);;
 				break;
 			}
 			case "facturar":{
-				
+				String fecha_factura = request.getParameter("fecha_factura");
+				Date fecha_factura_formateada = null;
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				try {
+					fecha_factura_formateada = formatter.parse(fecha_factura);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Reparacion repa = new Reparacion();
+				repa.setNroReparacion(nro_reparacion);
+				repa.setFechaEntrega(fecha_factura_formateada);
+				cr.facturarReparacion(repa, "Entregada");
+				request.getRequestDispatcher("ReparacionFacturada.html").forward(request, response);
 				break;
 			}
 			}

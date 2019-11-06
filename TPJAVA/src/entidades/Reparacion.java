@@ -8,6 +8,7 @@ public class Reparacion {
 	private Date fechaIngreso;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Date fechaEntrega;
 	private String estado;
 	private String descFinal;
 	private String detalleInicial;
@@ -18,6 +19,16 @@ public class Reparacion {
 	private Auto auto;
 	
 
+	
+	
+	
+	public Date getFechaEntrega() {
+		return fechaEntrega;
+	}
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
+	
 	public Mecanico getMecanico() {
 		return mecanico;
 	}

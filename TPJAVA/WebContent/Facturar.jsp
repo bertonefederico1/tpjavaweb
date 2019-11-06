@@ -35,7 +35,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Fecha</span>
 					</div>
-					<input type="text" class="form-control" name="fecha_inicio"
+					<input type="text" class="form-control" name="fecha_factura"
 						value="<%=fechaHoy%>" readonly="readonly" style="width: 200px">
 				</div></label>
 			<p>
