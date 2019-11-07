@@ -37,8 +37,8 @@ public class ControladorLineaDeRepuesto {
 					if((ldr.getCantidad() + cantidad) > (misRepuestos.get(i).getStock())){
 						band = false;
 						break;
-					}
-				}else{
+					}	
+				} else {
 					if (misRepuestos.get(i).getStock() < cantidad){
 						band = false;
 					}

@@ -526,51 +526,16 @@ public class DatosReparacion {
 	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
-		PreparedStatement pstmt3 = null;
-		ResultSet rs = null;
-		String elimina_repa_repuestos = ("DELETE FROM repa_repuestos WHERE nro_reparacion= ? and cod_repuesto = ?");
+		String elimina_repa_repuestos = ("DELETE FROM repa_repuestos WHERE nro_reparacion = ?");
 		String actualiza_stock_mas = ("UPDATE repuestos SET stock = (stock + ?) WHERE cod_repuesto = ?");
 		String actualiza_stock_menos = ("UPDATE repuestos SET stock = (stock - ?) WHERE cod_repuesto = ?");
 		String actualiza_reparacion = ("UPDATE reparaciones SET descripcion_final = ?, mano_de_obra = ? WHERE nro_reparacion = ?");
-		String query = ("SELECT * FROM repa_repuestos WHERE nro_reparacion = ? and cod_repuesto = ?");
-		String agrega_repa_repuesto = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) VALUES (?,?,?)");
+		String inserta_repa_repuestos = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) VALUES (?,?,?)");
+		
 		try {
-			for (LineaDeRepuesto ldr : repuestosModificados) {
-				pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-				pstmt.setInt(1, rep.getNroReparacion());
-				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
-				rs = pstmt.executeQuery();
-				if(!(rs.last())) {
-					try {
-					pstmt1 = Conexion.getInstancia().getConn().prepareStatement(agrega_repa_repuesto);
-					pstmt1.setInt(1, rep.getNroReparacion());
-					pstmt1.setInt(2, ldr.getRepuesto().getCodigo());
-					pstmt1.setInt(3, ldr.getCantidad());
-					pstmt1.executeUpdate();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					try {
-						pstmt2 = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_menos);
-						pstmt2.setInt(1, ldr.getCantidad());
-						pstmt2.setInt(2, ldr.getRepuesto().getCodigo());
-						pstmt2.executeUpdate();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					finally {
-						try {
-							pstmt1.close();
-							pstmt2.close();
-							Conexion.getInstancia().releaseConn();
-							Conexion.getInstancia().releaseConn();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
+			pstmt = Conexion.getInstancia().getConn().prepareStatement(elimina_repa_repuestos);
+			pstmt.setInt(1, rep.getNroReparacion());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -582,60 +547,65 @@ public class DatosReparacion {
 				e.printStackTrace();
 			}
 		}
-		if (repuestosOriginal.size() >= repuestosModificados.size()) {
-			boolean coincide = false;
-			for (LineaDeRepuesto ldr1 : repuestosOriginal) {
-				for (LineaDeRepuesto ldr2 : repuestosModificados) {
-					if ((ldr1.getCantidad() == ldr2.getCantidad()) && (ldr1.getRepuesto().getCodigo() == ldr2.getRepuesto().getCodigo())) {
-						coincide = true;
-						break;
-					} else {
-						coincide = false;
-					}
-				}
-				if (!(coincide)) {
-					try {
-						pstmt = Conexion.getInstancia().getConn().prepareStatement(elimina_repa_repuestos);
-						pstmt.setInt(1, rep.getNroReparacion());
-						pstmt.setInt(2, ldr1.getRepuesto().getCodigo());
-						pstmt.executeUpdate();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					try {
-						pstmt2 = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_mas);
-						pstmt2.setInt(1, ldr1.getCantidad());
-						pstmt2.setInt(2, ldr1.getRepuesto().getCodigo());
-						pstmt2.executeUpdate();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					finally {
-						try {
-							pstmt.close();								//ESTA BIEN CERRAR LAS 2 CONEXIONES ACA?
-							pstmt2.close();
-							Conexion.getInstancia().releaseConn();
-							Conexion.getInstancia().releaseConn();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
+		for (LineaDeRepuesto ldr : repuestosOriginal) {
+			try {
+				pstmt = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_mas);
+				pstmt.setInt(1, ldr.getCantidad());
+				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					pstmt.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}
-		
+		for (LineaDeRepuesto ldr : repuestosModificados) {
+			try {
+				pstmt = Conexion.getInstancia().getConn().prepareStatement(inserta_repa_repuestos);
+				pstmt.setInt(1, rep.getNroReparacion());
+				pstmt.setInt(2, ldr.getRepuesto().getCodigo());
+				pstmt.setInt(3, ldr.getCantidad());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				pstmt1 = Conexion.getInstancia().getConn().prepareStatement(actualiza_stock_menos);
+				pstmt1.setInt(1, ldr.getCantidad());
+				pstmt1.setInt(2, ldr.getRepuesto().getCodigo());
+				pstmt1.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					pstmt.close();
+					pstmt1.close();
+					Conexion.getInstancia().releaseConn();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		try {
-			pstmt3 = Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
-			pstmt3.setString(1, rep.getDescFinal());
-			pstmt3.setFloat(2, rep.getPrecioManoDeObra());
-			pstmt3.setInt(3, rep.getNroReparacion());
-			pstmt3.executeUpdate();
+			pstmt = Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+			pstmt.setString(1, rep.getDescFinal());
+			pstmt.setFloat(2, rep.getPrecioManoDeObra());
+			pstmt.setInt(3, rep.getNroReparacion());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
 			try {
-				pstmt3.close();
+				pstmt.close();
 				Conexion.getInstancia().releaseConn();
 			} catch (SQLException e) {
 				e.printStackTrace();

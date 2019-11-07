@@ -7,10 +7,10 @@ public class Conexion {
 	private static Conexion instancia;
 	
 	private String driver = "com.mysql.jdbc.Driver";
-	private String host = "N35";  // "N35"
+	private String host = "localhost";  // "N35"
 	private String port = "3306";
-	private String user = "andres"; //"andres"
-	private String password = "123456"; //"123456"
+	private String user = "root"; //"andres"
+	private String password = "123456789"; //"123456"
 	private String db = "tpjava";
 	private int conectados = 0;
 	private Connection conn = null;
