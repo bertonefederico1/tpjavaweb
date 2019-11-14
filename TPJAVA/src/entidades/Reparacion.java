@@ -94,9 +94,7 @@ public class Reparacion {
 	public float getPrecioTotal() {
 		return precioTotal;
 	}
-	public void setPrecioTotal(float precioTotal) {
-		this.precioTotal = precioTotal;
-	}
+	
 	public float getPrecioManoDeObra() {
 		return precioManoDeObra;
 	}

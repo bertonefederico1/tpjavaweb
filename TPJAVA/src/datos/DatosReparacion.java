@@ -113,7 +113,8 @@ public class DatosReparacion {
 		return mano_de_obra;
 	}
 	
-	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
+	
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String estado){
 		PreparedStatement pstmt = null;
 		String actualiza_reparacion;
 		if (estado.equalsIgnoreCase("Finalizada")){
@@ -523,15 +524,14 @@ public class DatosReparacion {
 		}
 	}
 	
-	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
+	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep, String estado) {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		String elimina_repa_repuestos = ("DELETE FROM repa_repuestos WHERE nro_reparacion = ?");
 		String actualiza_stock_mas = ("UPDATE repuestos SET stock = (stock + ?) WHERE cod_repuesto = ?");
 		String actualiza_stock_menos = ("UPDATE repuestos SET stock = (stock - ?) WHERE cod_repuesto = ?");
-		String actualiza_reparacion = ("UPDATE reparaciones SET descripcion_final = ?, mano_de_obra = ? WHERE nro_reparacion = ?");
 		String inserta_repa_repuestos = ("INSERT INTO repa_repuestos (nro_reparacion, cod_repuesto, cantidad) VALUES (?,?,?)");
-		
+		String actualiza_reparacion = ("UPDATE reparaciones SET fecha_fin = ?, estado = ?, descripcion_final = ?, mano_de_obra = ? WHERE nro_reparacion = ?");
 		try {
 			pstmt = Conexion.getInstancia().getConn().prepareStatement(elimina_repa_repuestos);
 			pstmt.setInt(1, rep.getNroReparacion());
@@ -594,22 +594,48 @@ public class DatosReparacion {
 				}
 			}
 		}
-		try {
-			pstmt = Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
-			pstmt.setString(1, rep.getDescFinal());
-			pstmt.setFloat(2, rep.getPrecioManoDeObra());
-			pstmt.setInt(3, rep.getNroReparacion());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
+		if (estado.equalsIgnoreCase("Finalizada")) {
 			try {
-				pstmt.close();
-				Conexion.getInstancia().releaseConn();
+				java.sql.Date fecha_fin= new java.sql.Date(rep.getFechaFin().getTime());
+				pstmt = Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+				pstmt.setDate(1, fecha_fin);
+				pstmt.setString(2, estado);
+				pstmt.setString(3, rep.getDescFinal());
+				pstmt.setFloat(4, rep.getPrecioManoDeObra());
+				pstmt.setInt(5, rep.getNroReparacion());
+				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			finally {
+				try {
+					pstmt.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		} else {
+			try {
+				pstmt1 = Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
+				pstmt1.setDate(1, null);
+				pstmt1.setString(2, estado);
+				pstmt1.setString(3, rep.getDescFinal());
+				pstmt1.setFloat(4, rep.getPrecioManoDeObra());
+				pstmt1.setInt(5, rep.getNroReparacion());
+				pstmt1.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					pstmt1.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+		
 	}
 }

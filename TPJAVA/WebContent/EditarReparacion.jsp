@@ -139,7 +139,7 @@
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 			<div>
-				<button type="submit" class="btn btn-success btn-lg btn-block" name="btn_reparacion" value="finalizar"
+				<button type="submit" class="btn btn-success btn-lg btn-block" name="btn_reparacion" value="finalizarReparacionModificada"
 					style="position: relative; top: 30px">Finalizar reparación</button>
 			</div>
 		</form>

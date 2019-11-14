@@ -4,10 +4,38 @@ import java.util.ArrayList;
 
 
 import java.sql.*;
+
 import entidades.LineaDeRepuesto;
+import entidades.Reparacion;
 import entidades.Repuesto;
 
 public class DatosLineaDeRepuesto {
+	
+	public void setPrecioTotal(ArrayList<LineaDeRepuesto> repuestosSeleccionados, float mano_de_obra, Reparacion rep){
+		PreparedStatement pstmt = null;
+		float total = 0;
+		for (LineaDeRepuesto ldr : repuestosSeleccionados){
+			total = total + ldr.getCantidad()*ldr.getRepuesto().getPrecio();
+		}
+		total = total + mano_de_obra;
+		String insertar = ("UPDATE reparaciones SET precio_total = ? WHERE nro_reparacion = ?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
+			pstmt.setFloat(1, total);
+			pstmt.setInt(2, rep.getNroReparacion());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
 		ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();

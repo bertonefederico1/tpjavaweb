@@ -76,30 +76,39 @@ public class CargarReparacion extends HttpServlet {
 			rep.setDescFinal(reparaciones_realizadas);
 			rep.setPrecioManoDeObra(mano_de_obra);
 			rep.setFechaFin(fecha_fin_formateada);
+			ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 			switch (request.getParameter("btn_reparacion")){
 			case "agregar":{
 				request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);
 				break;
 			}
 			case "guardar":{
-				cr.agregarReparacion(repuestosSeleccionados, rep, dni,"En curso");
+				cr.agregarReparacion(repuestosSeleccionados, rep,"En curso");
+				cldr.setPrecioTotal(repuestosSeleccionados, mano_de_obra, rep);
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}
 			case "finalizar":{
-				cr.agregarReparacion(repuestosSeleccionados, rep, dni, "Finalizada");
+				cr.agregarReparacion(repuestosSeleccionados, rep, "Finalizada");
+				cldr.setPrecioTotal(repuestosSeleccionados, mano_de_obra, rep);
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}
 			case "guardarReparacionModificada": {
 				ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
-				cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep);
+				cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "En Curso");
+				cldr.setPrecioTotal(repuestosSeleccionados, mano_de_obra, rep);
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}
+			case "finalizarReparacionModificada": {
+				ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
+				cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "Finalizada");
+				cldr.setPrecioTotal(repuestosSeleccionados, mano_de_obra, rep);
+				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				break;
 			}
+			}	
 		}
-		
 	}
-
 }

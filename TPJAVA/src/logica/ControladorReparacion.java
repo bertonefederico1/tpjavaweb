@@ -22,8 +22,8 @@ public class ControladorReparacion {
 	return dr.traerReparacionesAModificar();	
 	}
 	
-	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String dni, String estado){
-		dr.agregarReparacion(repuestosSeleccionados, rep, dni, estado);
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String estado){
+		dr.agregarReparacion(repuestosSeleccionados, rep, estado);
 	}
 	
 	public void agregarNuevoIngreso(Reparacion repa){
@@ -54,7 +54,7 @@ public class ControladorReparacion {
 		return dr.reparacionesFiltradas(nombuscar);
 	}
 											//sería el Array repuestosSeleccionados
-	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep) {
-		dr.modificarReparacion(repuestosModificados, repuestosOriginal, rep);
+	public void modificarReparacion (ArrayList<LineaDeRepuesto> repuestosModificados, ArrayList<LineaDeRepuesto> repuestosOriginal, Reparacion rep, String estado) {
+		dr.modificarReparacion(repuestosModificados, repuestosOriginal, rep, estado);
 	}
 }
