@@ -21,7 +21,7 @@
 		<form method="POST" action="ModificarProveedor">
 			<div class="form-group">
 				<label for="cuit"><b>Cuit</b></label> <input type="text"
-					class="form-control" id="cuit" name="cuit" value="<%=cuit%>"
+					class="form-control" readonly="readonly" id="cuit" name="cuit" value="<%=cuit%>"
 					placeholder="20-37312212-5">
 			</div>
 			<div class="form-group">

@@ -71,15 +71,14 @@ public class DatosProveedor {
 	
 	public void modificarProveedor(Proveedor prove){
 		PreparedStatement pstmt = null;
-		String sql= ("UPDATE proveedores SET razon_social=?,cuit=?,direccion=?,telefono=?,mail=? WHERE cuit like ?");
+		String sql= ("UPDATE proveedores SET razon_social=?,direccion=?,telefono=?,mail=? WHERE cuit = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
 			pstmt.setString(1, prove.getRazonSocial());
-			pstmt.setString(2, prove.getCuit());
-			pstmt.setString(3, prove.getDireccion());
-			pstmt.setString(4, prove.getTelefono());
-			pstmt.setString(5, prove.getMail());
-			pstmt.setString(6, prove.getCuit());
+			pstmt.setString(2, prove.getDireccion());
+			pstmt.setString(3, prove.getTelefono());
+			pstmt.setString(4, prove.getMail());
+			pstmt.setString(5, prove.getCuit());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

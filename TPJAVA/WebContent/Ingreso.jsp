@@ -50,7 +50,7 @@
 				<input type="text" class="form-control" name="patente"
 					aria-label="cliente" aria-describedby="basic-addon1"
 					value="<%if (request.getParameter("patente") != null) {%><%=request.getParameter("patente")%><%}%><%else {%>Vehiculo<%}%>" 
-					readonly="readonly" form style="width: 589px">
+					readonly="readonly"></input>
 				<div id="botonAgregar">
 					<button type="button" onclick="location='VehiculosDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre_y_apellido=<%=request.getParameter("nombre_y_apellido")%>'"
 						class="btn btn-success">+ Agregar</button>

@@ -44,7 +44,7 @@ public class AgregarVehiculo extends HttpServlet {
 		int anio_fabricacion = Integer.parseInt(request.getParameter("anio_fabricacion"));
 		Float cantidad_km = Float.parseFloat(request.getParameter("cantidad_km"));
 		Auto auto = new Auto();
-		ControladorVehiculo cr = new ControladorVehiculo();
+		ControladorVehiculo cv = new ControladorVehiculo();
 		Cliente cli = new Cliente();
 		auto.setMarca(marca);
 		auto.setModelo(modelo);
@@ -53,7 +53,8 @@ public class AgregarVehiculo extends HttpServlet {
 		auto.setAnio(anio_fabricacion);
 		cli.setDni(dni);
 		auto.setCli(cli);
-		cr.agregarVehiculo(auto);
+		cv.agregarVehiculo(auto);
+		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 	}
 
 }
