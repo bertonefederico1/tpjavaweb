@@ -18,9 +18,9 @@ public class Ingreso {
 			e.printStackTrace();
 		}
 			try {
-				rs= stmt.executeQuery("SELECT * FROM usuario_y_contrasenia");
+				rs= stmt.executeQuery("SELECT * FROM mecanicos");
 				while (rs.next()){
-					if (rs.getString("usuario").equalsIgnoreCase(u.getUser()) && rs.getString("contrasenia").equalsIgnoreCase(u.getPassword())){
+					if (rs.getString("matricula").equalsIgnoreCase(u.getUser()) && rs.getString("contrasenia").equalsIgnoreCase(u.getPassword())){
 					band = true;
 					break;
 					}

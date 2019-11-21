@@ -69,8 +69,11 @@ public class CargarReparacion extends HttpServlet {
 				e.printStackTrace();
 			}
 			Reparacion rep = new Reparacion();
+			Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+			Mecanico mec = new Mecanico();
 			ControladorReparacion cr = new ControladorReparacion();
 			ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+			mec.setMatricula(Integer.parseInt(u.getUser()));
 			rep.setNroReparacion(cod_reparacion);
 			rep.setFechaInicio(fecha_inicio_formateada);
 			rep.setDescFinal(reparaciones_realizadas);
@@ -82,12 +85,12 @@ public class CargarReparacion extends HttpServlet {
 				break;
 			}
 			case "guardar":{
-				cr.agregarReparacion(repuestosSeleccionados, rep,"En curso");
+				cr.agregarReparacion(repuestosSeleccionados, rep, mec, "En curso");
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}
 			case "finalizar":{
-				cr.agregarReparacion(repuestosSeleccionados, rep, "Finalizada");
+				cr.agregarReparacion(repuestosSeleccionados, rep, mec, "Finalizada");
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 				break;
 			}

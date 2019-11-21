@@ -114,11 +114,11 @@ public class DatosReparacion {
 	}
 	
 	
-	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String estado){
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, Mecanico mec, String estado){
 		PreparedStatement pstmt = null;
 		String actualiza_reparacion;
 		if (estado.equalsIgnoreCase("Finalizada")){
-			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?, fecha_fin= ?  WHERE nro_reparacion= ?");
+			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?, fecha_fin= ?, matricula = ?  WHERE nro_reparacion= ?");
 			try {
 				pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
 				java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
@@ -128,7 +128,8 @@ public class DatosReparacion {
 				pstmt.setString(3, rep.getDescFinal());
 				pstmt.setFloat(4, rep.getPrecioManoDeObra());
 				pstmt.setDate(5, fecha_fin);
-				pstmt.setInt(6, rep.getNroReparacion());
+				pstmt.setInt(6, mec.getMatricula());
+				pstmt.setInt(7, rep.getNroReparacion());
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -142,7 +143,7 @@ public class DatosReparacion {
 				}		
 			}
 		} else{
-			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?  WHERE nro_reparacion= ?");
+			actualiza_reparacion= ("UPDATE reparaciones SET fecha_inicio= ?, estado= ?, descripcion_final= ?, mano_de_obra= ?, matricula = ?  WHERE nro_reparacion= ?");
 			try {
 				pstmt= Conexion.getInstancia().getConn().prepareStatement(actualiza_reparacion);
 				java.sql.Date fecha_inicio= new java.sql.Date(rep.getFechaInicio().getTime());
@@ -150,7 +151,8 @@ public class DatosReparacion {
 				pstmt.setString(2, estado);
 				pstmt.setString(3, rep.getDescFinal());
 				pstmt.setFloat(4, rep.getPrecioManoDeObra());
-				pstmt.setInt(5, rep.getNroReparacion());
+				pstmt.setInt(5, mec.getMatricula());
+				pstmt.setInt(6, rep.getNroReparacion());
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

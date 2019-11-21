@@ -3,8 +3,8 @@ package logica;
 import java.util.ArrayList;
 
 import datos.*;
-import entidades.LineaDeRepuesto;
-import entidades.Reparacion;
+import entidades.*;
+
 
 public class ControladorReparacion {
 	
@@ -22,8 +22,8 @@ public class ControladorReparacion {
 	return dr.traerReparacionesAModificar();	
 	}
 	
-	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, String estado){
-		dr.agregarReparacion(repuestosSeleccionados, rep, estado);
+	public void agregarReparacion(ArrayList<LineaDeRepuesto> repuestosSeleccionados, Reparacion rep, Mecanico mec, String estado){
+		dr.agregarReparacion(repuestosSeleccionados, rep, mec, estado);
 	}
 	
 	public void agregarNuevoIngreso(Reparacion repa){
