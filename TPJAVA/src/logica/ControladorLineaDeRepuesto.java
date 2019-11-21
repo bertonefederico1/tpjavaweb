@@ -8,8 +8,8 @@ public class ControladorLineaDeRepuesto {
 	
 	DatosLineaDeRepuesto dldr= new DatosLineaDeRepuesto();
 	
-	public void setPrecioTotal(ArrayList<LineaDeRepuesto> repuestosSeleccionados, float mano_de_obra, Reparacion rep){
-		dldr.setPrecioTotal(repuestosSeleccionados, mano_de_obra, rep);
+	public Float getPrecioTotal(int nro_reparacion){
+		return dldr.getPrecioTotal(nro_reparacion);
 	}
 	
 	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){

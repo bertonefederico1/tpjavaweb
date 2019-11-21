@@ -25,12 +25,12 @@
 	request.getSession().removeAttribute("cliente_seleccionado");
 	request.getSession().removeAttribute("fecha_hoy");
 	request.getSession().removeAttribute("manoDeObra");
-	request.getSession().removeAttribute("reparacion_seleccionada");
-	request.getSession().removeAttribute("repuestosFactura");
 	request.getSession().removeAttribute("mano_de_obra");
+	request.getSession().removeAttribute("reparacion_seleccionada");
 	request.getSession().removeAttribute("repuestosFactura");
 	request.getSession().removeAttribute("repuestosSeleccionadosOriginal");
 	request.getSession().setAttribute("manoDeObra", 0.0);
+	request.getSession().setAttribute("precio_total", 0.0);
 	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
 	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
 	request.getSession().setAttribute("repuestosFactura", cldr.inicializarLineas());

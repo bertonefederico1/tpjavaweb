@@ -53,6 +53,8 @@ public class FacturarReparacion extends HttpServlet {
 		}else{
 			switch (request.getParameter("btn_facturar")){
 			case "traer":{
+				request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));
+				request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
 				request.getRequestDispatcher("Facturar.jsp").forward(request, response);;
 				break;
 			}
