@@ -7,12 +7,8 @@ public class Conexion {
 	private static Conexion instancia;
 
 	private String driver = "com.mysql.jdbc.Driver";
-	private String host = "localhost"; //modificado
+	private String host = "localhost";
 	//private String host = "N35";
-	
-	// MODIFICADO ANDRES
-	
-	
 	private String port = "3306";
 	private String user = "root";
 	//private String user = "andres";
