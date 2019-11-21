@@ -18,8 +18,7 @@
 </div>
 <body>
 	<%
-		ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>) request
-				.getSession().getAttribute("misRepuestos");
+		ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>) request.getSession().getAttribute("misRepuestos");
 	%>
 
 	<div class="container">
@@ -47,8 +46,11 @@
 							<td><%=r.getStock()%></td>
 							<td><div class="container seleccionRepuesto">
 									<form class="seleccion" method="POST" action="RepuestoReparacion">
-										<input type="text" class="form-control" placeholder="Cantidad" name="cantidad">
-										 <input class="btn btn-success btn-sm" type="submit" value="+ Agregar">
+										<input type="text" class="form-control" name="cantidad" value= "1" style="width: 110px" placeholder="Cantidad"> 
+										<input type="hidden" name="cod_repuesto" value="<%=r.getCodigo()%>">
+										<input type="hidden" name="dni" value="<%=request.getParameter("dni")%>">
+										<input type="hidden" name="nro_reparacion" value="<%=request.getParameter("nro_reparacion")%>">
+										<input class="btn btn-success btn-sm" type="submit" value="+ Agregar">
 									</form>
 								</div></td>
 						</tr>

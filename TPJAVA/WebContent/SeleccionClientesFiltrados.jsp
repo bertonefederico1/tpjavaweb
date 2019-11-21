@@ -11,9 +11,6 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
-<div class= "container buscar">
-	<button type="button" onclick = "location='AgregarCliente.jsp'" class="btn btn-success">+ Nuevo</button>
-</div>
 <body>
 <%
 	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
@@ -51,6 +48,7 @@
 		      <%}%>
         </tbody>
       </table>
+      <a href=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"Ingreso.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"NuevaReparacion.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"Facturar.jsp"<%}%>><< Volver</a>
     </div>
   </div>
 </div>

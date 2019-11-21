@@ -37,8 +37,6 @@
 	<label><b>ADMINISTRACION DE CLIENTES</b></label>
 </div>
 <div class="container buscar">
-	<button type="button" class="btn btn-success"
-		onclick="location='AgregarCliente.jsp?nro_reparacion=<%=request.getParameter("nro_reparacion")%>&dni=<%=request.getParameter("dni")%>'">+ Nuevo</button>
 	<form class="form" method="GET" action="ClienteFiltro">
 		<input type="text" class="form-control" name="txtbuscar"></input>
 		<input class="btn btn-secondary" type="submit" value="Buscar"></input>
@@ -81,6 +79,7 @@
 						%>
 					</tbody>
 				</table>
+				<a href=<%if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"Ingreso.jsp"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"NuevaReparacion.jsp"<%} else {%>"Facturar.jsp"<%}%>><< Volver</a>
 			</div>
 		</div>
 	</div>
