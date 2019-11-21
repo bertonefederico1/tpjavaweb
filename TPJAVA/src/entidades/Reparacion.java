@@ -13,7 +13,6 @@ public class Reparacion {
 	private String descFinal;
 	private String detalleInicial;
 	private String observaciones;
-	private float precioTotal;
 	private float precioManoDeObra;
 	private Mecanico mecanico;
 	private Auto auto;
@@ -90,9 +89,6 @@ public class Reparacion {
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
-	}
-	public float getPrecioTotal() {
-		return precioTotal;
 	}
 	
 	public float getPrecioManoDeObra() {

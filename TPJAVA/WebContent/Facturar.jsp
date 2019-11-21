@@ -18,7 +18,6 @@
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
-		Double manoDeObra = (Double)request.getSession().getAttribute("manoDeObra");
 		ArrayList<LineaDeRepuesto> repuestosFactura = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosFactura");
 		if (request.getParameter("dni") != null || request.getParameter("nro_reparacion") != null) {
 			request.getSession().setAttribute("cliente_seleccionado",request.getParameter("nombre"));
@@ -111,14 +110,9 @@
 							%>
 						</tbody>
 					</table>
-					<%	double total = 0;
-						for (LineaDeRepuesto ldr : repuestosFactura) {
-							total = (total + ldr.getCantidad() * ldr.getRepuesto().getPrecio());
-						}
-					%>
-					<h3>MANO DE OBRA: $ <%=manoDeObra%></h3>
+					<h3>MANO DE OBRA: $ <%=request.getSession().getAttribute("manoDeObra")%></h3>
 					<h2>
-						<b>TOTAL: $ <%=total+manoDeObra%> </b>
+						<b>TOTAL: $ <%=request.getSession().getAttribute("precio_total")%> </b>
 					</h2>
 				</div>
 			</div>

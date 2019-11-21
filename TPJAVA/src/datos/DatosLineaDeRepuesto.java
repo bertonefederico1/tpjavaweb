@@ -5,25 +5,30 @@ import java.util.ArrayList;
 
 import java.sql.*;
 
-import entidades.LineaDeRepuesto;
-import entidades.Reparacion;
-import entidades.Repuesto;
+import entidades.*;
 
 public class DatosLineaDeRepuesto {
 	
-	public void setPrecioTotal(ArrayList<LineaDeRepuesto> repuestosSeleccionados, float mano_de_obra, Reparacion rep){
+	public Float getPrecioTotal(int nro_reparacion){
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		float total = 0;
-		for (LineaDeRepuesto ldr : repuestosSeleccionados){
-			total = total + ldr.getCantidad()*ldr.getRepuesto().getPrecio();
-		}
-		total = total + mano_de_obra;
-		String insertar = ("UPDATE reparaciones SET precio_total = ? WHERE nro_reparacion = ?");
+		String query = ("SELECT SUM(rep.precio*rr.cantidad) + repara.mano_de_obra AS total "
+						+ "FROM repa_repuestos rr "
+						+ "INNER JOIN repuestos rep "
+						+ "ON rr.cod_repuesto = rep.cod_repuesto "
+						+ "INNER JOIN reparaciones repara "
+						+ "ON rr.nro_reparacion = repara.nro_reparacion "
+						+ "WHERE rr.nro_reparacion = ?");
 		try {
-			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
-			pstmt.setFloat(1, total);
-			pstmt.setInt(2, rep.getNroReparacion());
-			pstmt.executeUpdate();
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setInt(1, nro_reparacion);
+			rs = pstmt.executeQuery();
+			if (rs!=null){
+				while (rs.next()) {
+					total = rs.getFloat("total");
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -35,6 +40,7 @@ public class DatosLineaDeRepuesto {
 				e.printStackTrace();
 			}
 		}
+		return total;
 	}
 	
 	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
