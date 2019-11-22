@@ -16,22 +16,22 @@
 				<div class="form-group col-md-6">
 					<label for="nombreYApellido"><b>Nombre y Apellido</b></label> <input
 						type="text" class="form-control" name="nombreYApellido"
-						id="nombreYApellido" placeholder="Juan Perez">
+						id="nombreYApellido" placeholder="Juan Perez" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
 					class="form-control" id="direccion" name="direccion"
-					placeholder="Entre Rios 1243">
+					placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Telefono</b></label> <input
-						type="text" class="form-control" name="telefono" id="telefono"
+						type="number" class="form-control" name="telefono" id="telefono" maxlength="12"
 						placeholder="420222">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="mail"><b>Mail</b></label> <input type="text"
+					<label for="mail"><b>Mail</b></label> <input type="email"
 						class="form-control" id="mail" name="mail"
 						placeholder="ejemplo@gmail.com">
 				</div>

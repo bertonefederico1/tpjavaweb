@@ -10,44 +10,42 @@
 <title>Nuevo Vehículo</title>
 </head>
 <body>
-	
-		<div id=plantillaAgregar>
+	<div id=plantillaAgregar>
 		<form method="POST" action= "AgregarVehiculo">
 			<div class="form-group">
-				<label for="dni"><b>Dni cliente</b></label> <input type="text"
-					class="form-control" readonly="readonly" id="dni" name="dni"
-					value="<%=request.getParameter("dni")%>">
+				<label for="dni"><b>Dni cliente</b></label> <input type="number"
+					class="form-control" readonly="readonly" id="dni" name="dni" maxlength="8"
+					value="<%=request.getParameter("dni")%>" required>
 			</div>
 			<div class="form-group">
 				<label for="patente"><b>Patente</b></label> <input type="text"
-					class="form-control" id="patente" name="patente"
-					placeholder="ABC 135">
+					class="form-control" id="patente" name="patente" maxlength="9"
+					placeholder="ABC 135" required>
 			</div>
 			<div class="form-group">
 				<label for="marca"><b>Marca</b></label> <input type="text"
 					class="form-control" id="marca" name="marca"
-					placeholder="Honda">
+					placeholder="Honda" required>
 			</div>
 			<div class="form-group">
 				<label for="modelo"><b>Modelo</b></label> <input type="text"
 					class="form-control" id="modelo" name="modelo"
-					placeholder="Civic">
+					placeholder="Civic" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="anio"><b>Año</b></label> <input type="text"
+					<label for="anio"><b>Año</b></label> <input type="number"
 						class="form-control" name="anio_fabricacion" id="anio_fabricacion"
 						placeholder="2015">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="cant_kml"><b>Cantidad de Kms</b></label> <input type="text"
+					<label for="cant_kml"><b>Cantidad de Kms</b></label> <input type="number"
 						class="form-control" id="cantidad_km" name="cantidad_km"
 						placeholder="135000">
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Guardar</button>
-			</form>
-		</div>
-	
+		</form>
+	</div>
 </body>
 </html>

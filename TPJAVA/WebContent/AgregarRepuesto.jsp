@@ -20,18 +20,18 @@
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
 						type="text" class="form-control" name="descripcion"
-						id="descripcion" placeholder="Foco Delantero">
+						id="descripcion" placeholder="Foco Delantero" required>
 				</div>
 				<div class="form-group col-md-2">
-					<label for="cantidad"><b>Cantidad</b></label> <input type="text"
-						class="form-control" name="cantidad" id="cantidad" placeholder="4">
+					<label for="cantidad"><b>Cantidad</b></label> <input type="number"
+						class="form-control" name="cantidad" id="cantidad" min="1" placeholder="4" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Precio por unidad ($)</b></label> <input
-						type="text" class="form-control" name="precio" id="precio"
-						placeholder="24.80">
+						type="number" step="any" class="form-control" name="precio" id="precio"
+						placeholder="24.80" required>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Guardar</button>

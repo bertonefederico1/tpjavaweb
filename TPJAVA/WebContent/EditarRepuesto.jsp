@@ -21,26 +21,26 @@
 		<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Código</b></label> <input
-						type="text" readonly="readonly" class="form-control" name="codigo" id="codigo"
-						placeholder="1111" value="<%=codigo%>">
+						type="number" readonly="readonly" class="form-control" name="codigo" id="codigo"
+						placeholder="1111" value="<%=codigo%>" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
 						type="text" class="form-control" name="descripcion"
-						id="descripcion" placeholder="Foco Delantero" value="<%=descripcion%>">
+						id="descripcion" placeholder="Foco Delantero" value="<%=descripcion%>" required>
 				</div>
 				<div class="form-group col-md-2">
-					<label for="cantidad"><b>Stock</b></label> <input type="text"
-						class="form-control" name="stock" id="stock" placeholder="4" value="<%=stock%>">
+					<label for="cantidad"><b>Stock</b></label> <input type="number"
+						class="form-control" name="stock" id="stock" min="1" placeholder="4" value="<%=stock%>" required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Precio por unidad ($)</b></label> <input
-						type="text" class="form-control" name="precio" id="precio" value="<%=precio%>"
-						placeholder="24.80">
+						type="number" step="any" class="form-control" name="precio" id="precio" value="<%=precio%>"
+						placeholder="24.80" required>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Guardar</button>

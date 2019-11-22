@@ -67,8 +67,7 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de
-							reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
@@ -78,10 +77,9 @@
 				
 				<label><div id=observaciones class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Reparaciones
-							Realizadas</span>
+						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="5" cols="61" ><%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="5" cols="61"> <%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -125,7 +123,7 @@
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
+  						<input type="number" step="any" class="form-control" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
 					</div>
 				</div>
 			</div>
