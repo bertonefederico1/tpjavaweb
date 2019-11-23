@@ -7,6 +7,20 @@ import entidades.*;
 
 public class DatosReparacion {
 	
+	public int buscarIndiceArreglomisReparaciones (ArrayList<Reparacion> misReparaciones, int nro_reparacion){
+		int indice = 0;
+		boolean band = false;
+		for (Reparacion miRep : misReparaciones){
+			if (miRep.getNroReparacion() == nro_reparacion){
+				band = true;
+			}else {
+				band = false;
+				indice++;
+			}
+		}
+		return indice;
+	}
+	
 	public ArrayList<Reparacion> traerFacturasPorFecha(String dia, String mes, String anio){
 		ArrayList<Reparacion> misReparaciones = new ArrayList<>();
 		PreparedStatement pstmt = null;

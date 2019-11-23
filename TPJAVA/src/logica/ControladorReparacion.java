@@ -10,6 +10,10 @@ public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
 	
+	public int buscarIndiceArreglomisReparaciones (ArrayList<Reparacion> misReparaciones, int nro_reparacion){
+		return buscarIndiceArreglomisReparaciones(misReparaciones, nro_reparacion);
+	}
+	
 	public ArrayList<Reparacion> traerFacturasPorFecha (String dia, String mes, String anio){
 		return dr.traerFacturasPorFecha(dia, mes, anio);
 	}
