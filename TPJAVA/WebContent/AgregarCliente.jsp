@@ -16,26 +16,26 @@
 			<div class="form-group">
 				<label for="NombreYApellido"><b>Nombre y Apellido</b></label> <input type="text"
 					class="form-control" id="nombreYApellido" name="nombreYApellido"
-					placeholder="Juan Perez">
+					placeholder="Juan Perez" required>
 			</div>
 			<div class="form-group">
-				<label for="dni"><b>Dni</b></label> <input type="text"
-					class="form-control" id="dni" name="dni"
-					placeholder="40121453">
+				<label for="dni"><b>Dni</b></label> <input type="number"
+					class="form-control" id="dni" name="dni" maxlength="8"
+					placeholder="40121453" required>
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
 					class="form-control" id="direccion" name="direccion"
-					placeholder="Entre Rios 1243">
+					placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="telefono"><b>Telefono</b></label> <input type="text"
-						class="form-control" name="telefono" id="telefono"
+					<label for="telefono"><b>Telefono</b></label> <input type="number"
+						class="form-control" name="telefono" id="telefono" maxlength="12"
 						placeholder="420222">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="mail"><b>Mail</b></label> <input type="text"
+					<label for="mail"><b>Mail</b></label> <input type="email"
 						class="form-control" id="mail" name="mail"
 						placeholder="ejemplo@gmail.com">
 				</div>
