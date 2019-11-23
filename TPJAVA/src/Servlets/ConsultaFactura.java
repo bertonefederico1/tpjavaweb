@@ -1,11 +1,14 @@
 package Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logica.*;
 
 /**
  * Servlet implementation class ConsultaFactura
@@ -37,7 +40,9 @@ public class ConsultaFactura extends HttpServlet {
 		dia = request.getParameter("dia");
 		mes = request.getParameter("mes");
 		anio = request.getParameter("anio");
-		
+		ControladorReparacion cr = new ControladorReparacion();
+		request.getSession().setAttribute("facturasPorFecha", cr.traerFacturasPorFecha(dia, mes, anio)); //Es un arreglo de reparaciones
+		response.sendRedirect("FacturasPorFecha.jsp"); 
 	}
 
 }

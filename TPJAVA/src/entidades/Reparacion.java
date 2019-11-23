@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -16,9 +17,13 @@ public class Reparacion {
 	private float precioManoDeObra;
 	private Mecanico mecanico;
 	private Auto auto;
-	
+	private ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();
 
 	
+	
+	public void setLinea(LineaDeRepuesto linea){
+		misLineas.add(linea);
+	}
 	
 	
 	public Date getFechaEntrega() {

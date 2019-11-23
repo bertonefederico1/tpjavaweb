@@ -10,6 +10,10 @@ public class ControladorReparacion {
 	
 	DatosReparacion dr = new DatosReparacion();
 	
+	public ArrayList<Reparacion> traerFacturasPorFecha (String dia, String mes, String anio){
+		return dr.traerFacturasPorFecha(dia, mes, anio);
+	}
+	
 	public void facturarReparacion (Reparacion repa, String estado){
 		dr.facturarReparacion(repa, estado);
 	}

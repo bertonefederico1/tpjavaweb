@@ -7,6 +7,86 @@ import entidades.*;
 
 public class DatosReparacion {
 	
+	public ArrayList<Reparacion> traerFacturasPorFecha(String dia, String mes, String anio){
+		ArrayList<Reparacion> misReparaciones = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * "
+				+ "FROM reparaciones rep "
+				+ "INNER JOIN autos a "
+				+ "ON rep.patente = a.patente "
+				+ "INNER JOIN clientes c "
+				+ "ON a.dni = c.dni "
+				+ "WHERE year(rep.fecha_entrega) = ? AND month(rep.fecha_entrega) = ? "
+				+ "AND day(rep.fecha_entrega) = ? AND rep.activa = 'si' AND rep.estado = 'Entregada' ORDER BY rep.nro_reparacion ASC";
+	 	try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setString(1, anio);
+			pstmt.setString(2, mes);
+			pstmt.setString(3, dia);
+			rs = pstmt.executeQuery();
+			if (rs!=null){
+				while (rs.next()) {
+					Reparacion repa = new Reparacion();
+					Cliente cli = new Cliente();
+					Auto auto = new Auto();
+					
+					cli.setDni(rs.getString("dni"));
+					cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+					cli.setDireccion(rs.getString("direccion"));
+					cli.setMail(rs.getString("mail"));
+					cli.setTelefono(rs.getString("telefono"));
+					
+					auto.setPatente(rs.getString("patente"));
+					auto.setMarca(rs.getString("marca"));
+					auto.setModelo(rs.getString("modelo"));
+					auto.setAnio(rs.getInt("anio_fabricacion"));
+					auto.setCli(cli);
+					
+					repa.setNroReparacion(rs.getInt("nro_reparacion"));
+					repa.setAuto(auto);
+					misReparaciones.add(repa);
+				}
+		 	}
+		    query = "SELECT * FROM repa_repuestos rr "
+							+ "INNER JOIN repuestos r "
+							+ "ON rr.cod_repuesto = r.cod_repuesto "
+							+ "AND rr.nro_reparacion = ? ORDER BY rr.nro_reparacion";
+			for (Reparacion miReparacion : misReparaciones){
+				pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+				pstmt.setInt(1, miReparacion.getNroReparacion());
+				rs = pstmt.executeQuery();
+				if (rs!=null){
+					while (rs.next()) {
+						LineaDeRepuesto ldr = new LineaDeRepuesto();
+						Repuesto rep = new Repuesto();
+						rep.setCodigo(rs.getInt("cod_repuesto"));
+						rep.setDescripcion(rs.getString("descripcion"));
+						rep.setPrecio(rs.getFloat("precio"));
+						ldr.setCantidad(rs.getInt("cantidad"));
+						ldr.setRepuesto(rep);
+						miReparacion.setLinea(ldr);;
+					}
+			 	}
+			}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				pstmt.close();
+				rs.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return misReparaciones;
+	}
+	
+	
 	public void facturarReparacion(Reparacion repa, String estado){
 		PreparedStatement pstmt = null;
 		String sql= ("UPDATE reparaciones SET fecha_entrega= ?, estado = ? WHERE nro_reparacion= ?");
