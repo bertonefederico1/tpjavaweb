@@ -21,10 +21,13 @@ public class Reparacion {
 
 	
 	
+	public ArrayList<LineaDeRepuesto> getMisLineas() {
+		return misLineas;
+	}
+
 	public void setLinea(LineaDeRepuesto linea){
 		misLineas.add(linea);
 	}
-	
 	
 	public Date getFechaEntrega() {
 		return fechaEntrega;
