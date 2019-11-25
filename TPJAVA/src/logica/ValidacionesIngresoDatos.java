@@ -9,6 +9,12 @@ public class ValidacionesIngresoDatos {
 			return false;
 		}
 	}
+	
+	public static boolean validaDni(String dni){
+		boolean band = false;
+		
+		return band;
+	}
 
 	
 	
