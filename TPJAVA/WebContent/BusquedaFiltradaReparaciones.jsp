@@ -20,12 +20,6 @@
 <div id=titulo>
 	<label><b>LISTADO DE REPARACIONES</b></label>
 </div>
-<div class="container buscar">
-	<form class="form" method="POST" action="ReparacionFiltro">
-		<input type="text" class="form-control" name="txtbuscar"> <input
-			class="btn btn-secondary" type="submit" value="Buscar">
-	</form>
-</div>
 <body>
 	<div class="container">
 		<div class="row">
@@ -60,7 +54,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Reparaciones.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>

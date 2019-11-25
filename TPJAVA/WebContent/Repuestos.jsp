@@ -27,8 +27,8 @@
 	<button type="button" onclick="location='AgregarRepuesto.jsp'"
 		class="btn btn-success">+ Nuevo</button>
 	<form class="form" method="POST" action="RepuestoFiltro">
-		<input type="text" class="form-control" name="txtbuscar"> <input
-			class="btn btn-secondary" type="submit" value="Buscar">
+		<input type="text" class="form-control" name="txtbuscar" placeholder="Descripción"> 
+		<input class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
 <body>

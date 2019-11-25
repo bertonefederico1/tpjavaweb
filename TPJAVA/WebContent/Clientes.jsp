@@ -25,8 +25,8 @@
 	<button type="button" class="btn btn-success"
 		onclick="location='AgregarCliente.jsp'">+ Nuevo</button>
 	<form class="form" method="POST" action="ClienteFiltro">
-		<input type="text" class="form-control" name="txtbuscar"> <input
-			class="btn btn-secondary" type="submit" value="Buscar">
+		<input type="text" class="form-control" name="txtbuscar" placeholder="Nombre y Apellido"> 
+		<input class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
 <body>
