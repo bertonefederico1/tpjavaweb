@@ -12,7 +12,8 @@
 <body>
 	<%
 		String dni = request.getParameter("dni");
-		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
+		String nombre_y_apellido = request
+				.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");
@@ -21,14 +22,15 @@
 		<form method="POST" action="ModificarCliente">
 
 			<div class="form-group">
+				<label for="dni"><b>Dni</b></label> <input type="number"
+					class="form-control" id="dni" name="dni" readonly="readonly"
+					maxlength="8" placeholder="40121453" value="<%=dni%>" required>
+			</div>
+
+			<div class="form-group">
 				<label for="nombre_y_apellido"><b>Nombre y Apellido</b></label> <input
 					type="text" class="form-control" id="nombre_y_apellido"
 					name="nombre_y_apellido" value="<%=nombre_y_apellido%>" required>
-			</div>
-			<div class="form-group">
-				<label for="dni"><b>Dni</b></label> <input type="number"
-					class="form-control" id="dni" name="dni" maxlength="8" placeholder="40121453"
-					value="<%=dni%>" required>
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
