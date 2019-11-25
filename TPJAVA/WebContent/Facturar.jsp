@@ -23,10 +23,6 @@
 			request.getSession().setAttribute("cliente_seleccionado",request.getParameter("nombre"));
 			request.getSession().setAttribute("reparacion_seleccionada",request.getParameter("nro_reparacion"));
 		}
-		
-// 		if (request.getParameter("nro_reparacion") != null) {
-// 			request.getSession().setAttribute("reparacion_seleccionada",request.getParameter("nro_reparacion"));
-// 		}
 	%>
 	<div class="container">
 		<form method="POST" action="FacturarReparacion">
@@ -46,7 +42,7 @@
 							aria-label="cliente" aria-describedby="basic-addon1"
 							value="<%if (request.getSession().getAttribute("cliente_seleccionado") != null) {%><%=request.getSession().getAttribute("cliente_seleccionado")%><%}%><%else {%>Cliente<%}%>"
 							readonly="readonly"></input> 
-							<input type="hidden" class="form-control" name="dni_cliente"
+						<input type="hidden" name="dni_cliente"
 							value="<%if (request.getSession().getAttribute("cliente_seleccionado") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>"></input>
 						<div id="botonAgregar">
 							<button type="button"
@@ -58,14 +54,12 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de
-							reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
-						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute(
-						"reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
-						readonly="readonly" form style="width: 490px">
+						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute("reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
+						readonly="readonly" form style="width: 490px"></input>
 					<div id="botonAgregar">
 						<button type="button"
 							onclick="location='ReparacionesFinalizadasPorCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre=<%=request.getParameter("nombre")%>&tipo=factura'"

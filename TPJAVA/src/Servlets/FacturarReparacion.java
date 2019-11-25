@@ -41,16 +41,16 @@ public class FacturarReparacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nro_reparacion_string = request.getParameter("cod_reparacion");
-		int nro_reparacion = Integer.parseInt(nro_reparacion_string);
 		String dni = request.getParameter("dni_cliente");
 		ValidacionesIngresoDatos valida = new ValidacionesIngresoDatos();
 		ControladorReparacion cr = new ControladorReparacion();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
-		request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
 		if(valida.ingresoYClienteVacio(dni, nro_reparacion_string)){
 			response.sendRedirect("Facturar.jsp");
 		}else{
+			int nro_reparacion = Integer.parseInt(nro_reparacion_string);
+			request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
+			request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
 			switch (request.getParameter("btn_facturar")){
 			case "traer":{
 				request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));

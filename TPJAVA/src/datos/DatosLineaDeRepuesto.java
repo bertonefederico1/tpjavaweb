@@ -13,13 +13,13 @@ public class DatosLineaDeRepuesto {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		float total = 0;
-		String query = ("SELECT SUM(rep.precio*rr.cantidad) + repara.mano_de_obra AS total "
-						+ "FROM repa_repuestos rr "
-						+ "INNER JOIN repuestos rep "
-						+ "ON rr.cod_repuesto = rep.cod_repuesto "
-						+ "INNER JOIN reparaciones repara "
-						+ "ON rr.nro_reparacion = repara.nro_reparacion "
-						+ "WHERE rr.nro_reparacion = ?");
+		String query = ("SELECT ifnull(sum(rr.cantidad*rep.precio),0) + repara.mano_de_obra AS total "
+						+ "FROM reparaciones repara "
+						+ "LEFT JOIN repa_repuestos rr "
+							+ "ON repara.nro_reparacion = rr.nro_reparacion "
+						+ "LEFT JOIN repuestos rep "
+							+ "ON rr.cod_repuesto = rep.cod_repuesto "
+						+ "WHERE repara.nro_reparacion = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
 			pstmt.setInt(1, nro_reparacion);

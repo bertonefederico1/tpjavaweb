@@ -57,13 +57,12 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de
-							reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
 						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute("reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
-						readonly="readonly" form style="width: 490px">
+						readonly="readonly" form style="width: 490px"></input>
 					<div id="botonAgregar">
 						<button type="button"
 							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&tipo=reparacion'"
@@ -72,8 +71,7 @@
 				</div>
 			</label> <label><div id=observaciones class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Reparaciones
-							Realizadas</span>
+						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
 					<textarea name="reparaciones_realizadas" rows="5" cols="61" ><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
 				</div></label>
