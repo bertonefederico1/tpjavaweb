@@ -38,7 +38,7 @@
 </div>
 <div class="container buscar">
 	<form class="form" method="GET" action="ClienteFiltro">
-		<input type="text" class="form-control" name="txtbuscar"></input>
+		<input type="text" class="form-control" name="txtbuscar" placeholder="Nombre y Apellido"></input>
 		<input class="btn btn-secondary" type="submit" value="Buscar"></input>
 	</form>
 </div>
