@@ -11,8 +11,16 @@ public class ValidacionesIngresoDatos {
 	}
 	
 	public static boolean validaDni(String dni){
-		boolean band = false;
-		
+		boolean band = true;
+		if (dni.length() != 8){
+			band = false;
+		}else {
+			try{
+				int dni_int = Integer.parseInt(dni);
+			}catch (Exception e){
+				band = false;
+			}
+		}
 		return band;
 	}
 
