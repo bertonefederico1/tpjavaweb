@@ -49,7 +49,13 @@
 						placeholder="ejemplo@gmail.com" value="<%=mail%>">
 				</div>
 			</div>
-			<button type="submit" class="btn btn-success">Guardar</button>
+			<div id="botonGuardar">
+				<button type="submit" class="btn btn-success"
+					style="position: relative; top: 10px; left: 20px">Guardar</button>
+				<button type="button" class="btn btn-danger"
+					onclick="location='Cancelar.jsp'"
+					style="position: relative; top: 10px; left: 40px">Cancelar</button>
+			</div>
 		</form>
 	</div>
 

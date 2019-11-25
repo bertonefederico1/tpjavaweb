@@ -70,6 +70,7 @@
 				</table>
 			</div>
 		</div>
+		<a href=<%if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")) {%>"EditarReparacion.jsp"<%} else {%>"NuevaReparacion.jsp"<%}%>><< Volver</a>
 	</div>
 </body>
 </html>
