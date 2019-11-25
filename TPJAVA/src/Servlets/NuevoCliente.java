@@ -50,11 +50,6 @@ public class NuevoCliente extends HttpServlet {
 		cli.setTelefono(telefono);
 		cli.setMail(mail);
 		ControladorCliente cc = new ControladorCliente();
-		if (ValidacionesIngresoDatos.validaDni(dni)){
-			System.out.println("CORRECTO");
-		}else{
-			System.out.println("INCORRECTO");
-		}
 		cc.agregarCliente(cli);
 		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 		
