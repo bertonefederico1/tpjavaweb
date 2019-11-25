@@ -102,6 +102,19 @@
 	padding-top: 10px;
 }
 
+#factura{
+	border-bottom: 3px solid black;
+	border-top: 3px solid black;
+	border-left: 3px solid black;
+	border-right: 3px solid black;
+	margin:auto;
+	border-radius:10px 10px 10px 10px;
+	width: 1000px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 10px;
+}
+
 #contenedor{
 	margin:auto;
 	width: 1000px;
