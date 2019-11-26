@@ -7,10 +7,11 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-<title>Consultar factura</title>
+<title>Consulta Factura</title>
 </head>
 <h1><b>CONSULTAR FACTURAS POR FECHA: </b></h1>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ConsultaFactura">
 			<div class="form-row">

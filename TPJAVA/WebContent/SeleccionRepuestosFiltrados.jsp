@@ -17,6 +17,7 @@
 	<label><b>ADMINISTRACION DE REPUESTOS</b></label>
 </div>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>) request.getSession().getAttribute("misRepuestos");
 	%>

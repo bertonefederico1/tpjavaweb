@@ -15,6 +15,7 @@
 	<button type="button" onclick = "location='AgregarCliente.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <%
 	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
 %>

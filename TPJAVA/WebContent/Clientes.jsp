@@ -18,6 +18,7 @@
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
 	<label><b>ADMINISTRACION DE CLIENTES</b></label>
 </div>

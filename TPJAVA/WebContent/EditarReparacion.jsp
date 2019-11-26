@@ -8,12 +8,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Editar Reparacion</title>
+<title>Modificar Reparación</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -79,7 +80,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="5" cols="61"> <%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="5000"> <%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>

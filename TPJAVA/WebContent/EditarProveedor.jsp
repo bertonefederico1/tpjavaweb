@@ -10,6 +10,7 @@
 <title>Modificar Proveedor</title>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		String cuit = request.getParameter("cuit");
 		String razon_social = request.getParameter("razon_social");
@@ -26,14 +27,14 @@
 			</div>
 			<div class="form-group">
 				<label for="razon_social"><b>Razon Social</b></label> <input
-					type="text" class="form-control" id="razon_social"
+					type="text" class="form-control" id="razon_social" maxlength="500"
 					name="razon_social" value="<%=razon_social%>" placeholder="Ejemplo S.A" required>
 			</div>
 
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
 					class="form-control" id="direccion"  name="direccion" value="<%=direccion%>"
-					placeholder="Entre Rios 1243" required>
+					maxlength="100" placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -44,7 +45,7 @@
 				<div class="form-group col-md-6">
 					<label for="mail"><b>Mail</b></label> <input type="email"
 						class="form-control" id="mail" name="mail" value="<%=mail%>"
-						placeholder="ejemplo@gmail.com">
+						maxlength="100" placeholder="ejemplo@gmail.com">
 				</div>
 			</div>
 			<div id="botonGuardar">

@@ -13,6 +13,7 @@
 <title>Factura</title>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 		ControladorReparacion cr = new ControladorReparacion();

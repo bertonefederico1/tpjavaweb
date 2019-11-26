@@ -51,7 +51,7 @@ public class SignIn extends HttpServlet {
 		u.setPassword(password);
 		if (ingreso.validaLogin(u)){
 			request.getSession().setAttribute("usuario", u);
-			request.getRequestDispatcher("Principal.jsp").forward(request, response);
+			response.sendRedirect("Principal.jsp");
 			} else {
 				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
 			}

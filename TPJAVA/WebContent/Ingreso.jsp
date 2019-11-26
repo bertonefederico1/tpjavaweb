@@ -12,6 +12,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -58,16 +59,15 @@
 			</div>
 		</label> <label><div id=reparacionesARealizar class="input-group mb-3">
 				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">Reparaciones
-						a realizar</span>
+					<span class="input-group-text" id="basic-addon1">Reparaciones a realizar</span>
 				</div>
-				<textarea name="reparacionesARealizar" rows="5" cols="54"></textarea>
+				<textarea name="reparacionesARealizar" rows="5" cols="102" maxlength="5000"></textarea>
 			</div></label>
 			 <label><div id=observaciones class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Observaciones</span>
 				</div>
-				<textarea name="observaciones" rows="5" cols="61"></textarea>
+				<textarea name="observaciones" rows="5" cols="109" maxlength="5000"></textarea>
 			</div></label>
 		<div id="botonGuardar">
 			<button type="submit" class="btn btn-success"

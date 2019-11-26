@@ -14,12 +14,13 @@
 <title>Nuevo Repuesto</title>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="NuevoRepuesto">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
-						type="text" class="form-control" name="descripcion"
+						type="text" class="form-control" name="descripcion" maxlength="100"
 						id="descripcion" placeholder="Foco Delantero" required>
 				</div>
 				<div class="form-group col-md-2">
