@@ -10,12 +10,12 @@
 <title>Nuevo Cliente</title>
 </head>
 <body>
-	
+		<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 		<div id=plantillaAgregar>
 		<form method="POST" action= "NuevoCliente">
 			<div class="form-group">
 				<label for="NombreYApellido"><b>Nombre y Apellido</b></label> <input type="text"
-					class="form-control" id="nombreYApellido" name="nombreYApellido"
+					class="form-control" id="nombreYApellido" name="nombreYApellido" maxlength="100"
 					placeholder="Juan Perez" required>
 			</div>
 			<div class="form-group">
@@ -25,7 +25,7 @@
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
-					class="form-control" id="direccion" name="direccion"
+					class="form-control" id="direccion" name="direccion" maxlength="100"
 					placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
@@ -36,7 +36,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="mail"><b>Mail</b></label> <input type="email"
-						class="form-control" id="mail" name="mail"
+						class="form-control" id="mail" name="mail" maxlength="100"
 						placeholder="ejemplo@gmail.com">
 				</div>
 			</div>

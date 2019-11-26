@@ -10,6 +10,7 @@
 <title>Modificar Cliente</title>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request
@@ -29,12 +30,12 @@
 
 			<div class="form-group">
 				<label for="nombre_y_apellido"><b>Nombre y Apellido</b></label> <input
-					type="text" class="form-control" id="nombre_y_apellido"
+					type="text" class="form-control" id="nombre_y_apellido" maxlength="100"
 					name="nombre_y_apellido" value="<%=nombre_y_apellido%>" required>
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Direccion</b></label> <input type="text"
-					class="form-control" id="direccion" name="direccion"
+					class="form-control" id="direccion" name="direccion" maxlength="100"
 					placeholder="Entre Rios 1243" value="<%=direccion%>" required>
 			</div>
 			<div class="form-row">
@@ -45,7 +46,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="mail"><b>Mail</b></label> <input type="email"
-						class="form-control" id="mail" name="mail"
+						class="form-control" id="mail" name="mail" maxlength="100"
 						placeholder="ejemplo@gmail.com" value="<%=mail%>">
 				</div>
 			</div>

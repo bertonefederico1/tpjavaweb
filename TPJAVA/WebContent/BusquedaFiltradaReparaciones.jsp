@@ -21,6 +21,7 @@
 	<label><b>LISTADO DE REPARACIONES</b></label>
 </div>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

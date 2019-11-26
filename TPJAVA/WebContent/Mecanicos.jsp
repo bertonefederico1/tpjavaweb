@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administración de Mecanicos</title>
+<title>Administración de Mecánicos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -31,6 +31,7 @@
 	</form>
 </div>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

@@ -10,12 +10,13 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-<title>Modificar Cliente</title>
+<title>Consulta Reparación</title>
 <div id=titulo>
 	<h2>CLIENTE</h2>
 </div>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		ControladorReparacion cr = new ControladorReparacion();
 			Reparacion rep = new Reparacion(); 

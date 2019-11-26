@@ -8,12 +8,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Nueva Reparacion</title>
+<title>Nueva Reparación</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -73,7 +74,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="5" cols="61" ><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="5000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -117,7 +118,7 @@
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="text" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
+  						<input type="number" step="any" maxlength="10" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
 					</div>
 				</div>
 			</div>

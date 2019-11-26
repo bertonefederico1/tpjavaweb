@@ -7,9 +7,10 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-<title>Modificar Cliente</title>
+<title>Modificar Repuesto</title>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		String codigo = request.getParameter("codigo");
 		String descripcion = request.getParameter("descripcion");
@@ -28,7 +29,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
-						type="text" class="form-control" name="descripcion"
+						type="text" class="form-control" name="descripcion" maxlength="100"
 						id="descripcion" placeholder="Foco Delantero" value="<%=descripcion%>" required>
 				</div>
 				<div class="form-group col-md-2">

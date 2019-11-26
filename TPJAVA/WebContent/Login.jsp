@@ -9,6 +9,11 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+	<%
+		if (request.getParameter("cerrar") != null) {
+			session.invalidate();
+		}
+	%>	
 	<div id="cuadro">
 		<div id= "cabeza"><b>INGRESO</b></div>
 		<div id= "cuerpo">
@@ -24,6 +29,6 @@
   				<button type="submit" class="btn btn-success">Ingresar</button>
 			</form>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

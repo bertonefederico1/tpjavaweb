@@ -14,6 +14,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

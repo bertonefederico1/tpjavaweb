@@ -38,6 +38,7 @@
 %>
 </head>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="shadow-lg p-3 mb-5 bg-white rounded">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -74,7 +75,7 @@
       			</li>
 			</ul>
 		</div>
-		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar Sesion</a> </nav>
+		<a style="color: black" class="nav-link" href="Login.jsp?cerrar=true">Cerrar Sesion</a> </nav>
 	</div>
 </body>
 	<a href= "Ingreso.jsp">
