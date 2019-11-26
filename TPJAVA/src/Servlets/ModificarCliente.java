@@ -42,28 +42,50 @@ public class ModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("error", "modificarCliente");
+		request.getSession().setAttribute("error", "validaCliente");
 		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String email = request.getParameter("mail");
+		boolean band = true;
 		Cliente cli= new Cliente();
 		cli.setDni(dni);
 		cli.setDireccion(direccion);
 		cli.setNombre_y_apellido(nombre_y_apellido);
 		cli.setMail(email);
 		cli.setTelefono(telefono);
-		if (ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
-			&& ValidacionesIngresoDatos.validaLongitudHasta100(direccion)
-			&& ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)
-			&& ValidacionesIngresoDatos.validaEmail(email) && nombre_y_apellido != null && direccion != null){
-			ControladorCliente cc = new ControladorCliente();
-			cc.modificarCliente(cli);
-			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-		}else {
-			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
-		}		
+		if (dni != null && dni.length() > 0 && nombre_y_apellido != null && nombre_y_apellido.length() > 0 
+				&& direccion != null && direccion.length() > 0){
+				if(ValidacionesIngresoDatos.validaSoloNumeros(dni) && ValidacionesIngresoDatos.validaLongitudIgualA8(dni)
+				   && ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
+				   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
+					if(email != null && email.length() > 0){
+						if(ValidacionesIngresoDatos.validaEmail(email)){
+						}else{
+							band = false;
+						}
+					}
+					if(telefono != null && telefono.length() > 0){
+						if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+						}else {
+							band = false;
+						}
+					}
+				}else {
+					band = false;
+				}
+			}else {
+				band = false;
+			}
+			
+			if(band){
+				ControladorCliente cc = new ControladorCliente();
+				cc.modificarCliente(cli);
+				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+			}			
 	}
 
 }

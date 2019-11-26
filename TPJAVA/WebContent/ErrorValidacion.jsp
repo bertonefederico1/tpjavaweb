@@ -7,7 +7,10 @@
 </head>
 <body>
 	<div class="alert alert-danger" role="alert">Los datos ingresados son inválidos
-  		<a href=<% if (request.getSession().getAttribute("error").equals("modificarCliente")) {response.sendRedirect("Clientes.jsp");}else if (request.getSession().getAttribute("error").equals("modificarMecanico")){response.sendRedirect("Mecanicos.jsp");}%> class="alert-link">VOLVER</a>
-	</div>
+  		<a href=<%if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaCliente")) {%>"Clientes.jsp"<%} 
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaMecanico")){%>"Mecanicos.jsp"<%}
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaRepuesto")){%>"Repuestos.jsp"<%}%> class="alert-link">VOLVER</a>
+
+</div>
 </body>
 </html>

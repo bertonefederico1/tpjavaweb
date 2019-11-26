@@ -38,6 +38,7 @@ public class NuevoCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaCliente");
 		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request.getParameter("nombreYApellido");
 		String direccion = request.getParameter("direccion");
@@ -50,17 +51,18 @@ public class NuevoCliente extends HttpServlet {
 		cli.setDireccion(direccion);
 		cli.setTelefono(telefono);
 		cli.setMail(email);
-		if (dni != null && nombre_y_apellido != null && direccion != null){
+		if (dni != null && dni.length() > 0 && nombre_y_apellido != null && nombre_y_apellido.length() > 0 
+			&& direccion != null && direccion.length() > 0){
 			if(ValidacionesIngresoDatos.validaSoloNumeros(dni) && ValidacionesIngresoDatos.validaLongitudIgualA8(dni)
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
-				if(email != null){
+				if(email != null && email.length() > 0){
 					if(ValidacionesIngresoDatos.validaEmail(email)){
 					}else{
 						band = false;
 					}
 				}
-				if(telefono != null){
+				if(telefono != null && telefono.length() > 0){
 					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
 					}else {
 						band = false;
@@ -78,7 +80,7 @@ public class NuevoCliente extends HttpServlet {
 			cc.agregarCliente(cli);
 			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("AgregarCliente.jsp").forward(request, response);
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}	
 	}
 

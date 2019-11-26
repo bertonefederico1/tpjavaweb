@@ -41,19 +41,48 @@ public class ModificarMecanico extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaMecanico");
 		int matricula = Integer.parseInt(request.getParameter("matricula"));
 		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("mail");
+		boolean band = true;
 		Mecanico mec = new Mecanico();
-		ControladorMecanico cm = new ControladorMecanico();
 		mec.setDireccion(direccion);
-		mec.setMail(mail);
+		mec.setMail(email);
 		mec.setMatricula(matricula);
 		mec.setNombre_y_apellido(nombre_y_apellido);
 		mec.setTelefono(telefono);
-		cm.modificarMecanico(mec);
-		request.getRequestDispatcher("Mecanicos.jsp").forward(request,response);
+		
+		if (nombre_y_apellido != null && nombre_y_apellido.length() > 0 && direccion != null && direccion.length() > 0){
+			if(ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
+			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
+				if(email != null && email.length() > 0){
+					if(ValidacionesIngresoDatos.validaEmail(email)){
+					}else{
+						band = false;
+					}
+				}
+				if(telefono != null && telefono.length() > 0){
+					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+					}else {
+						band = false;
+					}
+				}
+			}else {
+				band = false;
+			}
+		}else {
+			band = false;
+		}
+		
+		if(band){
+			ControladorMecanico cm = new ControladorMecanico();
+			cm.modificarMecanico(mec);
+			request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}	
 	}
 }
