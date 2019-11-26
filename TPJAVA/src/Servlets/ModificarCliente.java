@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import logica.ControladorCliente;
+import logica.ValidacionesIngresoDatos;
 import entidades.Cliente;
 
 /**
@@ -40,21 +42,28 @@ public class ModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "modificarCliente");
 		String dni = request.getParameter("dni");
 		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("mail");
 		Cliente cli= new Cliente();
-		ControladorCliente cc = new ControladorCliente();
 		cli.setDni(dni);
 		cli.setDireccion(direccion);
 		cli.setNombre_y_apellido(nombre_y_apellido);
-		cli.setMail(mail);
+		cli.setMail(email);
 		cli.setTelefono(telefono);
-		cc.modificarCliente(cli);
-		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-		
+		if (ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
+			&& ValidacionesIngresoDatos.validaLongitudHasta100(direccion)
+			&& ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)
+			&& ValidacionesIngresoDatos.validaEmail(email) && nombre_y_apellido != null && direccion != null){
+			ControladorCliente cc = new ControladorCliente();
+			cc.modificarCliente(cli);
+			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}		
 	}
 
 }
