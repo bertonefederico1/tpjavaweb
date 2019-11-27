@@ -82,6 +82,22 @@ public class ValidacionesIngresoDatos {
 		return band;
 	}
 	
+	public static boolean validaLongitudHasta2(String entrada){
+		boolean band = true;
+		if (entrada.length() > 2){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudHasta4(String entrada){
+		boolean band = true;
+		if (entrada.length() > 4){
+			band = false;
+		}
+		return band;
+	}
+	
 	public static boolean validaLongitudIgualA4(String entrada){
 		boolean band = true;
 		if (entrada.length() != 4){

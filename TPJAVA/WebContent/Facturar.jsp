@@ -16,6 +16,7 @@
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
+	request.getSession().setAttribute("tipo", "facturar");
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
@@ -115,7 +116,7 @@
 				<button type="submit" class="btn btn-success" name="btn_facturar"
 					value="facturar" style="position: relative; top: 10px; left: 20px">Facturar</button>
 				<button type="button" class="btn btn-danger"
-					onclick="location='Cancelar.jsp'"
+					onclick="location='CancelarIngresoDeDatos.jsp'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 		</form>

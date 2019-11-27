@@ -36,13 +36,29 @@ public class ConsultaFactura extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaFechaFactura");
 		String dia, mes, anio;
 		dia = request.getParameter("dia");
 		mes = request.getParameter("mes");
 		anio = request.getParameter("anio");
-		ControladorReparacion cr = new ControladorReparacion();
-		request.getSession().setAttribute("facturasPorFecha", cr.traerFacturasPorFecha(dia, mes, anio)); //Es un arreglo de reparaciones
-		response.sendRedirect("FacturasPorFecha.jsp"); 
+		boolean band = true;
+		if(dia != null & dia.length() > 0 && mes != null && mes.length() > 0 && anio != null && anio.length() > 0){
+			if(ValidacionesIngresoDatos.validaSoloNumeros(dia) && ValidacionesIngresoDatos.validaLongitudHasta2(dia)
+			   && ValidacionesIngresoDatos.validaSoloNumeros(mes) && ValidacionesIngresoDatos.validaLongitudHasta2(mes)
+			   && ValidacionesIngresoDatos.validaSoloNumeros(anio) && ValidacionesIngresoDatos.validaLongitudHasta4(anio)){
+			} else {
+				band = false;
+			}
+		} else {
+			band = false;
+		}
+		if (band){
+			ControladorReparacion cr = new ControladorReparacion();
+			request.getSession().setAttribute("facturasPorFecha", cr.traerFacturasPorFecha(dia, mes, anio)); //Es un arreglo de reparaciones
+			response.sendRedirect("FacturasPorFecha.jsp"); 	
+		} else{
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}
 	}
 
 }

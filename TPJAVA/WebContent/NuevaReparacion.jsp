@@ -74,7 +74,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="5000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="10" cols="65" maxlength="5000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -128,7 +128,7 @@
 				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
-					onclick="location='CancelarIngresoDeDatos.html'"
+					onclick="location='CancelarIngresoDeDatos.jsp'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 			<div>

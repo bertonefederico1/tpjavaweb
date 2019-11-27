@@ -40,22 +40,38 @@ public class RepuestoReparacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_repuesto = Integer.parseInt(request.getParameter("cod_repuesto"));
-		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+		String cantidad_string = request.getParameter("cantidad");
+		boolean band = true;
 		ArrayList <LineaDeRepuesto> repuestosSeleccionados = new ArrayList<LineaDeRepuesto>();
 		ArrayList <Repuesto> misRepuestos = new ArrayList<Repuesto>();
-		repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
-		misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
-		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
-			if (cldr.repuestoNoRepetido(repuestosSeleccionados, cod_repuesto, cantidad)){
-				request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
-			};
-		}
-		if (((String)request.getSession().getAttribute("tipo")).equalsIgnoreCase("nueva_reparacion")) {
-			response.sendRedirect("NuevaReparacion.jsp");
+		if(cantidad_string != null && cantidad_string.length() > 0){
+			if(ValidacionesIngresoDatos.validaLongitudHasta4(cantidad_string) && ValidacionesIngresoDatos.validaSoloNumeros(cantidad_string)){	
+			} else {
+				band = false;
+			}
 		} else {
-			response.sendRedirect("EditarReparacion.jsp");
+			band = false;
 		}
+		
+		if (band){
+			repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+			misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
+			ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+			if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
+				if (cldr.repuestoNoRepetido(repuestosSeleccionados, cod_repuesto, cantidad)){
+					request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
+				};
+			}
+			if (((String)request.getSession().getAttribute("tipo")).equalsIgnoreCase("nueva_reparacion")) {
+				response.sendRedirect("NuevaReparacion.jsp");
+			} else {
+				response.sendRedirect("EditarReparacion.jsp");
+			}
+		} else {
+			request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);
+		}
+					
 	}
 
 }

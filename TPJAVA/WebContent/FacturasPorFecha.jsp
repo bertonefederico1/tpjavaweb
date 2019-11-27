@@ -49,7 +49,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="ConsultarFactura.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>

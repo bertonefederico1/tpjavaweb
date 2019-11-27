@@ -10,7 +10,10 @@
 <h2><b>¿SEGURO QUE DESEA CANCELAR?</b></h2>
 <div id=botonesConfirmarEliminacion>
 <a href="Principal.jsp" class="btn btn-danger">Salir</a>
-<a href="NuevaReparacion.jsp" class="btn btn-secondary">Cancelar</a>
+<a href=<%if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("ingreso")) {%>"Ingreso.jsp"<%} 
+  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("nueva_reparacion")){%>"NuevaReparacion.jsp"<%}
+  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("facturar")){%>"Facturar.jsp"<%}
+  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")){%>"EditarReparacion.jsp"<%}%> class="btn btn-secondary">Cancelar</a>
 </div>
 </body>
 </html>
