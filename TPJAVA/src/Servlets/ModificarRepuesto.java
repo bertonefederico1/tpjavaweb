@@ -37,19 +37,33 @@ public class ModificarRepuesto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaRepuesto");
 		int cod_repuesto = Integer.parseInt(request.getParameter("codigo"));
 		String descripcion = request.getParameter("descripcion");
-		Float precio = Float.parseFloat(request.getParameter("precio"));
-		int stock = Integer.parseInt(request.getParameter("stock"));
+		String precio = request.getParameter("precio");
+		String cantidad = request.getParameter("stock");
+		boolean band = true;
 		Repuesto rep = new Repuesto();
-		rep.setCodigo(cod_repuesto);
-		rep.setDescripcion(descripcion);
-		rep.setPrecio(precio);
-		rep.setStock(stock);
-		ControladorRepuesto cr = new ControladorRepuesto();
-		cr.modificarRepuesto(rep);
-		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-		request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+		if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
+				   && descripcion != null && descripcion.length() > 0
+				   && ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
+				   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
+				   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
+					rep.setCodigo(cod_repuesto);
+					rep.setStock(Integer.parseInt(cantidad));
+					rep.setPrecio(Float.parseFloat(precio));
+					rep.setDescripcion(descripcion);
+				} else{
+					band = false;
+				}
+					if(band){
+						ControladorRepuesto cr = new ControladorRepuesto();
+						cr.modificarRepuesto(rep);
+						request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+						request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+					}else {
+						request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+					}
 	}
 
 }

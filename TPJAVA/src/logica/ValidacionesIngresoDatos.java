@@ -23,6 +23,17 @@ public class ValidacionesIngresoDatos {
 		return band;
 	}
 	
+	public static boolean validaSoloNumerosFloat(String entrada){
+		boolean band = true;
+		float entrada_float;
+		try{
+			entrada_float = Float.parseFloat(entrada);
+		}catch (Exception e){
+			band = false;
+		}
+		return band;
+	}
+	
 	public static boolean validaLongitudIgualA8(String entrada){
 		boolean band = true;
 		if (entrada.length() != 8){

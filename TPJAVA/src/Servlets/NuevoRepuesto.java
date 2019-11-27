@@ -45,7 +45,7 @@ public class NuevoRepuesto extends HttpServlet {
 		boolean band = true;
 		if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
 		   && descripcion != null && descripcion.length() > 0
-		   && ValidacionesIngresoDatos.validaSoloNumeros(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
+		   && ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
 		   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
 		   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
 			rep.setStock(Integer.parseInt(cantidad));
