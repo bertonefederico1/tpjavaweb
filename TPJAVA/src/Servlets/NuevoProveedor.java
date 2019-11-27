@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorProveedor;
+import logica.ValidacionesIngresoDatos;
 import entidades.Proveedor;
 
 /**
@@ -37,20 +38,54 @@ public class NuevoProveedor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaProveedor");
 		String razon_social = request.getParameter("razon_social");
-		String cuit = request.getParameter("cuit");
+		String cuit_prefijo = request.getParameter("cuit_prefijo");
+		String cuit_mitad = request.getParameter("cuit_mitad");
+		String cuit_sufijo = request.getParameter("cuit_sufijo");
+		String cuit = cuit_prefijo+"-"+cuit_mitad+"-"+cuit_sufijo;
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("mail");
+		boolean band = true;
 		Proveedor prove = new Proveedor();
-		ControladorProveedor cp = new ControladorProveedor();
 		prove.setCuit(cuit);
 		prove.setDireccion(direccion);
-		prove.setMail(mail);
+		prove.setMail(email);
 		prove.setRazonSocial(razon_social);
 		prove.setTelefono(telefono);
-		cp.agregarProveedor(prove);
-		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+		if (cuit != null && cuit.length() > 0 && razon_social != null && razon_social.length() > 0 && direccion != null 
+			&& direccion.length() > 0){
+			if (ValidacionesIngresoDatos.validaSoloNumeros(cuit_prefijo) && ValidacionesIngresoDatos.validaSoloNumeros(cuit_mitad)
+				&& ValidacionesIngresoDatos.validaSoloNumeros(cuit_sufijo) && ValidacionesIngresoDatos.validaLongitudIgualA8(cuit_mitad)
+				&& ValidacionesIngresoDatos.validaLongitudIgualA2(cuit_prefijo) && ValidacionesIngresoDatos.validaLongitudIgualA1(cuit_sufijo)
+				&& ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
+				if(email != null && email.length() > 0){
+					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
+					} else {
+						band = false;
+					}
+				}
+				if (telefono != null && telefono.length() > 0){
+					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+					} else {
+						band = false;
+					}
+				}
+			} else {
+				band = false;
+			}
+		} else{
+			band = false;
+		}
+		
+		if (band){
+			ControladorProveedor cp = new ControladorProveedor();
+			cp.agregarProveedor(prove);
+			request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}
 	}
 
 }

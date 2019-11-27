@@ -41,16 +41,42 @@ public class ModificarProveedor extends HttpServlet {
 		String razon_social = request.getParameter("razon_social");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("mail");
+		boolean band = true;
 		Proveedor prove = new Proveedor();
-		ControladorProveedor cp = new ControladorProveedor();
 		prove.setCuit(cuit);
 		prove.setDireccion(direccion);
-		prove.setMail(mail);
+		prove.setMail(email);
 		prove.setRazonSocial(razon_social);
 		prove.setTelefono(telefono);
-		cp.modificarProveedor(prove);
-		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+		if (razon_social != null && razon_social.length() > 0 && direccion != null && direccion.length() > 0){
+				if (ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
+					if(email != null && email.length() > 0){
+						if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
+						} else {
+							band = false;
+						}
+					}
+					if (telefono != null && telefono.length() > 0){
+						if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+						} else {
+							band = false;
+						}
+					}
+				} else {
+					band = false;
+				}
+			} else{
+				band = false;
+			}
+			
+			if (band){
+				ControladorProveedor cp = new ControladorProveedor();
+				cp.modificarProveedor(prove);
+				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+			}
 	}
 
 }

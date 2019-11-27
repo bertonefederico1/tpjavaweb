@@ -13,7 +13,7 @@ public class VehiculosFiltrar {
 	public ArrayList<Auto> traerVehiculosFiltrados(String nombuscar){
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT * FROM autos a INNER JOIN clientes c ON a.dni = c.dni WHERE c.nombre_y_apellido LIKE ? ORDER BY c.dni";
+		String query = "SELECT * FROM autos a INNER JOIN clientes c ON a.dni = c.dni WHERE c.nombre_y_apellido LIKE ? AND activo = 'si' ORDER BY c.dni";
 		ArrayList<Auto> misAutos = new ArrayList<>();
 		if (nombuscar != null) {
 			try {

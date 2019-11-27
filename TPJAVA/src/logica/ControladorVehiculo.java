@@ -10,6 +10,14 @@ public class ControladorVehiculo {
 	DatosVehiculo dv = new DatosVehiculo();
 	VehiculosFiltrar vf = new VehiculosFiltrar();
 	
+	public void modificarVehiculo(Auto auto, String patente_original){
+		dv.modificarVehiculo(auto, patente_original);
+	}
+	
+	public void eliminarVehiculo(String patente){
+		dv.eliminarVehiculo(patente);
+	}
+	
 	public void agregarVehiculo(Auto auto){
 		dv.agregarVehiculo(auto);
 	}
