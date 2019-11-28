@@ -28,6 +28,7 @@
  		request.getSession().removeAttribute("manoDeObra");
  		request.getSession().setAttribute("repuestosFactura",cldr.inicializarLineas());
  		request.getSession().setAttribute("manoDeObra", 0.0);
+ 		request.getSession().setAttribute("precio_total", 0);
  	}
 	request.getSession().removeAttribute("reparacion_seleccionada");
 %>

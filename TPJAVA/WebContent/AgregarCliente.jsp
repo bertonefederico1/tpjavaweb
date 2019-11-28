@@ -44,7 +44,7 @@
 				<button type="submit" class="btn btn-success"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
-					onclick="location='Cancelar.jsp'"
+					onclick="location='Principal.jsp'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 			</form>

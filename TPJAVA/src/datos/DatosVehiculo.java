@@ -101,7 +101,7 @@ public class DatosVehiculo {
 		ArrayList<Auto> misVehiculos = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql="SELECT patente, marca, modelo, anio_fabricacion FROM autos WHERE dni = ? AND activa = 'si'";
+		String sql="SELECT patente, marca, modelo, anio_fabricacion FROM autos WHERE dni = ? AND activo = 'si'";
 		try {
 			pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
 			pstmt.setString(1, dni);

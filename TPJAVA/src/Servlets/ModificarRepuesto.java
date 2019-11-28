@@ -45,25 +45,29 @@ public class ModificarRepuesto extends HttpServlet {
 		boolean band = true;
 		Repuesto rep = new Repuesto();
 		if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
-				   && descripcion != null && descripcion.length() > 0
-				   && ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
-				   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
-				   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
-					rep.setCodigo(cod_repuesto);
-					rep.setStock(Integer.parseInt(cantidad));
-					rep.setPrecio(Float.parseFloat(precio));
-					rep.setDescripcion(descripcion);
+		   && descripcion != null && descripcion.length() > 0){
+			if(ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
+			   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
+			   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
+				rep.setCodigo(cod_repuesto);
+				rep.setStock(Integer.parseInt(cantidad));
+				rep.setPrecio(Float.parseFloat(precio));
+				rep.setDescripcion(descripcion);
+			} else {
+				band = false;
+			}
 				} else{
 					band = false;
 				}
-					if(band){
-						ControladorRepuesto cr = new ControladorRepuesto();
-						cr.modificarRepuesto(rep);
-						request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-						request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
-					}else {
-						request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
-					}
+				
+		if(band){
+			ControladorRepuesto cr = new ControladorRepuesto();
+			cr.modificarRepuesto(rep);
+			request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+			request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}
 	}
 
 }

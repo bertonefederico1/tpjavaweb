@@ -80,7 +80,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="5000"> <%if (rep.getDescFinal() != null) {%><%=rep.getDescFinal()%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="1000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%=rep.getDescFinal()%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -124,7 +124,7 @@
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="text" class="form-control" maxlength="10" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
+  						<input type="text" class="form-control" maxlength="10" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%=rep.getPrecioManoDeObra()%><%}%>">
 					</div>
 				</div>
 			</div>

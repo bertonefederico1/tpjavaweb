@@ -124,7 +124,11 @@ public class CargarReparacion extends HttpServlet {
 					}
 					}
 				} else {
-					response.sendRedirect("NuevaReparacion.jsp");
+					if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")) {
+						response.sendRedirect("EditarReparacion.jsp");
+					} else {
+						response.sendRedirect("NuevaReparacion.jsp");
+					}
 				}
 			} else {
 				request.getSession().setAttribute("error", "validaNuevaReparacion");
