@@ -134,7 +134,7 @@
 				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardarReparacionModificada"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
-					onclick="location='CancelarIngresoDeDatos.html'"
+					onclick="location='CancelarIngresoDeDatos.jsp'"
 					style="position: relative; top: 10px; left: 40px">Cancelar</button>
 			</div>
 			<div>
