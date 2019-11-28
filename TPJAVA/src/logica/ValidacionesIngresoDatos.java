@@ -4,10 +4,18 @@ import java.util.regex.*;
 
 public class ValidacionesIngresoDatos {
 	
-	public boolean ingresoYClienteVacio(String dni, String cod_reparacion_string){
+	public static boolean ingresoYClienteVacio(String dni, String cod_reparacion_string){
 		if(dni.equalsIgnoreCase("Cliente") || (cod_reparacion_string.equalsIgnoreCase("Reparacion"))){
 			return true;
 		}else{
+			return false;
+		}
+	}
+	
+	public static boolean clienteYPatenteVacio (String dni, String patente) {
+		if(dni.equalsIgnoreCase("Cliente") || patente.equalsIgnoreCase("Vehiculo")) {
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -68,6 +76,26 @@ public class ValidacionesIngresoDatos {
 			band = false;
 		}
 		return band;
+	}
+	
+	public static boolean validaLongitudHasta1000 (String entrada) {
+		if (entrada.length() > 1000) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public static boolean validaManoDeObra (String manoDeObra) {
+		if (manoDeObra != null && manoDeObra.length() > 0) {
+			if (validaSoloNumerosFloat(manoDeObra)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 }

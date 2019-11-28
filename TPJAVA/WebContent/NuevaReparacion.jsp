@@ -47,7 +47,7 @@
 						<input type="text" class="form-control" name="dni_cliente"
 							aria-label="cliente" aria-describedby="basic-addon1"
 							value="<%if (request.getSession().getAttribute("cliente_seleccionado") != null) {%><%=request.getSession().getAttribute("cliente_seleccionado")%><%}%><%else {%>Cliente<%}%>"
-							readonly="readonly"></input>
+							readonly="readonly" required></input>
 						<div id="botonAgregar">
 							<button type="button"
 								onclick="location='SeleccionCliente.jsp?tipo=reparacion'"
@@ -63,7 +63,7 @@
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
 						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute("reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
-						readonly="readonly" form style="width: 490px"></input>
+						readonly="readonly" form style="width: 490px" required></input>
 					<div id="botonAgregar">
 						<button type="button"
 							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&tipo=reparacion'"
@@ -74,7 +74,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
-					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="5000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
+					<textarea name="reparaciones_realizadas" rows="10" cols="102" maxlength="1000"><%if (request.getSession().getAttribute("reparaciones_realizadas") != null) {%><%=request.getSession().getAttribute("reparaciones_realizadas")%><%}%><%else {%><%}%></textarea>
 				</div></label>
 			<div id="titulo">
 				<h3>
@@ -118,7 +118,7 @@
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="number" step="any" maxlength="10" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><%else {%><%}%>">
+  						<input type="text" maxlength="10" class="form-control" name="mano_de_obra" value="<%if (request.getSession().getAttribute("mano_de_obra") != null) {%><%=request.getSession().getAttribute("mano_de_obra")%><%}%><% else {%><%}%>"></input>
 					</div>
 				</div>
 			</div>

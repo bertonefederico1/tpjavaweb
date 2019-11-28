@@ -10,7 +10,9 @@
   		<a href=<%if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaCliente")) {%>"Clientes.jsp"<%} 
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaMecanico")){%>"Mecanicos.jsp"<%}
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaRepuesto")){%>"Repuestos.jsp"<%}
-  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaProveedor")){%>"Proveedores.jsp"<%}%> class="alert-link">VOLVER</a>
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaProveedor")){%>"Proveedores.jsp"<%}
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaNuevoIngreso")){%>"Principal.jsp"<%}
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaNuevaReparacion")){%>"Principal.jsp"<%}%> class="alert-link">VOLVER</a>
 
 </div>
 </body>

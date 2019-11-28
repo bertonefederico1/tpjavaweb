@@ -35,7 +35,7 @@
 						aria-label="cliente"
 						aria-describedby="basic-addon1"
 						value="<% if (request.getParameter("dni") != null) {%><%=request.getParameter("dni")%><%}%><%else {%>Cliente<%}%>"
-						readonly="readonly"></input>
+						readonly="readonly" required></input>
 					<div id="botonAgregar">
 						<button type="button" onclick="location='SeleccionCliente.jsp?tipo=ingreso'"
 							class="btn btn-success">+ Agregar</button>
@@ -43,7 +43,6 @@
 				</div></label>
 		</p>
 		<label>
-
 			<div id=vehiculo class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Vehiculo</span>
@@ -51,7 +50,7 @@
 				<input type="text" class="form-control" name="patente"
 					aria-label="cliente" aria-describedby="basic-addon1"
 					value="<%if (request.getParameter("patente") != null) {%><%=request.getParameter("patente")%><%}%><%else {%>Vehiculo<%}%>" 
-					readonly="readonly"></input>
+					readonly="readonly" required></input>
 				<div id="botonAgregar">
 					<button type="button" onclick="location='VehiculosDelCliente.jsp?dni=<%=request.getParameter("dni")%>&nombre_y_apellido=<%=request.getParameter("nombre_y_apellido")%>'"
 						class="btn btn-success">+ Agregar</button>
@@ -61,13 +60,13 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Reparaciones a realizar</span>
 				</div>
-				<textarea name="reparacionesARealizar" rows="5" cols="102" maxlength="5000"></textarea>
+				<textarea name="reparacionesARealizar" rows="9" cols="102" maxlength="1000"></textarea>
 			</div></label>
 			 <label><div id=observaciones class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Observaciones</span>
 				</div>
-				<textarea name="observaciones" rows="5" cols="109" maxlength="5000"></textarea>
+				<textarea name="observaciones" rows="9" cols="109" maxlength="1000"></textarea>
 			</div></label>
 		<div id="botonGuardar">
 			<button type="submit" class="btn btn-success"
