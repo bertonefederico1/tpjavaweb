@@ -50,9 +50,65 @@ public class ValidacionesIngresoDatos {
 		return band;
 	}
 	
+	public static boolean validaLongitudIgualA2(String entrada){
+		boolean band = true;
+		if (entrada.length() != 2){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudIgualA1(String entrada){
+		boolean band = true;
+		if (entrada.length() != 1){
+			band = false;
+		}
+		return band;
+	}
+	
 	public static boolean validaLongitudHasta100(String entrada){
 		boolean band = true;
 		if (entrada.length() > 100){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudHasta9(String entrada){
+		boolean band = true;
+		if (entrada.length() > 9){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudHasta10(String entrada){
+		boolean band = true;
+		if (entrada.length() > 10){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudHasta2(String entrada){
+		boolean band = true;
+		if (entrada.length() > 2){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudHasta4(String entrada){
+		boolean band = true;
+		if (entrada.length() > 4){
+			band = false;
+		}
+		return band;
+	}
+	
+	public static boolean validaLongitudIgualA4(String entrada){
+		boolean band = true;
+		if (entrada.length() != 4){
 			band = false;
 		}
 		return band;

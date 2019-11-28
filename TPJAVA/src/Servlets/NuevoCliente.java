@@ -57,7 +57,7 @@ public class NuevoCliente extends HttpServlet {
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
 				if(email != null && email.length() > 0){
-					if(ValidacionesIngresoDatos.validaEmail(email)){
+					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
 					}else{
 						band = false;
 					}

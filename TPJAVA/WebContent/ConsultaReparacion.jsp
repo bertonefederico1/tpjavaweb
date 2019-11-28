@@ -175,5 +175,6 @@
 				</div></label>
 		</div>
 	</div>
+	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location='Principal.jsp'" style="position: relative; top: 10px">Volver</button>
 </body>
 </html>

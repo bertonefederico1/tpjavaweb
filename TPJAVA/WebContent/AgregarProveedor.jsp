@@ -13,22 +13,19 @@
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="NuevoProveedor">
-			<!-- <div class="form-group">
-				<label for="cuit"><b>Cuit</b></label> <input type="text"
-					class="form-control" id="cuit" name="cuit" maxlength="13"
-					placeholder="20-37312212-5" required>
-			</div> -->
 			<label><b>Cuit</b></label>
 			<div class="form-row">
 				<div class="form-group col-md-1">
 					<input type="number"
 						class="form-control" name="cuit_prefijo" id="cuit_prefijo" maxlength="2"
-						placeholder="1">
+						placeholder="21">
 				</div>
+				<b>-</b>
 				<div class="form-group col-md-3">
 					<input type="number" class="form-control" id="cuit_mitad" name="cuit_mitad" maxlength="8"
 						placeholder="40192313">
 				</div>
+				<b>-</b>
 				<div class="form-group col-md-1">
 					<input type="number" class="form-control" id="cuit_sufijo" name="cuit_sufijo" maxlength="1"
 						placeholder="5">

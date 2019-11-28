@@ -11,42 +11,40 @@
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
+	<%
+		String patente = request.getParameter("patente");
+		String marca = request.getParameter("marca");
+		String modelo = request.getParameter("modelo");
+		String anio = request.getParameter("anio");
+		String cantidad_km = request.getParameter("cantidad_km");
+	%>
 	<div id=plantillaAgregar>
-		<form method="POST" action= "AgregarVehiculo">
-			<div class="form-group">
-				<label for="dni"><b>Dni cliente</b></label> <input type="number"
-					class="form-control" readonly="readonly" id="dni" name="dni" maxlength="8"
-					value="<%=request.getParameter("dni")%>" required>
-			</div>
+		<form method="POST" action= "ModificarVehiculo">
+			<input type="hidden" name="patente_original" value="<%=request.getParameter("patente")%>">
 			<div class="form-group">
 				<label for="patente"><b>Patente</b></label> <input type="text"
-					class="form-control" id="patente" name="patente" maxlength="9"
-					placeholder="ABC 135" required>
+					class="form-control" id="patente" name="patente" value="<%=patente%>" maxlength="9" required>
 			</div>
 			<div class="form-group">
 				<label for="marca"><b>Marca</b></label> <input type="text"
-					class="form-control" id="marca" name="marca" maxlength="100"
-					placeholder="Honda" required>
+					class="form-control" id="marca" name="marca" maxlength="100" value="<%=marca%>" required>
 			</div>
 			<div class="form-group">
 				<label for="modelo"><b>Modelo</b></label> <input type="text"
-					class="form-control" id="modelo" name="modelo" maxlength="100"
-					placeholder="Civic" required>
+					class="form-control" id="modelo" name="modelo" value="<%=modelo%>" maxlength="100" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="anio"><b>Año</b></label> <input type="number"
-						class="form-control" name="anio_fabricacion" id="anio_fabricacion"
-						maxlength="4" placeholder="2015">
+						class="form-control" name="anio" value="<%=anio%>" id="anio" maxlength="4">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="cant_kml"><b>Cantidad de Kms</b></label> <input type="number"
-						class="form-control" id="cantidad_km" name="cantidad_km" maxlength="10"
-						placeholder="135000">
+						class="form-control" id="cantidad_km" name="cantidad_km" value="<%=cantidad_km%>">
 				</div>
 			</div>
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente"
+				<button type="submit" class="btn btn-success"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='Principal.jsp'"

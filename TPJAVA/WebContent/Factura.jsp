@@ -50,6 +50,6 @@
 		<h3>MANO DE OBRA: <%=cr.precioManoDeObra(misReparaciones.get(indice).getNroReparacion())%></h3>
 		<h2><b>TOTAL: <%=cldr.getPrecioTotal(misReparaciones.get(indice).getNroReparacion())%></b></h2>
 	</div>
-	<a href="Principal.jsp"><< Ir a la pagina principal</a>	
+	<a href="ConsultarFactura.jsp"><< Volver</a>
 </body>
 </html>

@@ -14,6 +14,7 @@
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
+		request.getSession().setAttribute("tipo", "ingreso");
 		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy= formatter.format(fecha);
@@ -72,7 +73,7 @@
 			<button type="submit" class="btn btn-success"
 				style="position: relative; top: 10px; left: 20px">Guardar</button>
 			<button type="button" class="btn btn-danger"
-				onclick="location='Cancelar.jsp'"
+				onclick="location='CancelarIngresoDeDatos.jsp'"
 				style="position: relative; top: 10px; left: 40px">Cancelar</button>
 		</div>
 	</form>

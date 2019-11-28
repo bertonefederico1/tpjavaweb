@@ -22,12 +22,6 @@
 <div id=titulo>
 	<label><b>SELECCIÓN DE REPUESTOS</b></label>
 </div>
-<div class="container buscar">
-	<form class="form" method="GET" action="RepuestoFiltro">
-		<input type="text" class="form-control" name="txtbuscar" placeholder="Descripción"></input>
-		<input class="btn btn-secondary" type="submit" value="Buscar"></input>
-	</form>
-</div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
