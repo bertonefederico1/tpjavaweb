@@ -86,16 +86,4 @@ public class ValidacionesIngresoDatos {
 		}
 	}
 	
-	public static boolean validaManoDeObra (String manoDeObra) {
-		if (manoDeObra != null && manoDeObra.length() > 0) {
-			if (validaSoloNumerosFloat(manoDeObra)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-	
 }
