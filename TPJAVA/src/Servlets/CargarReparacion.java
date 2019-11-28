@@ -61,7 +61,7 @@ public class CargarReparacion extends HttpServlet {
 				band = false;
 			}
 			if (manoDeObra_string != null && manoDeObra_string.length() > 0) {
-				if (ValidacionesIngresoDatos.validaSoloNumerosFloat(manoDeObra_string)) {
+				if (ValidacionesIngresoDatos.validaSoloNumerosFloat(manoDeObra_string) && ValidacionesIngresoDatos.validaLongitudHasta10(manoDeObra_string)) {
 					mano_de_obra = Math.abs(Float.parseFloat(manoDeObra_string));
 					request.getSession().setAttribute("mano_de_obra", mano_de_obra);
 					rep.setPrecioManoDeObra(mano_de_obra);

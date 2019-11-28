@@ -124,7 +124,7 @@
   						<div class="input-group-prepend">
    						<span class="input-group-text" id="inputGroup-sizing-default"><b>Mano de obra $</b></span>
   						</div>
-  						<input type="number" step="any" class="form-control" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
+  						<input type="text" class="form-control" maxlength="10" name="mano_de_obra" value="<%if (rep.getPrecioManoDeObra() != 0) {%><%=rep.getPrecioManoDeObra()%><%}%><%else {%><%=0.0%><%}%>">
 					</div>
 				</div>
 			</div>
