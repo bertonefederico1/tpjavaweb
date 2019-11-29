@@ -111,9 +111,10 @@
 										<td><%=ldr.getRepuesto().getDescripcion()%></td>
 										<td><%=ldr.getRepuesto().getPrecio()%></td>
 										<td><%=ldr.getCantidad()%></td>
-										<td><a
-											href="EliminarRepuestoModificar?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>"
-											class="btn btn-danger btn-sm">Eliminar</a></td>
+										<td>
+											<a href="EliminarRepuestoModificar?cod_repuesto=<%=ldr.getRepuesto().getCodigo()%>&nro_reparacion=<%=request.getParameter("nro_reparacion")%>"
+											class="btn btn-danger btn-sm">Eliminar</a>
+										</td>
 									</tr>
 									<%
 										}

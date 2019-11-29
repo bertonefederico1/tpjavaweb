@@ -44,6 +44,7 @@ public class RepuestoReparacion extends HttpServlet {
 		boolean band = true;
 		ArrayList <LineaDeRepuesto> repuestosSeleccionados = new ArrayList<LineaDeRepuesto>();
 		ArrayList <Repuesto> misRepuestos = new ArrayList<Repuesto>();
+		ControladorRepuesto cr = new ControladorRepuesto();
 		if(cantidad_string != null && cantidad_string.length() > 0){
 			if(ValidacionesIngresoDatos.validaLongitudHasta4(cantidad_string) && ValidacionesIngresoDatos.validaSoloNumeros(cantidad_string)){	
 			} else {
@@ -55,7 +56,8 @@ public class RepuestoReparacion extends HttpServlet {
 		
 		if (band){
 			repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
-			misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
+			misRepuestos = cr.traerRepuestos();
+			//misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 			ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 			if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
