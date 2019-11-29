@@ -29,6 +29,7 @@ CREATE TABLE `autos` (
   `anio_fabricacion` int(10) unsigned DEFAULT NULL,
   `cantidad_km` int(10) unsigned DEFAULT NULL,
   `dni` int(11) NOT NULL,
+  `activo` varchar(42) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`patente`),
   KEY `fk_autos_clientes_idx` (`dni`),
   CONSTRAINT `fk_autos_clientes` FOREIGN KEY (`dni`) REFERENCES `clientes` (`dni`) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -41,7 +42,7 @@ CREATE TABLE `autos` (
 
 LOCK TABLES `autos` WRITE;
 /*!40000 ALTER TABLE `autos` DISABLE KEYS */;
-INSERT INTO `autos` VALUES ('EVL 687','Honda','Fit',2018,10000,37817242),('GCJ 523','Ford','Mondeo',2019,34700,41091000),('HCK 456','Ford','Falcon',1986,190000,40121987),('IPC 102','Honda','City',2017,19000,37817242);
+INSERT INTO `autos` VALUES ('AB 905 PQ','Honda','Fit',0,0,40121097,'no'),('ABE 111','Prueba 2','Prueba',2019,0,11111111,'no'),('EVL 687','Honda','Fit',2009,10000,37817242,'si'),('GCJ 523','Ford','Mondeo',2019,34700,41091000,'si'),('HCK 456','Ford','Falcon',1980,190000,40121987,'si'),('IPC 102','Honda','City',2010,19000,37817242,'si'),('Papa 12','Papa movil','Vaticano',2020,0,40121097,'si'),('sdf','sdf','sdf',0,0,40121987,'no');
 /*!40000 ALTER TABLE `autos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +69,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (37817242,'Juan Perez','mitre 1234','','420222'),(40121097,'Francisco 1','Entre Rios 2019','','346515520237'),(40121987,'Elsa Lame','catamarca 1236','elsa21@gmail.com','155422123'),(41091000,'Esteban Quito','san juan 1287','esteban.quito@hotmail.com','425678');
+INSERT INTO `clientes` VALUES (11111111,'Abel jeje','1111111','',''),(37817242,'Juan Perez','mitre 1234','','4212222'),(40121097,'Francisco 1','Entre Rios 2019','iojio@dddf',''),(40121987,'Elsa Lame','catamarca 1236','elsa21@gmail.com','155422123'),(41091000,'Esteban Quito','san juan 1287','esteban.quito@hotmail.com','425678');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `mecanicos` (
   `telefono` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contrasenia` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `mecanicos` (
 
 LOCK TABLES `mecanicos` WRITE;
 /*!40000 ALTER TABLE `mecanicos` DISABLE KEYS */;
-INSERT INTO `mecanicos` VALUES (1,'Hugo Salomon','san juan 1287','huguito13@gmail.com','421090','1'),(2,'Alberto San','Richieri 678 Bis','','','2');
+INSERT INTO `mecanicos` VALUES (1,'Hugo San','Saavedra 1050','huguito21@gmail.com','420927','1'),(6,'Alberto Marcovich','Sarmiento 1987','','4546','6');
 /*!40000 ALTER TABLE `mecanicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +172,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES ('20-37817454-1','COMON S.A','423456','comonsa@gmail.com','Alberdi 1212'),('21-37897099-1','Pepito S.R.L','15657892','pepin65@yahoo.com','san martin 1200');
+INSERT INTO `proveedores` VALUES ('20-37817454-1','COMON S.A','4219999','comonsa@gmail.com','Alberdi 1212'),('21-37897099-1','Pepito S.R.L','15657892','pepin65@yahoo.com','san martin 1200');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +200,7 @@ CREATE TABLE `repa_repuestos` (
 
 LOCK TABLES `repa_repuestos` WRITE;
 /*!40000 ALTER TABLE `repa_repuestos` DISABLE KEYS */;
-INSERT INTO `repa_repuestos` VALUES (8,4,2),(8,8,1),(11,8,1),(14,2,1),(14,4,1),(15,2,1),(15,4,2),(15,8,1);
+INSERT INTO `repa_repuestos` VALUES (19,24,1),(19,25,2),(19,27,1),(20,26,2),(20,27,1),(22,24,2),(24,26,2);
 /*!40000 ALTER TABLE `repa_repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +230,7 @@ CREATE TABLE `reparaciones` (
   KEY `fk_reparaciones_autos_idx` (`patente`),
   CONSTRAINT `fk_reparaciones_autos` FOREIGN KEY (`patente`) REFERENCES `autos` (`patente`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_reparaciones_mecanicos` FOREIGN KEY (`matricula`) REFERENCES `mecanicos` (`matricula`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +239,7 @@ CREATE TABLE `reparaciones` (
 
 LOCK TABLES `reparaciones` WRITE;
 /*!40000 ALTER TABLE `reparaciones` DISABLE KEYS */;
-INSERT INTO `reparaciones` VALUES (8,'2019-09-17','2019-11-12','2019-11-21','2019-11-21','Entregada','sssssss','cambiar foco delantero','puerta derecha rayada','HCK 456',2,'si',1000.00),(9,'2019-04-16',NULL,NULL,NULL,'Ingresada',NULL,'Reparar amortiguador delantero',NULL,'IPC 102',1,'no',NULL),(11,'2019-09-24','2019-11-23','2019-11-23','2019-11-23','Entregada','fffff','test',NULL,'GCJ 523',1,'si',33.00),(13,'2019-10-09',NULL,NULL,NULL,'Ingresada',NULL,'Cambiar amortiguador izquierdo',NULL,'IPC 102',NULL,'si',NULL),(14,'2019-10-09','2019-11-21','2019-11-21','2019-11-21','Entregada','dd','cambio de aceite',NULL,'HCK 456',2,'si',123.00),(15,'2019-10-09','2019-11-12','2019-11-12','2019-11-21','Entregada','Prueba ','sdfsdf',NULL,'HCK 456',1,'si',100.00),(16,'2019-10-09',NULL,NULL,NULL,'Ingresada',NULL,'asd',NULL,'IPC 102',NULL,'si',NULL);
+INSERT INTO `reparaciones` VALUES (19,'2019-11-28','2019-11-28','2019-11-28','2019-11-29','Entregada','Tests reparación final (Modificar reparación)','test reparaciones a realizar FINAL (ingreso)','test observaciones FINAL (ingreso)','EVL 687',1,'si',0.00),(20,'2019-11-28','2019-11-28','2019-11-28','2019-11-28','Entregada','Reparaciones realizadas (nueva reparación)','prueba 2 ingreso','prueba 2 ingreso','GCJ 523',1,'si',234.00),(21,'2019-11-28','2019-11-28','2019-11-28','2019-11-28','Entregada','prueba facturar','prueba facturar','prueba facturar','GCJ 523',1,'si',100.00),(22,'2019-11-29','2019-11-29','2019-11-29','2019-11-29','Entregada','Cambio de mecanico','Prueba Papa movil','prueba papa movil','Papa 12',6,'si',100.00),(24,'2019-11-29','2019-11-29','2019-11-29','2019-11-29','Entregada','REPARACIONES REALIZADAS - PRUEBA FINAL - MODIFICADA','REPARACIONES A REALIZAR - PRUEBA FINAL','OBSERVACIONES - PRUEBA FINAL','GCJ 523',1,'si',1501.00);
 /*!40000 ALTER TABLE `reparaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +256,7 @@ CREATE TABLE `repuestos` (
   `precio` decimal(10,2) unsigned NOT NULL,
   `stock` int(11) NOT NULL,
   PRIMARY KEY (`cod_repuesto`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +265,7 @@ CREATE TABLE `repuestos` (
 
 LOCK TABLES `repuestos` WRITE;
 /*!40000 ALTER TABLE `repuestos` DISABLE KEYS */;
-INSERT INTO `repuestos` VALUES (2,'Foco Delantero',10.79,7),(3,'Guardabarro de falcon',4000.20,7),(4,'Amoritguador Trasero',3240.00,1),(8,'Capot',222.00,4);
+INSERT INTO `repuestos` VALUES (24,'Foco delantero',25.50,0),(25,'Guardabarro delantero',3300.00,6),(26,'Optica delantera',3450.00,6),(27,'Motor limpiaparabrisas - Palio 1.3',1340.00,2);
 /*!40000 ALTER TABLE `repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-23 11:02:26
+-- Dump completed on 2019-11-29 17:42:37

@@ -26,6 +26,7 @@
 		boolean estaModificado = true;
 		if (request.getParameter("nro_reparacion") != null) {
 			request.getSession().setAttribute("nro_reparacion", request.getParameter("nro_reparacion"));
+			request.getSession().setAttribute("reparacion", cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion"))));
 			estaModificado = false;
 		}
 		String nro_reparacion_string = request.getSession().getAttribute("nro_reparacion").toString();	
@@ -39,7 +40,9 @@
  			request.getSession().setAttribute("repuestosSeleccionadosOriginal", cldr.traerRepuestosReparacion(nro_reparacion));
  			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
  		}
-			
+ 		if(request.getSession().getAttribute("reparacion") != null){
+			rep = (Reparacion) request.getSession().getAttribute("reparacion");
+		}
 	%>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
@@ -75,7 +78,12 @@
 						value="<%=rep.getNroReparacion()%>"
 						readonly="readonly"></input>
 				</div></label> 
-				
+				<label><div id=observaciones class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Reparaciones a realizar</span>
+					</div>
+					<textarea name="reparaciones_a_realizar" rows="10" cols="102" readonly="readonly" maxlength="1000"><%if (request.getSession().getAttribute("reparacion") != null) {%><%=rep.getDetalleInicial()%><%}%><%else {%><%}%></textarea>
+				</div></label>
 				<label><div id=observaciones class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>

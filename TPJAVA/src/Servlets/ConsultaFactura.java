@@ -45,7 +45,7 @@ public class ConsultaFactura extends HttpServlet {
 		if(dia != null & dia.length() > 0 && mes != null && mes.length() > 0 && anio != null && anio.length() > 0){
 			if(ValidacionesIngresoDatos.validaSoloNumeros(dia) && ValidacionesIngresoDatos.validaLongitudHasta2(dia)
 			   && ValidacionesIngresoDatos.validaSoloNumeros(mes) && ValidacionesIngresoDatos.validaLongitudHasta2(mes)
-			   && ValidacionesIngresoDatos.validaSoloNumeros(anio) && ValidacionesIngresoDatos.validaLongitudHasta4(anio)){
+			   && ValidacionesIngresoDatos.validaSoloNumeros(anio) && ValidacionesIngresoDatos.validaLongitudIgualA4(anio)){
 			} else {
 				band = false;
 			}

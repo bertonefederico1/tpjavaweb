@@ -20,12 +20,18 @@
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String fechaHoy = formatter.format(fecha);
 		request.getSession().setAttribute("tipo", "nueva_reparacion");
+		Reparacion rep = new Reparacion ();
+		ControladorReparacion cr = new ControladorReparacion();
 		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
 		if (request.getParameter("dni") != null){
 			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("dni"));
 		}
 		if (request.getParameter("nro_reparacion") != null){
 			request.getSession().setAttribute("reparacion_seleccionada", request.getParameter("nro_reparacion"));
+			request.getSession().setAttribute("reparacion", cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion"))));
+		}
+		if(request.getSession().getAttribute("reparacion") != null){
+			rep = (Reparacion) request.getSession().getAttribute("reparacion");
 		}
 	%>
 	<div class="container">
@@ -70,7 +76,14 @@
 							class="btn btn-success">+ Agregar</button>
 					</div>
 				</div>
-			</label> <label><div id=observaciones class="input-group mb-3">
+			</label> 
+			<label><div id=observaciones class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">Reparaciones a realizar</span>
+					</div>
+					<textarea name="reparaciones_a_realizar" rows="10" cols="102" readonly="readonly" maxlength="1000"><%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=rep.getDetalleInicial()%><%}%><%else {%><%}%></textarea>
+				</div></label>
+			<label><div id=observaciones class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">Reparaciones Realizadas</span>
 					</div>
