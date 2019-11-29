@@ -12,7 +12,6 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ArrayList<Reparacion> misReparaciones = (ArrayList<Reparacion>)request.getSession().getAttribute("misReparaciones");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -33,6 +32,7 @@
 							<th scope="col">ESTADO</th>
 							<th scope="col">CLIENTE</th>
 							<th scope="col">VEHICULO</th>
+							<th scope="col">PATENTE</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,7 +44,8 @@
 							<td><%=rep.getFechaIngreso()%></td>
 							<td><%=rep.getEstado()%></td>
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>
-							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%> </td>
+							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%></td>
+							<td><%=rep.getAuto().getPatente()%></td>
 							<td><div>
 									<a href="ConsultaReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-outline-info">Ver más</a>
 									<a href="ConfirmarEliminarReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-danger btn-sm">Eliminar</a>

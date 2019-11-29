@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorVehiculo;
+import logica.ValidacionesIngresoDatos;
 import entidades.*;
 
 /**
@@ -37,24 +38,53 @@ public class AgregarVehiculo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaVehiculo");
 		String dni = request.getParameter("dni");
 		String patente = request.getParameter("patente");
 		String marca = request.getParameter("marca");
 		String modelo = request.getParameter("modelo");
-		int anio_fabricacion = Integer.parseInt(request.getParameter("anio_fabricacion"));
-		Float cantidad_km = Float.parseFloat(request.getParameter("cantidad_km"));
+		String anio_fabricacion_string = request.getParameter("anio_fabricacion");
+		String cantidad_km_string = request.getParameter("cantidad_km");
+		boolean band = true;
 		Auto auto = new Auto();
-		ControladorVehiculo cv = new ControladorVehiculo();
-		Cliente cli = new Cliente();
-		auto.setMarca(marca);
-		auto.setModelo(modelo);
-		auto.setPatente(patente);
-		auto.setCantKM(cantidad_km);
-		auto.setAnio(anio_fabricacion);
-		cli.setDni(dni);
-		auto.setCli(cli);
-		cv.agregarVehiculo(auto);
-		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		if (patente != null && patente.length() > 0 && marca != null && marca.length() > 0 && modelo != null && modelo.length() > 0){
+			if (ValidacionesIngresoDatos.validaLongitudHasta9(patente) && ValidacionesIngresoDatos.validaLongitudHasta100(marca)
+				&& ValidacionesIngresoDatos.validaLongitudHasta100(modelo)){
+			} else{
+				band = false;
+			}
+			if (anio_fabricacion_string != null && anio_fabricacion_string.length() > 0){
+				if (ValidacionesIngresoDatos.validaSoloNumeros(anio_fabricacion_string) && ValidacionesIngresoDatos.validaLongitudIgualA4(anio_fabricacion_string)){
+					auto.setAnio(Integer.parseInt(anio_fabricacion_string));
+				} else {
+					band = false;
+				}
+			if (cantidad_km_string != null && cantidad_km_string.length() > 0){
+				if (ValidacionesIngresoDatos.validaSoloNumeros(cantidad_km_string) && ValidacionesIngresoDatos.validaLongitudHasta10(cantidad_km_string)){
+					auto.setCantKM(Integer.parseInt(cantidad_km_string));
+				} else {
+					band = false;
+				}
+			}
+			}
+		} else {
+			band = false;
+		}
+		
+		if (band){
+			ControladorVehiculo cv = new ControladorVehiculo();
+			Cliente cli = new Cliente();
+			auto.setMarca(marca);
+			auto.setModelo(modelo);
+			auto.setPatente(patente);
+			cli.setDni(dni);
+			auto.setCli(cli);
+			cv.agregarVehiculo(auto);
+			request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}
+		
 	}
 
 }

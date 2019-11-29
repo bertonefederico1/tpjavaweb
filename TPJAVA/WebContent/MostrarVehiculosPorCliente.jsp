@@ -23,7 +23,7 @@
 </div>
 <div class="container buscar">
 	<form class="form" method="POST" action="VehiculosPorClienteFiltro">
-		<input type="text" class="form-control" name="txtbuscar" placeholder="Nombre y Apellido"> 
+		<input type="text" class="form-control" name="txtbuscar" placeholder="Cliente o Patente"> 
 		<input class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
@@ -36,7 +36,7 @@
 					<thead>
 						<tr>
 							<th scope="col">DNI</th>
-							<th scope="col">NOMBRE Y APELLIDO</th>
+							<th scope="col">CLIENTE</th>
 							<th scope="col">PATENTE</th>
 							<th scope="col">MARCA Y MODELO</th>
 							<th scope="col">AÑO</th>

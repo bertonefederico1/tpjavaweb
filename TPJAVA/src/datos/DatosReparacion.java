@@ -312,11 +312,12 @@ public class DatosReparacion {
 					+ "ON rep.patente = a.patente "
 				+ "INNER JOIN clientes c "
 					+ "ON a.dni = c.dni "
-				+ "WHERE rep.activa = 'si' AND c.nombre_y_apellido LIKE ? "
+				+ "WHERE rep.activa = 'si' AND (c.nombre_y_apellido LIKE ? OR a.patente LIKE ?)"
 				+ "ORDER BY rep.nro_reparacion";
 	 	try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
-			pstmt.setString(1,"%"+ nombuscar + "%");
+			pstmt.setString(1,"%"+ nombuscar +"%");
+			pstmt.setString(2,"%"+ nombuscar +"%");
 			rs = pstmt.executeQuery();
 			if (rs!=null){
 				while (rs.next()) {

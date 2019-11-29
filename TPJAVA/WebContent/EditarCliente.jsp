@@ -13,8 +13,7 @@
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		String dni = request.getParameter("dni");
-		String nombre_y_apellido = request
-				.getParameter("nombre_y_apellido");
+		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String mail = request.getParameter("mail");

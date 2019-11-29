@@ -6,7 +6,7 @@ public class Auto {
 	private String marca;
 	private String modelo;
 	private int anio;
-	private float cantKM;
+	private int cantKM;
 	private Cliente cli;
 	
 	
@@ -34,10 +34,10 @@ public class Auto {
 	public void setAnio(int anio) {
 		this.anio = anio;
 	}
-	public float getCantKM() {
+	public int getCantKM() {
 		return cantKM;
 	}
-	public void setCantKM(float cantKM) {
+	public void setCantKM(int cantKM) {
 		this.cantKM = cantKM;
 	}
 	public Cliente getCli() {

@@ -37,6 +37,7 @@ public class ModificarProveedor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("error", "validaProveedor");
 		String cuit = request.getParameter("cuit");
 		String razon_social = request.getParameter("razon_social");
 		String direccion = request.getParameter("direccion");
@@ -46,9 +47,9 @@ public class ModificarProveedor extends HttpServlet {
 		Proveedor prove = new Proveedor();
 		prove.setCuit(cuit);
 		prove.setDireccion(direccion);
-		prove.setMail(email);
 		prove.setRazonSocial(razon_social);
 		prove.setTelefono(telefono);
+		prove.setMail(email);
 		if (razon_social != null && razon_social.length() > 0 && direccion != null && direccion.length() > 0){
 				if (ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
 					if(email != null && email.length() > 0){

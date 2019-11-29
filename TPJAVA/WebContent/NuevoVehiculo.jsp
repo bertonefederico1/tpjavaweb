@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label for="patente"><b>Patente</b></label> <input type="text"
-					class="form-control" id="patente" name="patente" maxlength="9"
+					class="form-control" id="patente" name="patente" maxlength="10"
 					placeholder="ABC 135" required>
 			</div>
 			<div class="form-group">

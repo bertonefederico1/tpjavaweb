@@ -19,7 +19,7 @@ public class DatosVehiculo {
 			pstmt.setString(2, auto.getMarca());
 			pstmt.setString(3, auto.getModelo());
 			pstmt.setInt(4, auto.getAnio());
-			pstmt.setFloat(5, auto.getCantKM());
+			pstmt.setInt(5, auto.getCantKM());
 			pstmt.setString(6, patente_original);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -75,7 +75,7 @@ public class DatosVehiculo {
 					auto.setMarca(rs.getString("marca"));
 					auto.setModelo(rs.getString("modelo"));
 					auto.setAnio(rs.getInt("anio_fabricacion"));
-					auto.setCantKM(rs.getFloat("cantidad_km"));
+					auto.setCantKM(rs.getInt("cantidad_km"));
 					auto.setCli(cli);
 					misAutos.add(auto);
 				}
@@ -141,7 +141,7 @@ public class DatosVehiculo {
 			pstmt.setString(2, auto.getMarca());
 			pstmt.setString(3, auto.getModelo());
 			pstmt.setInt(4, auto.getAnio());
-			pstmt.setFloat(5, auto.getCantKM());
+			pstmt.setInt(5, auto.getCantKM());
 			pstmt.setString(6, auto.getCli().getDni());
 			pstmt.setString(7, "si");
 			pstmt.executeUpdate();
@@ -176,7 +176,7 @@ public class DatosVehiculo {
 					auto.setMarca(rs.getString("marca"));
 					auto.setModelo(rs.getString("modelo"));
 					auto.setAnio(rs.getInt("anio_fabricacion"));
-					auto.setCantKM(rs.getFloat("cantidad_km"));
+					auto.setCantKM(rs.getInt("cantidad_km"));
 					misAutos.add(auto);
 				}
 			}

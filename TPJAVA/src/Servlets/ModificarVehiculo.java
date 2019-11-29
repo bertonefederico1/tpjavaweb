@@ -60,8 +60,8 @@ public class ModificarVehiculo extends HttpServlet {
 					}
 				}
 				if(cantidad_km != null && cantidad_km.length() > 0){
-					if(ValidacionesIngresoDatos.validaSoloNumerosFloat(cantidad_km) && ValidacionesIngresoDatos.validaLongitudHasta10(cantidad_km)){
-						auto.setCantKM(Float.parseFloat(cantidad_km));
+					if(ValidacionesIngresoDatos.validaSoloNumeros(cantidad_km) && ValidacionesIngresoDatos.validaLongitudHasta10(cantidad_km)){
+						auto.setCantKM(Integer.parseInt((cantidad_km)));
 					}else {
 						band = false;
 					}

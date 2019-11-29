@@ -49,11 +49,6 @@ public class NuevoProveedor extends HttpServlet {
 		String email = request.getParameter("mail");
 		boolean band = true;
 		Proveedor prove = new Proveedor();
-		prove.setCuit(cuit);
-		prove.setDireccion(direccion);
-		prove.setMail(email);
-		prove.setRazonSocial(razon_social);
-		prove.setTelefono(telefono);
 		if (cuit != null && cuit.length() > 0 && razon_social != null && razon_social.length() > 0 && direccion != null 
 			&& direccion.length() > 0){
 			if (ValidacionesIngresoDatos.validaSoloNumeros(cuit_prefijo) && ValidacionesIngresoDatos.validaSoloNumeros(cuit_mitad)
@@ -62,12 +57,14 @@ public class NuevoProveedor extends HttpServlet {
 				&& ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
 				if(email != null && email.length() > 0){
 					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
+						prove.setMail(email);
 					} else {
 						band = false;
 					}
 				}
 				if (telefono != null && telefono.length() > 0){
 					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+						prove.setTelefono(telefono);
 					} else {
 						band = false;
 					}
@@ -81,6 +78,9 @@ public class NuevoProveedor extends HttpServlet {
 		
 		if (band){
 			ControladorProveedor cp = new ControladorProveedor();
+			prove.setCuit(cuit);
+			prove.setDireccion(direccion);
+			prove.setRazonSocial(razon_social);
 			cp.agregarProveedor(prove);
 			request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
 		}else {
