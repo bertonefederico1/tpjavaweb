@@ -22,9 +22,9 @@ public class ValidacionesIngresoDatos {
 	
 	public static boolean validaSoloNumeros(String entrada){
 		boolean band = true;
-		int entrada_int;
+		long entrada_long;
 		try{
-			entrada_int = Integer.parseInt(entrada);
+			entrada_long = Long.parseLong(entrada);
 		}catch (Exception e){
 			band = false;
 		}
