@@ -2,11 +2,16 @@ package logica;
 
 import datos.*;
 import entidades.*;
+
 import java.util.*;
 
 public class ControladorLineaDeRepuesto {
 	
 	DatosLineaDeRepuesto dldr= new DatosLineaDeRepuesto();
+	
+	public ArrayList<LineaDeRepuesto> repuestosEntreFechas(String dia_inicio, String mes_inicio, String anio_inicio, String dia_fin, String mes_fin, String anio_fin){
+		return dldr.repuestosEntreFechas(dia_inicio, mes_inicio, anio_inicio, dia_fin, mes_fin, anio_fin);
+	}
 	
 	public Float getPrecioTotal(int nro_reparacion){
 		return dldr.getPrecioTotal(nro_reparacion);

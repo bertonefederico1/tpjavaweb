@@ -14,6 +14,11 @@ public class ControladorRepuesto {
 		rf = new RepuestoFiltrar();
 	}
 	
+	
+	public ArrayList<Repuesto> traerRepuestosBajoStock(){
+		return dr.traerRepuestosBajoStock();
+	}
+	
 	public ArrayList<Repuesto> traerRepuestos(){
 		return dr.traerRepuestos();
 	}

@@ -71,6 +71,8 @@
         		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
           		<a class="dropdown-item" href="Reparaciones.jsp">Reparaciones</a>
           		<a class="dropdown-item" href="ConsultarFactura.jsp">Facturas</a>
+          		<a class="dropdown-item" href="RepuestosBajoStock.jsp">Repuestos con bajo stock</a>
+          		<a class="dropdown-item" href="RepuestosUsadosEntreFechas.jsp">Repuestos utilizados entre fechas</a>
           		</div>
       			</li>
 			</ul>

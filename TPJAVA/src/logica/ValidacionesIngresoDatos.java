@@ -1,8 +1,28 @@
 package logica;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.*;
+import java.text.ParseException;
 
 public class ValidacionesIngresoDatos {
+	
+	public static boolean fechaInicioMenorAFechaFin(String fecha_inicio, String fecha_fin){
+		boolean band = true;
+		try{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		    Date date_inicio = sdf.parse(fecha_inicio);
+		    Date date_fin = sdf.parse(fecha_fin);
+		    if(date_inicio.after(date_fin)){
+		    	band = false;
+		    }
+		}
+		catch(ParseException ex){
+			ex.printStackTrace();
+		}
+		return band;	    
+	}
+
 	
 	public static boolean ingresoYClienteVacio(String dni, String cod_reparacion_string){
 		if(dni.equalsIgnoreCase("Cliente") || (cod_reparacion_string.equalsIgnoreCase("Reparacion"))){

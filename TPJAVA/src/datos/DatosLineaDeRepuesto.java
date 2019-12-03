@@ -9,6 +9,53 @@ import entidades.*;
 
 public class DatosLineaDeRepuesto {
 	
+	public ArrayList<LineaDeRepuesto> repuestosEntreFechas(String dia_inicio, String mes_inicio, String anio_inicio, String dia_fin, String mes_fin, String anio_fin){
+		ArrayList<LineaDeRepuesto> misLineas = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT rep.cod_repuesto, rep.descripcion, sum(rr.cantidad) AS cantidad "
+						+ "FROM reparaciones repa "
+						+ "INNER JOIN repa_repuestos rr "
+						+ "ON repa.nro_reparacion = rr.nro_reparacion "
+						+ "INNER JOIN repuestos rep "
+						+ "ON rep.cod_repuesto = rr.cod_repuesto "
+						+ "WHERE repa.fecha_fin between ? AND ? AND repa.activa = 'si' "
+						+ "GROUP BY 1, 2";
+	 	try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
+			String fecha_inicio= anio_inicio + "-" + mes_inicio + "-" + dia_inicio;
+			String fecha_fin= anio_fin + "-" + mes_fin + "-" + dia_fin;
+			pstmt.setString(1, fecha_inicio);
+			pstmt.setString(2, fecha_fin);
+			rs = pstmt.executeQuery();
+			if (rs!=null){
+				while (rs.next()) {
+					LineaDeRepuesto ldr = new LineaDeRepuesto();
+					Repuesto rep = new Repuesto();
+					rep.setCodigo(rs.getInt("rep.cod_repuesto"));
+					rep.setDescripcion(rs.getString("rep.descripcion"));
+					ldr.setCantidad(rs.getInt("cantidad"));
+					ldr.setRepuesto(rep);
+					misLineas.add(ldr);
+				}
+		 	}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				pstmt.close();
+				rs.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return misLineas;
+	}
+	
 	public Float getPrecioTotal(int nro_reparacion){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
