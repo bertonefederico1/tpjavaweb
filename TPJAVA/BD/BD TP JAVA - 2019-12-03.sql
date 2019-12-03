@@ -42,7 +42,7 @@ CREATE TABLE `autos` (
 
 LOCK TABLES `autos` WRITE;
 /*!40000 ALTER TABLE `autos` DISABLE KEYS */;
-INSERT INTO `autos` VALUES ('AB 905 PQ','Honda','Fit',0,0,40121097,'no'),('ABE 111','Prueba 2','Prueba',2019,0,11111111,'no'),('EVL 687','Honda','Fit',2009,10000,37817242,'si'),('GCJ 523','Ford','Mondeo',2019,34700,41091000,'si'),('HCK 456','Ford','Falcon',1980,190000,40121987,'si'),('IPC 102','Honda','City',2010,19000,37817242,'si'),('Papa 12','Papa movil','Vaticano',2020,0,40121097,'si'),('sdf','sdf','sdf',0,0,40121987,'no');
+INSERT INTO `autos` VALUES ('ABC345','Honda','Fit',2018,13450,40121097,'si'),('BCH 471','Fiat','Palio',2005,54000,40121097,'si'),('HJK 999','Ford ','Falcon',1985,300000,37817242,'si');
 /*!40000 ALTER TABLE `autos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (11111111,'Abel jeje','1111111','',''),(37817242,'Juan Perez','mitre 1234','','4212222'),(40121097,'Francisco 1','Entre Rios 2019','iojio@dddf',''),(40121987,'Elsa Lame','catamarca 1236','elsa21@gmail.com','155422123'),(41091000,'Esteban Quito','san juan 1287','esteban.quito@hotmail.com','425678');
+INSERT INTO `clientes` VALUES (37817242,'Federico Bertone','Catamarca 1431','bertonefederico1@gmail.com','3465535153'),(40121097,'Andres Bertone','Entre Rios 2019','andresbertone@gmail.com','');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `mecanicos` (
 
 LOCK TABLES `mecanicos` WRITE;
 /*!40000 ALTER TABLE `mecanicos` DISABLE KEYS */;
-INSERT INTO `mecanicos` VALUES (1,'Hugo San','Saavedra 1050','huguito21@gmail.com','420927','1'),(6,'Alberto Marcovich','Sarmiento 1987','','4546','6');
+INSERT INTO `mecanicos` VALUES (1,'Hugo San','Saavedra 1050','huguito21@gmail.com','420927','1'),(6,'Alberto Marcovich','Sarmiento 1987','','456123','6');
 /*!40000 ALTER TABLE `mecanicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,8 +109,10 @@ DROP TABLE IF EXISTS `politicas_organizacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `politicas_organizacion` (
+  `fecha_desde` date NOT NULL,
   `turnos_max_por_dia` int(11) DEFAULT NULL,
-  `stock_minimo` int(11) DEFAULT NULL
+  `stock_minimo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`fecha_desde`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -120,6 +122,7 @@ CREATE TABLE `politicas_organizacion` (
 
 LOCK TABLES `politicas_organizacion` WRITE;
 /*!40000 ALTER TABLE `politicas_organizacion` DISABLE KEYS */;
+INSERT INTO `politicas_organizacion` VALUES ('2019-12-02',4,3);
 /*!40000 ALTER TABLE `politicas_organizacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +203,7 @@ CREATE TABLE `repa_repuestos` (
 
 LOCK TABLES `repa_repuestos` WRITE;
 /*!40000 ALTER TABLE `repa_repuestos` DISABLE KEYS */;
-INSERT INTO `repa_repuestos` VALUES (19,24,1),(19,25,2),(19,27,1),(20,26,2),(20,27,1),(22,24,2),(24,26,2);
+INSERT INTO `repa_repuestos` VALUES (25,24,2),(26,24,2),(26,25,1),(26,27,2),(28,24,1);
 /*!40000 ALTER TABLE `repa_repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +233,7 @@ CREATE TABLE `reparaciones` (
   KEY `fk_reparaciones_autos_idx` (`patente`),
   CONSTRAINT `fk_reparaciones_autos` FOREIGN KEY (`patente`) REFERENCES `autos` (`patente`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_reparaciones_mecanicos` FOREIGN KEY (`matricula`) REFERENCES `mecanicos` (`matricula`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +242,7 @@ CREATE TABLE `reparaciones` (
 
 LOCK TABLES `reparaciones` WRITE;
 /*!40000 ALTER TABLE `reparaciones` DISABLE KEYS */;
-INSERT INTO `reparaciones` VALUES (19,'2019-11-28','2019-11-28','2019-11-28','2019-11-29','Entregada','Tests reparación final (Modificar reparación)','test reparaciones a realizar FINAL (ingreso)','test observaciones FINAL (ingreso)','EVL 687',1,'si',0.00),(20,'2019-11-28','2019-11-28','2019-11-28','2019-11-28','Entregada','Reparaciones realizadas (nueva reparación)','prueba 2 ingreso','prueba 2 ingreso','GCJ 523',1,'si',234.00),(21,'2019-11-28','2019-11-28','2019-11-28','2019-11-28','Entregada','prueba facturar','prueba facturar','prueba facturar','GCJ 523',1,'si',100.00),(22,'2019-11-29','2019-11-29','2019-11-29','2019-11-29','Entregada','Cambio de mecanico','Prueba Papa movil','prueba papa movil','Papa 12',6,'si',100.00),(24,'2019-11-29','2019-11-29','2019-11-29','2019-11-29','Entregada','REPARACIONES REALIZADAS - PRUEBA FINAL - MODIFICADA','REPARACIONES A REALIZAR - PRUEBA FINAL','OBSERVACIONES - PRUEBA FINAL','GCJ 523',1,'si',1501.00);
+INSERT INTO `reparaciones` VALUES (25,'2019-12-02','2019-12-02','2019-12-02','2019-12-02','Entregada','Cambio de los 2 focos delanteros','Cambiar los 2 focos delanteros','Puerta trasera izquierda rayada','ABC345',1,'si',200.00),(26,'2019-12-02','2019-12-02','2019-12-03',NULL,'Finalizada','Se cambió el guardabarro pedido y se revisó presión de las cubiertas','colocar guardabarro delantero derecho','','HJK 999',1,'si',450.00),(27,'2019-12-02',NULL,NULL,NULL,'Ingresada',NULL,'cambiar:\r\n- motor del limpiaparabrisas\r\n- óptica delantera izquierda\r\n','Espejo lateral izquierdo rayado','BCH 471',NULL,'si',NULL),(28,'2019-12-02','2019-12-02',NULL,NULL,'En curso','xfcdfggh','a realiafaf','sdfsdsdf','BCH 471',1,'si',111.00);
 /*!40000 ALTER TABLE `reparaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +268,7 @@ CREATE TABLE `repuestos` (
 
 LOCK TABLES `repuestos` WRITE;
 /*!40000 ALTER TABLE `repuestos` DISABLE KEYS */;
-INSERT INTO `repuestos` VALUES (24,'Foco delantero',25.50,0),(25,'Guardabarro delantero',3300.00,6),(26,'Optica delantera',3450.00,6),(27,'Motor limpiaparabrisas - Palio 1.3',1340.00,2);
+INSERT INTO `repuestos` VALUES (24,'Foco delantero',25.50,5),(25,'Guardabarro delantero',3300.00,3),(26,'Optica delantera',3450.00,6),(27,'Motor limpiaparabrisas - Palio 1.3',1340.00,0);
 /*!40000 ALTER TABLE `repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,6 +306,34 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'tpjava'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `rep_stock_minimo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rep_stock_minimo`()
+BEGIN
+select max(fecha_desde) into @ult_fecha
+from politicas_organizacion
+where fecha_desde <= current_date();
+
+select stock_minimo into @stock_min
+from politicas_organizacion po
+where fecha_desde = @ult_fecha;
+
+select * from repuestos
+where stock <= @stock_min;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -313,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-29 17:42:37
+-- Dump completed on 2019-12-03 11:44:50
