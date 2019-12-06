@@ -40,6 +40,14 @@ public class ValidacionesIngresoDatos {
 		}
 	}
 	
+	public static boolean clienteVacio (String dni) {
+		if (dni.equalsIgnoreCase("Cliente")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public static boolean validaSoloNumeros(String entrada){
 		boolean band = true;
 		long entrada_long;

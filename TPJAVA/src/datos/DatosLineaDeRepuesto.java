@@ -16,9 +16,9 @@ public class DatosLineaDeRepuesto {
 		String query = "SELECT rep.cod_repuesto, rep.descripcion, sum(rr.cantidad) AS cantidad "
 						+ "FROM reparaciones repa "
 						+ "INNER JOIN repa_repuestos rr "
-						+ "ON repa.nro_reparacion = rr.nro_reparacion "
+							+ "ON repa.nro_reparacion = rr.nro_reparacion "
 						+ "INNER JOIN repuestos rep "
-						+ "ON rep.cod_repuesto = rr.cod_repuesto "
+							+ "ON rep.cod_repuesto = rr.cod_repuesto "
 						+ "WHERE repa.fecha_fin between ? AND ? AND repa.activa = 'si' "
 						+ "GROUP BY 1, 2";
 	 	try {

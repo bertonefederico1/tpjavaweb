@@ -29,6 +29,8 @@
  		request.getSession().setAttribute("repuestosFactura",cldr.inicializarLineas());
  		request.getSession().setAttribute("manoDeObra", 0.0);
  		request.getSession().setAttribute("precio_total", 0);
+ 	} else if (request.getParameter("tipo").equalsIgnoreCase("turno")) {
+ 		request.getSession().setAttribute("tipo", "Turno");
  	}
 	request.getSession().removeAttribute("reparacion_seleccionada");
 %>
@@ -66,7 +68,7 @@
 						<tr>
 							<td>
 								<div class="radio">
- 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%}%> 
+ 									<label><input type="radio" onclick=<% if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%} else if(request.getParameter("tipo").equalsIgnoreCase("factura")) {%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%} else if (request.getParameter("tipo").equalsIgnoreCase("turno")) {%>"location='NuevoTurno.jsp?dni=<%=cl.getDni()%>'"<%}%> 
  									id='express' name="optradio"></label>
 								</div>
 							</td>
@@ -81,7 +83,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href=<%if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"Ingreso.jsp"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"NuevaReparacion.jsp"<%} else {%>"Facturar.jsp"<%}%>><< Volver</a>
+				<a href=<%if (request.getParameter("tipo").equalsIgnoreCase("ingreso")) {%>"Ingreso.jsp"<%} else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"NuevaReparacion.jsp"<%} else if (request.getParameter("tipo").equalsIgnoreCase("factura")) {%>"Facturar.jsp"<%} else if (request.getParameter("tipo").equalsIgnoreCase("turno")) {%>"NuevoTurno.jsp"<%}%>><< Volver</a>
 			</div>
 		</div>
 	</div>

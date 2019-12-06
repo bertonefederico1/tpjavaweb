@@ -13,7 +13,8 @@
 <a href=<%if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("ingreso")) {%>"Ingreso.jsp"<%} 
   		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("nueva_reparacion")){%>"NuevaReparacion.jsp"<%}
   		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("facturar")){%>"Facturar.jsp"<%}
-  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")){%>"EditarReparacion.jsp"<%}%> class="btn btn-secondary">Cancelar</a>
+  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")){%>"EditarReparacion.jsp"<%}
+  		else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("nuevo_turno")) {%>"NuevoTurno.jsp"<%}%> class="btn btn-secondary">Cancelar</a>
 </div>
 </body>
 </html>

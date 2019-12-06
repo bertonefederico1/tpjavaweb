@@ -15,7 +15,8 @@
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaNuevaReparacion")){%>"Principal.jsp"<%}
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaVehiculo")){%>"MostrarVehiculosPorCliente.jsp"<%}
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaFechaFactura")){%>"ConsultarFactura.jsp"<%}
-  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaRepuestosEntreFechas")){%>"RepuestosUsadosEntreFechas.jsp"<%}%> class="alert-link">VOLVER</a>
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaRepuestosEntreFechas")){%>"RepuestosUsadosEntreFechas.jsp"<%}
+  		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaNuevoTurno")) {%>"Principal.jsp"<%}%> class="alert-link">VOLVER</a>
 </div>
 </body>
 </html>

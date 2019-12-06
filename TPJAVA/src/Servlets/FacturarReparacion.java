@@ -42,10 +42,9 @@ public class FacturarReparacion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nro_reparacion_string = request.getParameter("cod_reparacion");
 		String dni = request.getParameter("dni_cliente");
-		ValidacionesIngresoDatos valida = new ValidacionesIngresoDatos();
 		ControladorReparacion cr = new ControladorReparacion();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		if(valida.ingresoYClienteVacio(dni, nro_reparacion_string)){
+		if(ValidacionesIngresoDatos.ingresoYClienteVacio(dni, nro_reparacion_string)){
 			response.sendRedirect("Facturar.jsp");
 		}else{
 			int nro_reparacion = Integer.parseInt(nro_reparacion_string);

@@ -3,15 +3,22 @@ package entidades;
 import java.util.Date;
 
 public class Turno {
+	private int nroTurno;
 	private Date fechaTurno;
 	private Date fechaCancelacion;
+	private Cliente cli;
 	
-	
-	public Date getFechaHoraTurno() {
+	public int getNroTurno() {
+		return nroTurno;
+	}
+	public void setNroTurno(int nroTurno) {
+		this.nroTurno = nroTurno;
+	}
+	public Date getFechaTurno() {
 		return fechaTurno;
 	}
-	public void setFechaHoraTurno(Date fechaHoraTurno) {
-		this.fechaTurno = fechaHoraTurno;
+	public void setFechaTurno(Date fechaTurno) {
+		this.fechaTurno = fechaTurno;
 	}
 	public Date getFechaCancelacion() {
 		return fechaCancelacion;
@@ -19,4 +26,12 @@ public class Turno {
 	public void setFechaCancelacion(Date fechaCancelacion) {
 		this.fechaCancelacion = fechaCancelacion;
 	}
+	public Cliente getCliente() {
+		return cli;
+	}
+	public void setCliente(Cliente cli) {
+		this.cli = cli;
+	}
+	
+
 }
