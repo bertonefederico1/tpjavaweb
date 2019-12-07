@@ -3,10 +3,6 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
-import entidades.Auto;
-import entidades.Cliente;
-import entidades.LineaDeRepuesto;
-import entidades.Reparacion;
 import entidades.Repuesto;
 
 public class DatosRepuesto {

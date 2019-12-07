@@ -66,10 +66,14 @@ public class GenerarTurno extends HttpServlet {
 			} else {
 				band = false;
 			}
-				
 			if (band) {
 				ControladorTurno ct = new ControladorTurno();
-				ct.registrarTurno(fecha_turno, dni_cliente);
+				if (ct.disponibilidadTurnosAFecha (fecha_turno)) {
+					ct.registrarTurno(fecha_turno, dni_cliente);
+					response.sendRedirect("DatosGuardados.html");
+				} else {
+					request.getRequestDispatcher("AvisoTurnosCompleto.jsp").forward(request, response);;
+				}
 			} else {
 				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 			}

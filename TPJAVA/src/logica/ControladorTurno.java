@@ -14,4 +14,7 @@ public class ControladorTurno {
 		dt.registrarTurno(fecha_turno, dni_cliente);
 	}
 
+	public boolean disponibilidadTurnosAFecha (String fecha_turno) {
+		return dt.disponibilidadTurnosAFecha (fecha_turno);
+	}
 }
