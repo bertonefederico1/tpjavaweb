@@ -42,7 +42,7 @@ CREATE TABLE `autos` (
 
 LOCK TABLES `autos` WRITE;
 /*!40000 ALTER TABLE `autos` DISABLE KEYS */;
-INSERT INTO `autos` VALUES ('ABC345','Honda','Fit',2018,13450,40121097,'si'),('BCH 471','Fiat','Palio',2005,54000,40121097,'si'),('HJK 999','Ford ','Falcon',1985,300000,37817242,'si');
+INSERT INTO `autos` VALUES ('ABC345','Honda','Fit',2018,13450,40121097,'no'),('BCH 471','Fiat','Palio',2005,54000,40121097,'no'),('HJK 999','Ford ','Falcon',1985,300000,37817242,'si');
 /*!40000 ALTER TABLE `autos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,6 +59,7 @@ CREATE TABLE `clientes` (
   `direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefono` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`dni`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -69,7 +70,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (37817242,'Federico Bertone','Catamarca 1431','bertonefederico1@gmail.com','3465535153'),(40121097,'Andres Bertone','Entre Rios 2019','andresbertone@gmail.com','');
+INSERT INTO `clientes` VALUES (37817242,'Federico Bertone','Catamarca 1431','bertonefederico1@gmail.com','3465535153','si'),(40121097,'Andres Bertone','Entre Rios 2019','andresbertone@gmail.com','','si');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,6 +88,7 @@ CREATE TABLE `mecanicos` (
   `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefono` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contrasenia` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`matricula`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,7 +99,7 @@ CREATE TABLE `mecanicos` (
 
 LOCK TABLES `mecanicos` WRITE;
 /*!40000 ALTER TABLE `mecanicos` DISABLE KEYS */;
-INSERT INTO `mecanicos` VALUES (1,'Hugo San','Saavedra 1050','huguito21@gmail.com','420927','1'),(6,'Alberto Marcovich','Sarmiento 1987','','456123','6');
+INSERT INTO `mecanicos` VALUES (1,'Hugo San','Saavedra 1050','huguito21@gmail.com','420927','1','si'),(6,'Alberto Marcovich','Sarmiento 1987','','456123','6','si');
 /*!40000 ALTER TABLE `mecanicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,6 +167,7 @@ CREATE TABLE `proveedores` (
   `telefono` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`cuit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -175,7 +178,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES ('20-37817454-1','COMON S.A','4219999','comonsa@gmail.com','Alberdi 1212'),('21-37897099-1','Pepito S.R.L','15657892','pepin65@yahoo.com','san martin 1200');
+INSERT INTO `proveedores` VALUES ('20-37817454-1','COMON S.A','4219999','comonsa@gmail.com','Alberdi 1212','si'),('21-37897099-1','Pepito S.R.L','15657892','pepin65@yahoo.com','san martin 1200','si');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,6 +261,7 @@ CREATE TABLE `repuestos` (
   `descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `precio` decimal(10,2) unsigned NOT NULL,
   `stock` int(11) NOT NULL,
+  `activo` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`cod_repuesto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -268,7 +272,7 @@ CREATE TABLE `repuestos` (
 
 LOCK TABLES `repuestos` WRITE;
 /*!40000 ALTER TABLE `repuestos` DISABLE KEYS */;
-INSERT INTO `repuestos` VALUES (24,'Foco delantero',25.50,5),(25,'Guardabarro delantero',3300.00,3),(26,'Optica delantera',3450.00,6),(27,'Motor limpiaparabrisas - Palio 1.3',1340.00,0);
+INSERT INTO `repuestos` VALUES (24,'Foco delantero',25.50,5,'si'),(25,'Guardabarro delantero',3300.00,3,'si'),(26,'Optica delantera',3450.00,6,'si'),(27,'Motor limpiaparabrisas - Palio 1.3',1340.00,0,'si');
 /*!40000 ALTER TABLE `repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +362,7 @@ from politicas_organizacion po
 where fecha_desde = @ult_fecha;
 
 select * from repuestos
-where stock <= @stock_min;
+where stock <= @stock_min AND activo = "si";
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -375,4 +379,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-09  8:26:06
+-- Dump completed on 2019-12-09  9:52:56

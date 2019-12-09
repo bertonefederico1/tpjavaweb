@@ -14,7 +14,7 @@ public class DatosProveedor {
 		ResultSet rs = null;
 	 	try {
 			stmt= Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM proveedores order by razon_social");
+			rs = stmt.executeQuery("SELECT * FROM proveedores WHERE activo = 'si' ORDER BY razon_social");
 			if (rs!=null){
 				while (rs.next()) {
 					Proveedor prov = new Proveedor();
@@ -95,10 +95,10 @@ public class DatosProveedor {
 	
 	public void eliminarProveedor (String cuit){
 		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM proveedores WHERE cuit= ?");
+		String sql= ("UPDATE proveedores SET activo= 'no' WHERE cuit = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
-			pstmt.setString(1,cuit);
+			pstmt.setString(1, cuit);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

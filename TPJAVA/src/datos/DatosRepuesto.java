@@ -52,7 +52,7 @@ public class DatosRepuesto {
 		
 		try {
 			stmt = Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM repuestos order by descripcion");
+			rs = stmt.executeQuery("SELECT * FROM repuestos WHERE activo = 'si' ORDER BY descripcion");
 			if (rs!=null)
 			{
 				while (rs.next())
@@ -133,7 +133,7 @@ public class DatosRepuesto {
 	
 	public void eliminarRepuesto(int cod_repuesto){
 		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM repuestos WHERE cod_repuesto= ?");
+		String sql= ("UPDATE repuestos SET activo = 'no' WHERE cod_repuesto = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
 			pstmt.setInt(1, cod_repuesto);
@@ -150,5 +150,4 @@ public class DatosRepuesto {
 			}
 		}
 	}
-
 }

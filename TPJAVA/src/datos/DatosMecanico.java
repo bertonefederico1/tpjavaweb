@@ -15,7 +15,8 @@ public class DatosMecanico {
 		ResultSet rs = null;
 		try {
 			stmt = Conexion.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select matricula, nombre_y_apellido, direccion, telefono, mail from mecanicos order by nombre_y_apellido");
+			rs = stmt.executeQuery("SELECT matricula, nombre_y_apellido, direccion, telefono, mail "
+									+ "FROM mecanicos WHERE activo = 'si' ORDER BY nombre_y_apellido");
 			if (rs != null)
 			{
 				while (rs.next())
@@ -97,7 +98,7 @@ public class DatosMecanico {
 	
 	public void eliminarMecanico(int matricula){
 		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM mecanicos WHERE matricula= ?");
+		String sql= ("UPDATE mecanicos SET activo= 'no' WHERE matricula = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
 			pstmt.setInt(1, matricula);

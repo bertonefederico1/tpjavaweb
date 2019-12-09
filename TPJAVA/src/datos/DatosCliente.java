@@ -14,7 +14,7 @@ public class DatosCliente {
 	ResultSet rs = null;
  	try {
 		stmt= Conexion.getInstancia().getConn().createStatement();
-		rs = stmt.executeQuery("SELECT * FROM clientes order by nombre_y_apellido");
+		rs = stmt.executeQuery("SELECT * FROM clientes WHERE activo = 'si' ORDER BY nombre_y_apellido");
 		if (rs!=null){
 			while (rs.next()) {
 				Cliente cli = new Cliente();
@@ -96,7 +96,20 @@ public class DatosCliente {
 	
 	public void eliminarCliente (int dni){
 		PreparedStatement pstmt = null;
-		String sql = ("DELETE FROM clientes WHERE dni=?");
+		String sql= ("UPDATE clientes c SET activo= 'no' WHERE c.dni = ?");
+		try {
+			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setInt(1, dni);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sql= ("UPDATE clientes c "
+			   + "INNER JOIN autos a "
+			   + "ON c.dni = a.dni "
+			   + "SET a.activo = 'no' "
+			   + "WHERE c.dni = ?");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(sql);
 			pstmt.setInt(1, dni);
