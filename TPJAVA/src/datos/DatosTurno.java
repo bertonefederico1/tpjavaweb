@@ -87,11 +87,7 @@ public class DatosTurno {
 		boolean existe = true;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = ("SELECT tur.fecha_turno, tur.dni "
-						+ "FROM turnos tur "
-						+ "INNER JOIN clientes cli "
-							+ "ON tur.dni = cli.dni "
-						+ "WHERE cli.dni = ? AND tur.fecha_turno = ? AND tur.fecha_cancelacion is null AND tur.estado LIKE '%En espera%'");
+		String query = ("SELECT fecha_turno, dni FROM turnos WHERE dni = ? AND fecha_turno = ? AND fecha_cancelacion is null AND estado LIKE '%En espera%'");
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		    Date date_turno = sdf.parse(fecha_turno);
@@ -190,5 +186,54 @@ public class DatosTurno {
 			ex.printStackTrace();
 		}
 	}
+	
+	public boolean verificarTurno (String dni) {
+		boolean coincide = true;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = ("SELECT * FROM turnos WHERE fecha_turno = current_date() AND dni = ? AND fecha_cancelacion is null AND estado LIKE '%En espera%'");
+		try {
+			pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(dni));
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				coincide = true;
+			} else {
+				coincide = false;
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					pstmt.close();
+					Conexion.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		return coincide;
+	}
+	
+	public void actualizarTurno (String dni_cliente) {
+		PreparedStatement pstmt = null;
+		String actualizar = ("UPDATE turnos SET estado = 'Ingresado' WHERE fecha_turno = current_date() AND dni = ?");
+		try {
+			pstmt = Conexion.getInstancia().getConn().prepareStatement(actualizar);
+			pstmt.setInt(1, Integer.parseInt(dni_cliente));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				pstmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }
 

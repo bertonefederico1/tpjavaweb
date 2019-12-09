@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entidades.*;
 import logica.ControladorReparacion;
+import logica.ControladorTurno;
 import logica.ValidacionesIngresoDatos;
 
 import java.text.ParseException;
@@ -49,6 +50,7 @@ public class NuevoIngreso extends HttpServlet {
 		patente= request.getParameter("patente");
 		reparacionesARealizar= request.getParameter("reparacionesARealizar");
 		observaciones= request.getParameter("observaciones");
+		ControladorTurno ct = new ControladorTurno();
 		if(ValidacionesIngresoDatos.clienteYPatenteVacio(dni_cliente, patente)) {
 			response.sendRedirect("Ingreso.jsp");
 		} else {
@@ -78,7 +80,10 @@ public class NuevoIngreso extends HttpServlet {
 			}
 			if (band) {
 				ControladorReparacion cr = new ControladorReparacion();
-				cr.agregarNuevoIngreso(repa);
+				cr.agregarNuevoIngreso(repa);	
+				if (ct.verificarTurno(dni_cliente)) {
+					ct.actualizarTurno(dni_cliente);
+				}
 				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 			} else {
 				request.getSession().setAttribute("error", "validaNuevoIngreso");

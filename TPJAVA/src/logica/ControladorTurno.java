@@ -31,4 +31,12 @@ public class ControladorTurno {
 	public void cancelarTurno(int nro_turno) {
 		dt.cancelarTurno (nro_turno);
 	}
+	
+	public boolean verificarTurno (String dni_cliente) {
+		return dt.verificarTurno (dni_cliente);
+	}
+	
+	public void actualizarTurno (String dni_cliente) {
+		dt.actualizarTurno(dni_cliente);
+	}
 }
