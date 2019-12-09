@@ -19,8 +19,11 @@
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		ControladorReparacion cr = new ControladorReparacion();
-			Reparacion rep = new Reparacion(); 
-			rep = cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion")));
+		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		Reparacion rep = new Reparacion();
+		rep = cr.traerReparacionPorNro(Integer.parseInt(request
+				.getParameter("nro_reparacion")));
+		ArrayList<LineaDeRepuesto> repuestosFactura = cldr.traerRepuestosUtilizados(Integer.parseInt(request.getParameter("nro_reparacion")));
 	%>
 
 	<div id=consultaReparacion>
@@ -127,9 +130,13 @@
 				<h3>
 					<b><label>MECANICO: <%
 						if (rep.getMecanico().getNombre_y_apellido() != null) {
-					%><%=rep.getMecanico().getNombre_y_apellido()%>
-							<%}else {%>No Asignado<%}%>
-						</label></b>
+					%><%=rep.getMecanico().getNombre_y_apellido()%> <%
+ 	} else {
+ %>No
+							Asignado<%
+ 	}
+ %>
+					</label></b>
 				</h3>
 			</div>
 		</div>
@@ -155,7 +162,11 @@
 						<%
 							if (rep.getObservaciones() != null) {
 						%><%=rep.getObservaciones()%>
-						<%}else{%> <%}%>
+						<%
+							} else {
+						%> <%
+ 	}
+ %>
 					</textarea>
 				</div></label>
 		</div>
@@ -170,11 +181,49 @@
 						<%
 							if (rep.getDescFinal() != null) {
 						%><%=rep.getDescFinal()%>
-						<%}else {%> <%}%>
+						<%
+							} else {
+						%> <%
+ 	}
+ %>
 					</textarea>
 				</div></label>
 		</div>
+		<div class="row">
+
+			<h3>
+				<b><label>REPUESTOS UTILIZADOS</label></b>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-10">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">CODIGO</th>
+							<th scope="col">DESCRIPCION</th>
+							<th scope="col">CANTIDAD</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							for (LineaDeRepuesto ldr : repuestosFactura) {
+						%>
+						<tr>
+							<td><%=ldr.getRepuesto().getCodigo()%></td>
+							<td><%=ldr.getRepuesto().getDescripcion()%></td>
+							<td><%=ldr.getCantidad()%></td>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
-	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location='Principal.jsp'" style="position: relative; top: 10px">Volver</button>
+	<button type="button" class="btn btn-primary btn-lg btn-block"
+		onclick="location='Reparaciones.jsp'"
+		style="position: relative; top: 10px">Volver</button>
 </body>
 </html>

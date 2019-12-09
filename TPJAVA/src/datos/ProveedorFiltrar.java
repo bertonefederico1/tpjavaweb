@@ -11,7 +11,7 @@ public class ProveedorFiltrar {
 		ArrayList<Proveedor> misProveedores = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
-		String query = "SELECT * FROM proveedores WHERE razon_social LIKE ? order by razon_social";
+		String query = "SELECT * FROM proveedores WHERE razon_social LIKE ? AND activo = 'si' ORDER BY razon_social";
 		if (razonSocialBuscar != null) {
 			try {
 				pstmt= Conexion.getInstancia().getConn().prepareStatement(query);

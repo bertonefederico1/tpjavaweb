@@ -11,7 +11,8 @@ public class MecanicoFiltrar {
 
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT matricula, nombre_y_apellido, direccion, telefono, mail FROM mecanicos WHERE matricula = ? or nombre_y_apellido like ? order by nombre_y_apellido";
+		String query = "SELECT matricula, nombre_y_apellido, direccion, telefono, mail FROM mecanicos WHERE (matricula = ? "
+				       + "OR nombre_y_apellido LIKE ?) AND activo = 'si' ORDER BY nombre_y_apellido";
 		ArrayList<Mecanico> misMecanicos = new ArrayList<>();
 		if (buscamecanico != null) {
 			try {

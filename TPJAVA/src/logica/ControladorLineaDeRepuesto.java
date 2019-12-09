@@ -75,6 +75,10 @@ public class ControladorLineaDeRepuesto {
 		return dldr.traerRepuestosFactura(cod_reparacion);
 	}
 	
+	public ArrayList<LineaDeRepuesto> traerRepuestosUtilizados(int cod_reparacion) {
+		return dldr.traerRepuestosUtilizados(cod_reparacion);
+	}
+	
 	public ArrayList<LineaDeRepuesto> agregarLinea(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cantidad, int cod_repuesto){
 		return dldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto);
 	}

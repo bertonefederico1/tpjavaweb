@@ -12,7 +12,7 @@ public class RepuestoFiltrar {
 		ArrayList<Repuesto> misRepuestos = new ArrayList<>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT * FROM repuestos WHERE descripcion LIKE ? order by descripcion";
+		String query = "SELECT * FROM repuestos WHERE descripcion LIKE ? AND activo = 'si' ORDER BY descripcion";
 		if (desc_buscar != null) {
 			try {
 				pstmt = Conexion.getInstancia().getConn()

@@ -12,7 +12,7 @@ public class ClienteFiltrar {
 	ArrayList <Cliente> misClientes= new ArrayList<>();
 	PreparedStatement pstmt = null;
 	ResultSet rs= null;
-	String query = "SELECT * FROM clientes WHERE nombre_y_apellido LIKE ? order by nombre_y_apellido";
+	String query = "SELECT * FROM clientes WHERE nombre_y_apellido LIKE ? AND activo = 'si' ORDER BY nombre_y_apellido";
 	if (nombuscar != null){
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
