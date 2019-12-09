@@ -20,7 +20,7 @@
 </head>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<label><b>ADMINISTRACION DE CLIENTES</b></label>
+	<h2><b>ADMINISTRACION DE CLIENTES</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"

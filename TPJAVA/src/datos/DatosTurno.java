@@ -235,5 +235,88 @@ public class DatosTurno {
 		}
 	}
 	
+	public ArrayList<Turno> turnosFiltrados (String buscaTurno, String tipo) {
+		ArrayList<Turno> misTurnos = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query_por_fecha = ("SELECT * FROM turnos tur "
+								  + "INNER JOIN clientes cli "
+								  	+ "ON tur.dni = cli.dni "
+								  + "WHERE tur.fecha_turno = ? AND tur.fecha_cancelacion is null AND tur.estado LIKE '%En espera%' "
+								  + "ORDER BY tur.fecha_turno");
+		String query_por_cliente = ("SELECT * FROM turnos tur "
+									+ "INNER JOIN clientes cli "
+										+ "ON tur.dni = cli.dni "
+									+ "WHERE cli.nombre_y_apellido LIKE ? AND tur.fecha_cancelacion is null AND tur.estado LIKE '%En espera%' "
+									+ "ORDER BY tur.fecha_turno");
+		if (buscaTurno != null) {
+			if (tipo.equalsIgnoreCase("fecha")) {
+				try {
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				    Date date = sdf.parse(buscaTurno);
+					try {
+						pstmt = Conexion.getInstancia().getConn().prepareStatement(query_por_fecha);
+						java.sql.Date fechaTurno = new java.sql.Date(date.getTime());
+						pstmt.setDate(1, fechaTurno);
+						rs = pstmt.executeQuery();
+						if (rs != null) {
+							while (rs.next()) {
+								Turno turno = new Turno();
+								Cliente cli = new Cliente();
+								turno.setNroTurno(rs.getInt("nro_turno"));
+								turno.setFechaTurno(rs.getDate("fecha_turno"));
+								cli.setDni(rs.getString("dni"));
+								cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+								turno.setCliente(cli);
+								misTurnos.add(turno);
+							}
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					finally {
+						try {
+							pstmt.close();
+							Conexion.getInstancia().releaseConn();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				} catch(ParseException ex) {
+					ex.printStackTrace();
+				}
+			} else {
+				try {
+					pstmt = Conexion.getInstancia().getConn().prepareStatement(query_por_cliente);
+					pstmt.setString(1, "%"+ buscaTurno +"%");
+					rs = pstmt.executeQuery();
+					if (rs != null) {
+						while (rs.next()) {
+							Turno turno = new Turno();
+							Cliente cli = new Cliente();
+							turno.setNroTurno(rs.getInt("nro_turno"));
+							turno.setFechaTurno(rs.getDate("fecha_turno"));
+							cli.setDni(rs.getString("dni"));
+							cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+							turno.setCliente(cli);
+							misTurnos.add(turno);
+						}
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				finally {
+					try {
+						pstmt.close();
+						Conexion.getInstancia().releaseConn();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return misTurnos;
+	}
+	
 }
 

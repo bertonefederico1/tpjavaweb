@@ -20,7 +20,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>ADMINISTRACION DE MECANICOS</b></label>
+	<h2><b>ADMINISTRACION DE MECANICOS</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"

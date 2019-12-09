@@ -26,8 +26,6 @@
 	padding-bottom: 10px;
 }
 
-
-
 #nuevo{
 	padding-left: 128px;
 }
@@ -35,6 +33,13 @@
 .buscar{
 	display: flex;
 	padding-bottom: 10px;
+}
+
+.buscar2{
+	width: 400px;
+	padding_left: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
 }
 
 .form{

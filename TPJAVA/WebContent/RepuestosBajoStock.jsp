@@ -19,7 +19,7 @@
 </head>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<label><b>REPUESTOS CON BAJO STOCK</b></label>
+	<h2><b>REPUESTOS CON BAJO STOCK</b></h2>
 </div>
 <body>
 	<div class="container">

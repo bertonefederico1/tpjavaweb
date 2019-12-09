@@ -39,4 +39,8 @@ public class ControladorTurno {
 	public void actualizarTurno (String dni_cliente) {
 		dt.actualizarTurno(dni_cliente);
 	}
+	
+	public ArrayList<Turno> turnosFiltrados (String buscaTurno, String tipo) {
+		return dt.turnosFiltrados (buscaTurno, tipo);
+	}
 }

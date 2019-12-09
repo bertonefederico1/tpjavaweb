@@ -14,15 +14,26 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	ControladorTurno ct = new ControladorTurno();
-	request.getSession().setAttribute("misTurnos", ct.traerTurnos());
-	ArrayList<Turno> misTurnos = (ArrayList<Turno>)request.getSession().getAttribute("misTurnos");
+	ArrayList<Turno> misTurnos = ct.traerTurnos();
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<h1><b>LISTADO DE TURNOS</b></h1>
+	<h2><b>LISTADO DE TURNOS</b></h2>
 </div>
+<form class="form" method="POST" action="TurnoFiltro">
+<div class="container buscar2">
+	<div class="container buscar">
+		<input type="text" class="form-control" name="buscar_por_fecha" placeholder="Fecha"> 
+		<input class="btn btn-secondary" type="submit" name="buscar" value="Buscar Por Fecha">
+	</div>
+	<div class="container buscar">
+		<input type="text" class="form-control" name="buscar_por_cliente" placeholder="Cliente"> 
+		<input class="btn btn-secondary" type="submit" name="buscar" value="Buscar Por Cliente">
+	</div>
+</div>
+</form>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">

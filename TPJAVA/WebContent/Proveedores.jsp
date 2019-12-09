@@ -20,7 +20,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>ADMINISTRACION DE PROVEEDORES</b></label>
+	<h2><b>ADMINISTRACION DE PROVEEDORES</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
