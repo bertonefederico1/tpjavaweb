@@ -25,15 +25,15 @@
 				<div class="form-row">
 					<div class="form-group col-md-1">
 						<label for="dia"><b>Dia</b></label> 
-						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("dia_turno") != null) {%><%=request.getSession().getAttribute("dia_turno")%><%}%>" min="1" max="31" name="dia_turno" id="dia" placeholder="01" required>
+						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("dia_turno") != null) {%><%=request.getSession().getAttribute("dia_turno")%><%}%>" min="1" max="31" name="dia_turno" id="dia" placeholder="01">
 					</div>
 					<div class="form-group col-md-1">
 						<label for="mes"><b>Mes</b></label> 
-						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("mes_turno") != null) {%><%=request.getSession().getAttribute("mes_turno")%><%}%>" min="1" max="12" name="mes_turno" id="mes" placeholder="12" required>
+						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("mes_turno") != null) {%><%=request.getSession().getAttribute("mes_turno")%><%}%>" min="1" max="12" name="mes_turno" id="mes" placeholder="12">
 					</div>
 					<div class="form-group col-md-1">
 						<label for="anio"><b>Año</b></label> 
-						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("anio_turno") != null) {%><%=request.getSession().getAttribute("anio_turno")%><%}%>" name="anio_turno" id="anio" placeholder="2019" required>
+						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("anio_turno") != null) {%><%=request.getSession().getAttribute("anio_turno")%><%}%>" name="anio_turno" id="anio" placeholder="2019">
 					</div>
 			</div>
 			<label><div id=cliente class="input-group mb-3">
@@ -48,10 +48,6 @@
 				<div id="botonAgregar">
 					<button type="submit" name="btn_turno" value="agregar" class="btn btn-success">+ Agregar</button>
 				</div>
-				<!-- <div id="botonAgregar">
-					<button type="button" onclick="location='SeleccionCliente.jsp?tipo=turno'"
-						class="btn btn-success">+ Agregar</button>
-				</div> -->
 			</div></label>
 			<div id="botonGuardar">
 				<button type="submit" class="btn btn-success" name="btn_turno" value="guardar"

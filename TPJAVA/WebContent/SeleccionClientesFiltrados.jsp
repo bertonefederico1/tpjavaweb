@@ -37,7 +37,7 @@
 		      <tr>
 		      	<td>
                  <div class="radio">
-                     <label><input type="radio" onclick=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%} else if (request.getSession().getAttribute("tipo") == "turno") {%>"location='NuevoTurno.jsp?dni=<%=cl.getDni()%>'"<%}%>  id='express' name="optradio"></label>
+                     <label><input type="radio" onclick=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"location='Ingreso.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"location='NuevaReparacion.jsp?dni=<%=cl.getDni()%>'"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"location='Facturar.jsp?dni=<%=cl.getDni()%>&nombre=<%=cl.getNombre_y_apellido()%>'"<%} else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("turno")) {%>"location='NuevoTurno.jsp?dni=<%=cl.getDni()%>'"<%}%>  id='express' name="optradio"></label>
                 </div>
              </td>
 		        <td><%=cl.getDni()%></td>
@@ -49,7 +49,7 @@
 		      <%}%>
         </tbody>
       </table>
-      <a href=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"Ingreso.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"NuevaReparacion.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"Facturar.jsp"<%} else if (request.getSession().getAttribute("tipo") == "turno") {%>"NuevoTurno.jsp"<%}%>><< Volver</a>
+      <a href=<% if (request.getSession().getAttribute("tipo") == "Ingreso") {%>"Ingreso.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Reparacion"){%>"NuevaReparacion.jsp"<%}%><%else if (request.getSession().getAttribute("tipo") == "Factura"){%>"Facturar.jsp"<%} else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("turno")) {%>"NuevoTurno.jsp"<%}%>><< Volver</a>
     </div>
   </div>
 </div>

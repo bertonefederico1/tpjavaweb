@@ -1,6 +1,8 @@
 package logica;
 
 import datos.DatosTurno;
+import entidades.Turno;
+import java.util.*;
 
 public class ControladorTurno {
 	
@@ -20,5 +22,13 @@ public class ControladorTurno {
 	
 	public boolean existeTurnoClienteYFecha (String dni_cliente, String fecha_turno) {
 		return dt.existeTurnoClienteYFecha (dni_cliente, fecha_turno);
+	}
+	
+	public ArrayList<Turno> traerTurnos() {
+		return dt.traerTurnos();
+	}
+	
+	public void cancelarTurno(int nro_turno) {
+		dt.cancelarTurno (nro_turno);
 	}
 }
