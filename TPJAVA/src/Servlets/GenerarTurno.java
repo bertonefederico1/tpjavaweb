@@ -51,32 +51,51 @@ public class GenerarTurno extends HttpServlet {
 		String fecha_hoy = formatter.format(fecha); 
 		String fecha_turno = anio_turno + "-" + mes_turno + "-" + dia_turno;
 		boolean band = true;
-		if (ValidacionesIngresoDatos.clienteVacio(dni_cliente)) {
-			response.sendRedirect("NuevoTurno.jsp");
-		} else {
-			if (dia_turno != null && dia_turno.length() > 0 && mes_turno != null && mes_turno.length() > 0 && anio_turno != null 
-				&& anio_turno.length() > 0) {
-				if (ValidacionesIngresoDatos.validaSoloNumeros(dia_turno) && ValidacionesIngresoDatos.validaLongitudHasta2(dia_turno) 
-					&& ValidacionesIngresoDatos.validaSoloNumeros(mes_turno) && ValidacionesIngresoDatos.validaLongitudHasta2(mes_turno)
-					&& ValidacionesIngresoDatos.validaSoloNumeros(anio_turno) && ValidacionesIngresoDatos.validaLongitudIgualA4(anio_turno)
-					&& ValidacionesIngresoDatos.fechaInicioMenorAFechaFin(fecha_hoy, fecha_turno)) {
+		switch (request.getParameter("btn_turno")) {
+		case "agregar": {
+			request.getSession().setAttribute("dia_turno", request.getParameter("dia_turno"));
+			request.getSession().setAttribute("mes_turno", request.getParameter("mes_turno"));
+			request.getSession().setAttribute("anio_turno", request.getParameter("anio_turno"));
+			request.getSession().setAttribute("tipo", request.getParameter("tipo"));
+			request.getRequestDispatcher("SeleccionCliente.jsp").forward(request, response);
+			break;
+		}
+		case "guardar": {
+			if (ValidacionesIngresoDatos.clienteVacio(dni_cliente)) {
+				response.sendRedirect("NuevoTurno.jsp");
+			} else {
+				if (dia_turno != null && dia_turno.length() > 0 && mes_turno != null && mes_turno.length() > 0 && anio_turno != null 
+					&& anio_turno.length() > 0) {
+					if (ValidacionesIngresoDatos.validaSoloNumeros(dia_turno) && ValidacionesIngresoDatos.validaLongitudHasta2(dia_turno) 
+						&& ValidacionesIngresoDatos.validaSoloNumeros(mes_turno) && ValidacionesIngresoDatos.validaLongitudHasta2(mes_turno)
+						&& ValidacionesIngresoDatos.validaSoloNumeros(anio_turno) && ValidacionesIngresoDatos.validaLongitudIgualA4(anio_turno)
+						&& ValidacionesIngresoDatos.fechaInicioMenorAFechaFin(fecha_hoy, fecha_turno)) {
+					} else {
+						band = false;
+					}
 				} else {
 					band = false;
 				}
-			} else {
-				band = false;
-			}
-			if (band) {
-				ControladorTurno ct = new ControladorTurno();
-				if (ct.disponibilidadTurnosAFecha (fecha_turno)) {
-					ct.registrarTurno(fecha_turno, dni_cliente);
-					response.sendRedirect("DatosGuardados.html");
+				if (band) {
+					ControladorTurno ct = new ControladorTurno();
+					if (ct.disponibilidadTurnosAFecha(fecha_turno)) {
+						if (ct.existeTurnoClienteYFecha(dni_cliente, fecha_turno)) {
+							request.getSession().setAttribute("errorTurno", "turnoExistente");
+							request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);
+						} else {
+							ct.registrarTurno(fecha_turno, dni_cliente);
+							response.sendRedirect("DatosGuardados.html");
+						}
+					} else {
+						request.getSession().setAttribute("errorTurno", "turnosNoDisponible");
+						request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);;
+					}
 				} else {
-					request.getRequestDispatcher("AvisoTurnosCompleto.jsp").forward(request, response);;
+					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 				}
-			} else {
-				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 			}
+			break;
+		}
 		}
 	}
 

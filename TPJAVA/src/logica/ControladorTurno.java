@@ -17,4 +17,8 @@ public class ControladorTurno {
 	public boolean disponibilidadTurnosAFecha (String fecha_turno) {
 		return dt.disponibilidadTurnosAFecha (fecha_turno);
 	}
+	
+	public boolean existeTurnoClienteYFecha (String dni_cliente, String fecha_turno) {
+		return dt.existeTurnoClienteYFecha (dni_cliente, fecha_turno);
+	}
 }

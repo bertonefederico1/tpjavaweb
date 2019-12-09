@@ -29,6 +29,9 @@
 	request.getSession().removeAttribute("reparacion_seleccionada");
 	request.getSession().removeAttribute("repuestosFactura");
 	request.getSession().removeAttribute("repuestosSeleccionadosOriginal");
+	request.getSession().removeAttribute("dia_turno");
+	request.getSession().removeAttribute("mes_turno");
+	request.getSession().removeAttribute("anio_turno");
 	request.getSession().setAttribute("manoDeObra", 0.0);
 	request.getSession().setAttribute("precio_total", 0.0);
 	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());

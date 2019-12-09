@@ -8,7 +8,9 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	<div class="alert alert-danger" role="alert">Se superó la cantidad máxima de turnos para ese día
+	<div class="alert alert-danger" role="alert"> 
+	<%if (request.getSession().getAttribute("errorTurno").toString().equalsIgnoreCase("turnoExistente")) {%>
+	Ya existe un turno para esa fecha y cliente<%} else {%>Se superó la cantidad máxima de turnos para ese día<%}%>
   		<a href="NuevoTurno.jsp" class="alert-link">VOLVER</a>
 </body>
 </html>
