@@ -7,11 +7,9 @@ import entidades.*;
 public class ControladorRepuesto {
 	
 	DatosRepuesto dr;
-	RepuestoFiltrar rf;
 	
 	public ControladorRepuesto(){
 		dr = new DatosRepuesto();
-		rf = new RepuestoFiltrar();
 	}
 	
 	
@@ -24,7 +22,7 @@ public class ControladorRepuesto {
 	}
 	
 	public ArrayList<Repuesto> repuestosFiltrados(String desc_buscar){
-		return rf.traerRepuestos(desc_buscar);
+		return dr.traerRepuestos(desc_buscar);
 	}
 	
 	public void agregarRepuesto (Repuesto rep){

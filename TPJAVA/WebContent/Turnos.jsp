@@ -20,7 +20,7 @@
 </head>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<h2><b>LISTADO DE TURNOS</b></h2>
+	<h2><b>TURNOS PENDIENTES</b></h2>
 </div>
 <form class="form" method="POST" action="TurnoFiltro">
 <div class="container buscar2">

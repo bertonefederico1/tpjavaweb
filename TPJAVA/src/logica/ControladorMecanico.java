@@ -8,11 +8,9 @@ import entidades.Mecanico;
 public class ControladorMecanico {
 	
 	DatosMecanico dm;
-	MecanicoFiltrar mf;
 	
 	public ControladorMecanico(){
 		dm= new DatosMecanico();
-		mf= new MecanicoFiltrar();
 	}
 	
 	public ArrayList<Mecanico> traerMecanicos(){
@@ -20,7 +18,7 @@ public class ControladorMecanico {
 	}
 	
 	public ArrayList<Mecanico> mecanicosFiltrados(String buscamecanico){
-		return mf.traerMecanicos(buscamecanico);
+		return dm.traerMecanicos(buscamecanico);
 	}
 	
 	public void agregarMecanico (Mecanico mec){

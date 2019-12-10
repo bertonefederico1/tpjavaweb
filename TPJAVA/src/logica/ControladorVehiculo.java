@@ -3,12 +3,15 @@ package logica;
 import java.util.ArrayList;
 
 import datos.DatosVehiculo;
-import datos.VehiculosFiltrar;
 import entidades.Auto;
 
 public class ControladorVehiculo {
-	DatosVehiculo dv = new DatosVehiculo();
-	VehiculosFiltrar vf = new VehiculosFiltrar();
+	
+	DatosVehiculo dv;
+	
+	public ControladorVehiculo(){
+		dv = new DatosVehiculo();
+	}
 	
 	public void modificarVehiculo(Auto auto, String patente_original){
 		dv.modificarVehiculo(auto, patente_original);
@@ -31,6 +34,6 @@ public class ControladorVehiculo {
 	}
 	
 	public ArrayList<Auto> vehiculosFiltrados(String nombuscar){
-		return vf.traerVehiculosFiltrados(nombuscar);
+		return dv.traerVehiculosFiltrados(nombuscar);
 	}
 }
