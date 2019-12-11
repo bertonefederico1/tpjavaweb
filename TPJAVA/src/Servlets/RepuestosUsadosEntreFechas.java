@@ -72,8 +72,12 @@ public class RepuestosUsadosEntreFechas extends HttpServlet {
 		
 		if (band){
 			ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-			request.getSession().setAttribute("repuestosEntreFechas", cldr.repuestosEntreFechas(dia_inicio, mes_inicio, anio_inicio, dia_fin, mes_fin, anio_fin));
-			response.sendRedirect("RepuestosEntreFechas.jsp"); 	
+			try {
+				request.getSession().setAttribute("repuestosEntreFechas", cldr.repuestosEntreFechas(dia_inicio, mes_inicio, anio_inicio, dia_fin, mes_fin, anio_fin));
+				response.sendRedirect("RepuestosEntreFechas.jsp"); 	
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 		} else{
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}

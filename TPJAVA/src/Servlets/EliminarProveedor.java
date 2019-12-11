@@ -38,8 +38,12 @@ public class EliminarProveedor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuit= request.getParameter("cuit");
 		ControladorProveedor cp = new ControladorProveedor();
-		cp.eliminarProveedor(cuit);
-		request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+		try {
+			cp.eliminarProveedor(cuit);
+			request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

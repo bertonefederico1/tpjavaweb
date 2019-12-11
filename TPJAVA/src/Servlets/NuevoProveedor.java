@@ -81,8 +81,12 @@ public class NuevoProveedor extends HttpServlet {
 			prove.setCuit(cuit);
 			prove.setDireccion(direccion);
 			prove.setRazonSocial(razon_social);
-			cp.agregarProveedor(prove);
-			request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+			try {
+				cp.agregarProveedor(prove);
+				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 		}else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}

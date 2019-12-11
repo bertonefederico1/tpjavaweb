@@ -39,8 +39,13 @@ public class EliminarCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int dni= Integer.parseInt(request.getParameter("dni"));
 		ControladorCliente cc= new ControladorCliente();
-		cc.eliminarCliente(dni);
-		request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		try {
+			cc.eliminarCliente(dni);
+			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
+		
 	}
 
 }

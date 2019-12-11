@@ -49,12 +49,16 @@ public class SignIn extends HttpServlet {
 		Ingreso ingreso = new Ingreso();
 		u.setUser(user);
 		u.setPassword(password);
-		if (ingreso.validaLogin(u)){
-			request.getSession().setAttribute("usuario", u);
-			response.sendRedirect("Principal.jsp");
-			} else {
-				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
-			}
+		try {
+			if (ingreso.validaLogin(u)){
+				request.getSession().setAttribute("usuario", u);
+				response.sendRedirect("Principal.jsp");
+				} else {
+					request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
+				}
+		} catch (Exception e) {
+			request.getRequestDispatcher("DatosNoGuardados.html").forward(request, response);
+		}
 		
 	}
 }

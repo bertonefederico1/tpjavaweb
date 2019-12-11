@@ -54,7 +54,11 @@ public class ConsultaFactura extends HttpServlet {
 		}
 		if (band){
 			ControladorReparacion cr = new ControladorReparacion();
-			request.getSession().setAttribute("facturasPorFecha", cr.traerFacturasPorFecha(dia, mes, anio)); //Es un arreglo de reparaciones
+			try {
+				request.getSession().setAttribute("facturasPorFecha", cr.traerFacturasPorFecha(dia, mes, anio));
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			} //Es un arreglo de reparaciones
 			response.sendRedirect("FacturasPorFecha.jsp"); 	
 		} else{
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);

@@ -80,11 +80,15 @@ public class NuevoIngreso extends HttpServlet {
 			}
 			if (band) {
 				ControladorReparacion cr = new ControladorReparacion();
-				cr.agregarNuevoIngreso(repa);	
-				if (ct.verificarTurno(dni_cliente)) {
-					ct.actualizarTurno(dni_cliente);
-				}
-				request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				try {
+					cr.agregarNuevoIngreso(repa);
+					if (ct.verificarTurno(dni_cliente)) {
+						ct.actualizarTurno(dni_cliente);
+					}
+					request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}	
 			} else {
 				request.getSession().setAttribute("error", "validaNuevoIngreso");
 				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);

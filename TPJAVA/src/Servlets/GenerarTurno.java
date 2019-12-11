@@ -76,19 +76,24 @@ public class GenerarTurno extends HttpServlet {
 				} else {
 					band = false;
 				}
+				
 				if (band) {
 					ControladorTurno ct = new ControladorTurno();
-					if (ct.disponibilidadTurnosAFecha(fecha_turno)) {
-						if (ct.existeTurnoClienteYFecha(dni_cliente, fecha_turno)) {
-							request.getSession().setAttribute("errorTurno", "turnoExistente");
-							request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);
+					try {
+						if (ct.disponibilidadTurnosAFecha(fecha_turno)) {
+							if (ct.existeTurnoClienteYFecha(dni_cliente, fecha_turno)) {
+								request.getSession().setAttribute("errorTurno", "turnoExistente");
+								request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);
+							} else {
+								ct.registrarTurno(fecha_turno, dni_cliente);
+								response.sendRedirect("DatosGuardados.html");
+							}
 						} else {
-							ct.registrarTurno(fecha_turno, dni_cliente);
-							response.sendRedirect("DatosGuardados.html");
+							request.getSession().setAttribute("errorTurno", "turnosNoDisponible");
+							request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);;
 						}
-					} else {
-						request.getSession().setAttribute("errorTurno", "turnosNoDisponible");
-						request.getRequestDispatcher("ErrorTurnos.jsp").forward(request, response);;
+					} catch (Exception e) {
+						request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 					}
 				} else {
 					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);

@@ -101,24 +101,40 @@ public class CargarReparacion extends HttpServlet {
 						break;
 					}
 					case "guardar":{
-						cr.agregarReparacion(repuestosSeleccionados, rep, mec, "En curso");
+						try {
+							cr.agregarReparacion(repuestosSeleccionados, rep, mec, "En curso");
+						} catch (Exception e) {
+							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+						}
 						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 						break;
 					}
 					case "finalizar":{
-						cr.agregarReparacion(repuestosSeleccionados, rep, mec, "Finalizada");
+						try {
+							cr.agregarReparacion(repuestosSeleccionados, rep, mec, "Finalizada");
+						} catch (Exception e) {
+							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+						}
 						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 						break;
 					}
 					case "guardarReparacionModificada": {
 						ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
-						cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "En Curso");
+						try {
+							cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "En Curso");
+						} catch (Exception e) {
+							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+						}
 						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 						break;
 					}
 					case "finalizarReparacionModificada": {
 						ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
-						cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "Finalizada");
+						try {
+							cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "Finalizada");
+						} catch (Exception e) {
+							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+						}
 						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
 						break;
 					}

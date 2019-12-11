@@ -13,23 +13,23 @@ public class ControladorProveedor {
 		dp = new DatosProveedor();
 	}
 	
-	public ArrayList<Proveedor> traerProveedores(){
+	public ArrayList<Proveedor> traerProveedores() throws Exception{
 		return dp.traerProveedores();
 	}
 	
-	public ArrayList<Proveedor> proveedoresFiltrados(String razonSocialBuscar){
+	public ArrayList<Proveedor> proveedoresFiltrados(String razonSocialBuscar) throws Exception{
 		return dp.traerProveedores(razonSocialBuscar);
 	}
 	
-	public void agregarProveedor (Proveedor prove){
+	public void agregarProveedor (Proveedor prove) throws Exception{
 		dp.agregarProveedor(prove);
 	}
 	
-	public void modificarProveedor (Proveedor prove){
+	public void modificarProveedor (Proveedor prove) throws Exception{
 		dp.modificarProveedor(prove);
 	}
 	
-	public void eliminarProveedor (String cuit){
+	public void eliminarProveedor (String cuit) throws Exception{
 		dp.eliminarProveedor(cuit);
 	}
 }

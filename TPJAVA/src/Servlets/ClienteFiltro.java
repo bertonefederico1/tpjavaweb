@@ -34,9 +34,16 @@ public class ClienteFiltro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
 		ControladorCliente cc = new ControladorCliente();
-		ArrayList<Cliente> misClientes= cc.clientesFiltrados(nombuscar);
-		request.getSession().setAttribute("misClientes", misClientes);
-		request.getRequestDispatcher("SeleccionClientesFiltrados.jsp").forward(request, response);
+		ArrayList<Cliente> misClientes;
+		try {
+			misClientes = cc.clientesFiltrados(nombuscar);
+			request.getSession().setAttribute("misClientes", misClientes);
+			request.getRequestDispatcher("SeleccionClientesFiltrados.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -45,9 +52,16 @@ public class ClienteFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
 		ControladorCliente cc = new ControladorCliente();
-		ArrayList<Cliente> misClientes= cc.clientesFiltrados(nombuscar);
-		request.getSession().setAttribute("misClientes", misClientes);
-		request.getRequestDispatcher("BusquedaFiltradaClientes.jsp").forward(request, response);
+		ArrayList<Cliente> misClientes;
+		try {
+			misClientes = cc.clientesFiltrados(nombuscar);
+			request.getSession().setAttribute("misClientes", misClientes);
+			request.getRequestDispatcher("BusquedaFiltradaClientes.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		
 	}
 

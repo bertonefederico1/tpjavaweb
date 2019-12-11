@@ -6,88 +6,93 @@ import entidades.*;
 import java.util.*;
 
 public class ControladorLineaDeRepuesto {
-	
-	DatosLineaDeRepuesto dldr= new DatosLineaDeRepuesto();
-	
-	public ArrayList<LineaDeRepuesto> repuestosEntreFechas(String dia_inicio, String mes_inicio, String anio_inicio, String dia_fin, String mes_fin, String anio_fin){
-		return dldr.repuestosEntreFechas(dia_inicio, mes_inicio, anio_inicio, dia_fin, mes_fin, anio_fin);
+
+	DatosLineaDeRepuesto dldr = new DatosLineaDeRepuesto();
+
+	public ArrayList<LineaDeRepuesto> repuestosEntreFechas(String dia_inicio,
+			String mes_inicio, String anio_inicio, String dia_fin,
+			String mes_fin, String anio_fin) throws Exception {
+		
+		return dldr.repuestosEntreFechas(dia_inicio, mes_inicio, anio_inicio,dia_fin, mes_fin, anio_fin);
 	}
-	
-	public Float getPrecioTotal(int nro_reparacion){
+
+	public Float getPrecioTotal(int nro_reparacion) throws Exception {
 		return dldr.getPrecioTotal(nro_reparacion);
 	}
-	
-	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion){
+
+	public ArrayList<LineaDeRepuesto> traerRepuestosReparacion(int nro_reparacion) throws Exception {
 		return dldr.traerRepuestosReparacion(nro_reparacion);
 	}
-	
-	public boolean hayStock(ArrayList<LineaDeRepuesto> repuestosSeleccionados, ArrayList<Repuesto> misRepuestos, int cod_repuesto, int cantidad){
+
+	public boolean hayStock(ArrayList<LineaDeRepuesto> repuestosSeleccionados, ArrayList<Repuesto> misRepuestos, int cod_repuesto, int cantidad)
+			throws Exception {
+		
 		boolean band = true;
 		int i = 0;
-		for (Repuesto rep : misRepuestos){
-			if(rep.getCodigo() == cod_repuesto){
+		for (Repuesto rep : misRepuestos) {
+			if (rep.getCodigo() == cod_repuesto) {
 				break;
-			}else {
+			} else {
 				i++;
 			}
 		}
-			
-		
-		if (repuestosSeleccionados.isEmpty()){
-			if (misRepuestos.get(i).getStock() < cantidad){
+
+		if (repuestosSeleccionados.isEmpty()) {
+			if (misRepuestos.get(i).getStock() < cantidad) {
 				band = false;
 			}
 		}
-		
-		
-		if (!(repuestosSeleccionados.isEmpty())){
-			for(LineaDeRepuesto ldr : repuestosSeleccionados){
-				if(ldr.getRepuesto().getCodigo() == cod_repuesto){
-					if((ldr.getCantidad() + cantidad) > (misRepuestos.get(i).getStock())){
+
+		if (!(repuestosSeleccionados.isEmpty())) {
+			for (LineaDeRepuesto ldr : repuestosSeleccionados) {
+				if (ldr.getRepuesto().getCodigo() == cod_repuesto) {
+					if ((ldr.getCantidad() + cantidad) > (misRepuestos.get(i).getStock())) {
 						band = false;
 						break;
-					}	
+					}
 				} else {
-					if (misRepuestos.get(i).getStock() < cantidad){
+					if (misRepuestos.get(i).getStock() < cantidad) {
 						band = false;
 					}
 				}
 			}
 		}
-		
+
 		return band;
 	}
-	
-	public boolean repuestoNoRepetido(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cod_repuesto, int cantidad){
+
+	public boolean repuestoNoRepetido(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cod_repuesto, int cantidad) throws Exception {
 		boolean band = true;
-		for(LineaDeRepuesto ldr : repuestosSeleccionados){
-			if(ldr.getRepuesto().getCodigo() == cod_repuesto){
+		for (LineaDeRepuesto ldr : repuestosSeleccionados) {
+			if (ldr.getRepuesto().getCodigo() == cod_repuesto) {
 				ldr.setCantidad(ldr.getCantidad() + cantidad);
 				band = false;
 				break;
 			}
 		}
-		return band;	
+		return band;
 	}
-					
-	
-	public ArrayList<LineaDeRepuesto> traerRepuestosFactura(int cod_reparacion) {
+
+	public ArrayList<LineaDeRepuesto> traerRepuestosFactura(int cod_reparacion) throws Exception {
 		return dldr.traerRepuestosFactura(cod_reparacion);
 	}
-	
-	public ArrayList<LineaDeRepuesto> traerRepuestosUtilizados(int cod_reparacion) {
+
+	public ArrayList<LineaDeRepuesto> traerRepuestosUtilizados(int cod_reparacion) throws Exception {
 		return dldr.traerRepuestosUtilizados(cod_reparacion);
 	}
-	
-	public ArrayList<LineaDeRepuesto> agregarLinea(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cantidad, int cod_repuesto){
+
+	public ArrayList<LineaDeRepuesto> agregarLinea(ArrayList<LineaDeRepuesto> repuestosSeleccionados, int cantidad,
+			int cod_repuesto) throws Exception {
+		
 		return dldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto);
 	}
-	
-	public ArrayList<LineaDeRepuesto> inicializarLineas(){
+
+	public ArrayList<LineaDeRepuesto> inicializarLineas() throws Exception {
 		return dldr.inicializarLineas();
 	}
-	
-	public ArrayList<LineaDeRepuesto> eliminarRepuestoSeleccionado(int cod_repuesto, ArrayList<LineaDeRepuesto> repuestosSeleccionados){
-		return dldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosSeleccionados);
+
+	public ArrayList<LineaDeRepuesto> eliminarRepuestoSeleccionado(int cod_repuesto, ArrayList<LineaDeRepuesto> repuestosSeleccionados)
+			throws Exception {
+		return dldr.eliminarRepuestoSeleccionado(cod_repuesto,repuestosSeleccionados);
 	}
 }

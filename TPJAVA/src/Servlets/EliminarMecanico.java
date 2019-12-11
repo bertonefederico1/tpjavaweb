@@ -38,8 +38,12 @@ public class EliminarMecanico extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int matricula= Integer.parseInt(request.getParameter("matricula"));
 		ControladorMecanico cm = new ControladorMecanico();
-		cm.eliminarMecanico(matricula);
-		request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+		try {
+			cm.eliminarMecanico(matricula);
+			request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

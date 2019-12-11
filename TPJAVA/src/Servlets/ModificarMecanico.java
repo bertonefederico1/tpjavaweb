@@ -79,8 +79,12 @@ public class ModificarMecanico extends HttpServlet {
 		
 		if(band){
 			ControladorMecanico cm = new ControladorMecanico();
-			cm.modificarMecanico(mec);
-			request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+			try {
+				cm.modificarMecanico(mec);
+				request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 		}else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}	

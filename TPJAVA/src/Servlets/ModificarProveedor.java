@@ -73,8 +73,12 @@ public class ModificarProveedor extends HttpServlet {
 			
 			if (band){
 				ControladorProveedor cp = new ControladorProveedor();
-				cp.modificarProveedor(prove);
-				request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+				try {
+					cp.modificarProveedor(prove);
+					request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}
 			}else {
 				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 			}

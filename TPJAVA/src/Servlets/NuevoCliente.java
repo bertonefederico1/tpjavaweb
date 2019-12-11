@@ -77,8 +77,12 @@ public class NuevoCliente extends HttpServlet {
 		
 		if(band){
 			ControladorCliente cc = new ControladorCliente();
-			cc.agregarCliente(cli);
-			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+			try {
+				cc.agregarCliente(cli);
+				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 		}else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}	

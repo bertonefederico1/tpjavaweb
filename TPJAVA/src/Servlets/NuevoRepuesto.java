@@ -60,9 +60,13 @@ public class NuevoRepuesto extends HttpServlet {
 						
 				if(band){
 					ControladorRepuesto cr = new ControladorRepuesto();
-					cr.agregarRepuesto(rep);
-					request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-					request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+					try {
+						cr.agregarRepuesto(rep);
+						request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+						request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+					} catch (Exception e) {
+						request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+					}
 				}else {
 					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 				}

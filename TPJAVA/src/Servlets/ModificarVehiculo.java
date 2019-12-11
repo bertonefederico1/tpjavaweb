@@ -75,8 +75,12 @@ public class ModificarVehiculo extends HttpServlet {
 		
 		if (band){
 			ControladorVehiculo cv = new ControladorVehiculo ();
-			cv.modificarVehiculo(auto, patente_original);
-			request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+			try {
+				cv.modificarVehiculo(auto, patente_original);
+				request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 		}else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}

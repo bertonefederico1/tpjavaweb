@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 import entidades.*;
 import logica.*;
 
@@ -56,25 +57,29 @@ public class RepuestoReparacion extends HttpServlet {
 		}
 		
 		if (band){
-			repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
-			misRepuestos = cr.traerRepuestos();
-			//misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
-			ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-			if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
-				if (cldr.repuestoNoRepetido(repuestosSeleccionados, cod_repuesto, cantidad)){
-					request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
-				}
-			} else {
-				band2 = false;
-				request.getRequestDispatcher("ErrorStock.jsp").forward(request, response);
-			}
-			if (band2){
-				if (((String)request.getSession().getAttribute("tipo")).equalsIgnoreCase("nueva_reparacion")) {
-					response.sendRedirect("NuevaReparacion.jsp");
+			try {
+				repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+				misRepuestos = cr.traerRepuestos();
+				//misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
+				ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+				int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+				if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){
+					if (cldr.repuestoNoRepetido(repuestosSeleccionados, cod_repuesto, cantidad)){
+						request.getSession().setAttribute("repuestosSeleccionados", cldr.agregarLinea(repuestosSeleccionados, cantidad, cod_repuesto));
+					}
 				} else {
-					response.sendRedirect("EditarReparacion.jsp");
+					band2 = false;
+					request.getRequestDispatcher("ErrorStock.jsp").forward(request, response);
 				}
+				if (band2){
+					if (((String)request.getSession().getAttribute("tipo")).equalsIgnoreCase("nueva_reparacion")) {
+						response.sendRedirect("NuevaReparacion.jsp");
+					} else {
+						response.sendRedirect("EditarReparacion.jsp");
+					}
+				}
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 			}
 		} else {
 			request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);

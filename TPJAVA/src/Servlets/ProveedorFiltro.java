@@ -41,9 +41,14 @@ public class ProveedorFiltro extends HttpServlet {
 		// TODO Auto-generated method stub
 		String razonSocialBuscar = request.getParameter("txtbuscar");
 		ControladorProveedor cp = new ControladorProveedor();
-		ArrayList<Proveedor> misProveedores = cp.proveedoresFiltrados(razonSocialBuscar);
-		request.getSession().setAttribute("misProveedores", misProveedores);
-		request.getRequestDispatcher("BusquedaFiltradaProveedores.jsp").forward(request, response);
+		ArrayList<Proveedor> misProveedores;
+		try {
+			misProveedores = cp.proveedoresFiltrados(razonSocialBuscar);
+			request.getSession().setAttribute("misProveedores", misProveedores);
+			request.getRequestDispatcher("BusquedaFiltradaProveedores.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

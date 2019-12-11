@@ -38,8 +38,12 @@ public class ReparacionFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
 		ControladorReparacion cr = new ControladorReparacion();
-		request.getSession().setAttribute("misReparaciones", cr.reparacionesFiltradas(nombuscar));
-		request.getRequestDispatcher("BusquedaFiltradaReparaciones.jsp").forward(request, response);
+		try {
+			request.getSession().setAttribute("misReparaciones", cr.reparacionesFiltradas(nombuscar));
+			request.getRequestDispatcher("BusquedaFiltradaReparaciones.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

@@ -38,8 +38,12 @@ public class VehiculosPorClienteFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombuscar = request.getParameter("txtbuscar");
 		ControladorVehiculo cv = new ControladorVehiculo();
-		request.getSession().setAttribute("misAutos", cv.vehiculosFiltrados(nombuscar));
-		request.getRequestDispatcher("VehiculosPorClienteFiltrados.jsp").forward(request, response);
+		try {
+			request.getSession().setAttribute("misAutos", cv.vehiculosFiltrados(nombuscar));
+			request.getRequestDispatcher("VehiculosPorClienteFiltrados.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

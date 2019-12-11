@@ -44,17 +44,28 @@ public class TurnoFiltro extends HttpServlet {
 		switch (request.getParameter("buscar")) {
 		case "Buscar Por Fecha": {
 			String buscaTurno = request.getParameter("buscar_por_fecha");
-			misTurnos = ct.turnosFiltrados(buscaTurno, "fecha");
+			try {
+				misTurnos = ct.turnosFiltrados(buscaTurno, "fecha");
+				request.getSession().setAttribute("misTurnos", misTurnos);
+				request.getRequestDispatcher("BusquedaFiltradaTurnos.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 			break;
 		}
 		case "Buscar Por Cliente": {
 			String buscaTurno = request.getParameter("buscar_por_cliente");
-			misTurnos = ct.turnosFiltrados(buscaTurno, "cliente");
+			try {
+				misTurnos = ct.turnosFiltrados(buscaTurno, "cliente");
+				request.getSession().setAttribute("misTurnos", misTurnos);
+				request.getRequestDispatcher("BusquedaFiltradaTurnos.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 			break;
 		}
 		}		
-		request.getSession().setAttribute("misTurnos", misTurnos);
-		request.getRequestDispatcher("BusquedaFiltradaTurnos.jsp").forward(request, response);
+		
 	}
 
 }

@@ -38,7 +38,11 @@ public class EliminarReparacion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nro_reparacion= Integer.parseInt(request.getParameter("nro_reparacion"));
 		ControladorReparacion cr= new ControladorReparacion();
-		cr.eliminarReparacion(nro_reparacion);
+		try {
+			cr.eliminarReparacion(nro_reparacion);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 		request.getRequestDispatcher("Reparaciones.jsp").forward(request, response);
 	}
 

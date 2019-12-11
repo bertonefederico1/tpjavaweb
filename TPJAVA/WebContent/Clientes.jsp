@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,9 +13,14 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorCliente cc = new ControladorCliente();
-	ArrayList<Cliente> misClientes = cc.traerClientes();
+	ArrayList<Cliente> misClientes = new ArrayList<>();
+try {
+	misClientes = cc.traerClientes();
+} catch (Exception e) {
+	request.getRequestDispatcher("DatosNoGuardados.jsp").forward(request, response);
+}
+	
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>

@@ -38,9 +38,13 @@ public class CancelarTurno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nro_turno = Integer.parseInt(request.getParameter("nro_turno"));
 		ControladorTurno ct = new ControladorTurno();
-		ct.cancelarTurno(nro_turno);
-		request.getSession().setAttribute("misTurnos", ct.traerTurnos());
-		request.getRequestDispatcher("Turnos.jsp").forward(request, response);
+		try {
+			ct.cancelarTurno(nro_turno);
+			request.getSession().setAttribute("misTurnos", ct.traerTurnos());
+			request.getRequestDispatcher("Turnos.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

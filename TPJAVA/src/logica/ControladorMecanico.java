@@ -13,23 +13,23 @@ public class ControladorMecanico {
 		dm= new DatosMecanico();
 	}
 	
-	public ArrayList<Mecanico> traerMecanicos(){
+	public ArrayList<Mecanico> traerMecanicos() throws Exception {
 		return dm.traerMecanicos();
 	}
 	
-	public ArrayList<Mecanico> mecanicosFiltrados(String buscamecanico){
+	public ArrayList<Mecanico> mecanicosFiltrados(String buscamecanico) throws Exception {
 		return dm.traerMecanicos(buscamecanico);
 	}
 	
-	public void agregarMecanico (Mecanico mec){
+	public void agregarMecanico (Mecanico mec) throws Exception {
 		dm.agregarMecanico(mec);
 	}
 	
-	public void modificarMecanico (Mecanico mec){
+	public void modificarMecanico (Mecanico mec) throws Exception {
 		dm.modificarMecanico(mec);
 	}
 	
-	public void eliminarMecanico(int matricula){
+	public void eliminarMecanico(int matricula) throws Exception {
 		dm.eliminarMecanico(matricula);
 	}
 }

@@ -79,8 +79,13 @@ public class AgregarVehiculo extends HttpServlet {
 			auto.setPatente(patente);
 			cli.setDni(dni);
 			auto.setCli(cli);
-			cv.agregarVehiculo(auto);
-			request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+			try {
+				cv.agregarVehiculo(auto);
+				request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
+			
 		} else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}

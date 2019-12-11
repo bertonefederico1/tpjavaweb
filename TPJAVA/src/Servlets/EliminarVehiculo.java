@@ -38,8 +38,12 @@ public class EliminarVehiculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String patente = request.getParameter("patente");
 		ControladorVehiculo cv = new ControladorVehiculo();
-		cv.eliminarVehiculo(patente);
-		request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+		try {
+			cv.eliminarVehiculo(patente);
+			request.getRequestDispatcher("MostrarVehiculosPorCliente.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

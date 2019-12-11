@@ -40,9 +40,14 @@ public class MecanicoFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String buscamecanico = request.getParameter("txtbuscar");
 		ControladorMecanico cm = new ControladorMecanico();
-		ArrayList<Mecanico> misMecanicos= cm.mecanicosFiltrados(buscamecanico);
-		request.getSession().setAttribute("misMecanicos", misMecanicos);
-		request.getRequestDispatcher("BusquedaFiltradaMecanicos.jsp").forward(request, response);
+		ArrayList<Mecanico> misMecanicos;
+		try {
+			misMecanicos = cm.mecanicosFiltrados(buscamecanico);
+			request.getSession().setAttribute("misMecanicos", misMecanicos);
+			request.getRequestDispatcher("BusquedaFiltradaMecanicos.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

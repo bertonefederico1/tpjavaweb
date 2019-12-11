@@ -41,8 +41,13 @@ public class EliminarRepuestoSeleccionado extends HttpServlet {
 		int cod_repuesto = Integer.parseInt(request.getParameter("cod_repuesto"));
 		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		request.getSession().setAttribute("repuestosSeleccionados", cldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosSeleccionados));
-		response.sendRedirect("NuevaReparacion.jsp");
+		try {
+			request.getSession().setAttribute("repuestosSeleccionados", cldr.eliminarRepuestoSeleccionado(cod_repuesto, repuestosSeleccionados));
+			response.sendRedirect("NuevaReparacion.jsp");
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
+		
 	}
 
 }

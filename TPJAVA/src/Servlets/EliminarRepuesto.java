@@ -37,9 +37,13 @@ public class EliminarRepuesto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_repuesto= Integer.parseInt(request.getParameter("codigo"));
 		ControladorRepuesto cr = new ControladorRepuesto();
-		cr.eliminarRepuesto(cod_repuesto);
-		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-		request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+		try {
+			cr.eliminarRepuesto(cod_repuesto);
+			request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+			request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 
 }

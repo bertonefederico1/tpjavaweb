@@ -48,12 +48,20 @@ public class FacturarReparacion extends HttpServlet {
 			response.sendRedirect("Facturar.jsp");
 		}else{
 			int nro_reparacion = Integer.parseInt(nro_reparacion_string);
-			request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
-			request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
+			try {
+				request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
+				request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
+			} catch (Exception e1) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
 			switch (request.getParameter("btn_facturar")){
 			case "traer":{
-				request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));
-				request.getRequestDispatcher("Facturar.jsp").forward(request, response);;
+				try {
+					request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));
+					request.getRequestDispatcher("Facturar.jsp").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}
 				break;
 			}
 			case "facturar":{
@@ -68,8 +76,12 @@ public class FacturarReparacion extends HttpServlet {
 				Reparacion repa = new Reparacion();
 				repa.setNroReparacion(nro_reparacion);
 				repa.setFechaEntrega(fecha_factura_formateada);
-				cr.facturarReparacion(repa, "Entregada");
-				request.getRequestDispatcher("ReparacionFacturada.html").forward(request, response);
+				try {
+					cr.facturarReparacion(repa, "Entregada");
+					request.getRequestDispatcher("ReparacionFacturada.html").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}
 				break;
 			}
 			}

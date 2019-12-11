@@ -14,27 +14,27 @@ public class ControladorCliente {
 		dc = new DatosCliente();
 	}
 	
-	public ArrayList<Cliente> traerClientes(){
+	public ArrayList<Cliente> traerClientes() throws Exception{
 		return dc.traerClientes();
 	}
 	
-	public ArrayList<Cliente> clientesFiltrados(String nombuscar){
+	public ArrayList<Cliente> clientesFiltrados(String nombuscar) throws Exception{
 		return dc.traerClientes(nombuscar);
 	}
 	
-	public void agregarCliente(Cliente cli){
+	public void agregarCliente(Cliente cli) throws Exception{
 		dc.agregarCliente(cli);
 	}
 	
-	public void modificarCliente(Cliente cli){
+	public void modificarCliente(Cliente cli) throws Exception{
 		dc.modificarCliente(cli);
 	}
 	
-	public void eliminarCliente(int dni){
+	public void eliminarCliente(int dni) throws Exception{
 		dc.eliminarCliente(dni);
 	}
 	
-	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail() {
+	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail() throws Exception{
 		return dc.clientesConReparacionesFinalizadasParaEnviarEmail();
 	}
 }

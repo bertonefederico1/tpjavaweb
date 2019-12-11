@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import logica.ControladorCliente;
 import logica.ValidacionesIngresoDatos;
 import entidades.Cliente;
@@ -81,8 +82,12 @@ public class ModificarCliente extends HttpServlet {
 			
 			if(band){
 				ControladorCliente cc = new ControladorCliente();
-				cc.modificarCliente(cli);
-				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+				try {
+					cc.modificarCliente(cli);
+					request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}
 			}else {
 				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 			}			
