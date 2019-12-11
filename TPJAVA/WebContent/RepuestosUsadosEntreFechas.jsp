@@ -17,7 +17,7 @@
 		<h4><b>FECHA INICIO:</b></h4>
 			<div class="form-row">
 				<div class="form-group col-md-1">
-					<label for="dia"><b>Dia</b></label> 
+					<label for="dia"><b>Día</b></label> 
 					<input type="number" class="form-control" min="1" max="31" name="dia_inicio" id="dia" placeholder="01" required>
 				</div>
 				<div class="form-group col-md-1">
@@ -33,7 +33,7 @@
 		<h4><b>FECHA FIN:</b></h4>
 		<div class="form-row">
 				<div class="form-group col-md-1">
-					<label for="dia"><b>Dia</b></label> 
+					<label for="dia"><b>Día</b></label> 
 					<input type="number" class="form-control" min="1" max="31" name="dia_fin" id="dia" placeholder="03" required>
 				</div>
 				<div class="form-group col-md-1">
@@ -48,6 +48,6 @@
 			<button type="submit" class="btn btn-success">Consultar</button>
 		</form>
 	</div>
-<p><a href="Principal.jsp"><< Ir a la pagina principal</a></p>
+<p><a href="Principal.jsp"><< Ir a la página principal</a></p>
 </body>
 </html>

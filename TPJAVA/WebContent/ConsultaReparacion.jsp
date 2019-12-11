@@ -11,21 +11,25 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Consulta Reparación</title>
-<div id=titulo>
-	<h2>CLIENTE</h2>
-</div>
+
+<%
+	ControladorReparacion cr = new ControladorReparacion();
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+	Reparacion rep = new Reparacion();
+	ArrayList<LineaDeRepuesto> repuestosFactura = new ArrayList<LineaDeRepuesto>();
+	try {
+		rep = cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion")));
+		repuestosFactura = cldr.traerRepuestosUtilizados(Integer.parseInt(request.getParameter("nro_reparacion")));
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		ControladorReparacion cr = new ControladorReparacion();
-		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		Reparacion rep = new Reparacion();
-		rep = cr.traerReparacionPorNro(Integer.parseInt(request
-				.getParameter("nro_reparacion")));
-		ArrayList<LineaDeRepuesto> repuestosFactura = cldr.traerRepuestosUtilizados(Integer.parseInt(request.getParameter("nro_reparacion")));
-	%>
-
+	<div id=titulo>
+		<h2>CLIENTE</h2>
+	</div>
 	<div id=consultaReparacion>
 		<div class="row">
 			<div class="form-group col-md-4">
@@ -41,12 +45,12 @@
 		</div>
 		<div class="row">
 			<div class="form-group col-md-4">
-				<b><label for="">Direccion</label></b> <input type="text"
+				<b><label for="">Dirección</label></b> <input type="text"
 					class="form-control" readonly="readonly"
 					value="<%=rep.getAuto().getCli().getDireccion()%>">
 			</div>
 			<div class="form-group col-md-4">
-				<b><label for="">Telefono</label></b> <input type="text"
+				<b><label for="">Teléfono</label></b> <input type="text"
 					class="form-control" readonly="readonly"
 					value="<%if (rep.getAuto().getCli().getTelefono() != null) {%><%=rep.getAuto().getCli().getTelefono()%><%}%><%else {%> <%}%>">
 			</div>
@@ -102,7 +106,7 @@
 	<div id=consultaReparacion>
 		<div class="row">
 			<div class="form-group col-md-4">
-				<b><label for="">Número De Reparacion</label></b> <input type="text"
+				<b><label for="">Número De Reparación</label></b> <input type="text"
 					class="form-control" readonly="readonly"
 					value="<%=rep.getNroReparacion()%>">
 			</div>
@@ -128,24 +132,19 @@
 		<div class="row">
 			<div id="mecanico">
 				<h3>
-					<b><label>MECANICO: <%
-						if (rep.getMecanico().getNombre_y_apellido() != null) {
-					%><%=rep.getMecanico().getNombre_y_apellido()%> <%
- 	} else {
- %>No
-							Asignado<%
- 	}
- %>
+					<b><label>MECÁNICO: <% if (rep.getMecanico().getNombre_y_apellido() != null) {%>
+												<%=rep.getMecanico().getNombre_y_apellido()%> <%
+ 											} else { %>
+ 												No Asignado
+ 										 <% } %>
 					</label></b>
 				</h3>
 			</div>
 		</div>
 		<div class="row">
-
 			<label><div id=reparacionesARealizar class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Motivo de
-							Ingreso</span>
+						<span class="input-group-text" id="basic-addon1">Motivo de Ingreso</span>
 					</div>
 					<textarea name="motivoIngreso" rows="5" cols="55"
 						readonly="readonly"><%=rep.getDetalleInicial()%></textarea>
@@ -154,38 +153,28 @@
 		<div class="row">
 			<label><div id=reparacionesARealizar class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Detalles
-							del vehiculo</span>
+						<span class="input-group-text" id="basic-addon1">Detalles del vehiculo</span>
 					</div>
 					<textarea name="detallesVehiculo" rows="5" cols="53"
 						readonly="readonly">
-						<%
-							if (rep.getObservaciones() != null) {
-						%><%=rep.getObservaciones()%>
-						<%
-							} else {
-						%> <%
- 	}
- %>
+						<% if (rep.getObservaciones() != null) { %>
+							<%=rep.getObservaciones()%> <%
+						} else { %> 
+						<% } %>
 					</textarea>
 				</div></label>
 		</div>
 		<div class="row">
 			<label><div id=reparacionesARealizar class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Reparaciones
-							realizadas</span>
+						<span class="input-group-text" id="basic-addon1">Reparaciones realizadas</span>
 					</div>
 					<textarea name="reparacionesRealizadas" rows="5" cols="51"
 						readonly="readonly">
-						<%
-							if (rep.getDescFinal() != null) {
-						%><%=rep.getDescFinal()%>
-						<%
-							} else {
-						%> <%
- 	}
- %>
+						<% if (rep.getDescFinal() != null) { %>
+							<%=rep.getDescFinal()%>
+						<%} else { %> 
+						<% } %>
 					</textarea>
 				</div></label>
 		</div>
@@ -200,8 +189,8 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">CODIGO</th>
-							<th scope="col">DESCRIPCION</th>
+							<th scope="col">CÓDIGO</th>
+							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">CANTIDAD</th>
 						</tr>
 					</thead>

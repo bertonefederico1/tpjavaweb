@@ -6,17 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administracion de clientes</title>
+<title>Administración de clientes</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
-</head>
-<div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
-<body>
-	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <%
 	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
 %>
-		
+</head>
+<div id=titulo><label><b>ADMINISTRACIÓN DE CLIENTES</b></label></div>
+<body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -26,13 +25,12 @@
           	<th scope="col"></th>
             <th scope="col">DNI</th>
             <th scope="col">NOMBRE Y APELLIDO</th>
-            <th scope="col">DIRECCION</th>
-            <th scope="col">TELEFONO</th>
+            <th scope="col">DIRECCIÓN</th>
+            <th scope="col">TELÉFONO</th>
             <th scope="col">MAIL</th>
           </tr>
         </thead>
         <tbody>
-        
          <% for (Cliente cl : misClientes) {%>
 		      <tr>
 		      	<td>

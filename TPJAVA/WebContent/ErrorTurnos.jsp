@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Turnos Completos</title>
+<title>Error Turnos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>

@@ -353,8 +353,7 @@ public class DatosReparacion {
 		return misReparaciones;
 	}
 
-	public Reparacion traerReparacionPorNro(int nro_reparacion)
-			throws Exception {
+	public Reparacion traerReparacionPorNro(int nro_reparacion) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Reparacion rep = new Reparacion();
@@ -411,7 +410,7 @@ public class DatosReparacion {
 		ArrayList<Reparacion> misReparaciones = new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, a.patente, a.marca, a.modelo, a.anio_fabricacion, rep.estado "
+		String query = "SELECT rep.nro_reparacion, rep.fecha_ingreso, c.nombre_y_apellido, c.mail, a.patente, a.marca, a.modelo, a.anio_fabricacion, rep.estado "
 				+ "FROM reparaciones rep "
 				+ "INNER JOIN autos a "
 					+ "ON rep.patente = a.patente "
@@ -430,6 +429,7 @@ public class DatosReparacion {
 				rep.setNroReparacion(rs.getInt("nro_reparacion"));
 				rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
 				cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+				cli.setMail(rs.getString("mail"));
 				auto.setPatente(rs.getString("patente"));
 				auto.setMarca(rs.getString("marca"));
 				auto.setModelo(rs.getString("modelo"));

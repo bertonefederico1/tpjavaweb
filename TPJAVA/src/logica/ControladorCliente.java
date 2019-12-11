@@ -14,7 +14,7 @@ public class ControladorCliente {
 		dc = new DatosCliente();
 	}
 	
-	public ArrayList<Cliente> traerClientes() throws Exception{
+	public ArrayList<Cliente> traerClientes() throws Exception {
 		return dc.traerClientes();
 	}
 	

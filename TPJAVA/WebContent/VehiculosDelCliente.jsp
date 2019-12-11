@@ -9,12 +9,16 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Vehiculos del cliente</title>
+<title>Vehículos del cliente</title>
 </head>
 <% 
 	ControladorVehiculo cv = new ControladorVehiculo();
 	ArrayList<Auto> misVehiculos = new ArrayList<Auto>();
-	misVehiculos= cv.vehiculosPorCliente(request.getParameter("dni"));
+	try {
+		misVehiculos= cv.vehiculosPorCliente(request.getParameter("dni"));	
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 </head>
 <div id=titulo>

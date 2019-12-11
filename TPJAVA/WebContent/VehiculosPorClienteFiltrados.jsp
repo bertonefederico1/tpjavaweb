@@ -9,14 +9,13 @@
 <title>Vehículos del cliente</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
-</head>
-<div id=titulo><label><b>VEHICULOS POR CLIENTE</b></label></div>
-<body>
-	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <%
 	ArrayList<Auto> misVehiculos= (ArrayList<Auto>)request.getSession().getAttribute("misAutos");
-	
 %>
+</head>
+<div id=titulo><label><b>VEHÍCULOS POR CLIENTE</b></label></div>
+<body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -28,7 +27,7 @@
 							<th scope="col">PATENTE</th>
 							<th scope="col">MARCA Y MODELO</th>
 							<th scope="col">AÑO</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>

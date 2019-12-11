@@ -9,6 +9,10 @@ public class Auto {
 	private int cantKM;
 	private Cliente cli;
 	
+	public Auto () {
+		Cliente cli = new Cliente();
+		this.cli = cli;
+	}
 	
 	public String getPatente() {
 		return patente;

@@ -13,7 +13,12 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	ControladorRepuesto cr = new ControladorRepuesto();
-	ArrayList<Repuesto> misRepuestos = cr.traerRepuestosBajoStock();
+	ArrayList<Repuesto> misRepuestos = new ArrayList<Repuesto>();  
+	try {
+		misRepuestos = cr.traerRepuestosBajoStock();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -28,8 +33,8 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">CODIGO</th>
-							<th scope="col">DESCRIPCION</th>
+							<th scope="col">CÓDIGO</th>
+							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">STOCK</th>
 						</tr>
 					</thead>
@@ -47,7 +52,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

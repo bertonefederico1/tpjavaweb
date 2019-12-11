@@ -2,17 +2,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="datos.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administracion de repuestos</title>
+<title>Administración de repuestos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id=titulo><label><b>ADMINISTRACION DE REPUESTOS</b></label></div>
+<div id=titulo><label><b>ADMINISTRACIÓN DE REPUESTOS</b></label></div>
 <div class= "container buscar">
 	<button type="button" onclick = "location='AgregarRepuesto.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
@@ -28,11 +26,11 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">CODIGO</th>
-            <th scope="col">DESCRIPCION</th>
+            <th scope="col">CÓDIGO</th>
+            <th scope="col">DESCRIPCIÓN</th>
             <th scope="col">PRECIO</th>
             <th scope="col">STOCK</th>
-            <th scope="col">ACCION</th>
+            <th scope="col">ACCIÓN</th>
           </tr>
         </thead>
         <tbody>

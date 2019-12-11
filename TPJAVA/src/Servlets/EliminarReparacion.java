@@ -40,10 +40,10 @@ public class EliminarReparacion extends HttpServlet {
 		ControladorReparacion cr= new ControladorReparacion();
 		try {
 			cr.eliminarReparacion(nro_reparacion);
+			request.getRequestDispatcher("Reparaciones.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
-		request.getRequestDispatcher("Reparaciones.jsp").forward(request, response);
 	}
 
 }

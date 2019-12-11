@@ -8,31 +8,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Seleccion Repuesto</title>
+<title>Selección Repuesto</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+<%
+	ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>) request.getSession().getAttribute("misRepuestos");
+%>
 </head>
 <div id=titulo>
-	<label><b>SELECCION DE REPUESTOS</b></label>
+	<label><b>SELECCIÓN DE REPUESTOS</b></label>
 </div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>) request.getSession().getAttribute("misRepuestos");
-	%>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">CODIGO</th>
-							<th scope="col">DESCRIPCION</th>
+							<th scope="col">CÓDIGO</th>
+							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">PRECIO</th>
 							<th scope="col">STOCK</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>

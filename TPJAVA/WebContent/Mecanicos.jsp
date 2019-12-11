@@ -13,14 +13,18 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorMecanico cm = new ControladorMecanico();
-	ArrayList<Mecanico> misMecanicos = cm.traerMecanicos();
+	ArrayList<Mecanico> misMecanicos = new ArrayList<Mecanico>();
+	try {
+		misMecanicos = cm.traerMecanicos();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<h2><b>ADMINISTRACION DE MECANICOS</b></h2>
+	<h2><b>ADMINISTRACIÓN DE MECÁNICOS</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"
@@ -38,12 +42,12 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">MATRICULA</th>
+							<th scope="col">MATRÍCULA</th>
 							<th scope="col">NOMBRE Y APELLIDO</th>
-							<th scope="col">DIRECCION</th>
-							<th scope="col">TELEFONO</th>
+							<th scope="col">DIRECCIÓN</th>
+							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -66,7 +70,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

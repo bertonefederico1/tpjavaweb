@@ -11,17 +11,26 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Factura</title>
+<%
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+	ControladorReparacion cr = new ControladorReparacion();
+	ArrayList<Reparacion> misReparaciones = new ArrayList<Reparacion>();
+	int indice = 0;
+	double manoDeObra = 0;
+	float precioTotal = 0;
+	try {
+		misReparaciones = (ArrayList<Reparacion>) request.getSession().getAttribute("facturasPorFecha");
+		int nro_reparacion = Integer.parseInt(request.getParameter("nro_reparacion"));
+		indice = cr.buscarIndiceArreglomisReparaciones(misReparaciones, nro_reparacion);
+		manoDeObra = cr.precioManoDeObra(misReparaciones.get(indice).getNroReparacion());
+		precioTotal = cldr.getPrecioTotal(misReparaciones.get(indice).getNroReparacion());
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		ControladorReparacion cr = new ControladorReparacion();
-		ArrayList<Reparacion> misReparaciones = (ArrayList<Reparacion>) request.getSession().getAttribute("facturasPorFecha");
-		int nro_reparacion = Integer.parseInt(request
-				.getParameter("nro_reparacion"));
-		int indice = cr.buscarIndiceArreglomisReparaciones(misReparaciones, nro_reparacion);
-	%>
 	<div id=factura>
 		<h1>CLIENTE: <%=misReparaciones.get(indice).getAuto().getCli().getNombre_y_apellido()%></h1>
 		<table class="table table-dark">
@@ -47,8 +56,8 @@
 				%>
 			</tbody>
 		</table>
-		<h3>MANO DE OBRA: <%=cr.precioManoDeObra(misReparaciones.get(indice).getNroReparacion())%></h3>
-		<h2><b>TOTAL: <%=cldr.getPrecioTotal(misReparaciones.get(indice).getNroReparacion())%></b></h2>
+		<h3>MANO DE OBRA: <%=manoDeObra%></h3>
+		<h2><b>TOTAL: <%=precioTotal%></b></h2>
 	</div>
 	<a href="ConsultarFactura.jsp"><< Volver</a>
 </body>

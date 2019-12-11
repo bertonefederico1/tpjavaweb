@@ -20,6 +20,12 @@ public class Reparacion {
 	private ArrayList<LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();
 
 	
+	public Reparacion () {
+		Auto a = new Auto();
+		Mecanico mec = new Mecanico();
+		this.auto = a;
+		this.mecanico = mec;
+	}
 	
 	public ArrayList<LineaDeRepuesto> getMisLineas() {
 		return misLineas;

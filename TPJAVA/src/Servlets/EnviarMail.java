@@ -40,23 +40,25 @@ public class EnviarMail extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String asunto = request.getParameter("asunto");
 		String mensaje = request.getParameter("mensaje");
+		boolean enviado = true;
 		Email email = new Email();
 		ControladorCliente cc = new ControladorCliente();
-		ArrayList<Cliente> destinatarios = cc.clientesConReparacionesFinalizadasParaEnviarEmail();
-		boolean enviado = true;
-		for (Cliente cl : destinatarios){
-			try {
-				email.enviarCorreo(asunto, mensaje, cl.getMail());
-				enviado = true;
+		try {
+			ArrayList<Cliente> destinatarios = cc.clientesConReparacionesFinalizadasParaEnviarEmail();
+			if (destinatarios.size() > 0) {
+				for (Cliente cl : destinatarios){
+					enviado = email.enviarCorreo(asunto, mensaje, cl.getMail());
+				}
+				if (enviado) {
+					request.getRequestDispatcher("EnvioMailSatisfactorio.html").forward(request, response);
+				} else {
+					request.getRequestDispatcher("EmailNoEnviado.html").forward(request, response);
+				}
+			} else {
+				request.getRequestDispatcher("SinClienteReparacionTerminada.html").forward(request, response);
 			}
-			catch(Exception e) {
-				enviado = false;
-			}
-		}
-		if (enviado) {
-			request.getRequestDispatcher("EnvioMailSatisfactorio.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("EmailNoEnviado.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
 	}
 

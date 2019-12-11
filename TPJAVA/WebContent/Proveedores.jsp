@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="java.sql.*"%>
 <%@page import="logica.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
@@ -13,14 +12,19 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorProveedor cp = new ControladorProveedor ();
-	ArrayList<Proveedor> misProveedores = cp.traerProveedores();
+	ArrayList<Proveedor> misProveedores = new ArrayList<Proveedor>();
+	try {
+		misProveedores = cp.traerProveedores();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
+
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<h2><b>ADMINISTRACION DE PROVEEDORES</b></h2>
+	<h2><b>ADMINISTRACIÓN DE PROVEEDORES</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
@@ -38,11 +42,11 @@
 					<thead>
 						<tr>
 							<th scope="col">CUIT</th>
-							<th scope="col">RAZON SOCIAL</th>
-							<th scope="col">DIRECCION</th>
-							<th scope="col">TELEFONO</th>
+							<th scope="col">RAZÓN SOCIAL</th>
+							<th scope="col">DIRECCIÓN</th>
+							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,7 +69,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

@@ -13,9 +13,13 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorRepuesto cr = new ControladorRepuesto();
-	ArrayList<Repuesto> misRepuestos = cr.traerRepuestos();
+	ArrayList<Repuesto> misRepuestos = new ArrayList<Repuesto>();
+	try {
+		misRepuestos = cr.traerRepuestos();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -34,7 +38,7 @@
 							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">PRECIO</th>
 							<th scope="col">STOCK</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>

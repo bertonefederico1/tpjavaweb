@@ -14,7 +14,12 @@
 <%
 	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorReparacion cr = new ControladorReparacion();
-	ArrayList<Reparacion> misReparaciones = cr.reparacionesPorCliente(request.getParameter("dni"));
+	ArrayList<Reparacion> misReparaciones = new ArrayList<Reparacion>();
+	try {
+		misReparaciones = cr.reparacionesPorCliente(request.getParameter("dni"));
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 	if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {
 		request.getSession().setAttribute("tipo", "reparacion");
 	} else {
@@ -35,11 +40,11 @@
 					<thead>
 						<tr>
 							<th scope="col"></th>
-							<th scope="col">NRO REPARACION</th>
+							<th scope="col">NRO REPARACIÓN</th>
 							<th scope="col">FECHA DE INGRESO</th>
 							<th scope="col">CLIENTE</th>
 							<th scope="col">PATENTE</th>
-							<th scope="col">VEHICULO</th>
+							<th scope="col">VEHÍCULO</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,11 +52,11 @@
 							for (Reparacion rep : misReparaciones) {
 						%>
 						<tr>
-						<td>
-                 <div class="radio">
-                     <label><input type="radio" onclick=<%if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=request.getParameter("dni")%>&nombre=<%=request.getParameter("nombre")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%}%> id='express' name="optradio"></label>
-                </div>
-             </td>
+							<td>
+				                 <div class="radio">
+				                     <label><input type="radio" onclick=<%if (request.getParameter("tipo").equalsIgnoreCase("reparacion")) {%>"location='NuevaReparacion.jsp?dni=<%=request.getParameter("dni")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%} else {%>"location='Facturar.jsp?dni=<%=request.getParameter("dni")%>&nombre=<%=request.getParameter("nombre")%>&nro_reparacion=<%=rep.getNroReparacion()%>'"<%}%> id='express' name="optradio"></label>
+				                </div>
+	             			</td>
 							<td><%=rep.getNroReparacion()%></td>
 							<td><%=rep.getFechaIngreso()%></td>
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>

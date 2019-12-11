@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="logica.*"%>
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
@@ -12,7 +11,6 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 	ArrayList<LineaDeRepuesto> misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosEntreFechas");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
@@ -28,8 +26,8 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">CODIGO</th>
-							<th scope="col">DESCRIPCION</th>
+							<th scope="col">CÓDIGO</th>
+							<th scope="col">DESCRIPCIÓN</th>
 							<th scope="col">CANTIDAD</th>
 						</tr>
 					</thead>
@@ -47,7 +45,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

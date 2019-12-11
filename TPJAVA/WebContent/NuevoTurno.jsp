@@ -24,7 +24,7 @@
 			<h4><b>Fecha Turno:</b></h4>
 				<div class="form-row">
 					<div class="form-group col-md-1">
-						<label for="dia"><b>Dia</b></label> 
+						<label for="dia"><b>Día</b></label> 
 						<input type="number" class="form-control" value="<%if (request.getSession().getAttribute("dia_turno") != null) {%><%=request.getSession().getAttribute("dia_turno")%><%}%>" min="1" max="31" name="dia_turno" id="dia" placeholder="01">
 					</div>
 					<div class="form-group col-md-1">

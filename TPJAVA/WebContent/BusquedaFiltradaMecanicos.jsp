@@ -3,17 +3,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="entidades.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="datos.*"%>
 <%@page import="java.util.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administracion de mecanicos</title>
+<title>Administración de mecánicos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id=titulo><label><b>ADMINISTRACION DE MECANICOS</b></label></div>
+<div id=titulo><label><b>ADMINISTRACIÓN DE MECÁNICOS</b></label></div>
 <div class= "container buscar">
 	<button type="button" onclick = "location='AgregarMecanico.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
@@ -29,12 +27,12 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">MATRICULA</th>
+            <th scope="col">MATRÍCULA</th>
             <th scope="col">NOMBRE Y APELLIDO</th>
-            <th scope="col">DIRECCION</th>
-            <th scope="col">TELEFONO</th>
+            <th scope="col">DIRECCIÓN</th>
+            <th scope="col">TELÉFONO</th>
             <th scope="col">MAIL</th>
-            <th scope="col">ACCION</th>
+            <th scope="col">ACCIÓN</th>
           </tr>
         </thead>
         <tbody>

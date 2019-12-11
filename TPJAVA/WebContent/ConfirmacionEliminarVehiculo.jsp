@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Confirmar eliminacion</title>
+<title>Confirmar eliminación</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h2><b>SEGURO QUE DESEA ELIMINAR EL VEHICULO: <%=request.getParameter("marca")%> <%=request.getParameter("modelo")%></b></h2>
+<h2><b>SEGURO QUE DESEA ELIMINAR EL VEHÍCULO: <%=request.getParameter("marca")%> <%=request.getParameter("modelo")%></b></h2>
 <h2><b>PATENTE: <%=request.getParameter("patente")%></b></h2>
 <h2><b>CLIENTE: <%=request.getParameter("nombre_y_apellido")%></b></h2>
 <div id=botonesConfirmarEliminacion>

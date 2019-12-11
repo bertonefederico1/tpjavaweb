@@ -12,21 +12,21 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+
 <%
 	ControladorCliente cc = new ControladorCliente();
-	ArrayList<Cliente> misClientes = new ArrayList<>();
-try {
-	misClientes = cc.traerClientes();
-} catch (Exception e) {
-	request.getRequestDispatcher("DatosNoGuardados.jsp").forward(request, response);
-}
-	
+	ArrayList<Cliente> misClientes = new ArrayList<Cliente>();
+	try {
+		misClientes = cc.traerClientes();	
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
-<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+
 </head>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<h2><b>ADMINISTRACION DE CLIENTES</b></h2>
+	<h2><b>ADMINISTRACIÓN DE CLIENTES</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"
@@ -45,10 +45,10 @@ try {
 						<tr>
 							<th scope="col">DNI</th>
 							<th scope="col">NOMBRE Y APELLIDO</th>
-							<th scope="col">DIRECCION</th>
-							<th scope="col">TELEFONO</th>
+							<th scope="col">DIRECCIÓN</th>
+							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -72,7 +72,7 @@ try {
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

@@ -10,15 +10,15 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+<%
+	request.getSession().setAttribute("tipo", "ingreso");
+	Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	String fechaHoy= formatter.format(fecha);
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		request.getSession().setAttribute("tipo", "ingreso");
-		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		String fechaHoy= formatter.format(fecha);
-	%>
 	<div class="container">
 		<form method="POST" action="NuevoIngreso">
 			<label><div id=fecha class="input-group mb-3">
@@ -47,7 +47,7 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Vehiculo</span>
+						<span class="input-group-text" id="basic-addon1">Vehículo</span>
 					</div>
 					<input type="text" class="form-control" name="patente"
 						aria-label="cliente" aria-describedby="basic-addon1"

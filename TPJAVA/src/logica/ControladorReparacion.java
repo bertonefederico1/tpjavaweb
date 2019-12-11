@@ -42,7 +42,7 @@ public class ControladorReparacion {
 		return dr.traerReparaciones();
 	}
 	
-	public Reparacion traerReparacionPorNro(int nro_reparacion) throws Exception{
+	public Reparacion traerReparacionPorNro(int nro_reparacion) throws Exception {
 		return dr.traerReparacionPorNro(nro_reparacion);
 	}
 	

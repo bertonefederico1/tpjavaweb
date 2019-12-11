@@ -12,17 +12,15 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		String fechaHoy = formatter.format(fecha);
-		request.getSession().setAttribute("tipo", "nueva_reparacion");
-		Reparacion rep = new Reparacion ();
-		ControladorReparacion cr = new ControladorReparacion();
-		ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
+<%
+	Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	String fechaHoy = formatter.format(fecha);
+	request.getSession().setAttribute("tipo", "nueva_reparacion");
+	Reparacion rep = new Reparacion ();
+	ControladorReparacion cr = new ControladorReparacion();
+	ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosSeleccionados");
+	try {	
 		if (request.getParameter("dni") != null){
 			request.getSession().setAttribute("cliente_seleccionado", request.getParameter("dni"));
 		}
@@ -33,7 +31,13 @@
 		if(request.getSession().getAttribute("reparacion") != null){
 			rep = (Reparacion) request.getSession().getAttribute("reparacion");
 		}
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 	%>
+</head>
+<body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
 			<input type="hidden" class="form-control" name="tipo" value="nueva_reparacion">
@@ -64,7 +68,7 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Número de reparación</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
@@ -102,11 +106,11 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th scope="col">CODIGO</th>
-								<th scope="col">DESCRIPCION</th>
+								<th scope="col">CÓDIGO</th>
+								<th scope="col">DESCRIPCIÓN</th>
 								<th scope="col">PRECIO X UNIDAD</th>
 								<th scope="col">CANTIDAD</th>
-								<th scope="col">ACCION</th>
+								<th scope="col">ACCIÓN</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -135,8 +139,6 @@
 					</div>
 				</div>
 			</div>
-
-
 			<div id="botonGuardar">
 				<button type="submit" class="btn btn-success" name="btn_reparacion" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>

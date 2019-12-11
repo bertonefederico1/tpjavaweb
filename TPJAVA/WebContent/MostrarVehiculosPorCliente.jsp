@@ -11,15 +11,18 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Vehículos</title>
-</head>
 <%
 	ControladorVehiculo cv = new ControladorVehiculo();
 	ArrayList<Auto> misVehiculos = new ArrayList<Auto>();
-	misVehiculos = cv.vehiculosyClientes();
+	try {
+		misVehiculos = cv.vehiculosyClientes();	
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 </head>
 <div id=titulo>
-	<h2><b>VEHICULOS POR CLIENTE</b></h2>
+	<h2><b>VEHÍCULOS POR CLIENTE</b></h2>
 </div>
 <div class="container buscar">
 	<form class="form" method="POST" action="VehiculosPorClienteFiltro">
@@ -40,7 +43,7 @@
 							<th scope="col">PATENTE</th>
 							<th scope="col">MARCA Y MODELO</th>
 							<th scope="col">AÑO</th>
-							<th scope="col">ACCION</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>

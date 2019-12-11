@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
-	<h2><b>AVISO REPARACION FINALIZADA</b></h2>
+	<h2><b>AVISO REPARACIÓN FINALIZADA</b></h2>
 </div>
 
 <div class="container">
@@ -40,6 +40,5 @@
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>

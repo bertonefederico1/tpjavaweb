@@ -8,16 +8,16 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Modificar Proveedor</title>
+<%
+	String cuit = request.getParameter("cuit");
+	String razon_social = request.getParameter("razon_social");
+	String direccion = request.getParameter("direccion");
+	String telefono = request.getParameter("telefono");
+	String mail = request.getParameter("mail");
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		String cuit = request.getParameter("cuit");
-		String razon_social = request.getParameter("razon_social");
-		String direccion = request.getParameter("direccion");
-		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
-	%>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ModificarProveedor">
 			<div class="form-group">
@@ -26,19 +26,19 @@
 					maxlength="13" placeholder="20-37312212-5" required>
 			</div>
 			<div class="form-group">
-				<label for="razon_social"><b>Razon Social</b></label> <input
+				<label for="razon_social"><b>Razón Social</b></label> <input
 					type="text" class="form-control" id="razon_social" maxlength="500"
 					name="razon_social" value="<%=razon_social%>" placeholder="Ejemplo S.A" required>
 			</div>
 
 			<div class="form-group">
-				<label for="direccion"><b>Direccion</b></label> <input type="text"
+				<label for="direccion"><b>Dirección</b></label> <input type="text"
 					class="form-control" id="direccion"  name="direccion" value="<%=direccion%>"
 					maxlength="100" placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="telefono"><b>Telefono</b></label> <input type="number"
+					<label for="telefono"><b>Teléfono</b></label> <input type="number"
 						class="form-control"  name="telefono" id="telefono" value="<%=telefono%>"
 						maxlength="12" placeholder="420222">
 				</div>
@@ -57,6 +57,5 @@
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>

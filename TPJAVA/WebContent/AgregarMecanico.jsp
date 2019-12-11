@@ -7,7 +7,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-<title>Nuevo Mecanico</title>
+<title>Nuevo Mecánico</title>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
@@ -21,13 +21,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="direccion"><b>Direccion</b></label> <input type="text"
+				<label for="direccion"><b>Dirección</b></label> <input type="text"
 					class="form-control" id="direccion" name="direccion" maxlength="100"
 					placeholder="Entre Rios 1243" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="telefono"><b>Telefono</b></label> <input
+					<label for="telefono"><b>Teléfono</b></label> <input
 						type="number" class="form-control" name="telefono" id="telefono" maxlength="12"
 						placeholder="420222">
 				</div>

@@ -27,9 +27,9 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">NRO REPARACION</th>
+							<th scope="col">NRO REPARACIÓN</th>
 							<th scope="col">CLIENTE</th>
-							<th scope="col">VEHICULO</th>
+							<th scope="col">VEHÍCULO</th>
 						</tr>
 					</thead>
 					<tbody>

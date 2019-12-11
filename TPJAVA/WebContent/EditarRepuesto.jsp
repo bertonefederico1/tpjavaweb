@@ -8,15 +8,15 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Modificar Repuesto</title>
+<%
+	String codigo = request.getParameter("codigo");
+	String descripcion = request.getParameter("descripcion");
+	String precio = request.getParameter("precio");
+	String stock = request.getParameter("stock");
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		String codigo = request.getParameter("codigo");
-		String descripcion = request.getParameter("descripcion");
-		String precio = request.getParameter("precio");
-		String stock = request.getParameter("stock");
-	%>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ModificarRepuesto">
 		<div class="form-row">
@@ -28,7 +28,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="descripcion"><b>Descripcion</b></label> <input
+					<label for="descripcion"><b>Descripción</b></label> <input
 						type="text" class="form-control" name="descripcion" maxlength="100"
 						id="descripcion" placeholder="Foco Delantero" value="<%=descripcion%>" required>
 				</div>

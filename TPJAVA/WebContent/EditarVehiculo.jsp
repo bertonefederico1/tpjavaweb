@@ -8,16 +8,16 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Nuevo Vehículo</title>
+<%
+	String patente = request.getParameter("patente");
+	String marca = request.getParameter("marca");
+	String modelo = request.getParameter("modelo");
+	String anio = request.getParameter("anio");
+	String cantidad_km = request.getParameter("cantidad_km");
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		String patente = request.getParameter("patente");
-		String marca = request.getParameter("marca");
-		String modelo = request.getParameter("modelo");
-		String anio = request.getParameter("anio");
-		String cantidad_km = request.getParameter("cantidad_km");
-	%>
 	<div id=plantillaAgregar>
 		<form method="POST" action= "ModificarVehiculo">
 			<input type="hidden" name="patente_original" value="<%=request.getParameter("patente")%>">

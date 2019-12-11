@@ -12,20 +12,20 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+<%
+	request.getSession().setAttribute("tipo", "facturar");
+	Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	String fechaHoy = formatter.format(fecha);
+	ArrayList<LineaDeRepuesto> repuestosFactura = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosFactura");
+	if (request.getParameter("dni") != null || request.getParameter("nro_reparacion") != null) {
+		request.getSession().setAttribute("cliente_seleccionado", request.getParameter("nombre"));
+		request.getSession().setAttribute("reparacion_seleccionada", request.getParameter("nro_reparacion"));
+	}
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-	request.getSession().setAttribute("tipo", "facturar");
-		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		String fechaHoy = formatter.format(fecha);
-		ArrayList<LineaDeRepuesto> repuestosFactura = (ArrayList<LineaDeRepuesto>) request.getSession().getAttribute("repuestosFactura");
-		if (request.getParameter("dni") != null || request.getParameter("nro_reparacion") != null) {
-			request.getSession().setAttribute("cliente_seleccionado",request.getParameter("nombre"));
-			request.getSession().setAttribute("reparacion_seleccionada",request.getParameter("nro_reparacion"));
-		}
-	%>
 	<div class="container">
 		<form method="POST" action="FacturarReparacion">
 			<label><div id=fecha class="input-group mb-3">
@@ -56,7 +56,7 @@
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Número de reparación</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
@@ -83,8 +83,8 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th scope="col">CODIGO</th>
-								<th scope="col">DESCRIPCION</th>
+								<th scope="col">CÓDIGO</th>
+								<th scope="col">DESCRIPCIÓN</th>
 								<th scope="col">CANTIDAD</th>
 								<th scope="col">PRECIO X UNIDAD</th>
 								<th scope="col">SUBTOTAL</th>

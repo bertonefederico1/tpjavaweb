@@ -13,10 +13,14 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorRepuesto cr = new ControladorRepuesto();
-	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-	ArrayList<Repuesto> misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
+	ArrayList<Repuesto> misRepuestos = new ArrayList<Repuesto>();
+	try {
+		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+		misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -65,7 +69,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

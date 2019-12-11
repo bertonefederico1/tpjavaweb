@@ -57,7 +57,7 @@ public class SignIn extends HttpServlet {
 					request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
 				}
 		} catch (Exception e) {
-			request.getRequestDispatcher("DatosNoGuardados.html").forward(request, response);
+			response.sendRedirect("ErrorGeneral.html");
 		}
 		
 	}

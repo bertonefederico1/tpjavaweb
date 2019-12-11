@@ -8,21 +8,20 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Modificar Mecánico</title>
+<%
+	String matricula = request.getParameter("matricula");
+	String nombre_y_apellido = request.getParameter("nombre_y_apellido");
+	String direccion = request.getParameter("direccion");
+	String telefono = request.getParameter("telefono");
+	String mail = request.getParameter("mail");
+%>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		String matricula = request.getParameter("matricula");
-		String nombre_y_apellido = request.getParameter("nombre_y_apellido");
-		String direccion = request.getParameter("direccion");
-		String telefono = request.getParameter("telefono");
-		String mail = request.getParameter("mail");
-	%>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ModificarMecanico">
-
 			<div class="form-group">
-				<label for="matricula"><b>Matricula</b></label> <input type="number"
+				<label for="matricula"><b>Matrícula</b></label> <input type="number"
 					class="form-control" id="matricula" readonly="readonly" name="matricula" placeholder="1111"
 					value="<%=matricula%>" required>
 			</div>
@@ -32,13 +31,13 @@
 					name="nombre_y_apellido" value="<%=nombre_y_apellido%>" required>
 			</div>
 			<div class="form-group">
-				<label for="direccion"><b>Direccion</b></label> <input type="text"
+				<label for="direccion"><b>Dirección</b></label> <input type="text"
 					class="form-control" id="direccion" name="direccion" maxlength="100"
 					placeholder="Entre Rios 1243" value="<%=direccion%>" required>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="telefono"><b>Telefono</b></label> <input type="number"
+					<label for="telefono"><b>Teléfono</b></label> <input type="number"
 						class="form-control" name="telefono" id="telefono" maxlength="12"
 						placeholder="420222" value="<%=telefono%>">
 				</div>
@@ -57,6 +56,5 @@
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>

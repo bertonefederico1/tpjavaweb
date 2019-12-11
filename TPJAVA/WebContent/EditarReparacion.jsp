@@ -12,18 +12,17 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<%
-		Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		String fechaHoy = formatter.format(fecha);
-		ControladorReparacion cr = new ControladorReparacion();
-		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		request.getSession().setAttribute("tipo", "editar_reparacion");
-		Reparacion rep = new Reparacion();
-		boolean estaModificado = true;
+<%
+	Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	String fechaHoy = formatter.format(fecha);
+	ControladorReparacion cr = new ControladorReparacion();
+	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+	request.getSession().setAttribute("tipo", "editar_reparacion");
+	Reparacion rep = new Reparacion();
+	ArrayList <LineaDeRepuesto> misLineas = new ArrayList<LineaDeRepuesto>();
+	boolean estaModificado = true;
+	try {
 		if (request.getParameter("nro_reparacion") != null) {
 			request.getSession().setAttribute("nro_reparacion", request.getParameter("nro_reparacion"));
 			request.getSession().setAttribute("reparacion", cr.traerReparacionPorNro(Integer.parseInt(request.getParameter("nro_reparacion"))));
@@ -32,7 +31,6 @@
 		String nro_reparacion_string = request.getSession().getAttribute("nro_reparacion").toString();	
 		int nro_reparacion = Integer.parseInt(nro_reparacion_string);
 		rep = cr.traerReparacionPorNro(nro_reparacion);
-		ArrayList <LineaDeRepuesto> misLineas = null;
  		if (estaModificado) { 
  			misLineas = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
  		} else {
@@ -43,7 +41,13 @@
  		if(request.getSession().getAttribute("reparacion") != null){
 			rep = (Reparacion) request.getSession().getAttribute("reparacion");
 		}
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 	%>
+</head>
+<body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<form method="POST" action="CargarReparacion">
 			<input type="hidden" class="form-control" name="tipo" value="editar_reparacion">
@@ -56,7 +60,6 @@
 						<input type="hidden" class="form-control" name="fecha_fin" value="<%=fechaHoy%>">
 				</div></label>
 			<p>
-				
 				<label><div id=cliente class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">Cliente</span>
@@ -67,11 +70,10 @@
 							readonly="readonly"></input>
 					</div></label>
 			</p>
-			
 			<label>
 				<div id=vehiculo class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Numero de reparacion</span>
+						<span class="input-group-text" id="basic-addon1">Número de reparación</span>
 					</div>
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
@@ -103,11 +105,11 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th scope="col">CODIGO</th>
-								<th scope="col">DESCRIPCION</th>
+								<th scope="col">CÓDIGO</th>
+								<th scope="col">DESCRIPCIÓN</th>
 								<th scope="col">PRECIO X UNIDAD</th>
 								<th scope="col">CANTIDAD</th>
-								<th scope="col">ACCION</th>
+								<th scope="col">ACCIÓN</th>
 							</tr>
 						</thead>
  						<tbody> 

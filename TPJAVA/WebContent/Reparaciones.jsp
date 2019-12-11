@@ -12,9 +12,13 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorReparacion cr = new ControladorReparacion();
-	ArrayList<Reparacion> misReparaciones = cr.traerReparaciones();
+	ArrayList<Reparacion> misReparaciones = new ArrayList<Reparacion>();
+	try {
+		misReparaciones = cr.traerReparaciones();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -35,12 +39,14 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">NRO REPARACION</th>
+							<th scope="col">NRO REPARACIÓN</th>
 							<th scope="col">FECHA DE INGRESO</th>
 							<th scope="col">ESTADO</th>
 							<th scope="col">CLIENTE</th>
-							<th scope="col">VEHICULO</th>
+							<th scope="col">MAIL</th>
+							<th scope="col">VEHÍCULO</th>
 							<th scope="col">PATENTE</th>
+							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,6 +58,7 @@
 							<td><%=rep.getFechaIngreso()%></td>
 							<td><%=rep.getEstado()%></td>
 							<td><%=rep.getAuto().getCli().getNombre_y_apellido()%></td>
+							<td><%=rep.getAuto().getCli().getMail()%></td>
 							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%></td>
 							<td><%=rep.getAuto().getPatente()%></td>
 							<td><div>
@@ -64,7 +71,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

@@ -14,28 +14,32 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	DatosCliente dp = new DatosCliente();
 	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-	ArrayList<Cliente> misClientes = dp.traerClientes();
-	if(request.getParameter("tipo").equalsIgnoreCase("ingreso")){
-		request.getSession().setAttribute("tipo", "Ingreso");
-	}else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")){
-		request.getSession().setAttribute("tipo", "Reparacion");
- 	} else if (request.getParameter("tipo").equalsIgnoreCase("factura")){
- 		request.getSession().setAttribute("tipo","Factura");
- 		request.getSession().removeAttribute("repuestosFactura");
- 		request.getSession().removeAttribute("manoDeObra");
- 		request.getSession().setAttribute("repuestosFactura",cldr.inicializarLineas());
- 		request.getSession().setAttribute("manoDeObra", 0.0);
- 		request.getSession().setAttribute("precio_total", 0);
- 	}
 	request.getSession().removeAttribute("reparacion_seleccionada");
+	ArrayList<Cliente> misClientes = new ArrayList<Cliente>();
+	try {
+		misClientes = dp.traerClientes();
+		if(request.getParameter("tipo").equalsIgnoreCase("ingreso")){
+			request.getSession().setAttribute("tipo", "Ingreso");
+		}else if (request.getParameter("tipo").equalsIgnoreCase("reparacion")){
+			request.getSession().setAttribute("tipo", "Reparacion");
+	 	} else if (request.getParameter("tipo").equalsIgnoreCase("factura")){
+	 		request.getSession().setAttribute("tipo","Factura");
+	 		request.getSession().removeAttribute("repuestosFactura");
+	 		request.getSession().removeAttribute("manoDeObra");
+	 		request.getSession().setAttribute("repuestosFactura",cldr.inicializarLineas());
+	 		request.getSession().setAttribute("manoDeObra", 0.0);
+	 		request.getSession().setAttribute("precio_total", 0);
+	 	}
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>ADMINISTRACION DE CLIENTES</b></label>
+	<label><b>ADMINISTRACIÓN DE CLIENTES</b></label>
 </div>
 <div class="container buscar">
 	<form class="form" method="GET" action="ClienteFiltro">
@@ -54,8 +58,8 @@
 							<th scope="col"></th>
 							<th scope="col">DNI</th>
 							<th scope="col">NOMBRE Y APELLIDO</th>
-							<th scope="col">DIRECCION</th>
-							<th scope="col">TELEFONO</th>
+							<th scope="col">DIRECCIÓN</th>
+							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
 						</tr>
 					</thead>

@@ -17,34 +17,37 @@
 	type="text/css" />
 <title>Pagina Principal</title>	
 <%	
-	ControladorRepuesto cr = new ControladorRepuesto();
-	ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-	request.getSession().removeAttribute("tipo");
-	request.getSession().removeAttribute("repuestosSeleccionados");
-	request.getSession().removeAttribute("reparaciones_realizadas");
-	request.getSession().removeAttribute("cliente_seleccionado");
-	request.getSession().removeAttribute("fecha_hoy");
-	request.getSession().removeAttribute("manoDeObra");
-	request.getSession().removeAttribute("mano_de_obra");
-	request.getSession().removeAttribute("reparacion_seleccionada");
-	request.getSession().removeAttribute("repuestosFactura");
-	request.getSession().removeAttribute("repuestosSeleccionadosOriginal");
-	request.getSession().removeAttribute("dia_turno");
-	request.getSession().removeAttribute("mes_turno");
-	request.getSession().removeAttribute("anio_turno");
-	request.getSession().setAttribute("manoDeObra", 0.0);
-	request.getSession().setAttribute("precio_total", 0.0);
-	request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-	request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
-	request.getSession().setAttribute("repuestosFactura", cldr.inicializarLineas());
-	request.getSession().setAttribute("repuestosSeleccionadosOriginal", cldr.inicializarLineas());
+	try {
+		ControladorRepuesto cr = new ControladorRepuesto();
+		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		request.getSession().removeAttribute("tipo");
+		request.getSession().removeAttribute("repuestosSeleccionados");
+		request.getSession().removeAttribute("reparaciones_realizadas");
+		request.getSession().removeAttribute("cliente_seleccionado");
+		request.getSession().removeAttribute("fecha_hoy");
+		request.getSession().removeAttribute("manoDeObra");
+		request.getSession().removeAttribute("mano_de_obra");
+		request.getSession().removeAttribute("reparacion_seleccionada");
+		request.getSession().removeAttribute("repuestosFactura");
+		request.getSession().removeAttribute("repuestosSeleccionadosOriginal");
+		request.getSession().removeAttribute("dia_turno");
+		request.getSession().removeAttribute("mes_turno");
+		request.getSession().removeAttribute("anio_turno");
+		request.getSession().setAttribute("manoDeObra", 0.0);
+		request.getSession().setAttribute("precio_total", 0.0);
+		request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+		request.getSession().setAttribute("repuestosSeleccionados", cldr.inicializarLineas());
+		request.getSession().setAttribute("repuestosFactura", cldr.inicializarLineas());
+		request.getSession().setAttribute("repuestosSeleccionadosOriginal", cldr.inicializarLineas());
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="shadow-lg p-3 mb-5 bg-white rounded">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +56,10 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="Clientes.jsp">Clientes</a></li>
-				<li class="nav-item"><a class="nav-link" href="Mecanicos.jsp">Mecanicos</a></li>
+				<li class="nav-item"><a class="nav-link" href="Mecanicos.jsp">Mecánicos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Repuestos.jsp">Repuestos</a></li>
 				<li class="nav-item"><a class="nav-link" href="Proveedores.jsp">Proveedores</a></li>
-				<li class="nav-item"><a class="nav-link" href="MostrarVehiculosPorCliente.jsp">Vehiculos por cliente</a></li>
+				<li class="nav-item"><a class="nav-link" href="MostrarVehiculosPorCliente.jsp">Vehículos por cliente</a></li>
 				<li class="nav-item"><a class="nav-link" href="Turnos.jsp">Turnos</a></li>
 				<li class="nav-item dropdown">
         		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,14 +84,14 @@
       			<li class="nav-item"><a class="nav-link" href="AvisoReparacionesFinalizadas.jsp">Avisar reparaciones finalizadas</a></li>
 			</ul>
 		</div>
-		<a style="color: black" class="nav-link" href="Login.jsp?cerrar=true">Cerrar Sesion</a> </nav>
+		<a style="color: black" class="nav-link" href="Login.jsp?cerrar=true">Cerrar Sesión</a> </nav>
 	</div>
 </body>
 	<a href= "Ingreso.jsp">
 		<img src="icons/nuevo ingreso.jpg" alt= "NUEVO INGRESO" title= "NUEVO INGRESO" style= "position:relative; top:110px; left:80px" width="200" height="220">
 	</a>
 	<a href= "NuevaReparacion.jsp">
-		<img src="icons/nueva reparacion.jpg" alt= "NUEVA REPARACION" title= "NUEVA REPARACION" style= "position:relative; top:110px; left:370px" width="200" height="220">
+		<img src="icons/nueva reparacion.jpg" alt= "NUEVA REPARACION" title= "NUEVA REPARACIÓN" style= "position:relative; top:110px; left:370px" width="200" height="220">
 	</a>
 	<a href= "NuevoTurno.jsp">
 		<img src="icons/nuevo turno.jpg" alt= "NUEVO TURNO" title= "NUEVO TURNO"style= "position:relative; top:110px; left:690px" width="200" height="220">

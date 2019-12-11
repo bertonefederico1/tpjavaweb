@@ -14,7 +14,12 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
 	ControladorTurno ct = new ControladorTurno();
-	ArrayList<Turno> misTurnos = ct.traerTurnos();
+	ArrayList<Turno> misTurnos = new ArrayList<Turno>();
+	try {
+		misTurnos = ct.traerTurnos();
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -66,7 +71,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

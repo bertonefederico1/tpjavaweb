@@ -12,9 +12,14 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	Usuario u = (Usuario) session.getAttribute("usuario");
 	ControladorReparacion cr = new ControladorReparacion();
-	ArrayList<Reparacion> misReparaciones = cr.traerReparacionesAModificar();
+	ArrayList<Reparacion> misReparaciones = new ArrayList<Reparacion>(); 
+	try {
+		misReparaciones = cr.traerReparacionesAModificar();		
+	} catch (Exception e) {
+		response.sendRedirect("ErrorGeneral.html");
+	}
+
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -29,11 +34,11 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">NRO REPARACION</th>
+							<th scope="col">NRO REPARACIÓN</th>
 							<th scope="col">FECHA DE INGRESO</th>
 							<th scope="col">ESTADO</th>
 							<th scope="col">CLIENTE</th>
-							<th scope="col">VEHICULO</th>
+							<th scope="col">VEHÍCULO</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,7 +60,7 @@
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la pagina principal</a>
+				<a href="Principal.jsp"><< Ir a la página principal</a>
 			</div>
 		</div>
 	</div>

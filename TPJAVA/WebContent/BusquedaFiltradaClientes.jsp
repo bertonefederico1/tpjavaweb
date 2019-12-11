@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Administracion de usuarios</title>
+<title>Administración de usuarios</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id=titulo><label><b>ADMINISTRACION DE CLIENTES</b></label></div>
+<div id=titulo><label><b>ADMINISTRACIÓN DE CLIENTES</b></label></div>
 <div class= "container buscar">
 	<button type="button" onclick = "location='AgregarCliente.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>
@@ -19,7 +19,6 @@
 <%
 	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
 %>
-		
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -28,10 +27,10 @@
           <tr>
             <th scope="col">DNI</th>
             <th scope="col">NOMBRE Y APELLIDO</th>
-            <th scope="col">DIRECCION</th>
-            <th scope="col">TELEFONO</th>
+            <th scope="col">DIRECCIÓN</th>
+            <th scope="col">TELÉFONO</th>
             <th scope="col">MAIL</th>
-            <th scope="col">ACCION</th>
+            <th scope="col">ACCIÓN</th>
           </tr>
         </thead>
         <tbody>
