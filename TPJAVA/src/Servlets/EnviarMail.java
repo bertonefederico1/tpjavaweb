@@ -45,9 +45,11 @@ public class EnviarMail extends HttpServlet {
 		ArrayList<Cliente> destinatarios = cc.clientesConReparacionesFinalizadasParaEnviarEmail();
 		boolean enviado = true;
 		for (Cliente cl : destinatarios){
-			if (email.enviarCorreo(asunto, mensaje, cl.getMail())) {
+			try {
+				email.enviarCorreo(asunto, mensaje, cl.getMail());
 				enviado = true;
-			} else {
+			}
+			catch(Exception e) {
 				enviado = false;
 			}
 		}

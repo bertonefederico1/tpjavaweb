@@ -13,11 +13,10 @@ import logica.ControladorCliente;
 
 public class Email {
 	
-	public boolean enviarCorreo (String asunto, String mensaje, String para){
+	public void enviarCorreo (String asunto, String mensaje, String para) throws Exception{
 		boolean enviado = false;
 		String cuenta = "fedebertone123456789@gmail.com";
 		String password = "juanbjusto1750";
-		try {
 			String host = "smtp.gmail.com";
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable","true");
@@ -39,11 +38,5 @@ public class Email {
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			
-			enviado = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			enviado = false;
-		} 
-		return enviado;
 	}
 }
