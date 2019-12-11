@@ -34,5 +34,7 @@ public class ControladorCliente {
 		dc.eliminarCliente(dni);
 	}
 	
-	
+	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail() {
+		return dc.clientesConReparacionesFinalizadasParaEnviarEmail();
+	}
 }

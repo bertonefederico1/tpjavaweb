@@ -84,7 +84,7 @@ public class DatosCliente {
 	
 	public void agregarCliente(Cliente cli) {
 		PreparedStatement pstmt = null;
-		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono) values(?,?,?,?,?)");
+		String insertar = ("insert into clientes(dni,nombre_y_apellido,direccion,mail,telefono,activo) values(?,?,?,?,?,?)");
 		try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(insertar);
 			pstmt.setInt(1, Integer.parseInt(cli.getDni()));
@@ -92,6 +92,7 @@ public class DatosCliente {
 			pstmt.setString(3, cli.getDireccion());
 			pstmt.setString(4, cli.getMail());
 			pstmt.setString(5, cli.getTelefono());
+			pstmt.setString(6, "si");
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,4 +164,42 @@ public class DatosCliente {
 			}
 		}
 	}
+	
+	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail() {
+		String query = ("SELECT * FROM clientes cli "
+						+ "INNER JOIN autos a "
+							+ "ON cli.dni = a.dni "
+						+ "INNER JOIN reparaciones repa "
+							+ "ON a.patente = repa.patente "
+						+ "WHERE repa.activa = 'si' AND repa.estado = 'Finalizada' AND a.activo = 'si' AND cli.activo = 'si' AND cli.mail is not null");
+		ArrayList<Cliente> destinatarios= new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+	 	try {
+			stmt= Conexion.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery(query);
+			if (rs!=null){
+				while (rs.next()) {
+					Cliente cli = new Cliente();
+					cli.setMail(rs.getString("mail"));
+					destinatarios.add(cli);
+				}
+		 	}
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 	finally {
+			try {
+				rs.close();
+				stmt.close();
+				Conexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	 	return destinatarios;
+	}
+	
 }

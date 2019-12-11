@@ -25,13 +25,13 @@ public class DatosReparacion {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "SELECT * "
-				+ "FROM reparaciones rep "
-				+ "INNER JOIN autos a "
-				+ "ON rep.patente = a.patente "
-				+ "INNER JOIN clientes c "
-				+ "ON a.dni = c.dni "
-				+ "WHERE year(rep.fecha_entrega) = ? AND month(rep.fecha_entrega) = ? "
-				+ "AND day(rep.fecha_entrega) = ? AND rep.activa = 'si' AND rep.estado = 'Entregada' ORDER BY rep.nro_reparacion ASC";
+						+ "FROM reparaciones rep "
+						+ "INNER JOIN autos a "
+							+ "ON rep.patente = a.patente "
+						+ "INNER JOIN clientes c "
+							+ "ON a.dni = c.dni "
+						+ "WHERE year(rep.fecha_entrega) = ? AND month(rep.fecha_entrega) = ? "
+						+ "AND day(rep.fecha_entrega) = ? AND rep.activa = 'si' AND rep.estado = 'Entregada' ORDER BY rep.nro_reparacion ASC";
 	 	try {
 			pstmt= Conexion.getInstancia().getConn().prepareStatement(query);
 			pstmt.setString(1, anio);

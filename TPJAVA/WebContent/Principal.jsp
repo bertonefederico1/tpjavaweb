@@ -78,6 +78,7 @@
           		<a class="dropdown-item" href="RepuestosUsadosEntreFechas.jsp">Repuestos utilizados entre fechas</a>
           		</div>
       			</li>
+      			<li class="nav-item"><a class="nav-link" href="AvisoReparacionesFinalizadas.jsp">Avisar reparaciones finalizadas</a></li>
 			</ul>
 		</div>
 		<a style="color: black" class="nav-link" href="Login.jsp?cerrar=true">Cerrar Sesion</a> </nav>
