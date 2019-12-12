@@ -44,47 +44,35 @@ public class FacturarReparacion extends HttpServlet {
 		String dni = request.getParameter("dni_cliente");
 		ControladorReparacion cr = new ControladorReparacion();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
-		if(ValidacionesIngresoDatos.ingresoYClienteVacio(dni, nro_reparacion_string)){
-			response.sendRedirect("Facturar.jsp");
-		}else{
-			int nro_reparacion = Integer.parseInt(nro_reparacion_string);
-			try {
+		try {
+			if(ValidacionesIngresoDatos.ingresoYClienteVacio(dni, nro_reparacion_string)){
+				response.sendRedirect("Facturar.jsp");
+			}else{
+				int nro_reparacion = Integer.parseInt(nro_reparacion_string);
 				request.getSession().setAttribute("manoDeObra", cr.precioManoDeObra(nro_reparacion));
 				request.getSession().setAttribute("repuestosFactura", cldr.traerRepuestosFactura(nro_reparacion));
-			} catch (Exception e1) {
-				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
-			}
-			switch (request.getParameter("btn_facturar")){
-			case "traer":{
-				try {
-					request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));
-					request.getRequestDispatcher("Facturar.jsp").forward(request, response);
-				} catch (Exception e) {
-					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				switch (request.getParameter("btn_facturar")){
+					case "traer":{
+						request.getSession().setAttribute("precio_total", cldr.getPrecioTotal(nro_reparacion));
+						request.getRequestDispatcher("Facturar.jsp").forward(request, response);
+						break;
+					}
+					case "facturar":{
+						String fecha_factura = request.getParameter("fecha_factura");
+						Date fecha_factura_formateada = null;
+						SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+						fecha_factura_formateada = formatter.parse(fecha_factura);
+						Reparacion repa = new Reparacion();
+						repa.setNroReparacion(nro_reparacion);
+						repa.setFechaEntrega(fecha_factura_formateada);
+						cr.facturarReparacion(repa, "Entregada");
+						request.getRequestDispatcher("ReparacionFacturada.html").forward(request, response);
+						break;
+					}
 				}
-				break;
 			}
-			case "facturar":{
-				String fecha_factura = request.getParameter("fecha_factura");
-				Date fecha_factura_formateada = null;
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				try {
-					fecha_factura_formateada = formatter.parse(fecha_factura);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				Reparacion repa = new Reparacion();
-				repa.setNroReparacion(nro_reparacion);
-				repa.setFechaEntrega(fecha_factura_formateada);
-				try {
-					cr.facturarReparacion(repa, "Entregada");
-					request.getRequestDispatcher("ReparacionFacturada.html").forward(request, response);
-				} catch (Exception e) {
-					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
-				}
-				break;
-			}
-			}
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
 	}
 }

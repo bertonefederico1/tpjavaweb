@@ -40,8 +40,7 @@ public class ClienteFiltro extends HttpServlet {
 			request.getSession().setAttribute("misClientes", misClientes);
 			request.getRequestDispatcher("SeleccionClientesFiltrados.jsp").forward(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
 		
 	}
@@ -58,8 +57,7 @@ public class ClienteFiltro extends HttpServlet {
 			request.getSession().setAttribute("misClientes", misClientes);
 			request.getRequestDispatcher("BusquedaFiltradaClientes.jsp").forward(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
 	
 		
