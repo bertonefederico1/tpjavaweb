@@ -378,6 +378,7 @@ public class DatosReparacion {
 				rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
 				rep.setFechaInicio(rs.getDate("fecha_inicio"));
 				rep.setFechaFin(rs.getDate("fecha_fin"));
+				rep.setFechaEntrega(rs.getDate("fecha_entrega"));
 				rep.setDescFinal(rs.getString("descripcion_final"));
 				rep.setDetalleInicial(rs.getString("detalle_inicial"));
 				rep.setObservaciones(rs.getString("observaciones"));

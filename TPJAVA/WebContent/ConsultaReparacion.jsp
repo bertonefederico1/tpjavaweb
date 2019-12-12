@@ -127,6 +127,11 @@
 					type="text" class="form-control" readonly="readonly"
 					value="<%if (rep.getFechaFin() != null) {%><%=rep.getFechaFin()%><%}%><%else {%>No finalizada<%}%>">
 			</div>
+			<div class="form-group col-md-4">
+				<b><label for="">Fecha de entrega</label></b> <input
+					type="text" class="form-control" readonly="readonly"
+					value="<%if (rep.getFechaEntrega() != null) {%><%=rep.getFechaEntrega()%><%}%><%else {%>No entregada<%}%>">
+			</div>
 		</div>
 
 		<div class="row">

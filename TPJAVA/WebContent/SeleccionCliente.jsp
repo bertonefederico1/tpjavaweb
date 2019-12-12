@@ -77,8 +77,8 @@
 							<td><%=cl.getDni()%></td>
 							<td><%=cl.getNombre_y_apellido()%></td>
 							<td><%=cl.getDireccion()%></td>
-							<td><%=cl.getTelefono()%></td>
-							<td><%=cl.getMail()%></td>
+							<td><%if (cl.getTelefono() != null) {%><%=cl.getTelefono()%><%}%></td>
+							<td><%if (cl.getMail() != null) {%><%=cl.getMail()%><%}%></td>
 						</tr>
 						<%
 							}

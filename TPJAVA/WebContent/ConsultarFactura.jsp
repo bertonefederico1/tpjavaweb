@@ -17,15 +17,15 @@
 			<div class="form-row">
 				<div class="form-group col-md-1">
 					<label for="dia"><b>Día</b></label> 
-					<input type="number" class="form-control" min="1" max="31" name="dia" id="dia" placeholder="01" required>
+					<input type="number" class="form-control" min="1" max="31" maxlength="2" name="dia" id="dia" placeholder="01" required>
 				</div>
 				<div class="form-group col-md-1">
 					<label for="mes"><b>Mes</b></label> 
-					<input type="number" class="form-control" min="1" max="12" name="mes" id="mes" placeholder="12" required>
+					<input type="number" class="form-control" min="1" max="12" maxlength="2" name="mes" id="mes" placeholder="12" required>
 				</div>
 				<div class="form-group col-md-1">
 					<label for="anio"><b>Año</b></label> 
-					<input type="number" class="form-control" name="anio" id="anio" placeholder="2019" required>
+					<input type="number" class="form-control" maxlength="4" name="anio" id="anio" placeholder="2019" required>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Consultar</button>

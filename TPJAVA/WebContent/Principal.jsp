@@ -15,11 +15,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
-<title>Pagina Principal</title>	
+<title>Página Principal</title>	
 <%	
 	try {
 		ControladorRepuesto cr = new ControladorRepuesto();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		request.getSession().removeAttribute("fecha_inicio");
+		request.getSession().removeAttribute("fecha_inicio");
 		request.getSession().removeAttribute("tipo");
 		request.getSession().removeAttribute("repuestosSeleccionados");
 		request.getSession().removeAttribute("reparaciones_realizadas");
