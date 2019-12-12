@@ -47,110 +47,94 @@ public class CargarReparacion extends HttpServlet {
 		request.getSession().setAttribute("reparaciones_realizadas", request.getParameter("reparaciones_realizadas"));	
 		dni = request.getParameter("dni_cliente");
 		cod_reparacion_string = request.getParameter("cod_reparacion");
-		if(ValidacionesIngresoDatos.ingresoYClienteVacio(dni, cod_reparacion_string)){
-			response.sendRedirect("NuevaReparacion.jsp");
-		}else{
-			boolean band = true;
-			boolean manoDeObraValida = true;
-			String manoDeObra_string = request.getParameter("mano_de_obra");
-			int cod_reparacion = Integer.parseInt(cod_reparacion_string);
-			reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
-			Reparacion rep = new Reparacion();
-			if (ValidacionesIngresoDatos.validaLongitudHasta1000(reparaciones_realizadas)) {
-			} else {
-				band = false;
-			}
-			if (manoDeObra_string != null && manoDeObra_string.length() > 0) {
-				if (ValidacionesIngresoDatos.validaSoloNumerosFloat(manoDeObra_string) && ValidacionesIngresoDatos.validaLongitudHasta10(manoDeObra_string)) {
-					mano_de_obra = Math.abs(Float.parseFloat(manoDeObra_string));
-					request.getSession().setAttribute("mano_de_obra", mano_de_obra);
-					rep.setPrecioManoDeObra(mano_de_obra);
+		try {
+			if(ValidacionesIngresoDatos.ingresoYClienteVacio(dni, cod_reparacion_string)){
+				response.sendRedirect("NuevaReparacion.jsp");
+			}else{
+				boolean band = true;
+				boolean manoDeObraValida = true;
+				String manoDeObra_string = request.getParameter("mano_de_obra");
+				int cod_reparacion = Integer.parseInt(cod_reparacion_string);
+				reparaciones_realizadas = request.getParameter("reparaciones_realizadas");
+				Reparacion rep = new Reparacion();
+				if (ValidacionesIngresoDatos.validaLongitudHasta1000(reparaciones_realizadas)) {
 				} else {
-					manoDeObraValida = false;
-					request.getSession().removeAttribute("mano_de_obra");
+					band = false;
 				}
-			} else {
-				request.getSession().setAttribute("mano_de_obra", 0);
-				rep.setPrecioManoDeObra(mano_de_obra);
-			}
-			if (band) {
-				fecha_inicio = request.getParameter("fecha_inicio");
-				fecha_fin = request.getParameter("fecha_fin");
-				Date fecha_fin_formateada = null;
-				Date fecha_inicio_formateada = null;
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				try {
+				if (manoDeObra_string != null && manoDeObra_string.length() > 0) {
+					if (ValidacionesIngresoDatos.validaSoloNumerosFloat(manoDeObra_string) && ValidacionesIngresoDatos.validaLongitudHasta10(manoDeObra_string)) {
+						mano_de_obra = Math.abs(Float.parseFloat(manoDeObra_string));
+						request.getSession().setAttribute("mano_de_obra", mano_de_obra);
+						rep.setPrecioManoDeObra(mano_de_obra);
+					} else {
+						manoDeObraValida = false;
+						request.getSession().removeAttribute("mano_de_obra");
+					}
+				} else {
+					request.getSession().setAttribute("mano_de_obra", 0);
+					rep.setPrecioManoDeObra(mano_de_obra);
+				}
+				if (band) {
+					fecha_inicio = request.getParameter("fecha_inicio");
+					fecha_fin = request.getParameter("fecha_fin");
+					Date fecha_fin_formateada = null;
+					Date fecha_inicio_formateada = null;
+					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					fecha_fin_formateada = formatter.parse(fecha_fin);
 					fecha_inicio_formateada = formatter.parse(fecha_inicio);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				Usuario u = (Usuario)request.getSession().getAttribute("usuario");
-				Mecanico mec = new Mecanico();
-				ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
-				mec.setMatricula(Integer.parseInt(u.getUser()));
-				rep.setNroReparacion(cod_reparacion);
-				rep.setFechaInicio(fecha_inicio_formateada);
-				rep.setDescFinal(reparaciones_realizadas);
-				rep.setFechaFin(fecha_fin_formateada);
-				ControladorReparacion cr = new ControladorReparacion();
-				if (manoDeObraValida) {
-					switch (request.getParameter("btn_reparacion")){
-					case "agregar":{
-						request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);
-						break;
-					}
-					case "guardar":{
-						try {
+					Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+					Mecanico mec = new Mecanico();
+					ArrayList<LineaDeRepuesto> repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
+					mec.setMatricula(Integer.parseInt(u.getUser()));
+					rep.setNroReparacion(cod_reparacion);
+					rep.setFechaInicio(fecha_inicio_formateada);
+					rep.setDescFinal(reparaciones_realizadas);
+					rep.setFechaFin(fecha_fin_formateada);
+					ControladorReparacion cr = new ControladorReparacion();
+					if (manoDeObraValida) {
+						switch (request.getParameter("btn_reparacion")){
+						case "agregar":{
+							request.getRequestDispatcher("SeleccionRepuesto.jsp").forward(request, response);
+							break;
+						}
+						case "guardar":{
 							cr.agregarReparacion(repuestosSeleccionados, rep, mec, "En curso");
-						} catch (Exception e) {
-							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+							request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+							break;
 						}
-						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-						break;
-					}
-					case "finalizar":{
-						try {
+						case "finalizar":{
 							cr.agregarReparacion(repuestosSeleccionados, rep, mec, "Finalizada");
-						} catch (Exception e) {
-							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+							request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+							break;
 						}
-						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-						break;
-					}
-					case "guardarReparacionModificada": {
-						ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
-						try {
+						case "guardarReparacionModificada": {
+							ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
 							cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "En Curso");
-						} catch (Exception e) {
-							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+							request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+							break;
 						}
-						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-						break;
-					}
-					case "finalizarReparacionModificada": {
-						ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
-						try {
+						case "finalizarReparacionModificada": {
+							ArrayList<LineaDeRepuesto> repuestosOriginal = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionadosOriginal");
 							cr.modificarReparacion(repuestosSeleccionados, repuestosOriginal, rep, "Finalizada");
-						} catch (Exception e) {
-							request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+							request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
+							break;
 						}
-						request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-						break;
-					}
+						}
+					} else {
+						if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")) {
+							response.sendRedirect("EditarReparacion.jsp");
+						} else {
+							response.sendRedirect("NuevaReparacion.jsp");
+						}
 					}
 				} else {
-					if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_reparacion")) {
-						response.sendRedirect("EditarReparacion.jsp");
-					} else {
-						response.sendRedirect("NuevaReparacion.jsp");
-					}
+					request.getSession().setAttribute("error", "validaNuevaReparacion");
+					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 				}
-			} else {
-				request.getSession().setAttribute("error", "validaNuevaReparacion");
-				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+			
 			}
-		
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}
 	}
 }
