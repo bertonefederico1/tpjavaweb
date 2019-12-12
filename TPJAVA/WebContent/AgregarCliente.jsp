@@ -36,7 +36,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="mail"><b>Mail</b></label> <input type="email"
-						class="form-control" id="mail" name="mail" maxlength="100"
+						class="form-control" id="mail" name="mail" maxlength="100" pattern="^[A-Za-z0-9+_.-]+@(.+)$"
 						placeholder="ejemplo@gmail.com">
 				</div>
 			</div>

@@ -38,7 +38,6 @@ public class ProveedorFiltro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String razonSocialBuscar = request.getParameter("txtbuscar");
 		ControladorProveedor cp = new ControladorProveedor();
 		ArrayList<Proveedor> misProveedores;

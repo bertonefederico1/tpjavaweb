@@ -8,6 +8,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="alert alert-danger" role="alert"> 
 	<%if (request.getSession().getAttribute("errorTurno").toString().equalsIgnoreCase("turnoExistente")) {%>
 	Ya existe un turno para esa fecha y cliente<%} else {%>Se superó la cantidad máxima de turnos para ese día<%}%>

@@ -44,44 +44,42 @@ public class NuevoMecanico extends HttpServlet {
 		String email = request.getParameter("mail");
 		Mecanico mec = new Mecanico();
 		boolean band = true;
-		mec.setDireccion(direccion);
-		mec.setMail(email);
-		mec.setNombre_y_apellido(nombre_y_apellido);
-		mec.setTelefono(telefono);
-		
-		if (nombre_y_apellido != null && nombre_y_apellido.length() > 0 && direccion != null && direccion.length() > 0){
+		if (nombre_y_apellido != null && nombre_y_apellido.length() > 0 && direccion != null && direccion.length() > 0) {
 				if(ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
-				   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
-					if(email != null && email.length() > 0){
-						if(ValidacionesIngresoDatos.validaEmail(email)){
-						}else{
+				   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
+					if(email != null && email.length() > 0) {
+						if(ValidacionesIngresoDatos.validaEmail(email)) {
+							mec.setMail(email);
+						} else {
 							band = false;
 						}
 					}
-					if(telefono != null && telefono.length() > 0){
-						if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
-						}else {
+					if(telefono != null && telefono.length() > 0) {
+						if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)) {
+							mec.setTelefono(telefono);
+						} else {
 							band = false;
 						}
 					}
-				}else {
+				} else {
 					band = false;
 				}
-			}else {
-				band = false;
+		} else {
+			band = false;
+		}
+		if(band) {
+			ControladorMecanico cm = new ControladorMecanico();
+			mec.setDireccion(direccion);
+			mec.setNombre_y_apellido(nombre_y_apellido);
+			try {
+				cm.agregarMecanico(mec);
+				request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 			}
-			
-			if(band){
-				ControladorMecanico cm = new ControladorMecanico();
-				try {
-					cm.agregarMecanico(mec);
-					request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
-				} catch (Exception e) {
-					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
-				}
-			}else {
-				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
-			}	
+		} else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}	
 	}
 }
 

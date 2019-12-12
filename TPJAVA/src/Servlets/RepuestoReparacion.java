@@ -60,7 +60,6 @@ public class RepuestoReparacion extends HttpServlet {
 			try {
 				repuestosSeleccionados = (ArrayList<LineaDeRepuesto>)request.getSession().getAttribute("repuestosSeleccionados");
 				misRepuestos = cr.traerRepuestos();
-				//misRepuestos = (ArrayList<Repuesto>)request.getSession().getAttribute("misRepuestos");
 				ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
 				int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 				if(cldr.hayStock(repuestosSeleccionados, misRepuestos, cod_repuesto, cantidad)){

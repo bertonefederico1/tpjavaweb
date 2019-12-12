@@ -228,13 +228,13 @@ public class DatosReparacion {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "SELECT * "
-				+ "FROM reparaciones rep "
-				+ "INNER JOIN autos a "
-				+ "ON rep.patente = a.patente "
-				+ "INNER JOIN clientes c "
-				+ "ON a.dni = c.dni "
-				+ "WHERE rep.activa = 'si' AND (c.nombre_y_apellido LIKE ? OR a.patente LIKE ?)"
-				+ "ORDER BY rep.nro_reparacion";
+					+ "FROM reparaciones rep "
+					+ "INNER JOIN autos a "
+						+ "ON rep.patente = a.patente "
+					+ "INNER JOIN clientes c "
+						+ "ON a.dni = c.dni "
+					+ "WHERE rep.activa = 'si' AND (c.nombre_y_apellido LIKE ? OR a.patente LIKE ?)"
+					+ "ORDER BY rep.nro_reparacion";
 
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
 		pstmt.setString(1, "%" + nombuscar + "%");
@@ -249,6 +249,7 @@ public class DatosReparacion {
 				rep.setNroReparacion(rs.getInt("nro_reparacion"));
 				rep.setFechaIngreso(rs.getDate("fecha_ingreso"));
 				cli.setNombre_y_apellido(rs.getString("nombre_y_apellido"));
+				cli.setMail(rs.getString("mail"));
 				auto.setPatente(rs.getString("patente"));
 				auto.setMarca(rs.getString("marca"));
 				auto.setModelo(rs.getString("modelo"));

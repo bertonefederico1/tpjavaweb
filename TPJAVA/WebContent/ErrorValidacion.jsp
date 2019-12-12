@@ -6,6 +6,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="alert alert-danger" role="alert">Los datos ingresados son inválidos
   		<a href=<%if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaCliente")) {%>"Clientes.jsp"<%} 
   		else if (request.getSession().getAttribute("error").toString().equalsIgnoreCase("validaMecanico")){%>"Mecanicos.jsp"<%}

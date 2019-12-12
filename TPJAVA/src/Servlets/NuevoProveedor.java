@@ -50,20 +50,20 @@ public class NuevoProveedor extends HttpServlet {
 		boolean band = true;
 		Proveedor prove = new Proveedor();
 		if (cuit != null && cuit.length() > 0 && razon_social != null && razon_social.length() > 0 && direccion != null 
-			&& direccion.length() > 0){
+			&& direccion.length() > 0) {
 			if (ValidacionesIngresoDatos.validaSoloNumeros(cuit_prefijo) && ValidacionesIngresoDatos.validaSoloNumeros(cuit_mitad)
 				&& ValidacionesIngresoDatos.validaSoloNumeros(cuit_sufijo) && ValidacionesIngresoDatos.validaLongitudIgualA8(cuit_mitad)
 				&& ValidacionesIngresoDatos.validaLongitudIgualA2(cuit_prefijo) && ValidacionesIngresoDatos.validaLongitudIgualA1(cuit_sufijo)
-				&& ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
-				if(email != null && email.length() > 0){
-					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
+				&& ValidacionesIngresoDatos.validaLongitudHasta100(razon_social) && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
+				if(email != null && email.length() > 0) {
+					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)) {
 						prove.setMail(email);
 					} else {
 						band = false;
 					}
 				}
-				if (telefono != null && telefono.length() > 0){
-					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
+				if (telefono != null && telefono.length() > 0) {
+					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)) {
 						prove.setTelefono(telefono);
 					} else {
 						band = false;
@@ -72,11 +72,11 @@ public class NuevoProveedor extends HttpServlet {
 			} else {
 				band = false;
 			}
-		} else{
+		} else {
 			band = false;
 		}
 		
-		if (band){
+		if (band) {
 			ControladorProveedor cp = new ControladorProveedor();
 			prove.setCuit(cuit);
 			prove.setDireccion(direccion);
@@ -87,7 +87,7 @@ public class NuevoProveedor extends HttpServlet {
 			} catch (Exception e) {
 				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 			}
-		}else {
+		} else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}
 	}

@@ -24,7 +24,6 @@
 %>
 
 </head>
-<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
 	<h2><b>ADMINISTRACIÓN DE CLIENTES</b></h2>
 </div>
@@ -37,6 +36,7 @@
 	</form>
 </div>
 <body>
+	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -59,8 +59,8 @@
 							<td><%=cl.getDni()%></td>
 							<td><%=cl.getNombre_y_apellido()%></td>
 							<td><%=cl.getDireccion()%></td>
-							<td><%=cl.getTelefono()%></td>
-							<td><%=cl.getMail()%></td>
+							<td><%if (cl.getTelefono() != null) {%><%=cl.getTelefono()%><%}%></td>
+							<td><%if (cl.getMail() != null) {%><%=cl.getMail()%><%}%></td>
 							<td><div>
 									<a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
 									<a href="ConfirmacionEliminarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>" class="btn btn-danger btn-sm">Eliminar</a>

@@ -126,7 +126,7 @@ public class DatosVehiculo {
 
 	public void agregarVehiculo(Auto auto) throws Exception {
 		PreparedStatement pstmt = null;
-		String insertarAuto = ("insert into autos(patente, marca, modelo, anio_fabricacion, cantidad_km, dni, activo) values(?,?,?,?,?,?,?)");
+		String insertarAuto = ("INSERT INTO autos(patente, marca, modelo, anio_fabricacion, cantidad_km, dni, activo) VALUES (?,?,?,?,?,?,?)");
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(insertarAuto);
 		pstmt.setString(1, auto.getPatente());
 		pstmt.setString(2, auto.getMarca());

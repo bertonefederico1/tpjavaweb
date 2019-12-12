@@ -51,49 +51,45 @@ public class NuevoIngreso extends HttpServlet {
 		reparacionesARealizar= request.getParameter("reparacionesARealizar");
 		observaciones= request.getParameter("observaciones");
 		ControladorTurno ct = new ControladorTurno();
-		if(ValidacionesIngresoDatos.clienteYPatenteVacio(dni_cliente, patente)) {
-			response.sendRedirect("Ingreso.jsp");
-		} else {
-			Reparacion repa = new Reparacion();
-			Date date=null;
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		    try {
-		    	date = formatter.parse(fecha_ingreso);
-		        } catch (ParseException e) {
-		            e.printStackTrace();
-		        }   
-			repa.setEstado("Ingresada");
-			repa.setFechaIngreso(date);
-			repa.setDetalleInicial(reparacionesARealizar);
-			repa.setObservaciones(observaciones);
-			Auto auto = new Auto();
-			auto.setPatente(patente);
-			repa.setAuto(auto);
-			boolean band = true;
-			if (ValidacionesIngresoDatos.validaLongitudHasta1000 (reparacionesARealizar)) {
+		try {
+			if(ValidacionesIngresoDatos.clienteYPatenteVacio(dni_cliente, patente)) {
+				response.sendRedirect("Ingreso.jsp");
 			} else {
-				band = false;
-			}
-			if (ValidacionesIngresoDatos.validaLongitudHasta1000 (observaciones)) {
-			} else {
-				band = false;
-			}
-			if (band) {
-				ControladorReparacion cr = new ControladorReparacion();
-				try {
+				Reparacion repa = new Reparacion();
+				Date date=null;
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				date = formatter.parse(fecha_ingreso);
+				repa.setEstado("Ingresada");
+				repa.setFechaIngreso(date);
+				repa.setDetalleInicial(reparacionesARealizar);
+				repa.setObservaciones(observaciones);
+				Auto auto = new Auto();
+				auto.setPatente(patente);
+				repa.setAuto(auto);
+				boolean band = true;
+				if (ValidacionesIngresoDatos.validaLongitudHasta1000 (reparacionesARealizar)) {
+				} else {
+					band = false;
+				}
+				if (ValidacionesIngresoDatos.validaLongitudHasta1000 (observaciones)) {
+				} else {
+					band = false;
+				}
+				if (band) {
+					ControladorReparacion cr = new ControladorReparacion();
 					cr.agregarNuevoIngreso(repa);
 					if (ct.verificarTurno(dni_cliente)) {
 						ct.actualizarTurno(dni_cliente);
 					}
-					request.getRequestDispatcher("DatosGuardados.html").forward(request, response);
-				} catch (Exception e) {
-					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
-				}	
-			} else {
-				request.getSession().setAttribute("error", "validaNuevoIngreso");
-				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+					request.getRequestDispatcher("DatosGuardados.html").forward(request, response);	
+				} else {
+					request.getSession().setAttribute("error", "validaNuevoIngreso");
+					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+				}
 			}
-		}
+		} catch (Exception e) {
+	        request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+	    } 
 	}
 
 }

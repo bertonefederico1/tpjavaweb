@@ -36,7 +36,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="anio"><b>Año</b></label> <input type="number"
-						class="form-control" name="anio" value="<%=anio%>" id="anio" maxlength="4">
+						class="form-control" name="anio" value="<%if (!(anio.equals("0"))) {%><%=anio%><%}%>" id="anio" maxlength="4">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="cant_kml"><b>Cantidad de Kms</b></label> <input type="number"

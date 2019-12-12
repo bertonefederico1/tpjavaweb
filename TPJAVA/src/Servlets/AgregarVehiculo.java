@@ -53,25 +53,25 @@ public class AgregarVehiculo extends HttpServlet {
 			} else{
 				band = false;
 			}
-			if (anio_fabricacion_string != null && anio_fabricacion_string.length() > 0){
+			if (anio_fabricacion_string != null && anio_fabricacion_string.length() > 0) {
 				if (ValidacionesIngresoDatos.validaSoloNumeros(anio_fabricacion_string) && ValidacionesIngresoDatos.validaLongitudIgualA4(anio_fabricacion_string)){
 					auto.setAnio(Integer.parseInt(anio_fabricacion_string));
 				} else {
 					band = false;
 				}
-			if (cantidad_km_string != null && cantidad_km_string.length() > 0){
+			}
+			if (cantidad_km_string != null && cantidad_km_string.length() > 0) {
 				if (ValidacionesIngresoDatos.validaSoloNumeros(cantidad_km_string) && ValidacionesIngresoDatos.validaLongitudHasta10(cantidad_km_string)){
 					auto.setCantKM(Integer.parseInt(cantidad_km_string));
 				} else {
 					band = false;
 				}
 			}
-			}
 		} else {
 			band = false;
 		}
 		
-		if (band){
+		if (band) {
 			ControladorVehiculo cv = new ControladorVehiculo();
 			Cliente cli = new Cliente();
 			auto.setMarca(marca);

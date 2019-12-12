@@ -10,9 +10,7 @@
 </head>
 <body>
 	<%
-		if (request.getParameter("cerrar") != null) {
-			session.invalidate();
-		}
+		session.invalidate();
 	%>	
 	<div id="cuadro">
 		<div id= "cabeza"><b>INGRESO</b></div>

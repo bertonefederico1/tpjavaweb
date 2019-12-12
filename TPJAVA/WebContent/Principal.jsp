@@ -84,7 +84,7 @@
       			<li class="nav-item"><a class="nav-link" href="AvisoReparacionesFinalizadas.jsp">Avisar reparaciones finalizadas</a></li>
 			</ul>
 		</div>
-		<a style="color: black" class="nav-link" href="Login.jsp?cerrar=true">Cerrar Sesión</a> </nav>
+		<a style="color: black" class="nav-link" href="Login.jsp">Cerrar Sesión</a> </nav>
 	</div>
 </body>
 	<a href= "Ingreso.jsp">

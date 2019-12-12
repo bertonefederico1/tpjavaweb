@@ -14,11 +14,11 @@
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
-<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
 	<h1><b>NUEVO TURNO</b></h1>
 </div>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<form method="POST" action="GenerarTurno">
 			<h4><b>Fecha Turno:</b></h4>

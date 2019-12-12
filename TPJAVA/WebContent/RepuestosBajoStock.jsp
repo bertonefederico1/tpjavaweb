@@ -22,11 +22,11 @@
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
-<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
 	<h2><b>REPUESTOS CON BAJO STOCK</b></h2>
 </div>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

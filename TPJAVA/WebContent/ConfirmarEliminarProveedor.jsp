@@ -9,6 +9,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <h2><b>SEGURO QUE DESEA ELIMINAR EL PROVEEDOR: <%=request.getParameter("razon_social")%></b></h2>
 <div id=botonesConfirmarEliminacion>
 <a href="EliminarProveedor?cuit=<%=request.getParameter("cuit")%>" class="btn btn-danger">Eliminar</a>

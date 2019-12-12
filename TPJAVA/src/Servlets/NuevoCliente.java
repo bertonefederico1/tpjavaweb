@@ -46,44 +46,43 @@ public class NuevoCliente extends HttpServlet {
 		String email = request.getParameter("mail");
 		boolean band = true;
 		Cliente cli = new Cliente();
-		cli.setDni(dni);
-		cli.setNombre_y_apellido(nombre_y_apellido);
-		cli.setDireccion(direccion);
-		cli.setTelefono(telefono);
-		cli.setMail(email);
 		if (dni != null && dni.length() > 0 && nombre_y_apellido != null && nombre_y_apellido.length() > 0 
-			&& direccion != null && direccion.length() > 0){
+			&& direccion != null && direccion.length() > 0) {
 			if(ValidacionesIngresoDatos.validaSoloNumeros(dni) && ValidacionesIngresoDatos.validaLongitudIgualA8(dni)
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
-			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)){
+			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
 				if(email != null && email.length() > 0){
-					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)){
-					}else{
+					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)) {
+						cli.setMail(email);
+					} else {
 						band = false;
 					}
 				}
-				if(telefono != null && telefono.length() > 0){
+				if(telefono != null && telefono.length() > 0) {
 					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
-					}else {
+						cli.setTelefono(telefono);
+					} else {
 						band = false;
 					}
 				}
-			}else {
+			} else {
 				band = false;
 			}
-		}else {
+		} else {
 			band = false;
 		}
-		
-		if(band){
+		if(band) {
 			ControladorCliente cc = new ControladorCliente();
+			cli.setDni(dni);
+			cli.setNombre_y_apellido(nombre_y_apellido);
+			cli.setDireccion(direccion);
 			try {
 				cc.agregarCliente(cli);
 				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 			} catch (Exception e) {
 				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 			}
-		}else {
+		} else {
 			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 		}	
 	}

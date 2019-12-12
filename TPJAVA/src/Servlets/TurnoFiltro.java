@@ -40,7 +40,6 @@ public class TurnoFiltro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ControladorTurno ct = new ControladorTurno();
 		ArrayList<Turno> misTurnos = new ArrayList<Turno>();
-		
 		switch (request.getParameter("buscar")) {
 		case "Buscar Por Fecha": {
 			String buscaTurno = request.getParameter("buscar_por_fecha");
@@ -65,7 +64,5 @@ public class TurnoFiltro extends HttpServlet {
 			break;
 		}
 		}		
-		
 	}
-
 }

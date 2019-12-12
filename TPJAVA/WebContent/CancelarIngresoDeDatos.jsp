@@ -7,6 +7,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <h2><b>¿SEGURO QUE DESEA CANCELAR?</b></h2>
 <div id=botonesConfirmarEliminacion>
 <a href="Principal.jsp" class="btn btn-danger">Salir</a>

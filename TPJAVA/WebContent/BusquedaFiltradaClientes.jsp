@@ -40,8 +40,8 @@
 		        <td><%=cl.getDni()%></td>
 		        <td><%=cl.getNombre_y_apellido()%></td>
 		        <td><%=cl.getDireccion()%></td>
-		        <td><%=cl.getTelefono()%></td>
-		        <td><%=cl.getMail()%></td>
+		        <td><%if (cl.getTelefono() != null) {%><%=cl.getTelefono()%><%}%></td>
+		        <td><%if (cl.getMail() != null) {%><%=cl.getMail()%><%}%></td>
 		        <td><div>
 		        <a href="EditarCliente.jsp?dni=<%=cl.getDni()%>&nombre_y_apellido=<%=cl.getNombre_y_apellido()%>&direccion=<%=cl.getDireccion()%>&telefono=<%=cl.getTelefono()%>&mail=<%=cl.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
 				<a href="EliminarCliente?dni=<%=cl.getDni()%>" class="btn btn-danger btn-sm">Eliminar</a>

@@ -54,22 +54,21 @@ public class NuevoRepuesto extends HttpServlet {
 					} else {
 						band = false;
 					}
-						} else{
-							band = false;
-						}
+		} else{
+			band = false;
+		}
 						
-				if(band){
-					ControladorRepuesto cr = new ControladorRepuesto();
-					try {
-						cr.agregarRepuesto(rep);
-						request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-						request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
-					} catch (Exception e) {
-						request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
-					}
-				}else {
-					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
-				}
+		if(band){
+			ControladorRepuesto cr = new ControladorRepuesto();
+			try {
+				cr.agregarRepuesto(rep);
+				request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+				request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+			}
+		}else {
+			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+		}
 	}
-
 }

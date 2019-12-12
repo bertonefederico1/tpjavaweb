@@ -27,6 +27,7 @@
 							<th scope="col">PATENTE</th>
 							<th scope="col">MARCA Y MODELO</th>
 							<th scope="col">AÑO</th>
+							<th scope="col">CANT KM</th>
 							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
@@ -39,7 +40,8 @@
 							<td><%=auto.getCli().getNombre_y_apellido()%></td>
 							<td><%=auto.getPatente()%></td>
 							<td><%=auto.getMarca()%> <%=auto.getModelo()%></td>
-							<td><%=auto.getAnio()%></td>
+							<td><%if(auto.getAnio() != 0) {%><%=auto.getAnio()%><%}%></td>
+							<td><%=auto.getCantKM()%></td>
 							<td>
 								<div>
 								<a href="EditarVehiculo.jsp?patente=<%=auto.getPatente()%>&marca=<%=auto.getMarca()%>&modelo=<%=auto.getModelo()%>&anio=<%=auto.getAnio()%>&cantidad_km=<%=auto.getCantKM()%>" class="btn btn-warning btn-sm">Modificar</a>

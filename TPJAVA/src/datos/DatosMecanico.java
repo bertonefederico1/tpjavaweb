@@ -79,16 +79,16 @@ public class DatosMecanico {
 
 	public void agregarMecanico(Mecanico mec) throws Exception {
 		PreparedStatement pstmt = null;
-		String insertarMecanico = ("insert into mecanicos(nombre_y_apellido, direccion, telefono, mail) values(?,?,?,?)");
+		String insertarMecanico = ("INSERT INTO mecanicos(nombre_y_apellido, direccion, telefono, mail, activo) values(?,?,?,?,?)");
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(insertarMecanico);
 		pstmt.setString(1, mec.getNombre_y_apellido());
 		pstmt.setString(2, mec.getDireccion());
 		pstmt.setString(3, mec.getTelefono());
 		pstmt.setString(4, mec.getMail());
+		pstmt.setString(5, "si");
 		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
-
 	}
 
 	public void eliminarMecanico(int matricula) throws Exception {

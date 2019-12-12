@@ -57,8 +57,8 @@
 							<td><%=prov.getCuit()%></td>
 							<td><%=prov.getRazonSocial()%></td>
 							<td><%=prov.getDireccion()%></td>
-							<td><%=prov.getTelefono()%></td>
-							<td><%=prov.getMail()%></td>
+							<td><%if (prov.getTelefono() != null) {%><%=prov.getTelefono()%><%}%></td>
+							<td><%if (prov.getMail() != null) {%><%=prov.getMail()%><%}%></td>
 							<td><div>
 									<a href="EditarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>&direccion=<%=prov.getDireccion()%>&telefono=<%=prov.getTelefono()%>&mail=<%=prov.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
 									<a href="ConfirmarEliminarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>" class="btn btn-danger btn-sm">Eliminar</a>

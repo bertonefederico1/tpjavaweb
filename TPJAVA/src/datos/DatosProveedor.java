@@ -57,13 +57,14 @@ public class DatosProveedor {
 
 	public void agregarProveedor(Proveedor prove) throws Exception {
 		PreparedStatement pstmt = null;
-		String insertar = ("INSERT INTO proveedores (cuit,razon_social,direccion,mail,telefono) VALUES (?,?,?,?,?)");
+		String insertar = ("INSERT INTO proveedores (cuit, razon_social, direccion, mail, telefono, activo) VALUES (?,?,?,?,?,?)");
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(insertar);
 		pstmt.setString(1, prove.getCuit());
 		pstmt.setString(2, prove.getRazonSocial());
 		pstmt.setString(3, prove.getDireccion());
 		pstmt.setString(4, prove.getMail());
 		pstmt.setString(5, prove.getTelefono());
+		pstmt.setString(6, "si");
 		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();

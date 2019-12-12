@@ -23,7 +23,6 @@
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
-<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div id=titulo>
 	<h2><b>TURNOS PENDIENTES</b></h2>
 </div>
