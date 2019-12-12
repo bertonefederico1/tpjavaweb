@@ -49,14 +49,12 @@ public class NuevoMecanico extends HttpServlet {
 				   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
 					if(email != null && email.length() > 0) {
 						if(ValidacionesIngresoDatos.validaEmail(email)) {
-							mec.setMail(email);
 						} else {
 							band = false;
 						}
 					}
 					if(telefono != null && telefono.length() > 0) {
 						if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)) {
-							mec.setTelefono(telefono);
 						} else {
 							band = false;
 						}
@@ -70,6 +68,8 @@ public class NuevoMecanico extends HttpServlet {
 		if(band) {
 			ControladorMecanico cm = new ControladorMecanico();
 			mec.setDireccion(direccion);
+			mec.setTelefono(telefono);
+			mec.setMail(email);
 			mec.setNombre_y_apellido(nombre_y_apellido);
 			try {
 				cm.agregarMecanico(mec);

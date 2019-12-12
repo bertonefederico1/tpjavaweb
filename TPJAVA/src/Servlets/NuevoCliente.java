@@ -53,14 +53,12 @@ public class NuevoCliente extends HttpServlet {
 			   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
 				if(email != null && email.length() > 0){
 					if(ValidacionesIngresoDatos.validaEmail(email) && ValidacionesIngresoDatos.validaLongitudHasta100(email)) {
-						cli.setMail(email);
 					} else {
 						band = false;
 					}
 				}
 				if(telefono != null && telefono.length() > 0) {
 					if(ValidacionesIngresoDatos.validaSoloNumeros(telefono) && ValidacionesIngresoDatos.validaLongitudHasta12(telefono)){
-						cli.setTelefono(telefono);
 					} else {
 						band = false;
 					}
@@ -76,6 +74,8 @@ public class NuevoCliente extends HttpServlet {
 			cli.setDni(dni);
 			cli.setNombre_y_apellido(nombre_y_apellido);
 			cli.setDireccion(direccion);
+			cli.setMail(email);
+			cli.setTelefono(telefono);
 			try {
 				cc.agregarCliente(cli);
 				request.getRequestDispatcher("Clientes.jsp").forward(request, response);
