@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<%
 		if (request.getSession().getAttribute("usuario") == null) {
 			request.getRequestDispatcher("Login.jsp").forward(request,response);
