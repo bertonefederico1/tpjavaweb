@@ -22,11 +22,11 @@
 				</div>
 				<div class="form-group col-md-3">
 					<label for="contrasenia"><b>Contraseña</b></label> <input type="password"
-					class="form-control" id="contrasenia" name="contrasenia" maxlength="45" required>
+					class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña" maxlength="45" required>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="contrasenia"><b>Confirmar contraseña</b></label> <input type="password"
-					class="form-control" id="contraseniaConfirmar" name="contraseniaConfirmar" maxlength="45" required>
+					class="form-control" id="contraseniaConfirmar" name="contraseniaConfirmar" placeholder="Repita la contraseña" maxlength="45" required>
 				</div>
 			</div>
 			<div class="form-group">
