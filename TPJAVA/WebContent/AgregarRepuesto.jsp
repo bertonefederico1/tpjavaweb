@@ -19,19 +19,19 @@
 					<label for="descripcion"><b>Descripcion</b></label> <input
 						type="text" class="form-control" name="descripcion" maxlength="100"
 						id="descripcion" placeholder="Foco Delantero" required
-						value=<%if (request.getSession().getAttribute("descripcion") != null) {%><%=request.getSession().getAttribute("descripcion")%><%}%><%else {%><%}%>>
+						value="<%if (request.getSession().getAttribute("descripcion") != null) {%><%=request.getSession().getAttribute("descripcion")%><%}%><%else {%><%}%>">
 				</div>
 				<div class="form-group col-md-2">
 					<label for="cantidad"><b>Cantidad</b></label> <input type="number"
 						class="form-control" name="cantidad" id="cantidad" min="1" placeholder="4" required
-						value=<%if (request.getSession().getAttribute("cantidad") != null) {%><%=request.getSession().getAttribute("cantidad")%><%}%><%else {%><%}%>>
+						value="<%if (request.getSession().getAttribute("cantidad") != null) {%><%=request.getSession().getAttribute("cantidad")%><%}%><%else {%><%}%>">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Precio por unidad ($)</b></label> <input
 						type="number" step="any" class="form-control" name="precio" id="precio" placeholder="24.80" required 
-						value=<%if (request.getSession().getAttribute("precio") != null) {%><%=request.getSession().getAttribute("precio")%><%}%><%else {%><%}%>>
+						value="<%if (request.getSession().getAttribute("precio") != null) {%><%=request.getSession().getAttribute("precio")%><%}%><%else {%><%}%>">
 				</div>
 			</div>
 			<div class="form-row">
