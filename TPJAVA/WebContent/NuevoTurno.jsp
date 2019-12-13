@@ -19,6 +19,7 @@
 </div>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
+<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div class="container">
 		<form method="POST" action="GenerarTurno">
 			<h4><b>Fecha Turno:</b></h4>

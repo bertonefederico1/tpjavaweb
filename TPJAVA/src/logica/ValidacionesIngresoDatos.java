@@ -170,4 +170,11 @@ public class ValidacionesIngresoDatos {
 		}
 	}
 	
+	public static boolean validaLongitudHasta45 (String entrada) {
+		if (entrada.length() > 45) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
+<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 <h2><b>SEGURO QUE DESEA ELIMINAR EL REPUESTO: <%=request.getParameter("descripcion")%></b></h2>
 <div id=botonesConfirmarEliminacion>
 <a href="EliminarRepuesto?codigo=<%=request.getParameter("codigo")%>" class="btn btn-danger">Eliminar</a>

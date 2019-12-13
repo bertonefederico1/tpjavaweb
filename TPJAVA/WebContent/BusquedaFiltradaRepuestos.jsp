@@ -43,7 +43,7 @@
 		        <td><%=r.getStock()%></td>
 		        <td><div>
 		        <a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>" class="btn btn-warning btn-sm">Modificar</a>
-				<a href="EliminarRepuesto?codigo=<%=r.getCodigo()%>" class="btn btn-danger btn-sm">Eliminar</a>
+				<a href="ConfirmacionEliminarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>" class="btn btn-danger btn-sm">Eliminar</a>
 		        </div></td>
 		      </tr>
 		      <%} %>

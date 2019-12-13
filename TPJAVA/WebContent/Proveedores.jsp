@@ -62,7 +62,8 @@
 							<td><div>
 									<a href="EditarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>&direccion=<%=prov.getDireccion()%>&telefono=<%=prov.getTelefono()%>&mail=<%=prov.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
 									<a href="ConfirmarEliminarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>" class="btn btn-danger btn-sm">Eliminar</a>
-								</div></td>
+								</div>
+							</td>
 						</tr>
 						<%
 							}

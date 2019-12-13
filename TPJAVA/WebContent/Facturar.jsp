@@ -26,6 +26,7 @@
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
+	<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div class="container">
 		<form method="POST" action="FacturarReparacion">
 			<label><div id=fecha class="input-group mb-3">

@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
+	<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="NuevoMecanico">
 			<div class="form-row">
@@ -19,6 +20,21 @@
 						type="text" class="form-control" name="nombreYApellido" maxlength="100"
 						id="nombreYApellido" placeholder="Juan Perez" required>
 				</div>
+				<div class="form-group col-md-3">
+					<label for="contrasenia"><b>Contraseña</b></label> <input type="password"
+					class="form-control" id="contrasenia" name="contrasenia" maxlength="45" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="contrasenia"><b>Confirmar contraseña</b></label> <input type="password"
+					class="form-control" id="contraseniaConfirmar" name="contraseniaConfirmar" maxlength="45" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="nivel"><b>Nivel</b></label>
+				<select name="nivel" class="nav-link dropdown-toggle" id="navbarDropdown">
+	  				<option class="dropdown-menu" value="administrador">Administrador</option> 
+	  				<option class="dropdown-menu" value="mecanico" >Mecánico</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="direccion"><b>Dirección</b></label> <input type="text"

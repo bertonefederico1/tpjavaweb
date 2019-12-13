@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
+<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 <h2><b>SEGURO QUE DESEA ELIMINAR EL VEHÍCULO: <%=request.getParameter("marca")%> <%=request.getParameter("modelo")%></b></h2>
 <h2><b>PATENTE: <%=request.getParameter("patente")%></b></h2>
 <h2><b>CLIENTE: <%=request.getParameter("nombre_y_apellido")%></b></h2>

@@ -32,4 +32,8 @@ public class ControladorMecanico {
 	public void eliminarMecanico(int matricula) throws Exception {
 		dm.eliminarMecanico(matricula);
 	}
+	
+	public void agregarUsuarioYContrasenia (String pass, int nivel) throws Exception {
+		dm.agregarUsuarioYContrasenia (pass, nivel);
+	}
 }

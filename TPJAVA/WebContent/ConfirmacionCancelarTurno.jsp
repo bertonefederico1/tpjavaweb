@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
+<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 <h2><b>SEGURO QUE DESEA CANCELAR EL TURNO NRO <%=request.getParameter("nro_turno")%> PARA LA FECHA <%=request.getParameter("fecha_turno")%></b></h2>
 <div id=botonesConfirmarEliminacion>
 <a href="CancelarTurno?nro_turno=<%=request.getParameter("nro_turno")%>" class="btn btn-danger">Aceptar</a>

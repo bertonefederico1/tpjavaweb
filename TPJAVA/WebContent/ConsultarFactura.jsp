@@ -12,6 +12,7 @@
 <h1><b>CONSULTAR FACTURAS POR FECHA: </b></h1>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
+	<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ConsultaFactura">
 			<div class="form-row">

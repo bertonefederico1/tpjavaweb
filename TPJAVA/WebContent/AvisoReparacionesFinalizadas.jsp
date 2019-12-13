@@ -13,6 +13,7 @@
 </head>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
+<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 <div id=titulo>
 	<h2><b>AVISO REPARACIÓN FINALIZADA</b></h2>
 </div>

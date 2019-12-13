@@ -42,8 +42,22 @@ public class NuevoMecanico extends HttpServlet {
 		String direccion = request.getParameter("direccion");
 		String telefono = request.getParameter("telefono");
 		String email = request.getParameter("mail");
+		String contra = request.getParameter("contrasenia");
+		String contraConfirmar = request.getParameter("contraseniaConfirmar");
+		int nivel = 0;
+		switch (request.getParameter("nivel")) {
+		case "administrador": {
+			nivel = 5;
+			break;
+		}
+		case "mecanico": {
+			nivel = 1;
+			break;
+		}
+		}
 		Mecanico mec = new Mecanico();
 		boolean band = true;
+		boolean contraValida = true;
 		if (nombre_y_apellido != null && nombre_y_apellido.length() > 0 && direccion != null && direccion.length() > 0) {
 				if(ValidacionesIngresoDatos.validaLongitudHasta100(nombre_y_apellido) 
 				   && ValidacionesIngresoDatos.validaLongitudHasta100(direccion)) {
@@ -65,21 +79,35 @@ public class NuevoMecanico extends HttpServlet {
 		} else {
 			band = false;
 		}
-		if(band) {
-			ControladorMecanico cm = new ControladorMecanico();
-			mec.setDireccion(direccion);
-			mec.setTelefono(telefono);
-			mec.setMail(email);
-			mec.setNombre_y_apellido(nombre_y_apellido);
-			try {
-				cm.agregarMecanico(mec);
-				request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
-			} catch (Exception e) {
-				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		if (contra != null && contra.length() > 0 && contraConfirmar != null && contraConfirmar.length() > 0
+			&& ValidacionesIngresoDatos.validaLongitudHasta45(contra) && ValidacionesIngresoDatos.validaLongitudHasta45(contraConfirmar)) {
+			if (contra.equals(contraConfirmar)) {
+			} else {
+				contraValida = false;
 			}
 		} else {
-			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
-		}	
+			band = false;
+		}
+		try {
+			if(band) {
+				if (contraValida) {
+					ControladorMecanico cm = new ControladorMecanico();
+					mec.setDireccion(direccion);
+					mec.setTelefono(telefono);
+					mec.setMail(email);
+					mec.setNombre_y_apellido(nombre_y_apellido);
+					cm.agregarMecanico(mec);
+					cm.agregarUsuarioYContrasenia(contra, nivel);
+					request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("ErrorValidacionContrasenia.html").forward(request, response);
+				}
+			} else {
+				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
+			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		}
 	}
 }
 

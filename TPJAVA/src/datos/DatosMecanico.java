@@ -100,4 +100,15 @@ public class DatosMecanico {
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
 	}
+	
+	public void agregarUsuarioYContrasenia (String pass, int nivel) throws Exception {
+		PreparedStatement pstmt = null;
+		String query = ("CALL inserta_usuario_y_contrasenia (?,?)");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
+		pstmt.setString(1, pass);
+		pstmt.setInt(2, nivel);
+		pstmt.executeUpdate();
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+	}
 }

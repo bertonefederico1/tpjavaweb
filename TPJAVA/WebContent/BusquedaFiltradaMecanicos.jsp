@@ -45,7 +45,7 @@
 		        <td><%if(me.getMail() != null) {%><%=me.getMail()%><%}%></td>
 		        <td><div>
 		        <a href="EditarMecanico.jsp?matricula=<%=me.getMatricula()%>&nombre_y_apellido=<%=me.getNombre_y_apellido()%>&direccion=<%=me.getDireccion()%>&telefono=<%=me.getTelefono()%>&mail=<%=me.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-				<a href="EliminarMecanico?matricula=<%=me.getMatricula()%>" class="btn btn-danger btn-sm">Eliminar</a>
+				<a href="ConfirmacionEliminarMecanico.jsp?matricula=<%=me.getMatricula()%>&nombre_y_apellido=<%=me.getNombre_y_apellido()%>" class="btn btn-danger btn-sm">Eliminar</a>
 		        </div></td>
 		      </tr>
 		      <%}%>

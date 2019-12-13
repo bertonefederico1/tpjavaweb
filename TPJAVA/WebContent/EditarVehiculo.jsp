@@ -18,6 +18,7 @@
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
+	<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action= "ModificarVehiculo">
 			<input type="hidden" name="patente_original" value="<%=request.getParameter("patente")%>">
