@@ -78,11 +78,19 @@ public class DatosRepuesto {
 
 	public void agregarRepuesto(Repuesto rep) throws Exception {
 		PreparedStatement pstmt = null;
-		String insertar = ("insert into repuestos(descripcion,precio,stock) values(?,?,?)");
+		String insertar = ("insert into repuestos(descripcion,precio,stock,activo) values(?,?,?,?)");
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(insertar);
 		pstmt.setString(1, rep.getDescripcion());
 		pstmt.setFloat(2, rep.getPrecio());
 		pstmt.setInt(3, rep.getStock());
+		pstmt.setString(4,"si");
+		pstmt.executeUpdate();
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+		
+		insertar = ("call insertar_provee(?)");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(insertar);
+		pstmt.setString(1, rep.getProveedor().getCuit());
 		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();

@@ -18,22 +18,34 @@
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
 						type="text" class="form-control" name="descripcion" maxlength="100"
-						id="descripcion" placeholder="Foco Delantero" required>
+						id="descripcion" placeholder="Foco Delantero" required
+						value=<%if (request.getSession().getAttribute("descripcion") != null) {%><%=request.getSession().getAttribute("descripcion")%><%}%><%else {%><%}%>>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="cantidad"><b>Cantidad</b></label> <input type="number"
-						class="form-control" name="cantidad" id="cantidad" min="1" placeholder="4" required>
+						class="form-control" name="cantidad" id="cantidad" min="1" placeholder="4" required
+						value=<%if (request.getSession().getAttribute("cantidad") != null) {%><%=request.getSession().getAttribute("cantidad")%><%}%><%else {%><%}%>>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Precio por unidad ($)</b></label> <input
-						type="number" step="any" class="form-control" name="precio" id="precio"
-						placeholder="24.80" required>
+						type="number" step="any" class="form-control" name="precio" id="precio" placeholder="24.80" required 
+						value=<%if (request.getSession().getAttribute("precio") != null) {%><%=request.getSession().getAttribute("precio")%><%}%><%else {%><%}%>>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cuit"><b>Proveedor</b></label> 
+					<input class="form-control" readonly="readonly" name="cuit" id="cuit" required
+					value=<%if (request.getParameter("cuit") != null) {%><%=request.getParameter("cuit")%><%} else {%><%}%>>
+				</div>
+				<div id="botonAgregar">
+					<button type="submit" name="btn_guardar_nuevoCliente" value="agregar_proveedor" style="position: relative; top: 32px" class="btn btn-success">+ Agregar</button>
 				</div>
 			</div>
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente"
+				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='Principal.jsp'"

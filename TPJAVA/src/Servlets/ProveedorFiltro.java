@@ -39,12 +39,18 @@ public class ProveedorFiltro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String razonSocialBuscar = request.getParameter("txtbuscar");
+		String tipo = request.getParameter("tipo");
 		ControladorProveedor cp = new ControladorProveedor();
 		ArrayList<Proveedor> misProveedores;
 		try {
 			misProveedores = cp.proveedoresFiltrados(razonSocialBuscar);
 			request.getSession().setAttribute("misProveedores", misProveedores);
-			request.getRequestDispatcher("BusquedaFiltradaProveedores.jsp").forward(request, response);
+			if (tipo.equalsIgnoreCase("proveedores")){
+				request.getRequestDispatcher("BusquedaFiltradaProveedores.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("SeleccionProveedoresFiltrados.jsp").forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
 		}

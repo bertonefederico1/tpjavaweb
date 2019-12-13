@@ -27,10 +27,9 @@
 	<h2><b>ADMINISTRACIÓN DE PROVEEDORES</b></h2>
 </div>
 <div class="container buscar">
-	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
 	<form class="form" method="POST" action="ProveedorFiltro">
 		<input type="text" class="form-control" name="txtbuscar" placeholder="Razón Social"> 
-		<input type="hidden" name="tipo" class="btn btn-secondary" type="submit" value="proveedores">
+		<input type="hidden" class="btn btn-secondary" name="tipo" type="submit" value="seleccion_proveedores">
 		<input class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
@@ -42,29 +41,30 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
+							<th scope="col"></th>
 							<th scope="col">CUIT</th>
 							<th scope="col">RAZÓN SOCIAL</th>
 							<th scope="col">DIRECCIÓN</th>
 							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
-							for (Proveedor prov : misProveedores) {
+						for (Proveedor prov : misProveedores) {
 						%>
 						<tr>
+							<td>
+								<div class="radio">
+ 									<label><input type="radio" onclick="location='AgregarRepuesto.jsp?cuit=<%=prov.getCuit()%>'" 
+ 									id='express' name="optradio"></label>
+								</div>
+							</td>
 							<td><%=prov.getCuit()%></td>
 							<td><%=prov.getRazonSocial()%></td>
 							<td><%=prov.getDireccion()%></td>
 							<td><%if (prov.getTelefono() != null) {%><%=prov.getTelefono()%><%}%></td>
 							<td><%if (prov.getMail() != null) {%><%=prov.getMail()%><%}%></td>
-							<td><div>
-									<a href="EditarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>&direccion=<%=prov.getDireccion()%>&telefono=<%=prov.getTelefono()%>&mail=<%=prov.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="ConfirmarEliminarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>" class="btn btn-danger btn-sm">Eliminar</a>
-								</div>
-							</td>
 						</tr>
 						<%
 							}

@@ -41,34 +41,51 @@ public class NuevoRepuesto extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		String cantidad = request.getParameter("cantidad");
 		String precio = request.getParameter("precio");
+		String cuit = request.getParameter("cuit");
 		Repuesto rep = new Repuesto();
 		boolean band = true;
-		if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
-				   && descripcion != null && descripcion.length() > 0){
-					if(ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
-					   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
-					   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
-						rep.setStock(Integer.parseInt(cantidad));
-						rep.setPrecio(Float.parseFloat(precio));
-						rep.setDescripcion(descripcion);
-					} else {
-						band = false;
-					}
-		} else{
-			band = false;
+		switch (request.getParameter("btn_guardar_nuevoCliente")){
+		case "agregar_proveedor":{
+			response.sendRedirect("SeleccionProveedor.jsp");
+			request.getSession().setAttribute("descripcion", descripcion);
+			request.getSession().setAttribute("cantidad", cantidad);
+			request.getSession().setAttribute("precio", precio);
+		break;
 		}
-						
-		if(band){
-			ControladorRepuesto cr = new ControladorRepuesto();
-			try {
-				cr.agregarRepuesto(rep);
-				request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
-				request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
-			} catch (Exception e) {
-				request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+		case "guardar":{
+			if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
+					   && descripcion != null && descripcion.length() > 0){
+						if(ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
+						   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
+						   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){
+							rep.setStock(Integer.parseInt(cantidad));
+							rep.setPrecio(Float.parseFloat(precio));
+							rep.setDescripcion(descripcion);
+							Proveedor proveedor = new Proveedor();
+							proveedor.setCuit(cuit);
+							rep.setProveedor(proveedor);
+						} else {
+							band = false;
+						}
+			} else{
+				band = false;
 			}
-		}else {
-			request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+							
+			if(band){
+				ControladorRepuesto cr = new ControladorRepuesto();
+				try {
+					cr.agregarRepuesto(rep);
+					request.getSession().setAttribute("misRepuestos", cr.traerRepuestos());
+					request.getRequestDispatcher("Repuestos.jsp").forward(request, response);
+				} catch (Exception e) {
+					request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);
+				}
+			}else {
+				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
+			}
+		break;
 		}
+		}
+		
 	}
 }

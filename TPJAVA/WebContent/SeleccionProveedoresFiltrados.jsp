@@ -12,14 +12,7 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
-	ControladorProveedor cp = new ControladorProveedor ();
-	ArrayList<Proveedor> misProveedores = new ArrayList<Proveedor>();
-	try {
-		misProveedores = cp.traerProveedores();
-	} catch (Exception e) {
-		response.sendRedirect("ErrorGeneral.html");
-	}
-
+	ArrayList<Proveedor> misProveedores = (ArrayList<Proveedor>) request.getSession().getAttribute("misProveedores");
 %>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
@@ -27,10 +20,8 @@
 	<h2><b>ADMINISTRACIÓN DE PROVEEDORES</b></h2>
 </div>
 <div class="container buscar">
-	<button type="button" class="btn btn-success" onclick = "location='AgregarProveedor.jsp'">+ Nuevo</button>
 	<form class="form" method="POST" action="ProveedorFiltro">
 		<input type="text" class="form-control" name="txtbuscar" placeholder="Razón Social"> 
-		<input type="hidden" name="tipo" class="btn btn-secondary" type="submit" value="proveedores">
 		<input class="btn btn-secondary" type="submit" value="Buscar">
 	</form>
 </div>
@@ -42,36 +33,37 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
+							<th scope="col"></th>
 							<th scope="col">CUIT</th>
 							<th scope="col">RAZÓN SOCIAL</th>
 							<th scope="col">DIRECCIÓN</th>
 							<th scope="col">TELÉFONO</th>
 							<th scope="col">MAIL</th>
-							<th scope="col">ACCIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
-							for (Proveedor prov : misProveedores) {
+						for (Proveedor prov : misProveedores) {
 						%>
 						<tr>
+							<td>
+								<div class="radio">
+ 									<label><input type="radio" onclick="location='AgregarRepuesto.jsp?cuit=<%=prov.getCuit()%>'" 
+ 									id='express' name="optradio"></label>
+								</div>
+							</td>
 							<td><%=prov.getCuit()%></td>
 							<td><%=prov.getRazonSocial()%></td>
 							<td><%=prov.getDireccion()%></td>
 							<td><%if (prov.getTelefono() != null) {%><%=prov.getTelefono()%><%}%></td>
 							<td><%if (prov.getMail() != null) {%><%=prov.getMail()%><%}%></td>
-							<td><div>
-									<a href="EditarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>&direccion=<%=prov.getDireccion()%>&telefono=<%=prov.getTelefono()%>&mail=<%=prov.getMail()%>" class="btn btn-warning btn-sm">Modificar</a>
-									<a href="ConfirmarEliminarProveedor.jsp?cuit=<%=prov.getCuit()%>&razon_social=<%=prov.getRazonSocial()%>" class="btn btn-danger btn-sm">Eliminar</a>
-								</div>
-							</td>
 						</tr>
 						<%
 							}
 						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la página principal</a>
+				<a href="SeleccionProveedor.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>

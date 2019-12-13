@@ -5,8 +5,15 @@ public class Repuesto {
 	private String descripcion;
 	private float precio;
 	private int stock;
+	private Proveedor proveedor;
 	
 	
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
 	public int getCodigo() {
 		return codigo;
 	}

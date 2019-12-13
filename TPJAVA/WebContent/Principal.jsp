@@ -20,6 +20,9 @@
 	try {
 		ControladorRepuesto cr = new ControladorRepuesto();
 		ControladorLineaDeRepuesto cldr = new ControladorLineaDeRepuesto();
+		request.getSession().removeAttribute("descripcion");
+		request.getSession().removeAttribute("cantidad");
+		request.getSession().removeAttribute("precio");
 		request.getSession().removeAttribute("fecha_inicio");
 		request.getSession().removeAttribute("fecha_inicio");
 		request.getSession().removeAttribute("tipo");
