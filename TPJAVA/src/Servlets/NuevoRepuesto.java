@@ -46,10 +46,10 @@ public class NuevoRepuesto extends HttpServlet {
 		boolean band = true;
 		switch (request.getParameter("btn_guardar_nuevoCliente")){
 		case "agregar_proveedor":{
-			response.sendRedirect("SeleccionProveedor.jsp");
 			request.getSession().setAttribute("descripcion", descripcion);
 			request.getSession().setAttribute("cantidad", cantidad);
 			request.getSession().setAttribute("precio", precio);
+			response.sendRedirect("SeleccionProveedor.jsp");
 		break;
 		}
 		case "guardar":{

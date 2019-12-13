@@ -17,9 +17,9 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripcion</b></label> <input
-						type="text" class="form-control" name="descripcion" maxlength="100"
+						type="text" class="form-control" name="descripcion" maxlenght="100" 
 						id="descripcion" placeholder="Foco Delantero" required
-						value=<%if (request.getSession().getAttribute("descripcion") != null) {%><%=request.getSession().getAttribute("descripcion")%><%}%><%else {%><%}%>>
+						value=<%if (request.getSession().getAttribute("descripcion") != null) {%><%=request.getSession().getAttribute("descripcion")%><%}else {%><%}%>>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="cantidad"><b>Cantidad</b></label> <input type="number"
