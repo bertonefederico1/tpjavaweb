@@ -9,7 +9,7 @@
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="alert alert-danger" role="alert">No hay stock suficiente
   		<a href=<%if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("nueva_reparacion")) {%>"NuevaReparacion.jsp"<%} 
-  		else {%>"EditarReparacion.jsp"<%}%> class="alert-link">VOLVER</a>
+  		else {%>"EditarReparacion.jsp"<%}%> class="alert-link"> VOLVER</a>
 </div>
 </body>
 </html>

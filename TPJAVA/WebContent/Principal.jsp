@@ -25,6 +25,7 @@
 		request.getSession().removeAttribute("precio");
 		request.getSession().removeAttribute("fecha_inicio");
 		request.getSession().removeAttribute("fecha_inicio");
+		request.getSession().removeAttribute("NuevoVehiculoIngreso");
 		request.getSession().removeAttribute("tipo");
 		request.getSession().removeAttribute("repuestosSeleccionados");
 		request.getSession().removeAttribute("reparaciones_realizadas");

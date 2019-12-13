@@ -131,7 +131,6 @@ public class CargarReparacion extends HttpServlet {
 					request.getSession().setAttribute("error", "validaNuevaReparacion");
 					request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 				}
-			
 			}
 		} catch (Exception e) {
 			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);

@@ -11,7 +11,7 @@
 <title>Turnos</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
-<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 <%
 	ControladorTurno ct = new ControladorTurno();
 	ArrayList<Turno> misTurnos = new ArrayList<Turno>();
@@ -21,7 +21,7 @@
 		response.sendRedirect("ErrorGeneral.html");
 	}
 %>
-<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
+<link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <div id=titulo>
 	<h2><b>TURNOS PENDIENTES</b></h2>
