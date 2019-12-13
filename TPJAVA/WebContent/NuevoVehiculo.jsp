@@ -46,6 +46,7 @@
 						placeholder="135000">
 				</div>
 			</div>
+			<input type="hidden" class="form-control" id="tipo" name="tipo" value="<%=request.getSession().getAttribute("NuevoVehiculoIngreso")%>">
 			<div id="botonGuardar">
 				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>

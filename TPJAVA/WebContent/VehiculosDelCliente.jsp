@@ -12,6 +12,7 @@
 <title>Vehículos del cliente</title>
 </head>
 <% 
+	request.getSession().setAttribute("NuevoVehiculoIngreso","ingreso");
 	ControladorVehiculo cv = new ControladorVehiculo();
 	ArrayList<Auto> misVehiculos = new ArrayList<Auto>();
 	try {
@@ -23,6 +24,10 @@
 </head>
 <div id=titulo>
 	<label><b>VEHICULOS POR CLIENTE</b></label>
+</div>
+<div class="container buscar">
+	<button type="button" class="btn btn-success"
+	onclick="location='NuevoVehiculo.jsp?dni=<%=request.getParameter("dni")%>'">+ Nuevo</button>
 </div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
@@ -43,7 +48,7 @@
 							for (Auto auto : misVehiculos) {
 						%>
 						<tr>
-						<td>
+							<td>
 								<div class="radio">
 									<label><input type="radio" onclick="location='Ingreso.jsp?patente=<%=auto.getPatente()%>&dni=<%=request.getParameter("dni")%>'" id='express' name="optradio"></label>
 								</div>
