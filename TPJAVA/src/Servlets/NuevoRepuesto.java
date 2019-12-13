@@ -83,9 +83,8 @@ public class NuevoRepuesto extends HttpServlet {
 			}else {
 				request.getRequestDispatcher("ErrorValidacion.jsp").forward(request, response);
 			}
-		break;
+			break;
 		}
 		}
-		
 	}
 }
