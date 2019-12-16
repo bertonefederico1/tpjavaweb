@@ -47,12 +47,17 @@ public class SignIn extends HttpServlet {
 		String password = request.getParameter("contrasenia");
 		Usuario u = new Usuario();
 		Ingreso ingreso = new Ingreso();
+		ControladorRepuesto cr = new ControladorRepuesto();
 		u.setUser(user);
 		u.setPassword(password);
 		try {
 			if (ingreso.validaLogin(u)){
 				request.getSession().setAttribute("usuario", u);
-				response.sendRedirect("Principal.jsp");
+				if (cr.traerRepuestosBajoStock().size() > 0){
+					response.sendRedirect("RepuestosBajoStock.jsp");
+				} else{
+					response.sendRedirect("Principal.jsp");
+				}
 				} else {
 					request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
 				}

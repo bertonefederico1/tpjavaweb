@@ -13,6 +13,11 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <%
+	request.getSession().removeAttribute("descripcion");
+	request.getSession().removeAttribute("stock");
+	request.getSession().removeAttribute("precio");
+	request.getSession().removeAttribute("cuit");
+	request.getSession().removeAttribute("cod_repuesto");
 	ControladorRepuesto cr = new ControladorRepuesto();
 	ArrayList<Repuesto> misRepuestos = new ArrayList<Repuesto>();
 	try {
