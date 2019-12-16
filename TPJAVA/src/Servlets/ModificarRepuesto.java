@@ -44,10 +44,10 @@ public class ModificarRepuesto extends HttpServlet {
 		String cantidad = request.getParameter("stock");
 		String cuit = request.getParameter("cuit");
 		if (request.getParameter("codigo") != null && request.getParameter("descripcion") != null 
-			&& request.getParameter("precio") != null && request.getParameter("stock") != null && request.getParameter("cuit") != null){
+			&& request.getParameter("precio") != null && request.getParameter("stock") != null){
 			request.getSession().setAttribute("descripcion", descripcion);
 			request.getSession().setAttribute("precio", precio);
-			request.getSession().setAttribute("stock", cantidad);
+			request.getSession().setAttribute("cantidad", cantidad);
 			request.getSession().setAttribute("cod_repuesto", cod_repuesto);
 			request.getSession().setAttribute("cuit", cuit);
 		}

@@ -35,7 +35,7 @@
 				<div class="form-group col-md-2">
 					<label for="cantidad"><b>Stock</b></label> <input type="number"
 						class="form-control" name="stock" id="stock" min="1" placeholder="4" 
-						value="<%if (request.getParameter("stock") != null) {%><%=request.getParameter("stock")%><%}%><%else {%><%=request.getSession().getAttribute("stock")%><%}%>" 
+						value="<%if (request.getParameter("stock") != null) {%><%=request.getParameter("stock")%><%}%><%else {%><%=request.getSession().getAttribute("cantidad")%><%}%>" 
 						required>
 				</div>
 			</div>
