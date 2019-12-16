@@ -41,11 +41,11 @@
 					value=<%if (request.getParameter("cuit") != null) {%><%=request.getParameter("cuit")%><%} else {%><%}%>>
 				</div>
 				<div id="botonAgregar">
-					<button type="submit" name="btn_guardar_nuevoCliente" value="agregar_proveedor" style="position: relative; top: 32px" class="btn btn-success">+ Agregar</button>
+					<button type="submit" name="btn_guardar_repuesto" value="agregar_proveedor" style="position: relative; top: 32px" class="btn btn-success">+ Agregar</button>
 				</div>
 			</div>
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente" value="guardar"
+				<button type="submit" class="btn btn-success" name="btn_guardar_repuesto" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='Principal.jsp'"

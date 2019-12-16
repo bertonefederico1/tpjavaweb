@@ -44,8 +44,9 @@ public class NuevoRepuesto extends HttpServlet {
 		String cuit = request.getParameter("cuit");
 		Repuesto rep = new Repuesto();
 		boolean band = true;
-		switch (request.getParameter("btn_guardar_nuevoCliente")){
+		switch (request.getParameter("btn_guardar_repuesto")){
 		case "agregar_proveedor":{
+			request.getSession().setAttribute("tipo", "nuevo_repuesto");
 			request.getSession().setAttribute("descripcion", descripcion);
 			request.getSession().setAttribute("cantidad", cantidad);
 			request.getSession().setAttribute("precio", precio);
@@ -54,7 +55,7 @@ public class NuevoRepuesto extends HttpServlet {
 		}
 		case "guardar":{
 			if(cantidad != null && cantidad.length() > 0 && precio != null && precio.length() > 0 
-					   && descripcion != null && descripcion.length() > 0){
+					   && descripcion != null && descripcion.length() > 0 && cuit != null && cuit.length() > 0){
 						if(ValidacionesIngresoDatos.validaSoloNumerosFloat(precio) && ValidacionesIngresoDatos.validaLongitudHasta100(precio)
 						   && ValidacionesIngresoDatos.validaSoloNumeros(cantidad) && ValidacionesIngresoDatos.validaLongitudHasta12(cantidad)
 						   && ValidacionesIngresoDatos.validaLongitudHasta100(descripcion)){

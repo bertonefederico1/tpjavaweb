@@ -56,7 +56,7 @@
 						<tr>
 							<td>
 								<div class="radio">
- 									<label><input type="radio" onclick="location='AgregarRepuesto.jsp?cuit=<%=prov.getCuit()%>'" 
+ 									<label><input type="radio" onclick=<% if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("nuevo_proveedor")) {%>"location='AgregarRepuesto.jsp?cuit=<%=prov.getCuit()%>'"<%} else if (request.getSession().getAttribute("tipo").toString().equalsIgnoreCase("editar_repuesto")) {%>"location='EditarRepuesto.jsp?cuit=<%=prov.getCuit()%>'"<%}%>
  									id='express' name="optradio"></label>
 								</div>
 							</td>
@@ -68,7 +68,7 @@
 						</tr>
 						<%
 							}
-						%>
+ 						%>
 					</tbody>
 				</table>
 				<a href="Principal.jsp"><< Ir a la página principal</a>

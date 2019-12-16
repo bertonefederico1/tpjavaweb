@@ -3,6 +3,7 @@ package datos;
 import java.sql.*;
 import java.util.ArrayList;
 
+import entidades.Proveedor;
 import entidades.Repuesto;
 
 public class DatosRepuesto {
@@ -59,7 +60,13 @@ public class DatosRepuesto {
 		Statement stmt = null;
 		ResultSet rs = null;
 		stmt = Conexion.getInstancia().getConn().createStatement();
-		rs = stmt.executeQuery("SELECT * FROM repuestos WHERE activo = 'si' ORDER BY descripcion");
+		rs = stmt.executeQuery("SELECT * FROM repuestos repu "
+							    + "INNER JOIN provee "
+							    + "ON repu.cod_repuesto = provee.cod_repuesto "
+							    + "INNER JOIN proveedores "
+							    + "ON provee.cuit = proveedores.cuit "
+							    + "WHERE repu.activo = 'si' "
+							    + "ORDER BY repu.descripcion");
 		if (rs != null) {
 			while (rs.next()) {
 				Repuesto rep = new Repuesto();
@@ -67,6 +74,10 @@ public class DatosRepuesto {
 				rep.setDescripcion(rs.getString("descripcion"));
 				rep.setPrecio(rs.getFloat("precio"));
 				rep.setStock(rs.getInt("stock"));
+				Proveedor prov = new Proveedor();
+				prov.setCuit(rs.getString("cuit"));
+				prov.setRazonSocial(rs.getString("razon_social"));
+				rep.setProveedor(prov);
 				misRepuestos.add(rep);
 			}
 		}
@@ -105,6 +116,14 @@ public class DatosRepuesto {
 		pstmt.setFloat(3, rep.getPrecio());
 		pstmt.setInt(4, rep.getStock());
 		pstmt.setInt(5, rep.getCodigo());
+		pstmt.executeUpdate();
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+		
+		sql = ("UPDATE provee SET cuit=? WHERE cod_repuesto=?");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
+		pstmt.setString(1, rep.getProveedor().getCuit());
+		pstmt.setInt(2, rep.getCodigo());
 		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();

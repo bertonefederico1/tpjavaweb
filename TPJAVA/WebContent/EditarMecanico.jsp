@@ -18,7 +18,6 @@
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
-	<jsp:include page="ValidaNivelUsuario5.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="ModificarMecanico">
 			<div class="form-group">

@@ -8,12 +8,7 @@
 	type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Modificar Repuesto</title>
-<%
-	String codigo = request.getParameter("codigo");
-	String descripcion = request.getParameter("descripcion");
-	String precio = request.getParameter("precio");
-	String stock = request.getParameter("stock");
-%>
+
 </head>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
@@ -24,29 +19,46 @@
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Código</b></label> <input
 						type="number" readonly="readonly" class="form-control" name="codigo" id="codigo"
-						placeholder="1111" value="<%=codigo%>" required>
+						placeholder="1111" 
+						value="<%if (request.getParameter("codigo") != null) {%><%=request.getParameter("codigo")%><%}%><%else {%><%=request.getSession().getAttribute("cod_repuesto")%><%}%>" 
+						required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="descripcion"><b>Descripción</b></label> <input
 						type="text" class="form-control" name="descripcion" maxlength="100"
-						id="descripcion" placeholder="Foco Delantero" value="<%=descripcion%>" required>
+						id="descripcion" placeholder="Foco Delantero" 
+						value="<%if (request.getParameter("descripcion") != null) {%><%=request.getParameter("descripcion")%><%}%><%else {%><%=request.getSession().getAttribute("descripcion")%><%}%>" 
+						required>
 				</div>
 				<div class="form-group col-md-2">
 					<label for="cantidad"><b>Stock</b></label> <input type="number"
-						class="form-control" name="stock" id="stock" min="1" placeholder="4" value="<%=stock%>" required>
+						class="form-control" name="stock" id="stock" min="1" placeholder="4" 
+						value="<%if (request.getParameter("stock") != null) {%><%=request.getParameter("stock")%><%}%><%else {%><%=request.getSession().getAttribute("stock")%><%}%>" 
+						required>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="telefono"><b>Precio por unidad ($)</b></label> <input
-						type="number" step="any" class="form-control" name="precio" id="precio" value="<%=precio%>"
+						type="number" step="any" class="form-control" name="precio" id="precio" 
+						value="<%if (request.getParameter("precio") != null) {%><%=request.getParameter("precio")%><%}%><%else {%><%=request.getSession().getAttribute("precio")%><%}%>"
 						placeholder="24.80" required>
 				</div>
 			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="cuit"><b>Proveedor</b></label> 
+					<input class="form-control" readonly="readonly" name="cuit" id="cuit" required
+					value=<%if (request.getParameter("cuit") != null) {%><%=request.getParameter("cuit")%><%} else {%><%=request.getSession().getAttribute("cuit")%><%}%>>
+				</div>
+				<div id="botonAgregar">
+					<button type="submit" name="btn_guardar_repuesto" value="agregar_proveedor" style="position: relative; top: 32px" class="btn btn-success">+ Agregar</button>
+				</div>
+			</div>
 			<div id="botonGuardar">
-				<button type="submit" class="btn btn-success" name="btn_guardar_nuevoCliente"
+				<button type="submit" class="btn btn-success" name="btn_guardar_repuesto" value="guardar"
 					style="position: relative; top: 10px; left: 20px">Guardar</button>
 				<button type="button" class="btn btn-danger"
 					onclick="location='Principal.jsp'"
