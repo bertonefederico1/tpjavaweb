@@ -58,9 +58,9 @@ public class SignIn extends HttpServlet {
 				} else{
 					response.sendRedirect("Principal.jsp");
 				}
-				} else {
-					request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
-				}
+			} else {
+				request.getRequestDispatcher("ErrorLogin.html").forward(request, response);
+			}
 		} catch (Exception e) {
 			response.sendRedirect("ErrorGeneral.html");
 		}
