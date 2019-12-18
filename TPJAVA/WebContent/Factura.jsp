@@ -59,6 +59,6 @@
 		<h3>MANO DE OBRA: <%=manoDeObra%></h3>
 		<h2><b>TOTAL: <%=precioTotal%></b></h2>
 	</div>
-	<a href="ConsultarFactura.jsp"><< Volver</a>
+	<a href="FacturasPorFecha.jsp"><< Volver</a>
 </body>
 </html>
