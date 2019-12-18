@@ -73,6 +73,17 @@ public class DatosVehiculo {
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
 	}
+	
+	public void eliminarVehiculoCliente(int dni) throws Exception {
+		PreparedStatement pstmt = null;
+		String sql = ("UPDATE autos a SET a.activo = 'no' WHERE a.dni = ?");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
+		pstmt.setInt(1, dni);
+		pstmt.executeUpdate();
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+	}
+	
 
 	public ArrayList<Auto> vehiculosYClientes() throws Exception {
 		ArrayList<Auto> misAutos = new ArrayList<>();

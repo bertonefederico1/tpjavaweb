@@ -21,6 +21,10 @@ public class ControladorVehiculo {
 		dv.eliminarVehiculo(patente);
 	}
 	
+	public void eliminarVehiculoCliente(int dni) throws Exception{
+		dv.eliminarVehiculoCliente(dni);
+	}
+	
 	public void agregarVehiculo(Auto auto) throws Exception{
 		dv.agregarVehiculo(auto);
 	}

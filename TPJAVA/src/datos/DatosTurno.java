@@ -217,6 +217,7 @@ public class DatosTurno {
 		String elimina = ("DELETE FROM turnos WHERE dni = ? and estado = 'En espera'");
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(elimina);
 		pstmt.setInt(1, dni);
+		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
 	}

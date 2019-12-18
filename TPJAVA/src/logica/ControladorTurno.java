@@ -44,4 +44,8 @@ public class ControladorTurno {
 	public ArrayList<Turno> turnosFiltrados (String buscaTurno, String tipo) throws Exception{
 		return dt.turnosFiltrados (buscaTurno, tipo);
 	}
+	
+	public void eliminarTurno (int dni) throws Exception {
+		dt.eliminarTurno(dni);
+	}
 }
