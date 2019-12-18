@@ -62,7 +62,7 @@
 							<td><%=rep.getAuto().getMarca()%> <%=rep.getAuto().getModelo()%> <%=rep.getAuto().getAnio()%></td>
 							<td><%=rep.getAuto().getPatente()%></td>
 							<td><div>
-									<a href="ConsultaReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-outline-info">Ver más</a>
+									<a href="ConsultaReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-outline-info btn-sm">Ver más</a>
 									<a href="ConfirmarEliminarReparacion.jsp?nro_reparacion=<%=rep.getNroReparacion()%>" class="btn btn-danger btn-sm">Eliminar</a>
 							</div></td>
 						</tr>
