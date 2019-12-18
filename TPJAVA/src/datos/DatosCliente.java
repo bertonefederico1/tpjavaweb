@@ -106,6 +106,8 @@ public class DatosCliente {
 		pstmt.executeUpdate();
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
+		DatosTurno dt = new DatosTurno();
+		dt.eliminarTurno(dni);
 	}
 
 	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail()

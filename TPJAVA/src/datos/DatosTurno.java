@@ -1,7 +1,6 @@
 package datos;
 
 import java.sql.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
@@ -213,4 +212,12 @@ public class DatosTurno {
 		return misTurnos;
 	}
 
+	public void eliminarTurno (int dni) throws Exception {
+		PreparedStatement pstmt = null;
+		String elimina = ("DELETE FROM turnos WHERE dni = ? and estado = 'En espera'");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(elimina);
+		pstmt.setInt(1, dni);
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+	}
 }
