@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logica.ControladorCliente;
+import logica.ControladorVehiculo;
 
 
 /**
@@ -39,8 +40,10 @@ public class EliminarCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int dni= Integer.parseInt(request.getParameter("dni"));
 		ControladorCliente cc= new ControladorCliente();
+		ControladorVehiculo cv= new ControladorVehiculo();
 		try {
 			cc.eliminarCliente(dni);
+			cv.eliminarVehiculoCliente(dni);
 			request.getRequestDispatcher("Clientes.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);

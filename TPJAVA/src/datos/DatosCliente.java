@@ -96,16 +96,6 @@ public class DatosCliente {
 		pstmt.close();
 		Conexion.getInstancia().releaseConn();
 		
-		sql = ("UPDATE clientes c " 
-				+ "INNER JOIN autos a "
-					+ "ON c.dni = a.dni " 
-				+ "SET a.activo = 'no' "
-				+ "WHERE c.dni = ?");
-		pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
-		pstmt.setInt(1, dni);
-		pstmt.executeUpdate();
-		pstmt.close();
-		Conexion.getInstancia().releaseConn();
 	}
 
 	public ArrayList<Cliente> clientesConReparacionesFinalizadasParaEnviarEmail()
