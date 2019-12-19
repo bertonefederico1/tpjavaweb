@@ -18,11 +18,11 @@
 			<form method="POST" action= "SignIn">
   				<div class="form-group">
     				<label for="inputUsuario">Usuario</label>
-    				<input type="text" form style= width:524px name="usuario" class="form-control" id="usuario" placeholder="Usuario" required/>
+    				<input type="text" style= width:524px name="usuario" class="form-control" id="usuario" placeholder="Usuario" autocomplete="off" required/>
   				</div>
   				<div class="form-group">
     				<label for="InputPassword">Contraseña</label>
-    				<label><input type="password" form style= width:524px name="contrasenia" class="form-control" id="contrasenia" placeholder="Contraseña" required/></label>
+    				<label><input type="password" style= width:524px name="contrasenia" class="form-control" id="contrasenia" placeholder="Contraseña" autocomplete="off" required/></label>
   				</div>
   				<button type="submit" class="btn btn-success">Ingresar</button>
 			</form>
