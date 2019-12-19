@@ -42,7 +42,7 @@ CREATE TABLE `autos` (
 
 LOCK TABLES `autos` WRITE;
 /*!40000 ALTER TABLE `autos` DISABLE KEYS */;
-INSERT INTO `autos` VALUES ('AA 590 JL','Honda ','City ',2016,85000,14205920,'si'),('AB 102 CC','Fiat','Palio',2005,45400,40121345,'si'),('EVL 909','Ford','Focus',2015,50000,37817242,'si'),('GCJ 523','Honda ','Fit',2018,13300,40121097,'si'),('GGG 222','Chevrolet','Cruze',2018,123,40121097,'si');
+INSERT INTO `autos` VALUES ('AA 590 JL','Honda ','City ',2016,85000,14205920,'si'),('AB 102 CC','Fiat','Palio',2005,45400,40121345,'si'),('EVL 909','Ford','Focus',2015,50000,37817242,'si'),('GCJ 523','Honda ','Fit',2018,13300,40121097,'si'),('GGG 222','Chevrolet','Cruze',2018,123,40121097,'si'),('KMA537','FERRARI','TESTARROSA',2011,120000,40121097,'si');
 /*!40000 ALTER TABLE `autos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `mecanicos` (
   `telefono` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `mecanicos` (
 
 LOCK TABLES `mecanicos` WRITE;
 /*!40000 ALTER TABLE `mecanicos` DISABLE KEYS */;
-INSERT INTO `mecanicos` VALUES (21,'Alberto San','Saavedra 678','','','si'),(22,'Martin Gomez','San Martin 1789','gomez21_@gmail.com','3414214213','si'),(23,'Ricardo Centurion','Montevideo 256','','346815669874','si');
+INSERT INTO `mecanicos` VALUES (21,'Alberto San','Saavedra 678','','','si'),(22,'Martin Gomez','San Martin 1789','gomez21_@gmail.com','3414214213','si'),(23,'Ricardo Centurion','Montevideo 256','','346815669874','si'),(24,'Joaquin Capaldi','Lisandro De La Torre 2033','joaquicapaldi@gmail.com','15520937','si');
 /*!40000 ALTER TABLE `mecanicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +207,7 @@ CREATE TABLE `repa_repuestos` (
 
 LOCK TABLES `repa_repuestos` WRITE;
 /*!40000 ALTER TABLE `repa_repuestos` DISABLE KEYS */;
-INSERT INTO `repa_repuestos` VALUES (34,40,2),(34,51,1),(35,40,1),(36,47,1),(37,42,1),(37,48,1),(37,51,1);
+INSERT INTO `repa_repuestos` VALUES (34,40,2),(34,51,1),(35,40,1),(36,47,1),(37,42,1),(37,48,1),(37,51,1),(38,51,1),(39,45,1);
 /*!40000 ALTER TABLE `repa_repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,13 +231,13 @@ CREATE TABLE `reparaciones` (
   `patente` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `matricula` int(11) unsigned DEFAULT NULL,
   `activa` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mano_de_obra` decimal(10,2) unsigned DEFAULT NULL,
+  `mano_de_obra` decimal(12,2) unsigned DEFAULT NULL,
   PRIMARY KEY (`nro_reparacion`),
   KEY `fk_reparaciones_mecanicos_idx` (`matricula`),
   KEY `fk_reparaciones_autos_idx` (`patente`),
   CONSTRAINT `fk_reparaciones_autos` FOREIGN KEY (`patente`) REFERENCES `autos` (`patente`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_reparaciones_mecanicos` FOREIGN KEY (`matricula`) REFERENCES `mecanicos` (`matricula`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +246,7 @@ CREATE TABLE `reparaciones` (
 
 LOCK TABLES `reparaciones` WRITE;
 /*!40000 ALTER TABLE `reparaciones` DISABLE KEYS */;
-INSERT INTO `reparaciones` VALUES (34,'2019-12-13','2019-12-18','2019-12-18','2019-12-18','Entregada','Se hizo cambio de los focos delanteros.\r\n\r\n','cambiar los dos focos delanteros','la puerta derecha esta rayada','GCJ 523',23,'si',1500.00),(35,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','se cambio el foco delantero izquierdo y carga de bateria','foco delantero izquierdo quemado, y no arranca','la puerta derecha esta rayada','AA 590 JL',21,'si',800.00),(36,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','','cambiar correas de distribucion','','AB 102 CC',23,'si',0.00),(37,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','Colocación de bomba de agua y cambio de aceite 10w40 con filtro','realizar service ','espejo retrovisor izquierdo roto\r\n','EVL 909',23,'si',750.00);
+INSERT INTO `reparaciones` VALUES (34,'2019-12-13','2019-12-18','2019-12-18','2019-12-18','Entregada','Se hizo cambio de los focos delanteros.\r\n\r\n','cambiar los dos focos delanteros','la puerta derecha esta rayada','GCJ 523',23,'si',1500.00),(35,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','se cambio el foco delantero izquierdo y carga de bateria','foco delantero izquierdo quemado, y no arranca','la puerta derecha esta rayada','AA 590 JL',21,'si',800.00),(36,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','','cambiar correas de distribucion','','AB 102 CC',23,'si',0.00),(37,'2019-12-18','2019-12-18','2019-12-18','2019-12-18','Entregada','Colocación de bomba de agua y cambio de aceite 10w40 con filtro','realizar service ','espejo retrovisor izquierdo roto\r\n','EVL 909',23,'si',750.00),(38,'2019-12-18','2019-12-18','2019-12-18',NULL,'Finalizada','','cambio de aceite','','GCJ 523',23,'si',400.00),(39,'2019-12-18','2019-12-18',NULL,NULL,'En Curso','','SERVICE','LA PUERTA ABRE Y CIERRA','KMA537',23,'si',2000000000.00);
 /*!40000 ALTER TABLE `reparaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +273,7 @@ CREATE TABLE `repuestos` (
 
 LOCK TABLES `repuestos` WRITE;
 /*!40000 ALTER TABLE `repuestos` DISABLE KEYS */;
-INSERT INTO `repuestos` VALUES (40,'Foco delantero - Marcas varias',175.90,9,'si'),(41,'Optica trasera izquierda Fiat Palio ',3450.00,5,'si'),(42,'Bujias NGK Fiat Palio X4',1550.00,9,'si'),(44,'Limpia parabrisas X2 - Original',1400.00,10,'si'),(45,'Embrague Honda fit - Alternativo',15565.90,5,'si'),(46,'Kit distribucion Original - Fiat Palio 2005 - 2010',5800.00,10,'si'),(47,'Kit tornillos antirobo rueda - Honda Fit X16',2500.00,7,'si'),(48,'Bomba de agua Alternativa - Fiat Palio 2011 - 2015',2450.57,9,'si'),(49,'Radiador Honda City/Fit 2015 - 2019',9800.00,4,'si'),(50,'Cubre Volante - marcas varias',1400.30,15,'si'),(51,'Aceite 10w40 x 5 Litros + filtro de aceite',2800.00,7,'si');
+INSERT INTO `repuestos` VALUES (40,'Foco delantero - Marcas varias',175.90,9,'si'),(41,'Optica trasera izquierda Fiat Palio ',3450.00,5,'si'),(42,'Bujias NGK Fiat Palio X4',1550.00,9,'si'),(44,'Limpia parabrisas X2 - Original',1400.00,10,'si'),(45,'Embrague Honda fit - Alternativo',15565.90,4,'si'),(46,'Kit distribucion Original - Fiat Palio 2005 - 2010',5800.00,10,'si'),(47,'Kit tornillos antirobo rueda - Honda Fit X16',2500.00,7,'si'),(48,'Bomba de agua Alternativa - Fiat Palio 2011 - 2015',2450.57,2,'si'),(49,'Radiador Honda City/Fit 2015 - 2019',9800.00,4,'si'),(50,'Cubre Volante - marcas varias',1400.30,15,'si'),(51,'Aceite 10w40 x 5 Litros   filtro de aceite',2800.00,2,'si');
 /*!40000 ALTER TABLE `repuestos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +293,7 @@ CREATE TABLE `turnos` (
   PRIMARY KEY (`nro_turno`),
   KEY `fk_turnos_clientes_idx` (`dni`),
   CONSTRAINT `fk_turnos_clientes` FOREIGN KEY (`dni`) REFERENCES `clientes` (`dni`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +302,7 @@ CREATE TABLE `turnos` (
 
 LOCK TABLES `turnos` WRITE;
 /*!40000 ALTER TABLE `turnos` DISABLE KEYS */;
-INSERT INTO `turnos` VALUES (16,'2019-12-23',NULL,40121097,'En espera'),(17,'2019-12-18',NULL,37817242,'Ingresado'),(18,'2019-12-18',NULL,14205920,'Ingresado'),(22,'2019-12-18',NULL,12999002,'En espera'),(23,'2019-12-18',NULL,24987790,'En espera'),(24,'2019-12-19',NULL,14205920,'En espera');
+INSERT INTO `turnos` VALUES (16,'2019-12-23',NULL,40121097,'En espera'),(17,'2019-12-18',NULL,37817242,'Ingresado'),(18,'2019-12-18',NULL,14205920,'Ingresado'),(22,'2019-12-18',NULL,12999002,'En espera'),(23,'2019-12-18',NULL,24987790,'En espera'),(24,'2019-12-19',NULL,14205920,'En espera'),(25,'2020-12-12',NULL,40121097,'En espera');
 /*!40000 ALTER TABLE `turnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,7 +327,7 @@ CREATE TABLE `usuario_y_contrasenia` (
 
 LOCK TABLES `usuario_y_contrasenia` WRITE;
 /*!40000 ALTER TABLE `usuario_y_contrasenia` DISABLE KEYS */;
-INSERT INTO `usuario_y_contrasenia` VALUES (5,'5',5),(21,'5',5),(22,'5',5),(23,'elricky',1);
+INSERT INTO `usuario_y_contrasenia` VALUES (5,'5',5),(21,'5',5),(22,'5',5),(23,'elricky',1),(24,'2525',1);
 /*!40000 ALTER TABLE `usuario_y_contrasenia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -449,4 +449,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-18 10:55:26
+-- Dump completed on 2019-12-19 10:06:59
