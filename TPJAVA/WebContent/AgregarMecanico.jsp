@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 <title>Nuevo Mecánico</title>
 </head>
@@ -32,8 +31,8 @@
 			<div class="form-group">
 				<label for="nivel"><b>Nivel</b></label>
 				<select name="nivel" class="nav-link dropdown-toggle" id="navbarDropdown">
-	  				<option class="dropdown-menu" value="administrador">Administrador</option> 
-	  				<option class="dropdown-menu" value="mecanico" >Mecánico</option>
+	  				<option value="administrador">Administrador</option> 
+	  				<option value="mecanico" >Mecánico</option>
 				</select>
 			</div>
 			<div class="form-group">

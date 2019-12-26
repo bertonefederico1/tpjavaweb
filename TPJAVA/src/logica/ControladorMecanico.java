@@ -33,6 +33,10 @@ public class ControladorMecanico {
 		dm.eliminarMecanico(matricula);
 	}
 	
+	public void eliminarUsuarioYContrasenia (int matricula) throws Exception {
+		dm.eliminarUsuarioYContrasenia (matricula);
+	}
+	
 	public void agregarUsuarioYContrasenia (String pass, int nivel) throws Exception {
 		dm.agregarUsuarioYContrasenia (pass, nivel);
 	}

@@ -40,6 +40,7 @@ public class EliminarMecanico extends HttpServlet {
 		ControladorMecanico cm = new ControladorMecanico();
 		try {
 			cm.eliminarMecanico(matricula);
+			cm.eliminarUsuarioYContrasenia (matricula);
 			request.getRequestDispatcher("Mecanicos.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.getRequestDispatcher("ErrorGeneral.html").forward(request, response);

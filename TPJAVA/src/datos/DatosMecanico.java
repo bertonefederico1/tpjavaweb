@@ -101,6 +101,16 @@ public class DatosMecanico {
 		Conexion.getInstancia().releaseConn();
 	}
 	
+	public void eliminarUsuarioYContrasenia (int matricula) throws Exception {
+		PreparedStatement pstmt = null;
+		String sql = ("DELETE FROM usuario_y_contrasenia WHERE usuario = ?");
+		pstmt = Conexion.getInstancia().getConn().prepareStatement(sql);
+		pstmt.setInt(1, matricula);
+		pstmt.executeUpdate();
+		pstmt.close();
+		Conexion.getInstancia().releaseConn();
+	}
+	
 	public void agregarUsuarioYContrasenia (String pass, int nivel) throws Exception {
 		PreparedStatement pstmt = null;
 		String query = ("CALL inserta_usuario_y_contrasenia (?,?)");

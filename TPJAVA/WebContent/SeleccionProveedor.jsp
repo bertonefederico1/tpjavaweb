@@ -71,7 +71,7 @@
  						%>
 					</tbody>
 				</table>
-				<a href="Principal.jsp"><< Ir a la página principal</a>
+				<a href="Repuestos.jsp"><< Volver</a>
 			</div>
 		</div>
 	</div>
