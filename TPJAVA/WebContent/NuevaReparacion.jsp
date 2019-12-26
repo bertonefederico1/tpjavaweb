@@ -73,7 +73,7 @@
 					<input type="text" class="form-control" name="cod_reparacion"
 						aria-label="reparacion" aria-describedby="basic-addon1"
 						value="<%if (request.getSession().getAttribute("reparacion_seleccionada") != null) {%><%=request.getSession().getAttribute("reparacion_seleccionada")%><%}%><%else {%>Reparacion<%}%>"
-						readonly="readonly" form style="width: 490px" required></input>
+						readonly="readonly" style="width: 490px" required></input>
 					<div id="botonAgregar">
 						<button type="button"
 							onclick="location='ReparacionesDelCliente.jsp?dni=<%=request.getParameter("dni")%>&tipo=reparacion'"

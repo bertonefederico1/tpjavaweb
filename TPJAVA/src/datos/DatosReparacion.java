@@ -326,7 +326,7 @@ public class DatosReparacion {
 					+ "ON rep.patente = a.patente "
 				+ "INNER JOIN clientes c "
 					+ "ON a.dni = c.dni "
-				+ "WHERE rep.activa = 'si' AND rep.estado = 'Ingresada' AND c.dni = ?"
+				+ "WHERE rep.activa = 'si' AND rep.estado = 'Ingresada' AND c.dni = ? "
 				+ "ORDER BY rep.nro_reparacion";
 		pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
 		pstmt.setString(1, dni);
