@@ -13,7 +13,9 @@
 	ArrayList<Cliente> misClientes= (ArrayList<Cliente>)request.getSession().getAttribute("misClientes");
 %>
 </head>
-<div id=titulo><label><b>ADMINISTRACIÓN DE CLIENTES</b></label></div>
+<div id=titulo>
+	<h2><b>LISTADO DE CLIENTES</b></h2>
+</div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 <div class="container">

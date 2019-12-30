@@ -11,7 +11,9 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
-<div id=titulo><label><b>ADMINISTRACIÓN DE MECÁNICOS</b></label></div>
+<div id=titulo>
+	<h2><b>ADMINISTRACIÓN DE MECÁNICOS</b></h2>
+</div>
 <div class= "container buscar">
 	<button type="button" onclick = "location='AgregarMecanico.jsp'" class="btn btn-success">+ Nuevo</button>
 </div>

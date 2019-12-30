@@ -14,7 +14,7 @@
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div id=plantillaAgregar>
 		<form method="POST" action="RepuestosUsadosEntreFechas">
-		<h4><b>FECHA INICIO:</b></h4>
+		<h4><b>Fecha Inicio:</b></h4>
 			<div class="form-row">
 				<div class="form-group col-md-1">
 					<label for="dia"><b>Día</b></label> 
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			
-		<h4><b>FECHA FIN:</b></h4>
+		<h4><b>Fecha Fin:</b></h4>
 		<div class="form-row">
 				<div class="form-group col-md-1">
 					<label for="dia"><b>Día</b></label> 

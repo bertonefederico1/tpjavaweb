@@ -97,7 +97,7 @@
 		<img src="icons/nuevo ingreso.jpg" alt= "NUEVO INGRESO" title= "NUEVO INGRESO" style= "position:relative; top:110px; left:80px" width="200" height="220">
 	</a>
 	<a href= "NuevaReparacion.jsp">
-		<img src="icons/nueva reparacion.jpg" alt= "NUEVA REPARACIÓN" title= "NUEVA REPARACIÓN" style= "position:relative; top:110px; left:370px" width="200" height="220">
+		<img src="icons/nueva reparacion.jpg" alt= "NUEVA REPARACION" title= "NUEVA REPARACION" style= "position:relative; top:110px; left:370px" width="200" height="220">
 	</a>
 	<a href= "NuevoTurno.jsp">
 		<img src="icons/nuevo turno.jpg" alt= "NUEVO TURNO" title= "NUEVO TURNO" style= "position:relative; top:110px; left:690px" width="200" height="220">

@@ -7,15 +7,15 @@ public class Conexion {
 	private static Conexion instancia;
 
 	private String driver = "com.mysql.jdbc.Driver";
-	//private String host = "localhost";
-	private String host = "node41685-tpjava-2019.jelastic.saveincloud.net";
+	private String host = "localhost";
+	//private String host = "node41807-tpjava2019.jelastic.saveincloud.net";
 	//private String host = "N35";
 	private String port = "3306";
 	private String user = "root";
 	//private String user = "andres";
-	//private String password = "123456789";
+	private String password = "123456789";
 	//private String password = "123456";
-	private String password = "iHZPFVxqYX";
+	//private String password = "juanbjusto1750";
 	private String db = "tpjava";
 	private int conectados = 0;
 	private Connection conn = null;

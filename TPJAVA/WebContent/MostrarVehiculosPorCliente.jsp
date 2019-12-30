@@ -22,7 +22,7 @@
 %>
 </head>
 <div id=titulo>
-	<h2><b>VEHÍCULOS POR CLIENTE</b></h2>
+	<h2><b>ADMINISTRACIÓN DE VEHÍCULOS</b></h2>
 </div>
 <div class="container buscar">
 	<form class="form" method="POST" action="VehiculosPorClienteFiltro">

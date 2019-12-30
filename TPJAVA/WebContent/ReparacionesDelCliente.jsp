@@ -29,7 +29,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>LISTADO DE REPARACIONES POR CLIENTE</b></label>
+	<h2><b>LISTADO DE REPARACIONES POR CLIENTE</b></h2>
 </div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>

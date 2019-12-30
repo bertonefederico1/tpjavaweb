@@ -16,7 +16,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>REPUESTOS UTILIZADOS ENTRE LAS FECHAS: <%=request.getSession().getAttribute("fecha_inicio")%> Y <%=request.getSession().getAttribute("fecha_fin")%></b></label>
+	<h3><b>REPUESTOS UTILIZADOS ENTRE LAS FECHAS: </b></h3><h2><b><%=request.getSession().getAttribute("fecha_inicio")%> Y <%=request.getSession().getAttribute("fecha_fin")%></b></h2>
 </div>
 <body>
 <jsp:include page="ControlarUsuario.jsp"></jsp:include>
