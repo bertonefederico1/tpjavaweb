@@ -23,7 +23,7 @@
 %>
 </head>
 <div id=titulo>
-	<label><b>VEHICULOS POR CLIENTE</b></label>
+	<h2><b>VEHÍCULOS POR CLIENTE</b></h2>
 </div>
 <div class="container buscar">
 	<button type="button" class="btn btn-success"

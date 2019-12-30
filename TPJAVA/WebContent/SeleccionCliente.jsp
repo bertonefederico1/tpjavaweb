@@ -39,7 +39,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<label><b>ADMINISTRACIÓN DE CLIENTES</b></label>
+	<h2><b>LISTADO DE CLIENTES</b></h2>
 </div>
 <div class="container buscar">
 	<form class="form" method="GET" action="ClienteFiltro">

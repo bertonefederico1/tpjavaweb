@@ -11,7 +11,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css"/>
 </head>
 <div id=titulo>
-	<h2><b>LISTADO DE TURNOS</b></h2>
+	<h2><b>TURNOS PENDIENTES</b></h2>
 </div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>

@@ -24,7 +24,7 @@
 <link href="bootstrap/css/estilo.css" rel="stylesheet" type="text/css" />
 </head>
 <div id=titulo>
-	<h2><b>ADMINISTRACIÓN DE PROVEEDORES</b></h2>
+	<h2><b>LISTADO DE PROVEEDORES</b></h2>
 </div>
 <div class="container buscar">
 	<form class="form" method="POST" action="ProveedorFiltro">

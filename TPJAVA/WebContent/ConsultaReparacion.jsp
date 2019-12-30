@@ -66,7 +66,7 @@
 
 	<div id=titulo>
 		<p>
-		<h2>VEHICULO</h2>
+		<h2>VEHÍCULO</h2>
 		</p>
 	</div>
 
@@ -106,7 +106,7 @@
 	<div id=consultaReparacion>
 		<div class="row">
 			<div class="form-group col-md-4">
-				<b><label for="">Número De Reparación</label></b> <input type="text"
+				<b><label for="">Número de Reparación</label></b> <input type="text"
 					class="form-control" readonly="readonly"
 					value="<%=rep.getNroReparacion()%>">
 			</div>
@@ -158,7 +158,7 @@
 		<div class="row">
 			<label><div id=reparacionesARealizar class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">Detalles del vehiculo</span>
+						<span class="input-group-text" id="basic-addon1">Detalles del vehículo</span>
 					</div>
 					<textarea name="detallesVehiculo" rows="5" cols="53"
 						readonly="readonly">

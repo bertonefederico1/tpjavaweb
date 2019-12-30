@@ -13,7 +13,9 @@
 	ArrayList<Auto> misVehiculos= (ArrayList<Auto>)request.getSession().getAttribute("misAutos");
 %>
 </head>
-<div id=titulo><label><b>VEHÍCULOS POR CLIENTE</b></label></div>
+<div id=titulo>
+	<h2><b>ADMINISTRACIÓN DE VEHÍCULOS</b></h2>
+</div>
 <body>
 	<jsp:include page="ControlarUsuario.jsp"></jsp:include>
 	<div class="container">
