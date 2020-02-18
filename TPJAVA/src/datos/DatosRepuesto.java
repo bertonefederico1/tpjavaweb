@@ -13,7 +13,13 @@ public class DatosRepuesto {
 		ArrayList<Repuesto> misRepuestos = new ArrayList<>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT * FROM repuestos WHERE descripcion LIKE ? AND activo = 'si' ORDER BY descripcion";
+		String query = "SELECT * FROM repuestos repu "
+			    + "INNER JOIN provee "
+			    + "ON repu.cod_repuesto = provee.cod_repuesto "
+			    + "INNER JOIN proveedores "
+			    + "ON provee.cuit = proveedores.cuit "
+			    + "WHERE repu.descripcion LIKE ? AND repu.activo = 'si' "
+			    + "ORDER BY repu.descripcion";
 		if (desc_buscar != null) {
 			pstmt = Conexion.getInstancia().getConn().prepareStatement(query);
 			pstmt.setString(1, "%" + desc_buscar + "%");
@@ -24,6 +30,10 @@ public class DatosRepuesto {
 				r.setDescripcion(rs.getString("descripcion"));
 				r.setPrecio(rs.getFloat("precio"));
 				r.setStock(Integer.parseInt(rs.getString("stock")));
+				Proveedor prov = new Proveedor();
+				prov.setCuit(rs.getString("cuit"));
+				prov.setRazonSocial(rs.getString("razon_social"));
+				r.setProveedor(prov);
 				misRepuestos.add(r);
 			}
 		rs.close();

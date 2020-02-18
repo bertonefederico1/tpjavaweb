@@ -32,6 +32,7 @@
             <th scope="col">DESCRIPCIÓN</th>
             <th scope="col">PRECIO</th>
             <th scope="col">STOCK</th>
+            <th scope="col">PROVEEDOR</th>
             <th scope="col">ACCIÓN</th>
           </tr>
         </thead>
@@ -43,8 +44,9 @@
 		        <td><%=r.getDescripcion()%></td>
 		        <td>$ <%=r.getPrecio()%></td>
 		        <td><%=r.getStock()%></td>
+		        <td><%=r.getProveedor().getRazonSocial()%></td>
 		        <td><div>
-		        <a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>" class="btn btn-warning btn-sm">Modificar</a>
+		        <a href="EditarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>&precio=<%=r.getPrecio()%>&stock=<%=r.getStock()%>&cuit=<%=r.getProveedor().getCuit()%>" class="btn btn-warning btn-sm">Modificar</a>
 				<a href="ConfirmacionEliminarRepuesto.jsp?codigo=<%=r.getCodigo()%>&descripcion=<%=r.getDescripcion()%>" class="btn btn-danger btn-sm">Eliminar</a>
 		        </div></td>
 		      </tr>
